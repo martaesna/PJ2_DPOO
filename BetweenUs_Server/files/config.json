@@ -1,7 +1,7 @@
 {
   "port": 3306,
   "user": "root",
-  "password": "SmartPiano99",
+  "password": "BetweenUs21",
   "db": "BetweenUs",
   "serverIP": "127.0.0.1",
   "listeningPort": 12345
