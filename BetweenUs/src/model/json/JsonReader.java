@@ -1,33 +1,29 @@
 package model.json;
 
-
 import com.google.gson.Gson;
+import model.json.Data;
 
 import java.io.FileReader;
 
-public class ReadJson {
-    private Data data;
-    final String PATH ="BetweenUs_Client/files/config.json";
-
-    public void llegeixJSON(){
-        Gson gson = new Gson();
-        com.google.gson.stream.JsonReader reader;
+public class JsonReader {
+    static Data data = new Data();
+    public static Data llegeixJSON(){
         try{
-
-            reader = new com.google.gson.stream.JsonReader(new FileReader(PATH));
+            Gson gson = new Gson();
+            com.google.gson.stream.JsonReader reader;
+            reader = new com.google.gson.stream.JsonReader(new FileReader("BetweenUs/files/config.json"));
             data = gson.fromJson(reader, Data.class);
 
             System.out.println("\nLectura JSON finalitzada.\n");
 
-
         }catch(Exception e){
             System.out.println("No s'ha pogut llegir el fitxer JSON: " + e.getMessage());
         }
+        return data;
     }
-
     public Data getDades() {
         return data;
     }
-
-
 }
+
+//hola

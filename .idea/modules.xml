@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BetweenUs_Client/BetweenUs_Client.iml" filepath="$PROJECT_DIR$/BetweenUs_Client/BetweenUs_Client.iml" />
-      <module fileurl="file://$PROJECT_DIR$/BetweenUs_Server/BetweenUs_Server.iml" filepath="$PROJECT_DIR$/BetweenUs_Server/BetweenUs_Server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BetweenUs/BetweenUs.iml" filepath="$PROJECT_DIR$/BetweenUs/BetweenUs.iml" />
     </modules>
   </component>
 </project>
