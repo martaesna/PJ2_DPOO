@@ -2,12 +2,7 @@ import controller.MainController;
 import controller.UserController;
 import model.User;
 import model.json.Data;
-import model.json.JsonReader;
 
-import javax.swing.*;
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Main {
@@ -20,11 +15,10 @@ public class Main {
             }
         });*/
 
-        /**PROVA REGISTRE USUARI**/
+        /******************  PROVA REGISTRE USUARI  ******************/
 
-        //Definim els controladors
+        //Creem el UserController
         UserController userController = new UserController();
-        MainController mainController = new MainController(userController);
 
         Scanner myObj = new Scanner(System.in);
         boolean error;
