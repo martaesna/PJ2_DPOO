@@ -1,4 +1,4 @@
-package controller;
+package model.database;
 
 import com.mysql.jdbc.Connection;
 
