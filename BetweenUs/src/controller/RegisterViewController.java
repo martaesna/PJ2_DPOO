@@ -2,6 +2,7 @@ package controller;
 
 
 import model.User;
+import model.UserManager;
 import view.RegisterView;
 
 import java.awt.event.ActionEvent;
@@ -17,9 +18,13 @@ public class RegisterViewController implements ActionListener {
     }
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Register")) { //cuando apretamos el boton
-            String username = rv.getUsername();
-            System.out.println(username);
-            registreUsuari(rv.getUsername(), rv.getEmail(), rv.getPassword());
+
+            User user = new User(rv.getUsername(), rv.getEmail(), rv.getPassword(), rv.getRepeatPassword());
+            UserManager userManager = new UserManager();
+            if(userManager.userRegister(user)){
+                System.out.println("BENVINGUT "+user.getName()+"!");
+                registreUsuari(rv.getUsername(), rv.getEmail(), rv.getPassword());
+            }
         }
         if (e.getActionCommand().equals("Login")) { //cuando apretamos el boton
 
