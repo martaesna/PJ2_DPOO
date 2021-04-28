@@ -109,7 +109,7 @@ public class RegisterView extends JFrame {
         jbRegister.setBounds(125,390,150,40);
         jpVista.add(jbRegister);
 
-        JLabel loginMessageLabel = new JLabel("Don't have an account?", JLabel.LEFT);
+        JLabel loginMessageLabel = new JLabel("Already have an account?", JLabel.LEFT);
         loginMessageLabel.setBounds(110,430,250,50);
         loginMessageLabel.setFont(new Font("Russo One", Font.BOLD, 16));
         loginMessageLabel.setForeground(Color.WHITE);
