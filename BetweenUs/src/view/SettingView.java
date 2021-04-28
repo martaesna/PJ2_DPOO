@@ -12,6 +12,9 @@ import java.util.Map;
 
 public class SettingView extends JFrame  {
 
+    private JButton jbDel;
+    private JButton jbLog;
+    private JButton configButton;
 
     public SettingView() {
         setVisible(true);
@@ -20,113 +23,99 @@ public class SettingView extends JFrame  {
         setResizable(false); //para que no se pueda mover
         setLocationRelativeTo(null); //Centrarlo
         setDefaultCloseOperation(EXIT_ON_CLOSE); // cerrar con la x
-        //setLayout(null);
+        setLayout(null);
 
         //Creem el fons
-
         JPanel background = new JPanel();
-        background.setBackground(Color.black);
+        background.setBackground(Color.BLACK);
         background.setLayout(null);
         background.setBounds(0,0,1080,600);
-        background.setVisible(true);
 
 
-        JButton back = new JButton();
-        back.setBounds(10,10,50,50);
-        ImageIcon sets = new ImageIcon("/model/images/tuerca.png");
-        back.setIcon(new ImageIcon(sets.getImage().getScaledInstance(back.getWidth(),back.getHeight(),Image.SCALE_SMOOTH)));
-        background.add(back);
+        try {
+            BufferedImage image = ImageIO.read(getClass().getResource("/model/images/config.png"));
+            Image scaled = image.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
+            ImageIcon backgroundImage = new ImageIcon(scaled);
+            configButton = new JButton(backgroundImage);
+            configButton.setOpaque(false);
+            configButton.setContentAreaFilled(false);
+            configButton.setBorderPainted(false);
+            configButton.setActionCommand("Config");
+            configButton.setBounds(10,10, 30, 30);
+            background.add(configButton);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
 
 
-
-        JLabel title = new JLabel("Settings", JLabel.CENTER);
-        title.setBounds(350,10,400,95);
+        JLabel title = new JLabel("Settings", JLabel.LEFT);
+        title.setBounds(375,10,400,95);
         title.setFont(new Font("Russo One", Font.BOLD, 75));
         title.setForeground(Color.WHITE);
         background.add(title);
 
 
-
-
-        //Creem un panel gridlayout de 2x2 per fer els settings
-        JPanel jpSet = new JPanel();
-        jpSet.setLayout(new GridLayout(2,2,0,0));
-        jpSet.setBounds(80,130,1080,150);
-       // jpSet.setLayout(null);
-        jpSet.setBackground(Color.black);
-
-
         Font font = new Font("Russo One",Font.BOLD,35);
 
-        JLabel jlMusic = new JLabel("Music volum",JLabel.CENTER);
-        jlMusic.setForeground(Color.WHITE);
+        JLabel jlMusic = new JLabel("Music volum",JLabel.LEFT);
+        jlMusic.setBounds(150,150,250,50);
         jlMusic.setFont(font);
-        jpSet.add(jlMusic);
+        jlMusic.setForeground(Color.WHITE);
+        background.add(jlMusic);
 
-        JLabel jlbola1 = new JLabel("la bola es la hostia",JLabel.LEFT);
+
+        JLabel jlbola1 = new JLabel("----------------------------------",JLabel.LEFT);
         jlbola1.setForeground(Color.WHITE);
+        jlbola1.setBounds(500,150,350,50);
         jlbola1.setFont(new Font("Russo One",Font.BOLD,15));
-        jpSet.add(jlbola1);
+        background.add(jlbola1);
 
         //hacer que estas dos esten mas juntas
-        JLabel jlSFX = new JLabel("SFX volum",JLabel.CENTER);
+        JLabel jlSFX = new JLabel("SFX volum",JLabel.LEFT);
         jlSFX.setForeground(Color.WHITE);
+        jlSFX.setBounds(150,250,250,50);
         jlSFX.setFont(font);
-        jpSet.add(jlSFX);
+        background.add(jlSFX);
 
 
-        JLabel jlbola2 = new JLabel("la bola es la hostia",JLabel.LEFT);
+        JLabel jlbola2 = new JLabel("----------------------------------",JLabel.LEFT);
         jlbola2.setForeground(Color.WHITE);
+        jlbola2.setBounds(500,250,350,50);
         jlbola2.setFont(new Font("Russo One",Font.BOLD,15));
-        jpSet.add(jlbola2);
-
-        //Creem el panel gridLayout per fer els dos botons
-
-        JPanel jpLoDe = new JPanel();
-        jpLoDe.setLayout(new GridLayout(2,1,0,50));
-
-        jpLoDe.setBounds(400,330,300,200);
-        jpLoDe.setBackground(Color.BLACK);
+        background.add(jlbola2);
 
         Border border = new LineBorder(Color.WHITE,3,true);
 
 
+
         //Boto1
-        JButton jbLog = new JButton("Log out");
+        jbLog = new JButton("Log out");
         jbLog.setForeground(Color.WHITE);
         jbLog.setBackground(Color.BLACK);
-        jbLog.setLayout(null);
-        jbLog.setBounds(0,330,150,40);
+        jbLog.setBounds(375,350,300,75);
+        jbLog.setActionCommand("Logout");
         jbLog.setFont(font);
         jbLog.setBorder(border);
-        jpLoDe.add(jbLog);
+        background.add(jbLog);
 
         //boto2
-        JButton jbDel = new JButton("Delete account");
+        jbDel = new JButton("Delete account");
         jbDel.setForeground(Color.RED);
         jbDel.setBackground(Color.BLACK);
-        jbDel.setBounds(0,380,150,40);
-
-        jbDel.setLayout(null);
+        jbDel.setBounds(375,450,300,75);
+        jbDel.setActionCommand("Delete");
         jbDel.setFont(font);
         jbDel.setBorder(border);
-        jpLoDe.add(jbDel);
+        background.add(jbDel);
 
-
-
-
-
-
-
-        getContentPane().add(background);
-        background.add(jpSet);
-        background.add(jpLoDe);
+        setContentPane(background);
     }
 
-  /*  public void mainController(ActionListener actionListener) {
-        jbRegister.addActionListener(actionListener);
-        jbLogin.addActionListener(actionListener);
-    }*/
+    public void mainController(ActionListener actionListener) {
+        jbLog.addActionListener(actionListener);
+        jbDel.addActionListener(actionListener);
+        configButton.addActionListener(actionListener);
+    }
 }

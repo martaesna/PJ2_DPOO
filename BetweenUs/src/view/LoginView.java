@@ -12,9 +12,7 @@ public class LoginView extends JFrame {
     private JButton jbRegister;
     private JButton jbLogin;
     private JTextField nameField;
-    private JTextField emailField;
     private JPasswordField passwordField;
-    private JPasswordField repeatPasswordField;
 
 
 
@@ -108,7 +106,6 @@ public class LoginView extends JFrame {
     }
 
     public String getUsername() { return nameField.getText(); }
-    public String getEmail() { return emailField.getText(); }
     public String getPassword() { return String.valueOf(passwordField.getPassword()); }
 
 }
