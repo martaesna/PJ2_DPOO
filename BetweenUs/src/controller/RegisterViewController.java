@@ -3,6 +3,7 @@ package controller;
 
 import model.User;
 import model.UserManager;
+import view.LoginView;
 import view.RegisterView;
 
 import java.awt.event.ActionEvent;
@@ -27,6 +28,8 @@ public class RegisterViewController implements ActionListener {
             }
         }
         if (e.getActionCommand().equals("Login")) { //cuando apretamos el boton
+            LoginView lv = new LoginView();
+            LoginViewController lvc = new LoginViewController(lv);
 
         }
     }
