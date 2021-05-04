@@ -11,12 +11,12 @@ import java.util.Scanner;
 public class Main {
     private static Data data;
     public static void main(String[] args) {
-        //RegisterView rv = new RegisterView();
-        //RegisterViewController rvc = new RegisterViewController(rv);
-        //rv.mainController(rvc);
-        SettingView sv = new SettingView();
+        RegisterView rv = new RegisterView();
+        RegisterViewController rvc = new RegisterViewController(rv);
+        rv.mainController(rvc);
+        /*SettingView sv = new SettingView();
         SettingViewController svc = new SettingViewController(sv);
-        sv.mainController(svc);
+        sv.mainController(svc);*/
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override

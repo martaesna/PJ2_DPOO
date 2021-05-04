@@ -36,11 +36,12 @@ public class LoginView extends JFrame {
             e.printStackTrace();
         }
 
+        System.out.println("com va la vista?");
         //Creem un panell
         JPanel jpVista = new JPanel();
         jpVista.setBackground(new Color(255,0,0,99));
         jpVista.setLayout(null);
-        jpVista.setBounds(340,150,400,300);
+        jpVista.setBounds(340,20,400,520);
 
 
         JLabel nameLabel = new JLabel("Username or Email", JLabel.LEFT);
@@ -58,7 +59,7 @@ public class LoginView extends JFrame {
 
 
         JLabel passwordLabel = new JLabel("Password", JLabel.LEFT);
-        passwordLabel.setBounds(25,90,150,50);
+        passwordLabel.setBounds(25,100,150,50);
         passwordLabel.setFont(new Font("Russo One", Font.BOLD, 24));
         passwordLabel.setForeground(Color.WHITE);
         jpVista.add(passwordLabel);
@@ -66,32 +67,30 @@ public class LoginView extends JFrame {
         passwordField.setBackground(Color.BLACK);
         passwordField.setForeground(Color.WHITE);
         passwordField.setFont(new Font("Russo One", Font.BOLD, 24));
-        passwordField.setBounds(23,135,350,40);
+        passwordField.setBounds(23,145,350,40);
         jpVista.add(passwordField);
-
-
 
 
         jbLogin = new JButton("Login");
         jbLogin.setFont(new Font("Russo One", Font.BOLD, 24));
-        jbLogin.setActionCommand("Register"); //
+        jbLogin.setActionCommand("Login"); //
         jbLogin.setBackground(Color.BLACK);
         jbLogin.setForeground(Color.WHITE);
-        jbLogin.setBounds(125,140,150,40);
+        jbLogin.setBounds(125,200,150,40);
         jpVista.add(jbLogin);
 
         JLabel loginMessageLabel = new JLabel("Don't have an account?", JLabel.LEFT);
-        loginMessageLabel.setBounds(110,200,250,50);
+        loginMessageLabel.setBounds(110,240,250,50);
         loginMessageLabel.setFont(new Font("Russo One", Font.BOLD, 16));
         loginMessageLabel.setForeground(Color.WHITE);
         jpVista.add(loginMessageLabel);
 
         jbRegister = new JButton("Register");
-        jbLogin.setFont(new Font("Russo One", Font.BOLD, 16));
-        jbLogin.setActionCommand("Register"); //
-        jbLogin.setBackground(Color.BLACK);
-        jbLogin.setForeground(Color.WHITE);
-        jbLogin.setBounds(160,250,80,35);
+        jbRegister.setFont(new Font("Russo One", Font.BOLD, 16));
+        jbRegister.setActionCommand("Register"); //
+        jbRegister.setBackground(Color.BLACK);
+        jbRegister.setForeground(Color.WHITE);
+        jbRegister.setBounds(140,285,120,35);
         jpVista.add(jbRegister);
 
 
@@ -107,5 +106,4 @@ public class LoginView extends JFrame {
 
     public String getUsername() { return nameField.getText(); }
     public String getPassword() { return String.valueOf(passwordField.getPassword()); }
-
 }

@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import static model.database.SQLoperations.registreUsuari;
 
 public class RegisterViewController implements ActionListener {
     private RegisterView rv;
@@ -21,8 +20,8 @@ public class RegisterViewController implements ActionListener {
         if (e.getActionCommand().equals("Register")) { //cuando apretamos el boton
             User user = new User(rv.getUsername(), rv.getEmail(), rv.getPassword(), rv.getRepeatPassword());
             UserManager userManager = new UserManager();
-            if(userManager.userRegister(user)){
-                registreUsuari(rv.getUsername(), rv.getEmail(), rv.getPassword());
+            if(userManager.checkRegister(user)){
+                userManager.registerUser(user);
             }
         }
         if (e.getActionCommand().equals("Login")) { //cuando apretamos el boton

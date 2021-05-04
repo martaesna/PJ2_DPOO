@@ -6,11 +6,9 @@ import view.LoginView;
 import view.RegisterView;
 import view.SettingView;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import static model.database.SQLoperations.loginUsuariCorrecte;
-import static model.database.SQLoperations.registreUsuari;
 
 public class LoginViewController implements ActionListener {
     private LoginView lv;
@@ -24,14 +22,14 @@ public class LoginViewController implements ActionListener {
             rv.mainController(rvc);
         }
         if (e.getActionCommand().equals("Login")) { //cuando apretamos el boton
-            if (loginUsuariCorrecte(lv.getUsername(), lv.getPassword())) {
-                System.out.println("login correcte");
-                //passem a la vista principal del joc
+            UserManager userManager = new UserManager();
+            if (userManager.loginUser(lv.getUsername(),lv.getPassword())) {
+                System.out.println("Login correcte");
                 SettingView sv = new SettingView();
-                SettingViewController svc = new SettingViewController(sv);
+                SettingViewController svc = new SettingViewController(sv,lv.getUsername());
                 sv.mainController(svc);
             } else {
-                System.out.println("error login");
+                JOptionPane.showMessageDialog(null, "ERROR: Les credencials introduïdes són incorrectes", "Error Login", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

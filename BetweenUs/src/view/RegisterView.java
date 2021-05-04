@@ -18,8 +18,6 @@ public class RegisterView extends JFrame {
     private JPasswordField passwordField;
     private JPasswordField repeatPasswordField;
 
-
-
     public RegisterView() {
         setVisible(true);
         setTitle("Register"); // titol

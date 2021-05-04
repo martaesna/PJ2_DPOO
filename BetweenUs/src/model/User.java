@@ -1,5 +1,8 @@
 package model;
 
+import model.database.SQLUserDAO;
+import model.database.UserDAO;
+
 public class User {
     private String name;
     private String mail;

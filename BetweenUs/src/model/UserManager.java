@@ -1,28 +1,52 @@
 package model;
 
-import controller.UserController;
+import model.database.SQLUserDAO;
+import model.database.UserDAO;
 
 import javax.swing.*;
 
 public class UserManager {
+    private final UserDAO userDAO;
     private boolean error;
 
-    public boolean userRegister(User user){
+    public UserManager(){
+        userDAO = new SQLUserDAO();
+    }
+
+    public void registerUser(User user) {
+        userDAO.registerUser(user);
+    }
+
+    public boolean loginUser(String userNameMail, String password) {
+        return userDAO.checkLoginUser(userNameMail,password);
+    }
+
+    public void deleteUser(String nameLogin) {
+        boolean exists = userDAO.userNameExists(nameLogin);
+        if (exists) {
+            userDAO.deleteUser(nameLogin);
+        } else {
+            JOptionPane.showMessageDialog(null, "ERROR: Aquest usuari no existeix", "Error Registre", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public boolean checkRegister(User user){
         if (checkPasswordFormat(user) || unequalPasswords(user)) {
             return false;
         } else {
-            return true;
+            if(userDAO.userNameExists(user.getName())) {
+                JOptionPane.showMessageDialog(null, "ERROR: El nom d'usuari ja existeix", "Error Registre", JOptionPane.ERROR_MESSAGE);
+            } else if (userDAO.userMailExists(user.getMail())){
+                JOptionPane.showMessageDialog(null, "ERROR: El correu ja existeix", "Error Registre", JOptionPane.ERROR_MESSAGE);
+            } else {
+                return true;
+            }
+            return false;
         }
     }
 
     //Comprovem format del correu
     public boolean checkMailFormat(String mail) {
-
-        return error;
-    }
-
-    //Comprovem que el correu és únic a la BBDD
-    public boolean checkUniqueMail(String mail) {
 
         return error;
     }
@@ -91,7 +115,6 @@ public class UserManager {
             return false;
         } else {
             JOptionPane.showMessageDialog(null, "ERROR: Les contrasenyes han de coincidir", "Error Registre", JOptionPane.ERROR_MESSAGE);
-
             return true;
         }
     }
