@@ -3,6 +3,7 @@ package controller;
 import model.User;
 import model.UserManager;
 import view.LoginView;
+import view.PlayView;
 import view.RegisterView;
 import view.SettingView;
 
@@ -45,10 +46,11 @@ public class SettingViewController implements ActionListener {
             }
         }
         if (e.getActionCommand().equals("Config")) { //cuando apretamos el boton
-            RegisterView rv = new RegisterView();
-            RegisterViewController rvc = new RegisterViewController(rv);
-            rv.mainController(rvc);
             sv.setVisible(false);
+            PlayView pv = new PlayView();
+            PlayViewController pvc = new PlayViewController(pv);
+            pv.mainController(pvc);
+
         }
     }
 }

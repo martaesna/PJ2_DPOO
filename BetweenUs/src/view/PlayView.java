@@ -39,6 +39,7 @@ public class PlayView extends JFrame {
         JpNorth.setOpaque(false);
 
         try {
+            //boton de settings
             BufferedImage image = ImageIO.read(getClass().getResource("/model/images/config.png"));
             Image scaled = image.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
             ImageIcon backgroundImage = new ImageIcon(scaled);
@@ -81,6 +82,7 @@ public class PlayView extends JFrame {
         jbNewGame = new JButton("New Game");
         jbNewGame.setForeground(Color.WHITE);
         jbNewGame.setBackground(Color.BLACK);
+        jbNewGame.setActionCommand("NewGame");
         //jbNewGame.setBounds(375,350,300,75);
         jbNewGame.setFont(font);
         jbNewGame.setBorder(border);
@@ -91,6 +93,7 @@ public class PlayView extends JFrame {
         jbConfiguredGame = new JButton("Configured game");
         jbConfiguredGame.setForeground(Color.WHITE);
         jbConfiguredGame.setBackground(Color.BLACK);
+        jbConfiguredGame.setActionCommand("Configured");
         //jbConfiguredGame.setBounds(375,350,300,75);
         jbConfiguredGame.setFont(font);
         jbConfiguredGame.setBorder(border);
@@ -100,6 +103,7 @@ public class PlayView extends JFrame {
         jbChargeGame = new JButton("Charge game");
         jbChargeGame.setForeground(Color.WHITE);
         jbChargeGame.setBackground(Color.BLACK);
+        jbChargeGame.setActionCommand("Charge");
         //jbChargeGame.setBounds(375,350,300,75);
         jbChargeGame.setFont(font);
         jbChargeGame.setBorder(border);
@@ -109,6 +113,7 @@ public class PlayView extends JFrame {
         jbDeleteGame = new JButton("Delete game");
         jbDeleteGame.setForeground(Color.WHITE);
         jbDeleteGame.setBackground(Color.BLACK);
+        jbDeleteGame.setActionCommand("Delete");
         //jbDeleteGame.setBounds(375,350,300,75);
         jbDeleteGame.setFont(font);
         jbDeleteGame.setBorder(border);

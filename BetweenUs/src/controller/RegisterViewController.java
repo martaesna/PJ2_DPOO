@@ -3,8 +3,8 @@ package controller;
 
 import model.User;
 import model.UserManager;
-import view.LoginView;
-import view.RegisterView;
+import view.*;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,6 +22,10 @@ public class RegisterViewController implements ActionListener {
             UserManager userManager = new UserManager();
             if(userManager.checkRegister(user)){
                 userManager.registerUser(user);
+                PlayView pv = new PlayView();
+                PlayViewController pvc = new PlayViewController(pv);
+                pv.mainController(pvc);
+
             }
         }
         if (e.getActionCommand().equals("Login")) { //cuando apretamos el boton
