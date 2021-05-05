@@ -25,9 +25,11 @@ public class RegisterViewController implements ActionListener {
             }
         }
         if (e.getActionCommand().equals("Login")) { //cuando apretamos el boton
+            rv.setVisible(false);
             LoginView lv = new LoginView();
             LoginViewController lvc = new LoginViewController(lv);
             lv.mainController(lvc);
+
         }
     }
 }
