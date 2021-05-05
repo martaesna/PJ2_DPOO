@@ -1,11 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="Registre&#10;Login&#10;Delete User" />
+    <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="Registre&#10;Login&#10;Delete User">
+      <change afterPath="$PROJECT_DIR$/BetweenUs/src/controller/ChargeGameViewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BetweenUs/src/controller/ConfiguredGameViewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BetweenUs/src/model/fonts/RussoOne-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BetweenUs/src/model/images/tornar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BetweenUs/src/view/ChargeGameView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BetweenUs/src/view/ConfiguredGameView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BetweenUs/src/view/DeleteGameView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BetweenUs/src/view/customComponents/RoundedBorder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/view/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/view/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/view/SettingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/view/SettingView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/Main$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/LoginViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/controller/LoginViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/controller/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/RegisterViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/controller/RegisterViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/SettingViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/controller/SettingViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/UserManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/model/UserManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/database/ConectorDB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/model/database/ConectorDB.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/database/SQLUserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/model/database/SQLUserDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/database/SQLoperations.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/database/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/model/database/UserDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/json/Data.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/model/json/Data.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/json/JsonReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/model/json/JsonReader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/view/LoginView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/view/LoginView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/view/RegisterView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/view/RegisterView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/view/SettingView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/view/SettingView.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -20,7 +53,7 @@
   </component>
   <component name="ProjectId" id="1rUMVHwiYNFcaFxeF4LHZfx1EeZ" />
   <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="1" id="Add" />
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -29,12 +62,36 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../DAOs Example/DAOs Example/DAOs Example - Code" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/BetweenUs/src/model" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Confirmation" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\marta\Desktop\BETWEEN US\Projecte V2\BetweenUs\src\model" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="BetweenUs" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -53,6 +110,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1619026237063</updated>
+      <workItem from="1620159108659" duration="996000" />
+      <workItem from="1620212480187" duration="7204000" />
+      <workItem from="1620224895175" duration="5952000" />
     </task>
     <task id="LOCAL-00001" summary="Per saber si ho tenim, joves!">
       <created>1619026420669</created>
@@ -98,6 +158,9 @@
     </task>
     <option name="localTasksCounter" value="7" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

@@ -1,4 +1,6 @@
 package view;
+import view.customComponents.RoundedBorder;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -86,28 +88,25 @@ public class SettingView extends JFrame  {
         jlbola2.setFont(new Font("Russo One",Font.BOLD,15));
         background.add(jlbola2);
 
-        Border border = new LineBorder(Color.WHITE,3,true);
-
-
 
         //Boto1
         jbLog = new JButton("Log out");
         jbLog.setForeground(Color.WHITE);
         jbLog.setBackground(Color.BLACK);
-        jbLog.setBounds(375,350,300,75);
+        jbLog.setBounds(350,350,400,75);
         jbLog.setActionCommand("Logout");
         jbLog.setFont(font);
-        jbLog.setBorder(border);
+        jbLog.setBorder(new RoundedBorder(50));
         background.add(jbLog);
 
         //boto2
         jbDel = new JButton("Delete account");
         jbDel.setForeground(Color.RED);
         jbDel.setBackground(Color.BLACK);
-        jbDel.setBounds(375,450,300,75);
+        jbDel.setBounds(350,450,400,75);
         jbDel.setActionCommand("Delete");
         jbDel.setFont(font);
-        jbDel.setBorder(border);
+        jbDel.setBorder(new RoundedBorder(50));
         background.add(jbDel);
 
         setContentPane(background);
