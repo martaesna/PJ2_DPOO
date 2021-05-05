@@ -115,7 +115,7 @@ public class RegisterView extends JFrame {
 
         jbLogin = new JButton("Login");
         jbLogin.setFont(new Font("Russo One", Font.BOLD, 16));
-        jbLogin.setActionCommand("Login"); //
+        jbLogin.setActionCommand("Login");
         jbLogin.setBackground(Color.BLACK);
         jbLogin.setForeground(Color.WHITE);
         jbLogin.setBounds(160,475,80,35);

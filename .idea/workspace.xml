@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="Registre&#10;Login&#10;Delete User">
+    <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="UserDAO&#10;SQLUserDAO">
+      <change afterPath="$PROJECT_DIR$/BetweenUs/src/model/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BetweenUs/src/model/GameManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BetweenUs/src/model/Map.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BetweenUs/src/model/database/GameDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BetweenUs/src/model/database/SQLGameDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/controller/LoginViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/controller/LoginViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/controller/RegisterViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/controller/RegisterViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/view/RegisterView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/view/RegisterView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/Main$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/LoginViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/controller/LoginViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/RegisterViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/controller/RegisterViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/view/LoginView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/view/LoginView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/view/RegisterView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/view/RegisterView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/view/SettingView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/view/SettingView.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +62,19 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="BetweenUs" />
@@ -76,7 +99,6 @@
       <workItem from="1620159108659" duration="996000" />
       <workItem from="1620212480187" duration="7204000" />
       <workItem from="1620224895175" duration="5952000" />
-      <workItem from="1620237927119" duration="671000" />
     </task>
     <task id="LOCAL-00001" summary="Per saber si ho tenim, joves!">
       <created>1619026420669</created>
