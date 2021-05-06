@@ -8,6 +8,7 @@ import javax.swing.*;
 public class UserManager {
     private final UserDAO userDAO;
     private boolean error;
+    private final String emailRegex = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9]+.+[a-zA-Z0-9]{3,}+$";
 
     public UserManager(){
         userDAO = new SQLUserDAO();
@@ -30,29 +31,29 @@ public class UserManager {
         }
     }
 
-    public boolean checkRegister(User user){
-        if (checkPasswordFormat(user) || unequalPasswords(user)) {
-            return false;
+    public int checkRegister(User user){
+        if (userDAO.userNameExists(user.getName())) {
+            return 1;
+        } else if (unequalPasswords(user)) {
+            return 2;
+        } else if(checkPasswordFormat(user) != "") {
+            return 3;
+        } else if (!checkMailFormat(user.getMail())) {
+            return 4;
+        } else if (userDAO.userMailExists(user.getMail())){
+            return 5;
         } else {
-            if(userDAO.userNameExists(user.getName())) {
-                JOptionPane.showMessageDialog(null, "ERROR: El nom d'usuari ja existeix", "Error Registre", JOptionPane.ERROR_MESSAGE);
-            } else if (userDAO.userMailExists(user.getMail())){
-                JOptionPane.showMessageDialog(null, "ERROR: El correu ja existeix", "Error Registre", JOptionPane.ERROR_MESSAGE);
-            } else {
-                return true;
-            }
-            return false;
+            return 0;
         }
     }
 
     //Comprovem format del correu
     public boolean checkMailFormat(String mail) {
-
-        return error;
+        return mail.matches(emailRegex);
     }
 
     //Comprovem format de la contrasenya
-    public boolean checkPasswordFormat(User user) {
+    public String checkPasswordFormat(User user) {
         char ch;
         boolean capitalFlag = false;
         boolean lowerCaseFlag = false;
@@ -97,25 +98,21 @@ public class UserManager {
         }
 
         String finalError = "";
-        for (int i = 0; i < errorMsg.length; i++) {     //Printem tots els errors trobats
-            if(errorMsg[i] != null) {
-                finalError = finalError.concat(errorMsg[i]);
+        if (error) {
+            for (int i = 0; i < errorMsg.length; i++) {     //Printem tots els errors trobats
+                if (errorMsg[i] != null) {
+                    finalError = finalError.concat(errorMsg[i]);
+                }
             }
         }
-        if (error) {
-            JOptionPane.showMessageDialog(null, finalError, "Error Registre", JOptionPane.ERROR_MESSAGE);
-        }
-
-        return error;
+        return finalError;
     }
 
     //Comprovem si la confirmació de la contrasenya és correcte
     public boolean unequalPasswords(User user){
         if (user.getConfirmedPassword().equals(user.getPassword())) {
             return false;
-        } else {
-            JOptionPane.showMessageDialog(null, "ERROR: Les contrasenyes han de coincidir", "Error Registre", JOptionPane.ERROR_MESSAGE);
-            return true;
         }
+        return true;
     }
 }

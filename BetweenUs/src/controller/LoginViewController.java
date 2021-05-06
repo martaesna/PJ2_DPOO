@@ -25,7 +25,6 @@ public class LoginViewController implements ActionListener {
         if (e.getActionCommand().equals("Login")) { //cuando apretamos el boton
             UserManager userManager = new UserManager();
             if (userManager.loginUser(lv.getUsername(),lv.getPassword())) {
-                System.out.println("Login correcte");
                 lv.setVisible(false);
                 SettingView sv = new SettingView();
                 SettingViewController svc = new SettingViewController(sv,lv.getUsername());

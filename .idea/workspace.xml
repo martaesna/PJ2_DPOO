@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="UserDAO&#10;SQLUserDAO">
-      <change afterPath="$PROJECT_DIR$/BetweenUs/src/model/Game.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BetweenUs/src/model/GameManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BetweenUs/src/model/Map.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BetweenUs/src/model/database/GameDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BetweenUs/src/model/database/SQLGameDAO.java" afterDir="false" />
+    <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="Game creation logic (falta)&#10;Game management logic (falta)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/view/RegisterView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/view/RegisterView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/controller/LoginViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/controller/LoginViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/controller/RegisterViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/controller/RegisterViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/model/UserManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/Main$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/LoginViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/controller/LoginViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/RegisterViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/controller/RegisterViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/view/LoginView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/view/LoginView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/view/RegisterView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/view/RegisterView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/view/SettingView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/view/SettingView.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620124423297</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Game creation logic (falta)&#10;Game management logic (falta)">
+      <created>1620241565581</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1620241565581</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,6 +166,7 @@
     <MESSAGE value="User i UserController afegits" />
     <MESSAGE value="Register View i Lògica Units" />
     <MESSAGE value="Registre&#10;Login&#10;Delete User" />
-    <option name="LAST_COMMIT_MESSAGE" value="Registre&#10;Login&#10;Delete User" />
+    <MESSAGE value="Game creation logic (falta)&#10;Game management logic (falta)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Game creation logic (falta)&#10;Game management logic (falta)" />
   </component>
 </project>
