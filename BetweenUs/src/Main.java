@@ -24,10 +24,12 @@ public class Main {
         } catch (IOException |FontFormatException e) {
             //Handle exception
         }
-
-        RegisterView rv = new RegisterView();
+        DeleteGameView dv = new DeleteGameView();
+        DeleteGameViewController dgv = new DeleteGameViewController(dv);
+        dv.mainController(dgv);
+        /*RegisterView rv = new RegisterView();
         RegisterViewController rvc = new RegisterViewController(rv);
-        rv.mainController(rvc);
+        rv.mainController(rvc);*/
         /*SettingView sv = new SettingView();
         SettingViewController svc = new SettingViewController(sv, null);
         sv.mainController(svc);

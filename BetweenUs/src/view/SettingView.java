@@ -49,15 +49,11 @@ public class SettingView extends JFrame  {
             e.printStackTrace();
         }
 
-
-
-
         JLabel title = new JLabel("Settings", JLabel.LEFT);
         title.setBounds(375,10,400,95);
         title.setFont(new Font("Russo One", Font.BOLD, 75));
         title.setForeground(Color.WHITE);
         background.add(title);
-
 
         Font font = new Font("Russo One",Font.BOLD,35);
 
@@ -116,5 +112,13 @@ public class SettingView extends JFrame  {
         jbLog.addActionListener(actionListener);
         jbDel.addActionListener(actionListener);
         configButton.addActionListener(actionListener);
+    }
+
+    public int confirmDeleteUser() {
+        return JOptionPane.showConfirmDialog(null,"Seguro que quieres borrar la Cuenta?");
+    }
+
+    public int confirmLogout(){
+        return JOptionPane.showConfirmDialog(null,"Seguro que quieres hacer log out?");
     }
 }
