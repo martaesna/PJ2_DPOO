@@ -107,4 +107,8 @@ public class ChargeGameView extends JFrame {
     }
 
     public String getChargeName() { return gameName.getText(); }
+
+    public void printErrorNoExistance(){
+        JOptionPane.showMessageDialog(null, "ERROR: El nom d'aquest joc no existeix", "Error Charge Game", JOptionPane.ERROR_MESSAGE);
+    }
 }

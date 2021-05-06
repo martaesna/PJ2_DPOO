@@ -1,5 +1,6 @@
 package controller;
 
+import model.GameManager;
 import model.UserManager;
 import view.*;
 
@@ -18,6 +19,13 @@ public class ConfiguredGameViewController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Charge")) { //cuando apretamos el boton
             System.out.println("Aquí es crea un nou joc amb la configuració d'un anterior");
+            GameManager gameManager = new GameManager();
+            if (gameManager.checkGame(cogv.getConfiguredName())) {
+
+                //Configured Game
+            } else {
+                cogv.printErrorNoExistance();
+            }
         }
         if (e.getActionCommand().equals("Return")) {
             cogv.setVisible(false);

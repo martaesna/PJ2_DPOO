@@ -1,5 +1,6 @@
 package controller;
 
+import model.GameManager;
 import model.UserManager;
 import view.*;
 
@@ -18,6 +19,13 @@ public class ChargeGameViewController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Charge")) { //cuando apretamos el boton
             System.out.println("Aquí es carrega el joc");
+            GameManager gameManager = new GameManager();
+            if (gameManager.checkGame(cgv.getChargeName())) {
+
+                //Charge Game
+            } else {
+                cgv.printErrorNoExistance();
+            }
         }
         if (e.getActionCommand().equals("Return")) { //cuando apretamos el boton
             cgv.setVisible(false);

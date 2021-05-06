@@ -112,8 +112,4 @@ public class DeleteGameView extends JFrame {
     public void printErrorNoExistance(){
         JOptionPane.showMessageDialog(null, "ERROR: El nom d'aquest joc no existeix", "Error Delete Game", JOptionPane.ERROR_MESSAGE);
     }
-
-    public void printErrorExistance(){
-        JOptionPane.showMessageDialog(null, "ERROR: El nom d'aquest joc ja existeix", "Error Create Game", JOptionPane.ERROR_MESSAGE);
-    }
 }
