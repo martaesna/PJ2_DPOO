@@ -3,6 +3,7 @@ package controller;
 import model.User;
 import model.UserManager;
 import view.LoginView;
+import view.PlayView;
 import view.RegisterView;
 import view.SettingView;
 
@@ -26,9 +27,9 @@ public class LoginViewController implements ActionListener {
             UserManager userManager = new UserManager();
             if (userManager.loginUser(lv.getUsername(),lv.getPassword())) {
                 lv.setVisible(false);
-                SettingView sv = new SettingView();
-                SettingViewController svc = new SettingViewController(sv,lv.getUsername());
-                sv.mainController(svc);
+                PlayView pv = new PlayView();
+                PlayViewController pvc = new PlayViewController(pv);
+                pv.mainController(pvc);
             } else {
                 JOptionPane.showMessageDialog(null, "ERROR: Les credencials introduïdes són incorrectes", "Error Login", JOptionPane.ERROR_MESSAGE);
             }

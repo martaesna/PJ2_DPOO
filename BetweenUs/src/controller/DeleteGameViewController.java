@@ -1,37 +1,40 @@
 package controller;
 
+import view.ConfiguredGameView;
+import view.PlayView;
 import model.UserManager;
 import view.*;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ConfiguredGameViewController implements ActionListener {
-    private ConfiguredGameView cogv;
-    private String gameName;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-    public ConfiguredGameViewController(ConfiguredGameView cogv) {
-        this.cogv = cogv;
+public class DeleteGameViewController implements ActionListener {
+    private DeleteGameView dgv;
+
+    public DeleteGameViewController(DeleteGameView dgv) {
+        this.dgv = dgv;
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("Charge")) { //cuando apretamos el boton
-            System.out.println("Aquí es crea un nou joc amb la configuració d'un anterior");
+        if (e.getActionCommand().equals("Delete")) { //cuando apretamos el boton
+            System.out.println("Aquí es borra el joc que volguem");
         }
-        if (e.getActionCommand().equals("Return")) {
-            cogv.setVisible(false);
+        if (e.getActionCommand().equals("Return")) { //cuando apretamos el boton
+            dgv.setVisible(false);
             PlayView pv = new PlayView();
             PlayViewController pvc = new PlayViewController(pv);
             pv.mainController(pvc);
 
         }
-
         if (e.getActionCommand().equals("Config")) { //cuando apretamos el boton
-            cogv.setVisible(false);
+            dgv.setVisible(false);
             SettingView sv = new SettingView();
             SettingViewController svc = new SettingViewController(sv,null);
             sv.mainController(svc);
         }
+
     }
 }
