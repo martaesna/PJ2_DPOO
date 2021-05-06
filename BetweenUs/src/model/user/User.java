@@ -1,4 +1,4 @@
-package model;
+package model.user;
 
 import model.database.SQLUserDAO;
 import model.database.UserDAO;

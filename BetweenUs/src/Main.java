@@ -1,8 +1,9 @@
 
 import controller.*;
-import model.*;
 import model.json.Data;
 import model.json.JsonReader;
+import model.maps.Map;
+import model.maps.ReadMap;
 import view.*;
 
 import javax.swing.*;
@@ -13,6 +14,7 @@ import java.util.Scanner;
 
 public class Main {
     private static Data data;
+    private static Map map;
     public static void main(String[] args) {
         try {
             File f = new File("");
@@ -20,7 +22,6 @@ public class Main {
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             System.out.println(path);
             ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(path + "\\BetweenUs\\src\\model\\fonts\\RussoOne-Regular.ttf")));
-            //ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("C:/Users/marta/Desktop/BETWEEN US/Projecte V2/BetweenUs/src/model/fonts/RussoOne-Regular.ttf")));
         } catch (IOException |FontFormatException e) {
             //Handle exception
         }
@@ -41,6 +42,7 @@ public class Main {
             @Override
             public void run() {
                 data = JsonReader.llegeixJSON();
+                map = ReadMap.llegeixMapa();
             }
         });
     }

@@ -1,7 +1,6 @@
 package controller;
 
-import model.User;
-import model.UserManager;
+import model.user.UserManager;
 import view.LoginView;
 import view.PlayView;
 import view.RegisterView;

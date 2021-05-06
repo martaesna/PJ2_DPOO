@@ -1,9 +1,9 @@
 package controller;
 
-import model.GameManager;
+import model.game.GameManager;
 import view.ConfiguredGameView;
 import view.PlayView;
-import model.UserManager;
+import model.user.UserManager;
 import view.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
