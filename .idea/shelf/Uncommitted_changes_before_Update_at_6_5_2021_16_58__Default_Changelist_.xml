@@ -1,0 +1,19 @@
+<changelist name="Uncommitted_changes_before_Update_at_6_5_2021_16_58_[Default_Changelist]" date="1620313179639" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_5_2021_16_58_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 6/5/2021 16:58 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/BetweenUs/controller/RegisterViewController.class" />
+    <option name="AFTER_PATH" value="out/production/BetweenUs/controller/RegisterViewController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_5_2021_16_58_[Default_Changelist]/RegisterViewController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/BetweenUs/controller/LoginViewController.class" />
+    <option name="AFTER_PATH" value="out/production/BetweenUs/controller/LoginViewController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_5_2021_16_58_[Default_Changelist]/LoginViewController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/BetweenUs/model/UserManager.class" />
+    <option name="AFTER_PATH" value="out/production/BetweenUs/model/UserManager.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_5_2021_16_58_[Default_Changelist]/UserManager.class" />
+  </binary>
+</changelist>
