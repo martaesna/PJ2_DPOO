@@ -16,15 +16,7 @@ public class Main {
     private static Data data;
     private static Map map;
     public static void main(String[] args) {
-        try {
-            File f = new File("");
-            String path = f.getAbsolutePath();
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            System.out.println(path);
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(path + "\\BetweenUs\\src\\model\\fonts\\RussoOne-Regular.ttf")));
-        } catch (IOException |FontFormatException e) {
-            //Handle exception
-        }
+        addFont();
         DeleteGameView dv = new DeleteGameView();
         DeleteGameViewController dgv = new DeleteGameViewController(dv);
         dv.mainController(dgv);
@@ -38,6 +30,7 @@ public class Main {
         DeleteGameView cgv = new DeleteGameView();
         ChargeGameView cgv = new ChargeGameView();*/
         //PlayView playView = new PlayView();
+
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -45,5 +38,17 @@ public class Main {
                 map = ReadMap.llegeixMapa();
             }
         });
+    }
+
+    public static void addFont() {
+        try {
+            File f = new File("");
+            String path = f.getAbsolutePath();
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            System.out.println(path);
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(path + "\\BetweenUs\\src\\model\\fonts\\RussoOne-Regular.ttf")));
+        } catch (IOException |FontFormatException e) {
+            //Handle exception
+        }
     }
 }

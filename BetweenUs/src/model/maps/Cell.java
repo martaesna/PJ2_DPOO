@@ -22,9 +22,9 @@ public class Cell {
     @SerializedName("mobility")
     @Expose
     private Mobility mobility;
-    @SerializedName("image")
+    @SerializedName("color")
     @Expose
-    private String image;
+    private String color;
     @SerializedName("adjacencies")
     @Expose
     private LinkedList<String> adjacencies = null;
@@ -69,12 +69,12 @@ public class Cell {
         this.mobility = mobility;
     }
 
-    public String getImage() {
-        return image;
+    public String getColor() {
+        return color;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setColor(String image) {
+        this.color = color;
     }
 
     public LinkedList<String> getAdjacencies() {

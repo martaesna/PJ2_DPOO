@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Objects;
 
 public class SettingView extends JFrame  {
 
@@ -35,7 +36,7 @@ public class SettingView extends JFrame  {
 
 
         try {
-            BufferedImage image = ImageIO.read(getClass().getResource("/model/images/config.png"));
+            BufferedImage image = ImageIO.read(Objects.requireNonNull(getClass().getResource("/model/images/config.png")));
             Image scaled = image.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
             ImageIcon backgroundImage = new ImageIcon(scaled);
             configButton = new JButton(backgroundImage);
