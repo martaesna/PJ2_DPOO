@@ -31,7 +31,7 @@ public class LoginViewController implements ActionListener {
                 PlayViewController pvc = new PlayViewController(pv);
                 pv.mainController(pvc);
             } else {
-                JOptionPane.showMessageDialog(null, "ERROR: Les credencials introduïdes són incorrectes", "Error Login", JOptionPane.ERROR_MESSAGE);
+                lv.printError();
             }
         }
     }

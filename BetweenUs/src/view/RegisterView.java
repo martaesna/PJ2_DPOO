@@ -44,7 +44,6 @@ public class RegisterView extends JFrame {
         jpVista.setLayout(null);
         jpVista.setBounds(340,20,400,520);
 
-
         JLabel nameLabel = new JLabel("Username", JLabel.LEFT);
         nameLabel.setBounds(25,10,150,50);
         nameLabel.setFont(new Font("Russo One", Font.BOLD, 24));
@@ -56,7 +55,6 @@ public class RegisterView extends JFrame {
         nameField.setFont(new Font("Russo One", Font.BOLD, 20));
         nameField.setBounds(23,55,350,40);
         jpVista.add(nameField);
-
 
         JLabel emailLabel = new JLabel("Email", JLabel.LEFT);
         emailLabel.setBounds(25,100,150,50);
@@ -70,8 +68,6 @@ public class RegisterView extends JFrame {
         emailField.setBounds(23,145,350,40);
         jpVista.add(emailField);
 
-
-
         JLabel passwordLabel = new JLabel("Password", JLabel.LEFT);
         passwordLabel.setBounds(25,190,150,50);
         passwordLabel.setFont(new Font("Russo One", Font.BOLD, 24));
@@ -84,8 +80,6 @@ public class RegisterView extends JFrame {
         passwordField.setBounds(23,235,350,40);
         jpVista.add(passwordField);
 
-
-
         JLabel repeatPasswordLabel = new JLabel("Repeat password", JLabel.LEFT);
         repeatPasswordLabel.setBounds(25,290,250,50);
         repeatPasswordLabel.setFont(new Font("Russo One", Font.BOLD, 24));
@@ -97,7 +91,6 @@ public class RegisterView extends JFrame {
         repeatPasswordField.setFont(new Font("Russo One", Font.BOLD, 24));
         repeatPasswordField.setBounds(23,335,350,40);
         jpVista.add(repeatPasswordField);
-
 
         jbRegister = new JButton("Register");
         jbRegister.setFont(new Font("Russo One", Font.BOLD, 24));
@@ -137,4 +130,27 @@ public class RegisterView extends JFrame {
     public String getPassword() { return String.valueOf(passwordField.getPassword()); }
     public String getRepeatPassword() { return String.valueOf(repeatPasswordField.getPassword()); }
 
+    public void printRegisterErrors(int numError, String passwordError) {
+        switch (numError) {
+            case 0:
+
+                break;
+            case 1:
+                JOptionPane.showMessageDialog(null, "ERROR: El nom d'usuari ja existeix", "Error Registre", JOptionPane.ERROR_MESSAGE);
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(null, "ERROR: Les contrasenyes han de coincidir", "Error Registre", JOptionPane.ERROR_MESSAGE);
+                break;
+            case 3:
+                JOptionPane.showMessageDialog(null, passwordError, "Error Registre", JOptionPane.ERROR_MESSAGE);
+                break;
+            case 4:
+                JOptionPane.showMessageDialog(null, "ERROR: El format del email és incorrecte", "Error Registre", JOptionPane.ERROR_MESSAGE);
+                break;
+            case 5:
+                JOptionPane.showMessageDialog(null, "ERROR: El correu ja existeix", "Error Registre", JOptionPane.ERROR_MESSAGE);
+                break;
+            default: break;
+        }
+    }
 }

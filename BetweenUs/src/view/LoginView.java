@@ -26,7 +26,6 @@ public class LoginView extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE); // cerrar con la x
         setLayout(null);
 
-
         try {
             BufferedImage image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/model/images/background.jpg")));
             Image scaled = image.getScaledInstance(1080, 600, Image.SCALE_DEFAULT);
@@ -44,7 +43,6 @@ public class LoginView extends JFrame {
         jpVista.setLayout(null);
         jpVista.setBounds(340,20,400,520);
 
-
         JLabel nameLabel = new JLabel("Username or Email", JLabel.LEFT);
         nameLabel.setBounds(25,10,300,50);
         nameLabel.setFont(new Font("Russo One", Font.BOLD, 24));
@@ -57,8 +55,6 @@ public class LoginView extends JFrame {
         nameField.setBounds(23,55,350,40);
         jpVista.add(nameField);
 
-
-
         JLabel passwordLabel = new JLabel("Password", JLabel.LEFT);
         passwordLabel.setBounds(25,100,150,50);
         passwordLabel.setFont(new Font("Russo One", Font.BOLD, 24));
@@ -70,7 +66,6 @@ public class LoginView extends JFrame {
         passwordField.setFont(new Font("Russo One", Font.BOLD, 24));
         passwordField.setBounds(23,145,350,40);
         jpVista.add(passwordField);
-
 
         jbLogin = new JButton("Login");
         jbLogin.setFont(new Font("Russo One", Font.BOLD, 24));
@@ -95,7 +90,6 @@ public class LoginView extends JFrame {
         jpVista.add(jbRegister);
 
 
-
         setContentPane(background);
         getContentPane().add(jpVista);
     }
@@ -107,4 +101,8 @@ public class LoginView extends JFrame {
 
     public String getUsername() { return nameField.getText(); }
     public String getPassword() { return String.valueOf(passwordField.getPassword()); }
+
+    public void printError() {
+        JOptionPane.showMessageDialog(null, "ERROR: Les credencials introduïdes són incorrectes", "Error Login", JOptionPane.ERROR_MESSAGE);
+    }
 }
