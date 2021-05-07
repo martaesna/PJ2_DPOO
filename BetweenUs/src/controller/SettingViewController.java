@@ -1,13 +1,13 @@
 package controller;
 
-import model.User;
-import model.UserManager;
+import model.user.UserManager;
 import view.LoginView;
 import view.PlayView;
 import view.RegisterView;
 import view.SettingView;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -50,4 +50,9 @@ public class SettingViewController implements ActionListener {
 
         }
     }
+    public void stateChanged(ChangeEvent e) {
+
+    }
+
+
 }

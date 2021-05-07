@@ -1,0 +1,245 @@
+Index: BetweenUs/src/controller/SettingViewController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package controller;\n\nimport model.User;\nimport model.UserManager;\nimport view.LoginView;\nimport view.RegisterView;\nimport view.SettingView;\n\nimport javax.swing.*;\nimport java.awt.event.ActionEvent;\nimport java.awt.event.ActionListener;\n\npublic class SettingViewController implements ActionListener {\n\n    private SettingView sv;\n    private String nameLogin;\n\n    public SettingViewController(SettingView sv, String nameLogin) {\n        this.sv = sv;\n        this.nameLogin = nameLogin;\n    }\n\n    @Override\n    public void actionPerformed(ActionEvent e) {\n        if (e.getActionCommand().equals(\"Logout\")) { //cuando apretamos el boton\n            int confirmado = JOptionPane.showConfirmDialog(null,\"Seguro que quieres hacer log out?\");\n            if(JOptionPane.OK_OPTION == confirmado){\n                sv.setVisible(false);\n                LoginView lv = new LoginView();\n                LoginViewController lvc = new LoginViewController(lv);\n                lv.mainController(lvc);\n            }\n\n        }\n        if (e.getActionCommand().equals(\"Delete\")) { //cuando apretamos el boton\n            int confirmado = JOptionPane.showConfirmDialog(null,\"Seguro que quieres borrar la Cuenta?\");\n            if(JOptionPane.OK_OPTION == confirmado){\n                sv.setVisible(false);\n                System.out.println(\"Ara Borrem conta\");\n                UserManager userManager = new UserManager();\n                userManager.deleteUser(nameLogin);\n                RegisterView rv = new RegisterView();\n                RegisterViewController rvc = new RegisterViewController(rv);\n                rv.mainController(rvc);\n            }\n        }\n        if (e.getActionCommand().equals(\"Config\")) { //cuando apretamos el boton\n            RegisterView rv = new RegisterView();\n            RegisterViewController rvc = new RegisterViewController(rv);\n            rv.mainController(rvc);\n            sv.setVisible(false);\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BetweenUs/src/controller/SettingViewController.java b/BetweenUs/src/controller/SettingViewController.java
+--- a/BetweenUs/src/controller/SettingViewController.java	
++++ b/BetweenUs/src/controller/SettingViewController.java	
+@@ -3,6 +3,7 @@
+ import model.User;
+ import model.UserManager;
+ import view.LoginView;
++import view.PlayView;
+ import view.RegisterView;
+ import view.SettingView;
+ 
+@@ -45,9 +46,7 @@
+             }
+         }
+         if (e.getActionCommand().equals("Config")) { //cuando apretamos el boton
+-            RegisterView rv = new RegisterView();
+-            RegisterViewController rvc = new RegisterViewController(rv);
+-            rv.mainController(rvc);
++            PlayView pv = new PlayView()
+             sv.setVisible(false);
+         }
+     }
+Index: BetweenUs/src/controller/RegisterViewController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package controller;\n\n\nimport model.User;\nimport model.UserManager;\nimport view.LoginView;\nimport view.RegisterView;\n\nimport java.awt.event.ActionEvent;\nimport java.awt.event.ActionListener;\nimport java.util.ArrayList;\n\n\npublic class RegisterViewController implements ActionListener {\n    private RegisterView rv;\n    public RegisterViewController(RegisterView rv) {\n        this.rv = rv;\n    }\n    public void actionPerformed(ActionEvent e) {\n        if (e.getActionCommand().equals(\"Register\")) { //cuando apretamos el boton\n            User user = new User(rv.getUsername(), rv.getEmail(), rv.getPassword(), rv.getRepeatPassword());\n            UserManager userManager = new UserManager();\n            if(userManager.checkRegister(user)){\n                userManager.registerUser(user);\n            }\n        }\n        if (e.getActionCommand().equals(\"Login\")) { //cuando apretamos el boton\n            rv.setVisible(false);\n            LoginView lv = new LoginView();\n            LoginViewController lvc = new LoginViewController(lv);\n            lv.mainController(lvc);\n\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BetweenUs/src/controller/RegisterViewController.java b/BetweenUs/src/controller/RegisterViewController.java
+--- a/BetweenUs/src/controller/RegisterViewController.java	
++++ b/BetweenUs/src/controller/RegisterViewController.java	
+@@ -3,8 +3,8 @@
+ 
+ import model.User;
+ import model.UserManager;
+-import view.LoginView;
+-import view.RegisterView;
++import view.*;
++
+ 
+ import java.awt.event.ActionEvent;
+ import java.awt.event.ActionListener;
+@@ -22,6 +22,10 @@
+             UserManager userManager = new UserManager();
+             if(userManager.checkRegister(user)){
+                 userManager.registerUser(user);
++                PlayView pv = new PlayView();
++                PlayViewController pvc = new PlayViewController(pv);
++                pv.mainController(pvc);
++
+             }
+         }
+         if (e.getActionCommand().equals("Login")) { //cuando apretamos el boton
+Index: BetweenUs/src/view/PlayView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package view;\n\nimport javax.imageio.ImageIO;\nimport javax.management.BadAttributeValueExpException;\nimport javax.swing.*;\nimport javax.swing.border.Border;\nimport javax.swing.border.LineBorder;\nimport java.awt.*;\nimport java.awt.event.ActionListener;\nimport java.awt.image.BufferedImage;\nimport java.io.IOException;\n\nimport static java.awt.BorderLayout.NORTH;\n\n\npublic class PlayView extends JFrame {\n    private JButton jbNewGame;\n    private JButton jbConfiguredGame;\n    private JButton jbChargeGame;\n    private JButton jbDeleteGame;\n    private JButton configButton;\n\n    public PlayView() {\n\n        setTitle(\"Play\");\n        setSize(1080, 600);\n        //setResizable(false);\n        setLocationRelativeTo(null);\n        setDefaultCloseOperation(EXIT_ON_CLOSE);\n        //setLayout(null);\n\n        JPanel background = new JPanel();\n        background.setLayout(new BorderLayout());\n        background.setBackground(Color.BLACK);\n        //background.setLayout(null);\n        //background.setBounds(0, 0, 1080, 600);\n\n        JPanel JpNorth = new JPanel(new BorderLayout());\n        JpNorth.setOpaque(false);\n\n        try {\n            BufferedImage image = ImageIO.read(getClass().getResource(\"/model/images/config.png\"));\n            Image scaled = image.getScaledInstance(40, 40, Image.SCALE_DEFAULT);\n            ImageIcon backgroundImage = new ImageIcon(scaled);\n            configButton = new JButton(backgroundImage);\n            configButton.setOpaque(false);\n            configButton.setContentAreaFilled(false);\n            configButton.setBorderPainted(false);\n            configButton.setActionCommand(\"Config\");\n            //configButton.setBounds(10,10, 30, 30);\n            JpNorth.add(configButton, BorderLayout.WEST);\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n\n        JPanel JpBody = new JPanel(new GridBagLayout());\n        JLabel title = new JLabel(\"Play\", JLabel.CENTER);\n        //title.setBounds(375,10,400,95);\n        title.setFont(new Font(\"Russo One\", Font.BOLD, 75));\n        title.setForeground(Color.WHITE);\n        JpNorth.add(title, BorderLayout.CENTER);\n\n\n\n        background.add(JpNorth, BorderLayout.NORTH);\n\n        Font font = new Font(\"Russo One\",Font.BOLD,35);\n        Border border =BorderFactory.createCompoundBorder(\n                BorderFactory.createEmptyBorder(15, 15, 15, 15),\n                BorderFactory.createCompoundBorder(\n                        BorderFactory.createLineBorder(Color.WHITE,3,true),\n                        BorderFactory.createEmptyBorder(5,5,10,10)\n                )\n\n        );\n\n        JPanel JpCenter = new JPanel(new GridLayout(4, 1));\n\n        // Boto New Game\n        //background.add(new JButton(\"New Game\"), BorderLayout.CENTER);\n        jbNewGame = new JButton(\"New Game\");\n        jbNewGame.setForeground(Color.WHITE);\n        jbNewGame.setBackground(Color.BLACK);\n        //jbNewGame.setBounds(375,350,300,75);\n        jbNewGame.setFont(font);\n        jbNewGame.setBorder(border);\n        JpCenter.add(jbNewGame);\n\n        // Boto Configured game\n\n        jbConfiguredGame = new JButton(\"Configured game\");\n        jbConfiguredGame.setForeground(Color.WHITE);\n        jbConfiguredGame.setBackground(Color.BLACK);\n        //jbConfiguredGame.setBounds(375,350,300,75);\n        jbConfiguredGame.setFont(font);\n        jbConfiguredGame.setBorder(border);\n        JpCenter.add(jbConfiguredGame);\n\n        // Boto Charge Game\n        jbChargeGame = new JButton(\"Charge game\");\n        jbChargeGame.setForeground(Color.WHITE);\n        jbChargeGame.setBackground(Color.BLACK);\n        //jbChargeGame.setBounds(375,350,300,75);\n        jbChargeGame.setFont(font);\n        jbChargeGame.setBorder(border);\n        JpCenter.add(jbChargeGame);\n\n        // Boto Delete game\n        jbDeleteGame = new JButton(\"Delete game\");\n        jbDeleteGame.setForeground(Color.WHITE);\n        jbDeleteGame.setBackground(Color.BLACK);\n        //jbDeleteGame.setBounds(375,350,300,75);\n        jbDeleteGame.setFont(font);\n        jbDeleteGame.setBorder(border);\n        JpCenter.add(jbDeleteGame);\n\n        JpBody.add(JpCenter);\n        JpBody.setOpaque(false);\n        background.add(JpBody, BorderLayout.CENTER);\n\n        //setContentPane(background);\n        add(background);\n        setVisible(true);\n    }\n\n    public void mainController(ActionListener actionListener) {\n        jbNewGame.addActionListener(actionListener);\n        jbConfiguredGame.addActionListener(actionListener);\n        jbChargeGame.addActionListener(actionListener);\n        jbDeleteGame.addActionListener(actionListener);\n        configButton.addActionListener(actionListener);\n    }\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BetweenUs/src/view/PlayView.java b/BetweenUs/src/view/PlayView.java
+--- a/BetweenUs/src/view/PlayView.java	
++++ b/BetweenUs/src/view/PlayView.java	
+@@ -39,6 +39,7 @@
+         JpNorth.setOpaque(false);
+ 
+         try {
++            //boton de settings
+             BufferedImage image = ImageIO.read(getClass().getResource("/model/images/config.png"));
+             Image scaled = image.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
+             ImageIcon backgroundImage = new ImageIcon(scaled);
+@@ -81,6 +82,7 @@
+         jbNewGame = new JButton("New Game");
+         jbNewGame.setForeground(Color.WHITE);
+         jbNewGame.setBackground(Color.BLACK);
++        jbNewGame.setActionCommand("New game");
+         //jbNewGame.setBounds(375,350,300,75);
+         jbNewGame.setFont(font);
+         jbNewGame.setBorder(border);
+@@ -91,6 +93,7 @@
+         jbConfiguredGame = new JButton("Configured game");
+         jbConfiguredGame.setForeground(Color.WHITE);
+         jbConfiguredGame.setBackground(Color.BLACK);
++        jbConfiguredGame.setActionCommand("Configure");
+         //jbConfiguredGame.setBounds(375,350,300,75);
+         jbConfiguredGame.setFont(font);
+         jbConfiguredGame.setBorder(border);
+@@ -100,6 +103,7 @@
+         jbChargeGame = new JButton("Charge game");
+         jbChargeGame.setForeground(Color.WHITE);
+         jbChargeGame.setBackground(Color.BLACK);
++        jbChargeGame.setActionCommand("Charge");
+         //jbChargeGame.setBounds(375,350,300,75);
+         jbChargeGame.setFont(font);
+         jbChargeGame.setBorder(border);
+@@ -109,6 +113,7 @@
+         jbDeleteGame = new JButton("Delete game");
+         jbDeleteGame.setForeground(Color.WHITE);
+         jbDeleteGame.setBackground(Color.BLACK);
++        jbDeleteGame.setActionCommand("Delete");
+         //jbDeleteGame.setBounds(375,350,300,75);
+         jbDeleteGame.setFont(font);
+         jbDeleteGame.setBorder(border);
+Index: BetweenUs/src/controller/ConfiguredGameViewController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package controller;\n\nimport model.UserManager;\nimport view.*;\n\nimport javax.swing.*;\nimport java.awt.event.ActionEvent;\n\npublic class ConfiguredGameViewController {\n    private ConfiguredGameView cgv;\n    private String gameName;\n\n    public ConfiguredGameViewController(ConfiguredGameView cgv) {\n        this.cgv = cgv;\n    }\n\n    public void actionPerformed(ActionEvent e) {\n        if (e.getActionCommand().equals(\"Charge\")) { //cuando apretamos el boton\n            System.out.println(\"Aquí es crea un nou joc amb la configuració d'un anterior\");\n        }\n        if (e.getActionCommand().equals(\"Config\")) { //cuando apretamos el boton\n            cgv.setVisible(false);\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BetweenUs/src/controller/ConfiguredGameViewController.java b/BetweenUs/src/controller/ConfiguredGameViewController.java
+--- a/BetweenUs/src/controller/ConfiguredGameViewController.java	
++++ b/BetweenUs/src/controller/ConfiguredGameViewController.java	
+@@ -5,13 +5,14 @@
+ 
+ import javax.swing.*;
+ import java.awt.event.ActionEvent;
++import java.awt.event.ActionListener;
+ 
+-public class ConfiguredGameViewController {
+-    private ConfiguredGameView cgv;
++public class ConfiguredGameViewController implements ActionListener {
++    private ConfiguredGameView cogv;
+     private String gameName;
+ 
+-    public ConfiguredGameViewController(ConfiguredGameView cgv) {
+-        this.cgv = cgv;
++    public ConfiguredGameViewController(ConfiguredGameView cogv) {
++        this.cogv = cogv;
+     }
+ 
+     public void actionPerformed(ActionEvent e) {
+@@ -19,7 +20,7 @@
+             System.out.println("Aquí es crea un nou joc amb la configuració d'un anterior");
+         }
+         if (e.getActionCommand().equals("Config")) { //cuando apretamos el boton
+-            cgv.setVisible(false);
++            cogv.setVisible(false);
+         }
+     }
+ }
+Index: BetweenUs/src/controller/ChargeGameViewController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package controller;\n\nimport model.UserManager;\nimport view.ChargeGameView;\nimport view.LoginView;\nimport view.RegisterView;\nimport view.SettingView;\n\nimport javax.swing.*;\nimport java.awt.event.ActionEvent;\n\npublic class ChargeGameViewController {\n    private ChargeGameView cgv;\n    private String gameName;\n\n    public ChargeGameViewController(ChargeGameView cgv) {\n        this.cgv = cgv;\n    }\n\n    public void actionPerformed(ActionEvent e) {\n        if (e.getActionCommand().equals(\"Charge\")) { //cuando apretamos el boton\n            System.out.println(\"Aquí es carrega el joc\");\n        }\n        if (e.getActionCommand().equals(\"Config\")) { //cuando apretamos el boton\n            cgv.setVisible(false);\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BetweenUs/src/controller/ChargeGameViewController.java b/BetweenUs/src/controller/ChargeGameViewController.java
+--- a/BetweenUs/src/controller/ChargeGameViewController.java	
++++ b/BetweenUs/src/controller/ChargeGameViewController.java	
+@@ -8,8 +8,9 @@
+ 
+ import javax.swing.*;
+ import java.awt.event.ActionEvent;
++import java.awt.event.ActionListener;
+ 
+-public class ChargeGameViewController {
++public class ChargeGameViewController implements ActionListener {
+     private ChargeGameView cgv;
+     private String gameName;
+ 
+Index: BetweenUs/src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\nimport controller.*;\nimport model.*;\nimport model.json.Data;\nimport model.json.JsonReader;\nimport view.*;\n\nimport javax.swing.*;\nimport java.awt.*;\nimport java.io.File;\nimport java.io.IOException;\nimport java.util.Scanner;\n\npublic class Main {\n    private static Data data;\n    public static void main(String[] args) {\n        /*try {\n            File f = new File(\"\");\n            String path = f.getAbsolutePath();\n            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();\n            //ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(path + \"\\\\BetweenUs\\\\src\\\\model\\\\fonts\\\\RussoOne-Regular.ttf\")));\n            //ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(\"C:/Users/marta/Desktop/BETWEEN US/Projecte V2/BetweenUs/src/model/fonts/RussoOne-Regular.ttf\")));\n        } catch (IOException |FontFormatException e) {\n            //Handle exception\n        }*/\n        RegisterView rv = new RegisterView();\n        RegisterViewController rvc = new RegisterViewController(rv);\n        rv.mainController(rvc);\n        /*SettingView sv = new SettingView();\n        SettingViewController svc = new SettingViewController(sv, null);\n        sv.mainController(svc);\n\n        //DeleteGameView cgv = new DeleteGameView();\n        ChargeGameView cgv = new ChargeGameView();*/\n\n        SwingUtilities.invokeLater(new Runnable() {\n            @Override\n            public void run() {\n                data = JsonReader.llegeixJSON();\n            }\n        });\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BetweenUs/src/Main.java b/BetweenUs/src/Main.java
+--- a/BetweenUs/src/Main.java	
++++ b/BetweenUs/src/Main.java	
+@@ -14,24 +14,26 @@
+ public class Main {
+     private static Data data;
+     public static void main(String[] args) {
+-        /*try {
++        try {
+             File f = new File("");
+             String path = f.getAbsolutePath();
+             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+-            //ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(path + "\\BetweenUs\\src\\model\\fonts\\RussoOne-Regular.ttf")));
+-            //ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("C:/Users/marta/Desktop/BETWEEN US/Projecte V2/BetweenUs/src/model/fonts/RussoOne-Regular.ttf")));
++            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(path + "\\BetweenUs\\src\\model\\fonts\\RussoOne-Regular.ttf")));
++            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("C:/Users/marta/Desktop/BETWEEN US/Projecte V2/BetweenUs/src/model/fonts/RussoOne-Regular.ttf")));
+         } catch (IOException |FontFormatException e) {
+             //Handle exception
+-        }*/
++        }
+         RegisterView rv = new RegisterView();
+         RegisterViewController rvc = new RegisterViewController(rv);
+         rv.mainController(rvc);
+         /*SettingView sv = new SettingView();
+         SettingViewController svc = new SettingViewController(sv, null);
+-        sv.mainController(svc);
++        sv.mainController(svc);*/
+ 
+-        //DeleteGameView cgv = new DeleteGameView();
+-        ChargeGameView cgv = new ChargeGameView();*/
++       //DeleteGameView dgv = new DeleteGameView();
++       //ChargeGameView cgv = new ChargeGameView();
++       //ConfiguredGameView cogv = new ConfiguredGameView();
++       //PlayView pv = new PlayView();
+ 
+         SwingUtilities.invokeLater(new Runnable() {
+             @Override
+Index: BetweenUs/src/controller/LoginViewController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package controller;\n\nimport model.User;\nimport model.UserManager;\nimport view.LoginView;\nimport view.RegisterView;\nimport view.SettingView;\n\nimport javax.swing.*;\nimport java.awt.event.ActionEvent;\nimport java.awt.event.ActionListener;\n\npublic class LoginViewController implements ActionListener {\n    private LoginView lv;\n    public LoginViewController(LoginView lv) {\n        this.lv = lv;\n    }\n    public void actionPerformed(ActionEvent e) {\n        if (e.getActionCommand().equals(\"Register\")) { //cuando apretamos el boton\n            lv.setVisible(false);\n            RegisterView rv = new RegisterView();\n            RegisterViewController rvc = new RegisterViewController(rv);\n            rv.mainController(rvc);\n        }\n        if (e.getActionCommand().equals(\"Login\")) { //cuando apretamos el boton\n            UserManager userManager = new UserManager();\n            if (userManager.loginUser(lv.getUsername(),lv.getPassword())) {\n                System.out.println(\"Login correcte\");\n                lv.setVisible(false);\n                SettingView sv = new SettingView();\n                SettingViewController svc = new SettingViewController(sv,lv.getUsername());\n                sv.mainController(svc);\n            } else {\n                JOptionPane.showMessageDialog(null, \"ERROR: Les credencials introduïdes són incorrectes\", \"Error Login\", JOptionPane.ERROR_MESSAGE);\n            }\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BetweenUs/src/controller/LoginViewController.java b/BetweenUs/src/controller/LoginViewController.java
+--- a/BetweenUs/src/controller/LoginViewController.java	
++++ b/BetweenUs/src/controller/LoginViewController.java	
+@@ -3,6 +3,7 @@
+ import model.User;
+ import model.UserManager;
+ import view.LoginView;
++import view.PlayView;
+ import view.RegisterView;
+ import view.SettingView;
+ 
+@@ -27,9 +28,9 @@
+             if (userManager.loginUser(lv.getUsername(),lv.getPassword())) {
+                 System.out.println("Login correcte");
+                 lv.setVisible(false);
+-                SettingView sv = new SettingView();
+-                SettingViewController svc = new SettingViewController(sv,lv.getUsername());
+-                sv.mainController(svc);
++                PlayView pv = new PlayView();
++                PlayViewController pvc = new PlayViewController(pv);
++                pv.mainController(pvc);
+             } else {
+                 JOptionPane.showMessageDialog(null, "ERROR: Les credencials introduïdes són incorrectes", "Error Login", JOptionPane.ERROR_MESSAGE);
+             }

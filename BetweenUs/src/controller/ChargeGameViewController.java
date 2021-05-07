@@ -1,7 +1,7 @@
 package controller;
 
-import model.GameManager;
-import model.UserManager;
+import model.game.GameManager;
+import model.user.UserManager;
 import view.*;
 
 import javax.swing.*;

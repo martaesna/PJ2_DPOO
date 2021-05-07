@@ -1,11 +1,10 @@
 package controller;
 
-import model.User;
-import model.UserManager;
+import model.user.User;
+import model.user.UserManager;
 import view.LoginView;
 import view.RegisterView;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

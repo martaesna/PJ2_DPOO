@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="Confirmació esborrar joc&#10;Comprovació nom del joc a la BDD&#10;Esborrar joc">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_19__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_19__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_19__Default_Changelist_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_19__Default_Changelist_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_20__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_20__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_5_2021_16_58__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_5_2021_16_58__Default_Changelist_.xml" afterDir="false" />
+    <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/BetweenUs/src/controller/SettingsViewMusicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/controller/SettingViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/controller/SettingViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/view/SettingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/view/SettingView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/Main$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/DeleteGameViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/controller/DeleteGameViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/PlayViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/controller/PlayViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/Game.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/GameManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/Map.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/view/SettingView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/view/SettingView.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,10 +56,22 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\marta\Desktop\BETWEEN US\Projecte V3\BetweenUs\src\model" />
       <recent name="C:\Users\marta\Desktop\BETWEEN US\Projecte V2\BetweenUs\src\model" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\marta\Desktop\BETWEEN US\Projecte V3\BetweenUs\src\model\mapsFiles" />
+      <recent name="C:\Users\marta\Desktop\BETWEEN US\Projecte V3\BetweenUs\src\model\maps" />
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="BetweenUs" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -88,6 +109,7 @@
       <workItem from="1620159108659" duration="996000" />
       <workItem from="1620212480187" duration="7204000" />
       <workItem from="1620224895175" duration="5952000" />
+      <workItem from="1620313673836" duration="7237000" />
     </task>
     <task id="LOCAL-00001" summary="Per saber si ho tenim, joves!">
       <created>1619026420669</created>
@@ -152,28 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620313049801</updated>
     </task>
-    <task id="LOCAL-00010" summary="- Format del correu&#10;- Canviar showMessageDialog dels DAOs als Controllers">
-      <created>1620313263111</created>
+    <task id="LOCAL-00010" summary="ADD&#10;- Map json file&#10;- Map classes&#10;- Map json reader">
+      <created>1620328290407</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1620313263111</updated>
+      <updated>1620328290407</updated>
     </task>
-    <task id="LOCAL-00011" summary="JOptionPanes estan a les vistes">
-      <created>1620314387861</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1620314387861</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Confirmació esborrar joc&#10;Comprovació nom del joc a la BDD&#10;Esborrar joc">
-      <created>1620326057568</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1620326057568</updated>
-    </task>
-    <option name="localTasksCounter" value="13" />
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,8 +208,7 @@
     <MESSAGE value="Registre&#10;Login&#10;Delete User" />
     <MESSAGE value="Game creation logic (falta)&#10;Game management logic (falta)" />
     <MESSAGE value="- Format del correu&#10;- Canviar showMessageDialog dels DAOs als Controllers" />
-    <MESSAGE value="JOptionPanes estan a les vistes" />
-    <MESSAGE value="Confirmació esborrar joc&#10;Comprovació nom del joc a la BDD&#10;Esborrar joc" />
-    <option name="LAST_COMMIT_MESSAGE" value="Confirmació esborrar joc&#10;Comprovació nom del joc a la BDD&#10;Esborrar joc" />
+    <MESSAGE value="ADD&#10;- Map json file&#10;- Map classes&#10;- Map json reader" />
+    <option name="LAST_COMMIT_MESSAGE" value="ADD&#10;- Map json file&#10;- Map classes&#10;- Map json reader" />
   </component>
 </project>

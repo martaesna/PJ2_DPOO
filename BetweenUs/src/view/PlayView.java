@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
 import static java.awt.BorderLayout.NORTH;
 
@@ -40,7 +41,7 @@ public class PlayView extends JFrame {
 
         try {
             //boton de settings
-            BufferedImage image = ImageIO.read(getClass().getResource("/model/images/config.png"));
+            BufferedImage image = ImageIO.read(Objects.requireNonNull(getClass().getResource("/model/images/config.png")));
             Image scaled = image.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
             ImageIcon backgroundImage = new ImageIcon(scaled);
             configButton = new JButton(backgroundImage);

@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Objects;
 
 public class RegisterView extends JFrame {
 
@@ -29,7 +30,7 @@ public class RegisterView extends JFrame {
 
 
         try {
-            BufferedImage image = ImageIO.read(getClass().getResourceAsStream("/model/images/background.jpg"));
+            BufferedImage image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/model/images/background.jpg")));
             Image scaled = image.getScaledInstance(1080, 600, Image.SCALE_DEFAULT);
             ImageIcon backgroundImage = new ImageIcon(scaled);
             background = new JLabel("", backgroundImage, JLabel.CENTER);

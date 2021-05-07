@@ -1,12 +1,10 @@
 package model.database;
 
-import model.User;
+import model.user.User;
 import model.json.Data;
 
-import javax.swing.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import static model.json.JsonReader.llegeixJSON;
 

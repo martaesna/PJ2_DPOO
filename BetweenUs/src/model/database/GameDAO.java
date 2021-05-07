@@ -1,7 +1,6 @@
 package model.database;
 
-import model.Game;
-import model.User;
+import model.game.Game;
 
 public interface GameDAO {
     void createGame(Game game);

@@ -1,4 +1,4 @@
-package model;
+package model.game;
 
 import model.database.GameDAO;
 import model.database.SQLGameDAO;
