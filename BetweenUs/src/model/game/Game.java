@@ -6,9 +6,18 @@ public class Game {
     private String gameName;
     private int players;
     private int impostors;
-    private Color playerColor;
+    private String playerColor;
     private String map;
     private String creator;
+
+    public Game(String gameName, int players, int impostors, String playerColor, String map, String creator) {
+        this.gameName = gameName;
+        this.players = players;
+        this.impostors = impostors;
+        this.playerColor = playerColor;
+        this.map = map;
+        this.creator = creator;
+    }
 
     public String getGameName() {
         return gameName;
@@ -34,11 +43,11 @@ public class Game {
         this.impostors = impostors;
     }
 
-    public Color getPlayerColor() {
+    public String getPlayerColor() {
         return playerColor;
     }
 
-    public void setPlayerColor(Color playerColor) {
+    public void setPlayerColor(String  playerColor) {
         this.playerColor = playerColor;
     }
 

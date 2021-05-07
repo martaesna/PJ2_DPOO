@@ -1,5 +1,6 @@
 package controller;
 
+import model.game.Game;
 import model.game.GameManager;
 import model.user.UserManager;
 import view.*;
@@ -21,8 +22,9 @@ public class ChargeGameViewController implements ActionListener {
             System.out.println("Aquí es carrega el joc");
             GameManager gameManager = new GameManager();
             if (gameManager.checkGame(cgv.getChargeName())) {
+                Game game = gameManager.chargeGame(cgv.getChargeName());
 
-                //Charge Game
+                //VISTA?
             } else {
                 cgv.printErrorNoExistance();
             }

@@ -21,16 +21,18 @@ public class Main {
         DeleteGameViewController dgv = new DeleteGameViewController(dv);
         dv.mainController(dgv);*/
 
-        /*RegisterView rv = new RegisterView();
+       /* RegisterView rv = new RegisterView();
         RegisterViewController rvc = new RegisterViewController(rv);
         rv.mainController(rvc);*/
+        /*
         SettingView sv = new SettingView();
         SettingViewController svc = new SettingViewController(sv, null);
         sv.mainController(svc);
 
-       /* DeleteGameView cgv = new DeleteGameView();
-        ChargeGameView cgv = new ChargeGameView();*/
-        //PlayView playView = new PlayView();
+         */
+
+        //DeleteGameView cgv = new DeleteGameView();
+        //ChargeGameView cgv = new ChargeGameView();
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override

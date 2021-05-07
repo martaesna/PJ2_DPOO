@@ -106,6 +106,10 @@ public class ConfiguredGameView extends JFrame {
     public String getConfiguredName() { return gameName.getText(); }
 
     public void printErrorNoExistance(){
-        JOptionPane.showMessageDialog(null, "ERROR: El nom d'aquest joc no existeix", "Error Delete Game", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "ERROR: El nom d'aquest joc no existeix", "Error Game", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void printErrorRecreatedExistance(){
+        JOptionPane.showMessageDialog(null, "ERROR: El nom d'aquest joc ja existeix", "Error Recreate Game", JOptionPane.ERROR_MESSAGE);
     }
 }

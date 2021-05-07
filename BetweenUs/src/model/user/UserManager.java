@@ -9,7 +9,7 @@ import javax.swing.*;
 public class UserManager {
     private final UserDAO userDAO;
     private boolean error;
-    private final String emailRegex = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9]+.+[a-zA-Z0-9]{3,}+$";
+    private final String emailRegex = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9]{3,}+.+[a-zA-Z0-9]{2,}+$";
 
     public UserManager(){
         userDAO = new SQLUserDAO();

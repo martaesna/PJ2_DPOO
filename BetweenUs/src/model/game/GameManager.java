@@ -11,6 +11,8 @@ public class GameManager {
     public GameManager() {gameDAO = new SQLGameDAO();}
 
     public void createGame(Game game) {
+        //POSAR EL DIALOG A LA VISTA
+
         if (gameDAO.gameExists(game.getGameName())) {
             JOptionPane.showMessageDialog(null, "ERROR: El nom d'aquest joc ja existeix", "Error Create Game", JOptionPane.ERROR_MESSAGE);
         } else {
@@ -29,4 +31,14 @@ public class GameManager {
         return false;
     }
 
+    public boolean checkRecreateGame(String gameName) {
+        if (gameDAO.recreatedGameExists(gameName)) {
+            return true;
+        }
+        return false;
+    }
+
+    public Game chargeGame(String gameName) {
+        return gameDAO.selectGame(gameName);
+    }
 }
