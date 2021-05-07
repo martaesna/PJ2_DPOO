@@ -2,13 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/BetweenUs/src/controller/SettingsViewMusicController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/maps/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/model/maps/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/mapsFiles/gravity.json" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/model/mapsFiles/gravity.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/view/PlayView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/view/PlayView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/view/RegisterView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/view/RegisterView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/controller/SettingViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/controller/SettingViewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/view/SettingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/view/SettingView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/Main$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/DeleteGameViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/controller/DeleteGameViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/PlayViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/controller/PlayViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/Game.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/GameManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/Map.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/view/SettingView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/view/SettingView.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,13 +72,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

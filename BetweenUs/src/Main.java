@@ -17,17 +17,18 @@ public class Main {
     private static Map map;
     public static void main(String[] args) {
         addFont();
-        DeleteGameView dv = new DeleteGameView();
+        /*DeleteGameView dv = new DeleteGameView();
         DeleteGameViewController dgv = new DeleteGameViewController(dv);
-        dv.mainController(dgv);
+        dv.mainController(dgv);*/
+
         /*RegisterView rv = new RegisterView();
         RegisterViewController rvc = new RegisterViewController(rv);
         rv.mainController(rvc);*/
-        /*SettingView sv = new SettingView();
+        SettingView sv = new SettingView();
         SettingViewController svc = new SettingViewController(sv, null);
         sv.mainController(svc);
 
-        DeleteGameView cgv = new DeleteGameView();
+       /* DeleteGameView cgv = new DeleteGameView();
         ChargeGameView cgv = new ChargeGameView();*/
         //PlayView playView = new PlayView();
 

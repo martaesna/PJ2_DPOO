@@ -5,6 +5,9 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ChangeListener;
+import javax.swing.plaf.basic.BasicSliderUI;
+import javax.swing.plaf.metal.MetalSliderUI;
 import java.awt.*;
 import java.awt.font.TextAttribute;
 import java.awt.image.BufferedImage;
@@ -18,6 +21,8 @@ public class SettingView extends JFrame  {
     private JButton jbDel;
     private JButton jbLog;
     private JButton configButton;
+    private JSlider Eslider;
+    private JSlider Mslider;
 
     public SettingView() {
         setVisible(true);
@@ -64,12 +69,19 @@ public class SettingView extends JFrame  {
         jlMusic.setForeground(Color.WHITE);
         background.add(jlMusic);
 
-
-        JLabel jlbola1 = new JLabel("----------------------------------",JLabel.LEFT);
-        jlbola1.setForeground(Color.WHITE);
-        jlbola1.setBounds(500,150,350,50);
-        jlbola1.setFont(new Font("Russo One",Font.BOLD,15));
-        background.add(jlbola1);
+        //Slider de la musica
+        Mslider = new JSlider(0,10,5);
+        Mslider.setVisible(true);
+        Mslider.setForeground(Color.WHITE);
+        Mslider.setPaintTicks(true);
+        Mslider.setMinorTickSpacing(1);
+        Mslider.setMajorTickSpacing(2);
+        Mslider.setPaintTrack(true);
+        Mslider.setPaintLabels(true);
+        Mslider.setFont(new Font("Serif",Font.ITALIC,15));
+        Mslider.setSnapToTicks(true);
+        Mslider.setBounds(500,150,300,50);
+        background.add(Mslider);
 
         //hacer que estas dos esten mas juntas
         JLabel jlSFX = new JLabel("SFX volum",JLabel.LEFT);
@@ -79,11 +91,21 @@ public class SettingView extends JFrame  {
         background.add(jlSFX);
 
 
-        JLabel jlbola2 = new JLabel("----------------------------------",JLabel.LEFT);
-        jlbola2.setForeground(Color.WHITE);
-        jlbola2.setBounds(500,250,350,50);
-        jlbola2.setFont(new Font("Russo One",Font.BOLD,15));
-        background.add(jlbola2);
+        //Slider dels efectes
+        Eslider = new JSlider(0,10,5);
+        Eslider.setVisible(true);
+        Eslider.setForeground(Color.WHITE);
+
+        Eslider.setPaintTicks(true);
+        Eslider.setMinorTickSpacing(1);
+        Eslider.setMajorTickSpacing(2);
+        Eslider.setPaintTrack(true);
+        Eslider.setPaintLabels(true);
+        Eslider.setFont(new Font("Serif",Font.ITALIC,15));
+        Eslider.setSnapToTicks(true);
+        Eslider.setBounds(500,250,300,50);
+
+        background.add(Eslider);
 
 
         //Boto1
@@ -114,6 +136,12 @@ public class SettingView extends JFrame  {
         jbDel.addActionListener(actionListener);
         configButton.addActionListener(actionListener);
     }
+
+    /*public void VolumCotroller(ChangeListener changeListener){
+        Eslider.addChangeListener(changeListener);
+        Mslider.addChangeListener(changeListener);
+
+    }*/
 
     public int confirmDeleteUser() {
         return JOptionPane.showConfirmDialog(null,"Seguro que quieres borrar la Cuenta?");
