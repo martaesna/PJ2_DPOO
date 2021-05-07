@@ -49,12 +49,6 @@ public class PlayViewController implements ActionListener {
             DeleteGameView dgv = new DeleteGameView();
             DeleteGameViewController dgvc = new DeleteGameViewController(dgv);
             dgv.mainController(dgvc);
-
         }
-
     }
-
-
-
-
 }

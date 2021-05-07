@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="Confirmació esborrar joc&#10;Comprovació nom del joc a la BDD&#10;Esborrar joc">
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/controller/ChargeGameViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/controller/ChargeGameViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/controller/ConfiguredGameViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/controller/ConfiguredGameViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/view/ChargeGameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/view/ChargeGameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/view/ConfiguredGameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/view/ConfiguredGameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/view/DeleteGameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/view/DeleteGameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/ChargeGameViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/controller/ChargeGameViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/ConfiguredGameViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/controller/ConfiguredGameViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/SettingViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/controller/SettingViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/model/GameManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/database/SQLGameDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/model/database/SQLGameDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/view/DeleteGameView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/view/DeleteGameView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/view/PlayView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/view/PlayView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_19__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_19__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_19__Default_Changelist_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_19__Default_Changelist_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_20__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_20__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_5_2021_16_58__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_5_2021_16_58__Default_Changelist_.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
