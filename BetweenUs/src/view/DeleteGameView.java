@@ -103,5 +103,13 @@ public class DeleteGameView extends JFrame {
         returnButton.addActionListener(actionListener);
     }
 
-    public String getConfiguredName() { return gameName.getText(); }
+    public String getGameName() { return gameName.getText(); }
+
+    public int confirmDeleteGame(){
+        return JOptionPane.showConfirmDialog(null,"Seguro que quieres borrar esta partida?");
+    }
+
+    public void printErrorNoExistance(){
+        JOptionPane.showMessageDialog(null, "ERROR: El nom d'aquest joc no existeix", "Error Delete Game", JOptionPane.ERROR_MESSAGE);
+    }
 }

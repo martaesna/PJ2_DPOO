@@ -6,7 +6,7 @@ import model.json.Data;
 import java.io.FileReader;
 
 public class JsonReader {
-    static Data data = new Data();
+    private static Data data = new Data();
     public static Data llegeixJSON(){
         try{
             Gson gson = new Gson();

@@ -1,12 +1,9 @@
 package controller;
-import model.User;
-import model.UserManager;
 import view.*;
 
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class PlayViewController implements ActionListener {
     private PlayView pv;

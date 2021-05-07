@@ -1,13 +1,10 @@
 package controller;
 
-import model.User;
-import model.UserManager;
+import model.user.UserManager;
 import view.LoginView;
 import view.PlayView;
 import view.RegisterView;
-import view.SettingView;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,13 +23,12 @@ public class LoginViewController implements ActionListener {
         if (e.getActionCommand().equals("Login")) { //cuando apretamos el boton
             UserManager userManager = new UserManager();
             if (userManager.loginUser(lv.getUsername(),lv.getPassword())) {
-                System.out.println("Login correcte");
                 lv.setVisible(false);
                 PlayView pv = new PlayView();
                 PlayViewController pvc = new PlayViewController(pv);
                 pv.mainController(pvc);
             } else {
-                JOptionPane.showMessageDialog(null, "ERROR: Les credencials introduïdes són incorrectes", "Error Login", JOptionPane.ERROR_MESSAGE);
+                lv.printError();
             }
         }
     }

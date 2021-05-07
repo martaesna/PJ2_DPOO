@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Objects;
 
 public class SettingView extends JFrame  {
 
@@ -35,7 +36,7 @@ public class SettingView extends JFrame  {
 
 
         try {
-            BufferedImage image = ImageIO.read(getClass().getResource("/model/images/config.png"));
+            BufferedImage image = ImageIO.read(Objects.requireNonNull(getClass().getResource("/model/images/config.png")));
             Image scaled = image.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
             ImageIcon backgroundImage = new ImageIcon(scaled);
             configButton = new JButton(backgroundImage);
@@ -49,15 +50,11 @@ public class SettingView extends JFrame  {
             e.printStackTrace();
         }
 
-
-
-
         JLabel title = new JLabel("Settings", JLabel.LEFT);
         title.setBounds(375,10,400,95);
         title.setFont(new Font("Russo One", Font.BOLD, 75));
         title.setForeground(Color.WHITE);
         background.add(title);
-
 
         Font font = new Font("Russo One",Font.BOLD,35);
 
@@ -116,5 +113,13 @@ public class SettingView extends JFrame  {
         jbLog.addActionListener(actionListener);
         jbDel.addActionListener(actionListener);
         configButton.addActionListener(actionListener);
+    }
+
+    public int confirmDeleteUser() {
+        return JOptionPane.showConfirmDialog(null,"Seguro que quieres borrar la Cuenta?");
+    }
+
+    public int confirmLogout(){
+        return JOptionPane.showConfirmDialog(null,"Seguro que quieres hacer log out?");
     }
 }

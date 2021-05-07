@@ -1,7 +1,6 @@
 package controller;
 
-import model.User;
-import model.UserManager;
+import model.user.UserManager;
 import view.LoginView;
 import view.PlayView;
 import view.RegisterView;
@@ -24,8 +23,7 @@ public class SettingViewController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Logout")) { //cuando apretamos el boton
-            int confirmado = JOptionPane.showConfirmDialog(null,"Seguro que quieres hacer log out?");
-            if(JOptionPane.OK_OPTION == confirmado){
+            if(JOptionPane.OK_OPTION == sv.confirmLogout()){
                 sv.setVisible(false);
                 LoginView lv = new LoginView();
                 LoginViewController lvc = new LoginViewController(lv);
@@ -34,10 +32,8 @@ public class SettingViewController implements ActionListener {
 
         }
         if (e.getActionCommand().equals("Delete")) { //cuando apretamos el boton
-            int confirmado = JOptionPane.showConfirmDialog(null,"Seguro que quieres borrar la Cuenta?");
-            if(JOptionPane.OK_OPTION == confirmado){
+            if(JOptionPane.OK_OPTION == sv.confirmDeleteUser()){
                 sv.setVisible(false);
-                System.out.println("Ara Borrem conta");
                 UserManager userManager = new UserManager();
                 userManager.deleteUser(nameLogin);
                 RegisterView rv = new RegisterView();

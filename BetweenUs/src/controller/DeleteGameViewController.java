@@ -1,8 +1,9 @@
 package controller;
 
+import model.game.GameManager;
 import view.ConfiguredGameView;
 import view.PlayView;
-import model.UserManager;
+import model.user.UserManager;
 import view.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -20,7 +21,14 @@ public class DeleteGameViewController implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Delete")) { //cuando apretamos el boton
-            System.out.println("Aquí es borra el joc que volguem");
+            GameManager gameManager = new GameManager();
+            if (gameManager.checkGame(dgv.getGameName())) {
+                if (JOptionPane.OK_OPTION == dgv.confirmDeleteGame()) {
+                    gameManager.deleteGame(dgv.getGameName());
+                }
+            } else {
+                dgv.printErrorNoExistance();
+            }
         }
         if (e.getActionCommand().equals("Return")) { //cuando apretamos el boton
             dgv.setVisible(false);

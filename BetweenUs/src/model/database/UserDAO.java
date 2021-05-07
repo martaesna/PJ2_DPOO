@@ -1,8 +1,6 @@
 package model.database;
 
-import model.User;
-
-import java.util.ArrayList;
+import model.user.User;
 
 public interface UserDAO {
     void registerUser(User user);

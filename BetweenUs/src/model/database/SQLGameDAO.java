@@ -1,6 +1,6 @@
 package model.database;
 
-import model.Game;
+import model.game.Game;
 import model.json.Data;
 
 import java.sql.ResultSet;
@@ -67,9 +67,6 @@ public class SQLGameDAO implements GameDAO{
 
     @Override
     public void resumeGame(String gameName) {
-
-
-
 
     }
 }
