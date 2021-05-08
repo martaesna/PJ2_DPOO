@@ -6,7 +6,7 @@ import model.json.Data;
 import java.io.File;
 import java.io.FileReader;
 
-public class ReadMap {
+public class MapManager {
     private static Map map;
     public static Map llegeixMapa(){
         try{

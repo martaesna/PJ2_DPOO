@@ -1,16 +1,13 @@
 
-import controller.*;
 import model.json.Data;
 import model.json.JsonReader;
 import model.maps.Map;
-import model.maps.ReadMap;
-import view.*;
+import model.maps.MapManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Main {
     private static Data data;
@@ -38,7 +35,7 @@ public class Main {
             @Override
             public void run() {
                 data = JsonReader.llegeixJSON();
-                map = ReadMap.llegeixMapa();
+                map = MapManager.llegeixMapa();
             }
         });
     }

@@ -32,9 +32,7 @@ public class RegisterViewController implements ActionListener {
         UserManager userManager = new UserManager();
         int checked = userManager.checkRegister(user);
         if (checked == 0) {
-            //Registre correcte
             userManager.registerUser(user);
-
         } else {
             String finalError = userManager.checkPasswordFormat(user);
             rv.printRegisterErrors(checked,finalError);
