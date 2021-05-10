@@ -20,7 +20,7 @@ public class LoginView extends JFrame {
     public LoginView() {
         setVisible(true);
         setTitle("Login"); // titol
-        setSize(1080, 600); // tamaño de la caja
+        setSize(1080, 600); // tamaño de la cajacfgggggggggggggggggggg
         setResizable(false); //para que no se pueda mover
         setLocationRelativeTo(null); //Centrarlo
         setDefaultCloseOperation(EXIT_ON_CLOSE); // cerrar con la x

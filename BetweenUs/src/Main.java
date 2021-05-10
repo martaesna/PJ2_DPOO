@@ -3,6 +3,7 @@ import model.json.Data;
 import model.json.JsonReader;
 import model.maps.Map;
 import model.maps.MapManager;
+import view.RegisterView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +15,7 @@ public class Main {
     private static Map map;
     public static void main(String[] args) {
         addFont();
+        RegisterView rv = new RegisterView();
         /*DeleteGameView dv = new DeleteGameView();
         DeleteGameViewController dgv = new DeleteGameViewController(dv);
         dv.mainController(dgv);*/

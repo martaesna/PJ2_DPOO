@@ -2,14 +2,49 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="Format correu&#10;Carregar joc (part)&#10;Recrear joc (part)&#10;GameDAO">
-      <change afterPath="$PROJECT_DIR$/BetweenUs/src/model/character/Character.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BetweenUs/src/model/character/CrewMember.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BetweenUs/src/model/character/Impostor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_05_2021__11_13__Default_Changelist_.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/BetweenUs/src/model/mapsFiles/space.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_05_2021__21_07__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_05_2021__21_07__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_05_2021__21_07__Default_Changelist_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_05_2021__21_07__Default_Changelist_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_19__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_19__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_19__Default_Changelist_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_19__Default_Changelist_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_20__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_20__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_5_2021_16_58__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_5_2021_16_58__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_5_2021_19_13__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_5_2021_19_13__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/controller/MainController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/controller/RegisterViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/controller/RegisterViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/maps/ReadMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/model/maps/MapManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/maps/MapManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/model/maps/MapManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/view/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/view/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/Main$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/ChargeGameViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/controller/ChargeGameViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/ConfiguredGameViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/controller/ConfiguredGameViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/DeleteGameViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/controller/DeleteGameViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/LoginViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/controller/LoginViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/MainController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/PlayViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/controller/PlayViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/RegisterViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/controller/RegisterViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/controller/SettingViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/controller/SettingViewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/database/GameDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/model/database/GameDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/database/SQLGameDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/model/database/SQLGameDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/database/SQLUserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/model/database/SQLUserDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/database/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/model/database/UserDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/model/game/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/game/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/model/game/GameManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/json/JsonReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/model/json/JsonReader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/maps/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/model/maps/Cell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/maps/Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/model/maps/Map.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/maps/Mobility.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/model/maps/Mobility.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/maps/ReadMap.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/user/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/model/user/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/user/UserManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/model/user/UserManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/view/ChargeGameView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/view/ChargeGameView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/view/ConfiguredGameView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/view/ConfiguredGameView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/view/DeleteGameView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/view/DeleteGameView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/view/PlayView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/view/PlayView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/view/RegisterView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/view/RegisterView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/view/SettingView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/view/SettingView.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +78,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/BetweenUs/src/model" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/BetweenUs/src/model/mapsFiles" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -51,6 +86,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\marta\Desktop\BETWEEN US\Projecte V4\BetweenUs\src\model\mapsFiles" />
       <recent name="C:\Users\marta\Desktop\BETWEEN US\Projecte V3\BetweenUs\src\model" />
       <recent name="C:\Users\marta\Desktop\BETWEEN US\Projecte V2\BetweenUs\src\model" />
     </key>
@@ -60,29 +96,27 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="BetweenUs" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="BetweenUs" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="BetweenUs" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <module name="BetweenUs" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -105,6 +139,7 @@
       <workItem from="1620212480187" duration="7204000" />
       <workItem from="1620224895175" duration="5952000" />
       <workItem from="1620313673836" duration="7237000" />
+      <workItem from="1620663733615" duration="5626000" />
     </task>
     <task id="LOCAL-00001" summary="Per saber si ho tenim, joves!">
       <created>1619026420669</created>
@@ -213,5 +248,16 @@
     <MESSAGE value="ADD&#10;- Map json file&#10;- Map classes&#10;- Map json reader" />
     <MESSAGE value="Format correu&#10;Carregar joc (part)&#10;Recrear joc (part)&#10;GameDAO" />
     <option name="LAST_COMMIT_MESSAGE" value="Format correu&#10;Carregar joc (part)&#10;Recrear joc (part)&#10;GameDAO" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/BetweenUs/src/model/maps/MapManager.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

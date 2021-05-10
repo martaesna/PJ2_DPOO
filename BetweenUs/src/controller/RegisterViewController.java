@@ -18,7 +18,6 @@ public class RegisterViewController implements ActionListener {
         if (e.getActionCommand().equals("Register")) { //cuando apretamos el boton
             User user = new User(rv.getUsername(), rv.getEmail(), rv.getPassword(), rv.getRepeatPassword());
             caseRegister(user, rv);
-
         }
         if (e.getActionCommand().equals("Login")) { //cuando apretamos el boton
             rv.setVisible(false);
