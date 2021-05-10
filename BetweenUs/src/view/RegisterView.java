@@ -47,54 +47,54 @@ public class RegisterView extends JFrame {
 
         JLabel nameLabel = new JLabel("Username", JLabel.LEFT);
         nameLabel.setBounds(25,10,150,50);
-        nameLabel.setFont(new Font("Russo One", Font.BOLD, 24));
+        nameLabel.setFont(new Font("", Font.BOLD, 24));
         nameLabel.setForeground(Color.WHITE);
         jpVista.add(nameLabel);
         nameField = new JTextField();
         nameField.setBackground(Color.BLACK);
         nameField.setForeground(Color.WHITE);
-        nameField.setFont(new Font("Russo One", Font.BOLD, 20));
+        nameField.setFont(new Font("", Font.BOLD, 20));
         nameField.setBounds(23,55,350,40);
         jpVista.add(nameField);
 
         JLabel emailLabel = new JLabel("Email", JLabel.LEFT);
         emailLabel.setBounds(25,100,150,50);
-        emailLabel.setFont(new Font("Russo One", Font.BOLD, 24));
+        emailLabel.setFont(new Font("", Font.BOLD, 24));
         emailLabel.setForeground(Color.WHITE);
         jpVista.add(emailLabel);
         emailField = new JTextField();
         emailField.setBackground(Color.BLACK);
         emailField.setForeground(Color.WHITE);
-        emailField.setFont(new Font("Russo One", Font.BOLD, 20));
+        emailField.setFont(new Font("", Font.BOLD, 20));
         emailField.setBounds(23,145,350,40);
         jpVista.add(emailField);
 
         JLabel passwordLabel = new JLabel("Password", JLabel.LEFT);
         passwordLabel.setBounds(25,190,150,50);
-        passwordLabel.setFont(new Font("Russo One", Font.BOLD, 24));
+        passwordLabel.setFont(new Font("", Font.BOLD, 24));
         passwordLabel.setForeground(Color.WHITE);
         jpVista.add(passwordLabel);
         passwordField = new JPasswordField();
         passwordField.setBackground(Color.BLACK);
         passwordField.setForeground(Color.WHITE);
-        passwordField.setFont(new Font("Russo One", Font.BOLD, 24));
+        passwordField.setFont(new Font("", Font.BOLD, 24));
         passwordField.setBounds(23,235,350,40);
         jpVista.add(passwordField);
 
         JLabel repeatPasswordLabel = new JLabel("Repeat password", JLabel.LEFT);
         repeatPasswordLabel.setBounds(25,290,250,50);
-        repeatPasswordLabel.setFont(new Font("Russo One", Font.BOLD, 24));
+        repeatPasswordLabel.setFont(new Font("", Font.BOLD, 24));
         repeatPasswordLabel.setForeground(Color.WHITE);
         jpVista.add(repeatPasswordLabel);
         repeatPasswordField = new JPasswordField();
         repeatPasswordField.setBackground(Color.BLACK);
         repeatPasswordField.setForeground(Color.WHITE);
-        repeatPasswordField.setFont(new Font("Russo One", Font.BOLD, 24));
+        repeatPasswordField.setFont(new Font("", Font.BOLD, 24));
         repeatPasswordField.setBounds(23,335,350,40);
         jpVista.add(repeatPasswordField);
 
         jbRegister = new JButton("Register");
-        jbRegister.setFont(new Font("Russo One", Font.BOLD, 24));
+        jbRegister.setFont(new Font("", Font.BOLD, 24));
         jbRegister.setActionCommand("Register"); //
         jbRegister.setBackground(Color.BLACK);
         jbRegister.setForeground(Color.WHITE);
@@ -103,12 +103,12 @@ public class RegisterView extends JFrame {
 
         JLabel loginMessageLabel = new JLabel("Already have an account?", JLabel.LEFT);
         loginMessageLabel.setBounds(110,430,250,50);
-        loginMessageLabel.setFont(new Font("Russo One", Font.BOLD, 16));
+        loginMessageLabel.setFont(new Font("", Font.BOLD, 16));
         loginMessageLabel.setForeground(Color.WHITE);
         jpVista.add(loginMessageLabel);
 
         jbLogin = new JButton("Login");
-        jbLogin.setFont(new Font("Russo One", Font.BOLD, 16));
+        jbLogin.setFont(new Font("", Font.BOLD, 16));
         jbLogin.setActionCommand("Login");
         jbLogin.setBackground(Color.BLACK);
         jbLogin.setForeground(Color.WHITE);
