@@ -46,8 +46,8 @@ public class Main {
             public void run() {
                 data = JsonReader.llegeixJSON();
                 map = MapManager.llegeixMapa();
-                MapView mv = new MapView();
-                MapCotroller mc = new MapCotroller(map,mv);
+                MapView mv = new MapView(map);
+
 
 
             }

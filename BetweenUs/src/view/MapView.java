@@ -4,6 +4,8 @@ import model.maps.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.text.html.StyleSheet;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -17,7 +19,7 @@ public class MapView extends JFrame {
     private JButton mapButton;
     private MapCotroller mc;
 
-    public MapView(){
+    public MapView(Map map){
         setTitle("Map");
         setSize(1080, 600);
 
@@ -79,33 +81,124 @@ public class MapView extends JFrame {
         }
         background.add(JpNorth, BorderLayout.NORTH);
 
-        JPanel JpCenter = new JPanel(new GridLayout(mc.getWidth(), mc.getHeight()));
-
-        for(int i = 0; i < mc.getHeight(); ++i){
-            for( int j = 0; j < mc.getWidth(); ++j){
+       JPanel JpCenter = new JPanel(new GridLayout(map.getWidth(), map.getHeight()));
+        for(int i = 0; i < map.getHeight(); ++i) {
+            for (int j = 0; j < map.getWidth(); ++j) {
+                int pos = -1;
                 //Aqui printem cada part del mapa corresponent amb la posicio de les celles.
-                //primer determinar quin tipus de cella es
-             int pos = mc.trobaCela(j,i);
-             if (pos == -1){
-                 //aixo es un cuadrat negre
-                JPanel empty = new JPanel();
-                empty.setBackground(Color.BLACK);
-                JpCenter.add(empty);
-
-             } else{
-                String tipusCela =  mc.getType(i);
-                if (tipusCela == "room") {
-                    //creem un panell del color de la sala
-
+                //primer determinar quin tipus de cella es recorren tots les celles per mirar si esta la corresponent
+                for (int m = 0; m < map.getCells().size(); m++) {
+                    if (map.getCells().get(m).getX() == j && map.getCells().get(m).getY() == i) pos = m;
                 }
-             }
 
+                //MIREM SI ES MAPA O CUADRAT NEGRE
+                if (pos == -1) {
+                    //aixo es un cuadrat negre
+                    JPanel empty = new JPanel();
+                    empty.setBackground(Color.BLACK);
+                    JpCenter.add(empty);
+
+                } else {
+                    //MIREM SI ES SALA O PASSADIS
+
+
+                    if (map.getCells().get(pos).getType().equals("room")) {
+                        //creem un panell del color de la sala
+                        JPanel room = new JPanel();
+                        String color = map.getCells().get(pos).getColor();
+
+                        StyleSheet s = new StyleSheet();
+                        Color clr = s.stringToColor(map.getCells().get(pos).getColor());
+                        room.setBackground(clr); //fer que el color sigui el que toca
+                        JpCenter.add(room);
+                    } else {
+
+                        //si estem aqui som un pasadis, printem el mig del cuadrat de blanc
+                        JPanel corridor = new JPanel(new BorderLayout());
+                        JPanel center = new JPanel();
+                        center.setBackground(Color.white);
+                        corridor.setBackground(Color.BLACK);
+                        corridor.add(center, BorderLayout.CENTER);
+                        JpCenter.add(corridor);
+                        //comprovem cap on podem anar per printar cap els costats on podem anar.
+
+                        //MIREM SI POT ANAR CAP ADALT
+                        if (map.getCells().get(pos).getMobility().getUp() == 1) {
+
+                            JPanel up = new JPanel(new BorderLayout());
+                            JPanel Cu = new JPanel();
+                            Cu.setBackground(Color.white);
+                            up.add(Cu, BorderLayout.CENTER);
+                            corridor.add(up, BorderLayout.NORTH);
+                        } else { //SINO PINTEM LES PARETS GRISES
+                            JPanel b = new JPanel();
+                            b.setBackground(Color.GRAY);
+                            b.setBorder(new LineBorder(Color.GRAY,10,true));
+                            corridor.add(b, BorderLayout.NORTH);
+                        }
+
+                        //MIREM SI POT ANAR CAP ABAIX
+                        if (map.getCells().get(pos).getMobility().getDown() == 1) {
+
+                            JPanel down = new JPanel(new BorderLayout());
+                            JPanel du = new JPanel();
+                            du.setBackground(Color.white);
+
+                            down.add(du, BorderLayout.CENTER);
+                            corridor.add(down, BorderLayout.SOUTH);
+                        }else{
+                            JPanel b1 = new JPanel();
+                            b1.setBackground(Color.GRAY);
+                            b1.setBorder(new LineBorder(Color.GRAY,10,true));
+                            corridor.add(b1, BorderLayout.SOUTH);
+                        }
+
+                        //MIREM SI POT ANAR CAP A LA DRETA
+                        if (map.getCells().get(pos).getMobility().getRight() == 1) {
+
+                            JPanel right = new JPanel(new BorderLayout());
+                            JPanel ru = new JPanel();
+                            ru.setBackground(Color.white);
+                            right.add(ru, BorderLayout.CENTER);
+                            corridor.add(right, BorderLayout.EAST);
+                        }else{
+                            JPanel b2 = new JPanel();
+                            b2.setBackground(Color.GRAY);
+                            b2.setBorder(new LineBorder(Color.GRAY,15,true));
+                            corridor.add(b2, BorderLayout.EAST);
+                        }
+
+                        //MIREM SI POT ANAR CAP A L ESQUERRA
+                        if (map.getCells().get(pos).getMobility().getLeft() == 1) {
+
+                            JPanel left = new JPanel(new BorderLayout());
+                            JPanel lu = new JPanel();
+                            lu.setBackground(Color.white);
+                            left.add(lu, BorderLayout.CENTER);
+                            left.setBackground(Color.black);
+                            corridor.add(left, BorderLayout.WEST);
+                        }else{
+                            JPanel b3 = new JPanel();
+                            b3.setBackground(Color.GRAY);
+                            b3.setBorder(new LineBorder(Color.GRAY,15,true));
+                            corridor.add(b3, BorderLayout.WEST);
+                        }
+
+                    }
+                }
             }
         }
-
-
-
+        JPanel bajo = new JPanel();
+        bajo.setBackground(Color.RED);
+        JPanel derecha = new JPanel();
+        derecha.setBackground(Color.RED);
+        JPanel izquierda = new JPanel();
+        izquierda.setBackground(Color.RED);
+        background.add(bajo,BorderLayout.SOUTH);
+        background.add(derecha,BorderLayout.EAST);
+        background.add(izquierda,BorderLayout.WEST);
         background.add(JpCenter,BorderLayout.CENTER);
+
         add(background);
         setVisible(true);
     }

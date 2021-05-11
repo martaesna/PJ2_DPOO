@@ -39,5 +39,13 @@ public class MapCotroller{
     public String getType(int i){
         return map.getCells().get(i).getType();
     }
+
+    public String getColor(int i){
+        return map.getCells().get(i).getColor();
+    }
+
+   /* public int getMobility(int i, String dir){
+
+    }*/
 }
 
