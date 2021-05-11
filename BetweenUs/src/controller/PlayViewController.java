@@ -21,6 +21,7 @@ public class PlayViewController implements ActionListener {
 
         if (e.getActionCommand().equals("NewGame")) { //cuando apretamos el boton
             pv.setVisible(false);
+
             //NewGameView ngv = new NewGameView();
             //NewGameViewController ngvc = NewGameViewController(ngv);
             //nvg.mainController(ngv);

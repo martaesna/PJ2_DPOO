@@ -1,8 +1,12 @@
 
+import controller.MapCotroller;
+import controller.PlayViewController;
 import model.json.Data;
 import model.json.JsonReader;
 import model.maps.Map;
 import model.maps.MapManager;
+import view.MapView;
+import view.PlayView;
 import view.RegisterView;
 
 import javax.swing.*;
@@ -13,9 +17,12 @@ import java.io.IOException;
 public class Main {
     private static Data data;
     private static Map map;
+    private MapCotroller mc;
+
     public static void main(String[] args) {
         addFont();
-        RegisterView rv = new RegisterView();
+
+        //RegisterView rv = new RegisterView();
         /*DeleteGameView dv = new DeleteGameView();
         DeleteGameViewController dgv = new DeleteGameViewController(dv);
         dv.mainController(dgv);*/
@@ -33,14 +40,23 @@ public class Main {
         //DeleteGameView cgv = new DeleteGameView();
         //ChargeGameView cgv = new ChargeGameView();
 
+
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 data = JsonReader.llegeixJSON();
                 map = MapManager.llegeixMapa();
+                MapView mv = new MapView();
+                MapCotroller mc = new MapCotroller(map,mv);
+
+
             }
         });
+
+
     }
+
+
 
     public static void addFont() {
         try {
