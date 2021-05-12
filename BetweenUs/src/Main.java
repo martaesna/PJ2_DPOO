@@ -1,13 +1,10 @@
 
-import controller.MapCotroller;
-import controller.PlayViewController;
-import model.json.Data;
-import model.json.JsonReader;
-import model.maps.Map;
-import model.maps.MapManager;
-import view.MapView;
-import view.PlayView;
-import view.RegisterView;
+import presentationLayer.controllers.MapCotroller;
+import businessLayer.entities.json.Data;
+import businessLayer.JsonReader;
+import businessLayer.entities.maps.Map;
+import businessLayer.MapManager;
+import presentationLayer.views.MapView;
 
 import javax.swing.*;
 import java.awt.*;
