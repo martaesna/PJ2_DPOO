@@ -5,6 +5,7 @@ import model.maps.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.html.StyleSheet;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -21,12 +22,13 @@ public class MapView extends JFrame {
     private JButton DOWN;
     private JButton RIGHT;
     private JButton LEFT;
+    private Object[][] data;
 
     private MapCotroller mc;
 
-    public MapView(Map map){
+    public MapView(Map map)/*throws IOException*/ {
         setTitle("Map");
-        setSize(1080, 600);
+        setSize(1080, 600);//600
 
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -81,12 +83,26 @@ public class MapView extends JFrame {
             JpNorthEast.add(mapButton, BorderLayout.EAST);
             JpNorth.add(JpNorthEast,BorderLayout.CENTER);
 
+
+
+            BufferedImage image4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/model/images/background.jpg")));
+            Image scaled4 = image4.getScaledInstance(278, 50, Image.SCALE_DEFAULT);
+            ImageIcon myLabel = new ImageIcon(scaled4);
+             data =
+                     new Object[][]{
+                             {myLabel, myLabel, myLabel},
+                             {myLabel, myLabel, myLabel},
+                             {myLabel, myLabel, myLabel},
+                     };
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         background.add(JpNorth, BorderLayout.NORTH);
 
        JPanel JpCenter = new JPanel(new GridLayout(map.getWidth(), map.getHeight()));
+
         for(int i = 0; i < map.getHeight(); ++i) {
             for (int j = 0; j < map.getWidth(); ++j) {
                 int pos = -1;
@@ -251,9 +267,70 @@ public class MapView extends JFrame {
         bajo.setBackground(Color.RED);
         JPanel izquierda = new JPanel();
         izquierda.setBackground(Color.RED);
-        background.add(bajo,BorderLayout.SOUTH);
+       // background.add(bajo,BorderLayout.SOUTH);
         background.add(izquierda,BorderLayout.WEST);
+
+       //-----------------------------------------------------------------------------------------------------------------
+
+
+      /*  setVisible(true);
+        setSize(1080, 600); // tamaÃ±o de la caja
+        setResizable(false); //para que no se pueda mover
+        setLocationRelativeTo(null); //Centrarlo
+        setDefaultCloseOperation(EXIT_ON_CLOSE); // cerrar con la x
+        setLayout(null);*/
+        /*JPanel background1 = new JLabel();
+        background.setBackground(Color.BLACK);
+        background.setBounds(0, 0, 1080, 600);
+        background.setOpaque(true);*/
+
+        //PANEL PARA VER LA TABLA
+        JPanel gui = new JPanel();
+
+        gui.setBackground(new Color(125,125,125,99));//LE PONEMOS EL COLOR
+
+        String[] header = {"Unknown", "Suspicious", "Innocent"}; //CREAMOS LA ETIQUETAS DEL TITULO
+        gui.setLayout(null);
+        gui.setBounds(100,300,875,200);
+       /*JLabel[] names = new JLabel[1];
+        JLabel j = new JLabel();
+        j.setText("Red");
+        j.setBackground(Color.red);
+        j.setOpaque(true);
+        j.setFont(new Font("Russo One", Font.BOLD, 24));
+        j.setForeground(Color.WHITE);
+        names[0] = j;
+        //JLabel[][] data1 = new JLabel[names.length][2];*/
+
+        DefaultTableModel model = new DefaultTableModel(data, header);
+        JTable table = new JTable(model){
+
+            public Class getColumnClass(int column)
+            {
+                return ImageIcon.class;
+            }
+        };
+
+        table.setRowHeight(50);
+
+        JScrollPane tableScroll = new JScrollPane(table);
+        tableScroll.setOpaque(false);
+        tableScroll.setBackground(Color.black);
+        tableScroll.setBounds(20,20,835,160);
+        table.setBounds(20,20,835,160);
+
+       gui.add(tableScroll);
+
+
+
+
+        getContentPane().add(background);
+        getContentPane().add(gui);
+        background.add(gui,BorderLayout.SOUTH);
+
+        //.----------------------------------------------------------------------------------------------------------------------------------
         background.add(JpCenter,BorderLayout.CENTER);
+
 
 
         add(background);
