@@ -17,6 +17,11 @@ public class MapView extends JFrame {
     private JButton returnButton;
     private JButton configButton;
     private JButton mapButton;
+    private JButton UP;
+    private JButton DOWN;
+    private JButton RIGHT;
+    private JButton LEFT;
+
     private MapCotroller mc;
 
     public MapView(Map map){
@@ -132,8 +137,8 @@ public class MapView extends JFrame {
                             corridor.add(up, BorderLayout.NORTH);
                         } else { //SINO PINTEM LES PARETS GRISES
                             JPanel b = new JPanel();
-                            b.setBackground(Color.GRAY);
-                            b.setBorder(new LineBorder(Color.GRAY,10,true));
+                            b.setBackground(Color.DARK_GRAY);
+                            b.setBorder(new LineBorder(Color.DARK_GRAY,10,true));
                             corridor.add(b, BorderLayout.NORTH);
                         }
 
@@ -148,8 +153,8 @@ public class MapView extends JFrame {
                             corridor.add(down, BorderLayout.SOUTH);
                         }else{
                             JPanel b1 = new JPanel();
-                            b1.setBackground(Color.GRAY);
-                            b1.setBorder(new LineBorder(Color.GRAY,10,true));
+                            b1.setBackground(Color.DARK_GRAY);
+                            b1.setBorder(new LineBorder(Color.DARK_GRAY,10,true));
                             corridor.add(b1, BorderLayout.SOUTH);
                         }
 
@@ -163,8 +168,8 @@ public class MapView extends JFrame {
                             corridor.add(right, BorderLayout.EAST);
                         }else{
                             JPanel b2 = new JPanel();
-                            b2.setBackground(Color.GRAY);
-                            b2.setBorder(new LineBorder(Color.GRAY,15,true));
+                            b2.setBackground(Color.DARK_GRAY);
+                            b2.setBorder(new LineBorder(Color.DARK_GRAY,15,true));
                             corridor.add(b2, BorderLayout.EAST);
                         }
 
@@ -179,8 +184,8 @@ public class MapView extends JFrame {
                             corridor.add(left, BorderLayout.WEST);
                         }else{
                             JPanel b3 = new JPanel();
-                            b3.setBackground(Color.GRAY);
-                            b3.setBorder(new LineBorder(Color.GRAY,15,true));
+                            b3.setBackground(Color.DARK_GRAY);
+                            b3.setBorder(new LineBorder(Color.DARK_GRAY,15,true));
                             corridor.add(b3, BorderLayout.WEST);
                         }
 
@@ -188,16 +193,68 @@ public class MapView extends JFrame {
                 }
             }
         }
+
+
+
+        //creamos un border layout dentro del EAST y ponemos los botones en cada lugar
+        //background.add(control,BorderLayout.EAST); //aqui hemos de poner los botones
+        JPanel controles = new JPanel(new BorderLayout());
+        //per poder colocar els botons a la part de dalt
+        JPanel AuxControles = new JPanel(new BorderLayout());
+        //coloquem els botons de adalt y abaix
+        JPanel AuxControlUPDOWN = new JPanel(new GridLayout(2,1));
+        JPanel AuxControlLEFT = new JPanel(new BorderLayout());
+        JPanel AuxControlRIGHT = new JPanel(new BorderLayout());
+
+        UP = new JButton();
+        UP.setActionCommand("up");
+        UP.setText("^");
+
+        DOWN = new JButton();
+        DOWN.setActionCommand("down");
+        DOWN.setText("v");
+
+        RIGHT = new JButton();
+        RIGHT.setActionCommand("right");
+        RIGHT.setText(">");
+
+        LEFT = new JButton();
+        LEFT.setActionCommand("left");
+        LEFT.setText("<");
+
+        AuxControlUPDOWN.add(UP);
+        AuxControlUPDOWN.add(DOWN);
+        AuxControles.add(AuxControlUPDOWN,BorderLayout.CENTER);
+
+        AuxControlLEFT.add(LEFT,BorderLayout.SOUTH);
+        AuxControlRIGHT.add(RIGHT,BorderLayout.SOUTH);
+        AuxControles.add(AuxControlRIGHT,BorderLayout.EAST);
+        AuxControles.add(AuxControlLEFT,BorderLayout.WEST);
+
+        AuxControlRIGHT.setOpaque(false);
+        AuxControlLEFT.setOpaque(false);
+        AuxControlUPDOWN.setOpaque(false);
+        AuxControles.setBackground(Color.GRAY);
+        controles.setOpaque(false);
+
+        //Coloquem els botons final al panell
+
+        controles.add(AuxControles,BorderLayout.NORTH);
+
+
+        background.add(controles,BorderLayout.EAST);
+
+
+
+
         JPanel bajo = new JPanel();
         bajo.setBackground(Color.RED);
-        JPanel derecha = new JPanel();
-        derecha.setBackground(Color.RED);
         JPanel izquierda = new JPanel();
         izquierda.setBackground(Color.RED);
         background.add(bajo,BorderLayout.SOUTH);
-        background.add(derecha,BorderLayout.EAST);
         background.add(izquierda,BorderLayout.WEST);
         background.add(JpCenter,BorderLayout.CENTER);
+
 
         add(background);
         setVisible(true);

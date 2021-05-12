@@ -3,14 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/controller/MapCotroller.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/controller/MapCotroller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/maps/MapManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/model/maps/MapManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/mapsFiles/gravity.json" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/model/mapsFiles/gravity.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/mapsFiles/space.json" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/model/mapsFiles/space.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/view/MapView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/view/MapView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/Main$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/model/mapsFiles/gravity.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/model/mapsFiles/gravity.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,19 +70,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -108,6 +89,8 @@
       <workItem from="1620224895175" duration="5952000" />
       <workItem from="1620313673836" duration="7237000" />
       <workItem from="1620663733615" duration="5626000" />
+      <workItem from="1620812480016" duration="1128000" />
+      <workItem from="1620825553342" duration="3083000" />
     </task>
     <task id="LOCAL-00001" summary="Per saber si ho tenim, joves!">
       <created>1619026420669</created>
@@ -224,16 +207,5 @@
     <MESSAGE value="Format correu&#10;Carregar joc (part)&#10;Recrear joc (part)&#10;GameDAO" />
     <MESSAGE value="Comensem a crear el mapView pero encra no llegueix el json" />
     <option name="LAST_COMMIT_MESSAGE" value="Comensem a crear el mapView pero encra no llegueix el json" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/BetweenUs/src/view/MapView.java</url>
-          <line>84</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
