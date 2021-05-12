@@ -279,11 +279,11 @@ public class MapView extends JFrame {
         setResizable(false); //para que no se pueda mover
         setLocationRelativeTo(null); //Centrarlo
         setDefaultCloseOperation(EXIT_ON_CLOSE); // cerrar con la x
-        setLayout(null);*/
-        /*JPanel background1 = new JLabel();
+        setLayout(null);
+        JPanel background1 = new JLabel();
         background.setBackground(Color.BLACK);
         background.setBounds(0, 0, 1080, 600);
-        background.setOpaque(true);*/
+        background.setOpaque(true);
 
         //PANEL PARA VER LA TABLA
 
@@ -296,7 +296,7 @@ public class MapView extends JFrame {
         //gui.setLayout(null);
         //gui.setBounds(100,300,875,200);
 
-       /*JLabel[] names = new JLabel[1];
+       JLabel[] names = new JLabel[1];
         JLabel j = new JLabel();
         j.setText("Red");
         j.setBackground(Color.red);
@@ -304,7 +304,7 @@ public class MapView extends JFrame {
         j.setFont(new Font("Russo One", Font.BOLD, 24));
         j.setForeground(Color.WHITE);
         names[0] = j;
-        //JLabel[][] data1 = new JLabel[names.length][2];*/
+        //JLabel[][] data1 = new JLabel[names.length][2];
 
         DefaultTableModel model = new DefaultTableModel(data, header);
         JTable table = new JTable(model){
@@ -335,7 +335,7 @@ public class MapView extends JFrame {
         getContentPane().add(background);
         //getContentPane().add(gui);
         background.add(gui,BorderLayout.SOUTH);
-
+*/
         //.----------------------------------------------------------------------------------------------------------------------------------
         background.add(JpCenter,BorderLayout.CENTER);
 

@@ -2,50 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/BetweenUs/src/mapsFiles/hauntedHouse.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/controller/ChargeGameViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/ChargeGameViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/controller/ConfiguredGameViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/ConfiguredGameViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/controller/DeleteGameViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/DeleteGameViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/controller/LoginViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/LoginViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/controller/MapCotroller.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/MapCotroller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/controller/PlayViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/PlayViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/controller/RegisterViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/RegisterViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/controller/SettingViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/SettingViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/controller/SettingsViewMusicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/SettingsViewMusicController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/character/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/character/CrewMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/CrewMember.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/character/Impostor.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/Impostor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/database/ConectorDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/ConectorDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/database/GameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/persitanceLayer/GameDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/database/SQLGameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/persitanceLayer/SQLGameDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/database/SQLUserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/persitanceLayer/SQLUserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/database/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/persitanceLayer/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/fonts/RussoOne-Regular.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/fonts/RussoOne-Regular.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/game/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/images/background.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/images/background.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/images/config.png" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/images/config.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/images/tornar.png" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/images/tornar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/json/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/json/Data.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/json/JsonReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/JsonReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/maps/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/maps/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/maps/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/maps/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/maps/MapManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/MapManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/maps/Mobility.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/maps/Mobility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/mapsFiles/gravity.json" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/mapsFiles/gravity.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/mapsFiles/space.json" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/mapsFiles/space.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/model/user/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/UserManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/view/ChargeGameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/ChargeGameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/view/ConfiguredGameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/ConfiguredGameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/view/DeleteGameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/DeleteGameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/view/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/LoginView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/view/MapView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/MapView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/view/PlayView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/PlayView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/view/RegisterView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/RegisterView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/view/SettingView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/SettingView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/view/customComponents/RoundedBorder.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/customComponents/RoundedBorder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/MapManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/MapManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/MapView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/MapView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,6 +52,7 @@
       <recent name="C:\Users\marta\Desktop\BETWEEN US\Projecte V2\BetweenUs\src\model" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\marta\Desktop\BETWEEN US\Projecte V4\BetweenUs\src\mapsFiles" />
       <recent name="C:\Users\marta\Desktop\BETWEEN US\Projecte V3\BetweenUs\src\model\mapsFiles" />
       <recent name="C:\Users\marta\Desktop\BETWEEN US\Projecte V3\BetweenUs\src\model\maps" />
     </key>
@@ -107,17 +68,6 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="BetweenUs" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
