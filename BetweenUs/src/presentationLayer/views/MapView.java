@@ -24,7 +24,6 @@ public class MapView extends JFrame {
     private JButton LEFT;
     private Object[][] data;
 
-    private MapCotroller mc;
 
     public MapView(Map map)/*throws IOException*/ {
         setTitle("Map");
@@ -60,7 +59,7 @@ public class MapView extends JFrame {
 
 
 
-            BufferedImage image2 = ImageIO.read(Objects.requireNonNull(getClass().getResource("/images/tornar.png")));
+            BufferedImage image2 = ImageIO.read(Objects.requireNonNull(getClass().getResource("/images/Home.png")));
             Image scaled2 = image2.getScaledInstance(40, 30, Image.SCALE_DEFAULT);
             ImageIcon backgroundImage2 = new ImageIcon(scaled2);
             returnButton = new JButton(backgroundImage2);
@@ -72,7 +71,7 @@ public class MapView extends JFrame {
             JpNorth.add(returnButton, BorderLayout.EAST);
 
 
-            BufferedImage image3 = ImageIO.read(Objects.requireNonNull(getClass().getResource("/images/tornar.png")));
+            BufferedImage image3 = ImageIO.read(Objects.requireNonNull(getClass().getResource("/images/map.png")));
             Image scaled3 = image3.getScaledInstance(40, 30, Image.SCALE_DEFAULT);
             ImageIcon backgroundImage3 = new ImageIcon(scaled3);
             mapButton = new JButton(backgroundImage3);
@@ -85,7 +84,7 @@ public class MapView extends JFrame {
             JpNorth.add(JpNorthEast,BorderLayout.CENTER);
 
 
-
+            //-----------------------------------------------------------------------
             BufferedImage image4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/background.jpg")));
             Image scaled4 = image4.getScaledInstance(278, 50, Image.SCALE_DEFAULT);
             ImageIcon myLabel = new ImageIcon(scaled4);
@@ -95,6 +94,7 @@ public class MapView extends JFrame {
                              {myLabel, myLabel, myLabel},
                              {myLabel, myLabel, myLabel},
                      };
+             //-----------------------------------------------------------------------------
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -264,26 +264,21 @@ public class MapView extends JFrame {
 
 
 
-        JPanel bajo = new JPanel();
-        bajo.setBackground(Color.RED);
-        JPanel izquierda = new JPanel();
-        izquierda.setBackground(Color.RED);
+        //JPanel bajo = new JPanel();
+        //bajo.setBackground(Color.RED);
+        //JPanel izquierda = new JPanel();
+        //izquierda.setBackground(Color.RED);
        // background.add(bajo,BorderLayout.SOUTH);
-        background.add(izquierda,BorderLayout.WEST);
+        //background.add(izquierda,BorderLayout.WEST);
 
-       //-----------------------------------------------------------------------------------------------------------------
+       //----------------------------------------------------------------------------------------------------------------
 
 
-      /*  setVisible(true);
-        setSize(1080, 600); // tamaÃ±o de la caja
-        setResizable(false); //para que no se pueda mover
-        setLocationRelativeTo(null); //Centrarlo
-        setDefaultCloseOperation(EXIT_ON_CLOSE); // cerrar con la x
-        setLayout(null);
+        /*
         JPanel background1 = new JLabel();
         background.setBackground(Color.BLACK);
         background.setBounds(0, 0, 1080, 600);
-        background.setOpaque(true);
+        background.setOpaque(true);*/
 
         //PANEL PARA VER LA TABLA
 
@@ -296,16 +291,6 @@ public class MapView extends JFrame {
         //gui.setLayout(null);
         //gui.setBounds(100,300,875,200);
 
-       JLabel[] names = new JLabel[1];
-        JLabel j = new JLabel();
-        j.setText("Red");
-        j.setBackground(Color.red);
-        j.setOpaque(true);
-        j.setFont(new Font("Russo One", Font.BOLD, 24));
-        j.setForeground(Color.WHITE);
-        names[0] = j;
-        //JLabel[][] data1 = new JLabel[names.length][2];
-
         DefaultTableModel model = new DefaultTableModel(data, header);
         JTable table = new JTable(model){
 
@@ -316,26 +301,28 @@ public class MapView extends JFrame {
         };
 
         table.setRowHeight(50);
+        table.setPreferredScrollableViewportSize(table.getPreferredSize()); //ficar que n fiqui mes de 3/4
 
 
 
         JScrollPane tableScroll = new JScrollPane(table);
-
+        //tableScroll.setSize(600,160);
+        //table.setBounds(0,0,835,160);
 
         tableScroll.setOpaque(false);
         tableScroll.setBackground(Color.black);
 
-       // tableScroll.setBounds(20,20,835,160);
+       //tableScroll.setBounds(20,20,835,160);
         //table.setBounds(20,20,835,160);
 
         gui.add(tableScroll,BorderLayout.CENTER);
 
 
 
-        getContentPane().add(background);
+        //getContentPane().add(background);
         //getContentPane().add(gui);
         background.add(gui,BorderLayout.SOUTH);
-*/
+
         //.----------------------------------------------------------------------------------------------------------------------------------
         background.add(JpCenter,BorderLayout.CENTER);
 

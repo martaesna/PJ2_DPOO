@@ -1,5 +1,7 @@
 package presentationLayer.views;
 
+import presentationLayer.views.customComponents.RoundedBorder;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -13,49 +15,45 @@ import java.util.prefs.BackingStoreException;
 
 public class NewGameView extends JFrame {
     private JTextField gameName;
-    private JButton leftButton;
-    private JButton rightButton;
+    private JButton leftButtonColor;
+    private JButton rightButtonColor;
+
+    private JButton leftButtonImpostor;
+    private JButton rightButtonImpostor;
+
+    private JButton leftButtonPlayers;
+    private JButton rightButtonPlayers;
+
     private JButton returnButton;
     private JButton configButton;
-    private JButton jbChooseMap = new JButton();
-    private String mapName = "Select File";
 
-    private String color;
-    private int impostors;
-    private int players;
+
+    private JButton jbChooseMap = new JButton();
+    private JLabel jlColor = new JLabel();
+    private JLabel jlImpostorsList = new JLabel();
+    private JLabel jlPlayersList = new JLabel();
+
+    private String mapName = "Select File";
+    private String color = "RED";
+    private int impostors = 2;
+    private int players = 10;
+    private Font font;
+
+    private JButton jbPlay;
 
     private JButton colorLeft;
     private JButton colorRight;
+
     private JButton impostorsLeft;
     private JButton impostorsRight;
+
     private JButton playersLeft;
     private JButton playersRight;
 
     private JPanel jpBody;
 
-    public String getColor() {
-        return color;
-    }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
 
-    public int getImpostors() {
-        return impostors;
-    }
-
-    public void setImpostors(int impostors) {
-        this.impostors = impostors;
-    }
-
-    public int getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(int players) {
-        this.players = players;
-    }
 
     public NewGameView() {
         setTitle("New game"); // titol
@@ -105,7 +103,7 @@ public class NewGameView extends JFrame {
         }
 
         //-----------COS
-        Font font = new Font("Russo One",Font.BOLD,35);
+         font = new Font("Russo One",Font.BOLD,35);
         Border border =BorderFactory.createCompoundBorder(
                 BorderFactory.createEmptyBorder(15, 15, 15, 15),
                 BorderFactory.createCompoundBorder(
@@ -131,9 +129,10 @@ public class NewGameView extends JFrame {
         gameName = new JTextField();
         gameName.setBackground(Color.BLACK);
         gameName.setForeground(Color.WHITE);
-        gameName.setFont(font);
         gameName.setBorder(border);
-        gameName.setBounds(550,0,280,75);
+        gameName.setBounds(550,0,330,75);
+
+
 
         // Color
         JLabel jlColorList = new JLabel("Color");
@@ -142,48 +141,95 @@ public class NewGameView extends JFrame {
         jlColorList.setForeground(Color.WHITE);
         jlColorList.setBounds(250,75,275,75);
 
-        // Colors List
-        leftButton = new JButton("◀");
-        leftButton.setBackground(Color.BLACK);
-        leftButton.setForeground(Color.WHITE);
-        leftButton.setFont(new Font("", Font.BOLD, 35));
-        leftButton.setBounds(560,75,70,70);
-        jpBody.add(leftButton);
-        JLabel jlColor = new JLabel("       Red      ▶");
-        jlColor.setFont(font);
-        jlColor.setBackground(Color.BLACK);
-        jlColor.setForeground(Color.WHITE);
-        jlColor.setBounds(560,75,275,75);
 
-        // Impostors
+
+        // Colors List
+        leftButtonColor = new JButton("◀");
+        leftButtonColor.setBackground(Color.BLACK);
+        leftButtonColor.setForeground(Color.WHITE);
+        leftButtonColor.setActionCommand("ColorLeft");
+        leftButtonColor.setBorder(null);
+        leftButtonColor.setFont(new Font("", Font.BOLD, 35));
+        leftButtonColor.setBounds(550,75,70,70);
+
+
+        //esto se lleva al metodo
+
+        setColor(color);
+
+
+        rightButtonColor = new JButton("▶");
+        rightButtonColor.setBackground(Color.BLACK);
+        rightButtonColor.setForeground(Color.WHITE);
+        rightButtonColor.setActionCommand("ColorRight");
+        rightButtonColor.setBorder(null);
+        rightButtonColor.setFont(new Font("", Font.BOLD, 35));
+        rightButtonColor.setBounds(800,75,70,70);
+
+
+
+
+        // Impostors--------------------------------------------------------------------
         JLabel jlImpostors = new JLabel("Impostors");
         jlImpostors.setFont(font);
         jlImpostors.setBackground(Color.BLACK);
         jlImpostors.setForeground(Color.WHITE);
         jlImpostors.setBounds(250,150,275,75);
 
-        // Impostors List
-        JLabel jlImpostorsList = new JLabel("◀         2         ▶");
-        jlImpostorsList.setFont(font);
-        jlImpostorsList.setBackground(Color.BLACK);
-        jlImpostorsList.setForeground(Color.WHITE);
-        jlImpostorsList.setBounds(560,150,275,75);
 
-        // Players
+        leftButtonImpostor = new JButton("◀");
+        leftButtonImpostor.setBackground(Color.BLACK);
+        leftButtonImpostor.setForeground(Color.WHITE);
+        leftButtonImpostor.setActionCommand("ImpostorsLeft");
+        leftButtonImpostor.setBorder(null);
+        leftButtonImpostor.setFont(new Font("", Font.BOLD, 35));
+        leftButtonImpostor.setBounds(550,150,70,70);
+
+        // Impostors List
+        setImpostors(impostors);
+
+        rightButtonImpostor = new JButton("▶");
+        rightButtonImpostor.setBackground(Color.BLACK);
+        rightButtonImpostor.setForeground(Color.WHITE);
+        rightButtonImpostor.setActionCommand("ImpostorsRight");
+        rightButtonImpostor.setBorder(null);
+        rightButtonImpostor.setFont(new Font("", Font.BOLD, 35));
+        rightButtonImpostor.setBounds(800,150,70,70);
+
+
+        // Players----------------------------------------------------------------------------
         JLabel jlPlayers = new JLabel("Players");
         jlPlayers.setFont(font);
         jlPlayers.setBackground(Color.BLACK);
         jlPlayers.setForeground(Color.WHITE);
         jlPlayers.setBounds(250,225,275,75);
 
-        // Players List
-        JLabel jlPlayersList = new JLabel("◀        10        ▶");
-        jlPlayersList.setFont(font);
-        jlPlayersList.setBackground(Color.BLACK);
-        jlPlayersList.setForeground(Color.WHITE);
-        jlPlayersList.setBounds(560,225,275,75);
+        leftButtonPlayers = new JButton("◀");
+        leftButtonPlayers.setBackground(Color.BLACK);
+        leftButtonPlayers.setForeground(Color.WHITE);
+        leftButtonPlayers.setActionCommand("PlayersLeft");
+        leftButtonPlayers.setBorder(null);
+        leftButtonPlayers.setFont(new Font("", Font.BOLD, 35));
+        leftButtonPlayers.setBounds(550,225,70,70);
 
-        // Map
+
+        // Players List
+
+        setPlayers(players);
+
+
+
+        rightButtonPlayers = new JButton("▶");
+        rightButtonPlayers.setBackground(Color.BLACK);
+        rightButtonPlayers.setForeground(Color.WHITE);
+        rightButtonPlayers.setActionCommand("PlayersRight");
+        rightButtonPlayers.setBorder(null);
+        rightButtonPlayers.setFont(new Font("", Font.BOLD, 35));
+        rightButtonPlayers.setBounds(800,225,70,70);
+
+
+
+        // Map-------------------------------------------------------------------------------------
         JLabel jlMap = new JLabel("Map");
         jlMap.setFont(font);
         jlMap.setBackground(Color.BLACK);
@@ -194,16 +240,34 @@ public class NewGameView extends JFrame {
 
         setMapName(mapName);
 
+        //------------------------------------------------------
+
+        jbPlay = new JButton("Play");
+        jbPlay.setFont(font);
+        jbPlay.setActionCommand("Play");
+        jbPlay.setBackground(Color.black);
+        jbPlay.setForeground(Color.WHITE);
+        jbPlay.setBounds(450,400,200,50);
+        jbPlay.setBorder(new RoundedBorder(50));
+
+
+        //------------------------------------------------------ add
+        jpBody.add(leftButtonColor);
+        jpBody.add(rightButtonColor);
+
+        jpBody.add(rightButtonImpostor);
+        jpBody.add(leftButtonImpostor);
+
+        jpBody.add(rightButtonPlayers);
+        jpBody.add(leftButtonPlayers);
+
         jpBody.add(jlGameName);
         jpBody.add((gameName));
-        jpBody.add(jlColor);
         jpBody.add(jlColorList);
         jpBody.add(jlImpostors);
-        jpBody.add(jlImpostorsList);
         jpBody.add(jlPlayers);
-        jpBody.add(jlPlayersList);
         jpBody.add(jlMap);
-        jpBody.add(jbChooseMap);
+        jpBody.add(jbPlay);
 
         background.add(JpNorth,BorderLayout.NORTH);
         background.add(jpBody, BorderLayout.CENTER);
@@ -212,8 +276,21 @@ public class NewGameView extends JFrame {
     }
 
     public void mainController(ActionListener actionListener) {
+
         jbChooseMap.addActionListener(actionListener);
+        jbPlay.addActionListener(actionListener);
+
+        rightButtonColor.addActionListener(actionListener);
+        leftButtonColor.addActionListener(actionListener);
+
+        rightButtonImpostor.addActionListener(actionListener);
+        leftButtonImpostor.addActionListener(actionListener);
+
+        rightButtonPlayers.addActionListener(actionListener);
+        leftButtonPlayers.addActionListener(actionListener);
     }
+
+
 
    public void setMapName(String mapName) {
        this.mapName = mapName;
@@ -224,8 +301,52 @@ public class NewGameView extends JFrame {
        jbChooseMap.setActionCommand("SelectFile");
        jbChooseMap.setBackground(Color.BLACK);
        jbChooseMap.setForeground(Color.WHITE);
-       jbChooseMap.setBounds(560,300,275,75);
+       jbChooseMap.setBounds(570,320,300,50);
+       jbChooseMap.setBorder(new RoundedBorder(50));
 
        jpBody.add(jbChooseMap);
    }
+
+    public void setColor(String color) {
+        this.color = color;
+
+        //esto se lleva al metodo
+        jpBody.remove(jlColor);
+        jlColor = new JLabel(color);
+        jlColor.setFont(font);
+        jlColor.setBackground(Color.BLACK);
+        jlColor.setForeground(Color.WHITE);
+        jlColor.setBounds(675,75,275,75);
+
+        jpBody.add(jlColor);
+
+
+    }
+
+
+    public void setImpostors(int impostors) {
+        this.impostors = impostors;
+
+        jpBody.remove(jlImpostorsList);
+        jlImpostorsList = new JLabel(String.valueOf(impostors));
+        jlImpostorsList.setFont(font);
+        jlImpostorsList.setBackground(Color.BLACK);
+        jlImpostorsList.setForeground(Color.WHITE);
+        jlImpostorsList.setBounds(700,150,275,75);
+        jpBody.add(jlImpostorsList);
+    }
+
+
+    public void setPlayers(int players) {
+        this.players = players;
+
+        jpBody.remove(jlPlayersList);
+        jlPlayersList = new JLabel(String.valueOf(players));
+        jlPlayersList.setFont(font);
+        jlPlayersList.setBackground(Color.BLACK);
+        jlPlayersList.setForeground(Color.WHITE);
+        jlPlayersList.setBounds(690,225,275,75);
+        jpBody.add(jlPlayersList);
+
+    }
 }
