@@ -6,6 +6,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.prefs.BackingStoreException;
@@ -16,13 +17,53 @@ public class NewGameView extends JFrame {
     private JButton rightButton;
     private JButton returnButton;
     private JButton configButton;
-    private JButton jbChooseMap;
+    private JButton jbChooseMap = new JButton();
+    private String mapName = "Select File";
+
+    private String color;
+    private int impostors;
+    private int players;
+
+    private JButton colorLeft;
+    private JButton colorRight;
+    private JButton impostorsLeft;
+    private JButton impostorsRight;
+    private JButton playersLeft;
+    private JButton playersRight;
+
+    private JPanel jpBody;
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public int getImpostors() {
+        return impostors;
+    }
+
+    public void setImpostors(int impostors) {
+        this.impostors = impostors;
+    }
+
+    public int getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(int players) {
+        this.players = players;
+    }
 
     public NewGameView() {
         setTitle("New game"); // titol
         setSize(1080, 600); // mida titol
         setLocationRelativeTo(null); // centrar titol
         setDefaultCloseOperation(EXIT_ON_CLOSE); // tancar en 'X'
+
+        jpBody = new JPanel();
 
         //--------------FONS
         JPanel background = new JPanel();
@@ -75,7 +116,6 @@ public class NewGameView extends JFrame {
         );
 
         // Centre
-        JPanel jpBody = new JPanel();
         jpBody.setOpaque(false);
         jpBody.setLayout(null);
 
@@ -151,12 +191,8 @@ public class NewGameView extends JFrame {
         jlMap.setBounds(250,300,275,75);
 
         // Map List
-        jbChooseMap = new JButton("Select File");
-        jbChooseMap.setFont(new Font("", Font.BOLD, 16));
-        jbChooseMap.setActionCommand("SelectFile");
-        jbChooseMap.setBackground(Color.BLACK);
-        jbChooseMap.setForeground(Color.WHITE);
-        jbChooseMap.setBounds(560,300,275,75);
+
+        setMapName(mapName);
 
         jpBody.add(jlGameName);
         jpBody.add((gameName));
@@ -178,4 +214,18 @@ public class NewGameView extends JFrame {
     public void mainController(ActionListener actionListener) {
         jbChooseMap.addActionListener(actionListener);
     }
+
+   public void setMapName(String mapName) {
+       this.mapName = mapName;
+
+       jpBody.remove(jbChooseMap);
+       jbChooseMap = new JButton(mapName);
+       jbChooseMap.setFont(new Font("", Font.BOLD, 16));
+       jbChooseMap.setActionCommand("SelectFile");
+       jbChooseMap.setBackground(Color.BLACK);
+       jbChooseMap.setForeground(Color.WHITE);
+       jbChooseMap.setBounds(560,300,275,75);
+
+       jpBody.add(jbChooseMap);
+   }
 }

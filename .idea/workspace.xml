@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="Character + (CrewMember i Impostor)">
-      <change afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/NewGameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_05_2021__21_07__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_05_2021__21_07__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_19__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_19__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_5_2021_16_58__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_5_2021_16_58__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_5_2021_19_13__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_5_2021_19_13__Default_Changelist_.xml" afterDir="false" />
+    <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="NewGameController">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/Impostor.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/Impostor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/NewGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/NewGameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/NewGameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/NewGameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/Main$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620851505852</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="NewGameController">
+      <created>1620899777197</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1620899777197</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,6 +234,7 @@
     <MESSAGE value="Format correu&#10;Carregar joc (part)&#10;Recrear joc (part)&#10;GameDAO" />
     <MESSAGE value="Comensem a crear el mapView pero encra no llegueix el json" />
     <MESSAGE value="Map view en proceso" />
-    <option name="LAST_COMMIT_MESSAGE" value="Map view en proceso" />
+    <MESSAGE value="NewGameController" />
+    <option name="LAST_COMMIT_MESSAGE" value="NewGameController" />
   </component>
 </project>
