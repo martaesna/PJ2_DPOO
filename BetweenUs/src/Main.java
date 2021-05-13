@@ -4,7 +4,9 @@ import businessLayer.entities.json.Data;
 import businessLayer.JsonReader;
 import businessLayer.entities.maps.Map;
 import businessLayer.MapManager;
+import presentationLayer.controllers.NewGameController;
 import presentationLayer.views.MapView;
+import presentationLayer.views.NewGameView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,14 +46,16 @@ public class Main {
                 data = JsonReader.llegeixJSON();
                 map = MapManager.llegeixMapa();
 
-                MapView mv = new MapView(map);
+//                MapView mv = new MapView(map);
 
             }
         });
 
+        NewGameView ngv = new NewGameView();
+        NewGameController gc = new NewGameController(ngv);
+        ngv.mainController(gc);
 
     }
-
 
 
     public static void addFont() {

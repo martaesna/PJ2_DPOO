@@ -18,7 +18,6 @@ public class Impostor extends Character{
 
     public void chooseVentilation() {
 
-
     }
 
     public int randomInterval() {

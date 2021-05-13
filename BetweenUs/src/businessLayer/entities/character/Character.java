@@ -46,4 +46,15 @@ public class Character {
 
 
     }
+
+    public boolean checkClassification(){
+        if(checkRols()) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkRols() {
+        return true;
+    }
 }

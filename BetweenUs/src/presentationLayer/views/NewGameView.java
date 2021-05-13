@@ -4,6 +4,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
@@ -15,6 +16,7 @@ public class NewGameView extends JFrame {
     private JButton rightButton;
     private JButton returnButton;
     private JButton configButton;
+    private JButton jbChooseMap;
 
     public NewGameView() {
         setTitle("New game"); // titol
@@ -37,7 +39,7 @@ public class NewGameView extends JFrame {
 
         //
         try {
-            BufferedImage image = ImageIO.read(Objects.requireNonNull(getClass().getResource("/model/images/config.png")));
+            BufferedImage image = ImageIO.read(Objects.requireNonNull(getClass().getResource("/images/config.png")));
             Image scaled = image.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
             ImageIcon backgroundImage = new ImageIcon(scaled);
             configButton = new JButton(backgroundImage);
@@ -48,7 +50,7 @@ public class NewGameView extends JFrame {
             JpNorth.add(configButton, BorderLayout.WEST);
 
 
-            BufferedImage image2 = ImageIO.read(Objects.requireNonNull(getClass().getResource("/model/images/tornar.png")));
+            BufferedImage image2 = ImageIO.read(Objects.requireNonNull(getClass().getResource("/images/tornar.png")));
             Image scaled2 = image2.getScaledInstance(40, 30, Image.SCALE_DEFAULT);
             ImageIcon backgroundImage2 = new ImageIcon(scaled2);
             returnButton = new JButton(backgroundImage2);
@@ -149,11 +151,12 @@ public class NewGameView extends JFrame {
         jlMap.setBounds(250,300,275,75);
 
         // Map List
-        JLabel jlMapList = new JLabel("◀         1         ▶");
-        jlMapList.setFont(font);
-        jlMapList.setBackground(Color.BLACK);
-        jlMapList.setForeground(Color.WHITE);
-        jlMapList.setBounds(560,300,275,75);
+        jbChooseMap = new JButton("Select File");
+        jbChooseMap.setFont(new Font("", Font.BOLD, 16));
+        jbChooseMap.setActionCommand("SelectFile");
+        jbChooseMap.setBackground(Color.BLACK);
+        jbChooseMap.setForeground(Color.WHITE);
+        jbChooseMap.setBounds(560,300,275,75);
 
         jpBody.add(jlGameName);
         jpBody.add((gameName));
@@ -164,12 +167,15 @@ public class NewGameView extends JFrame {
         jpBody.add(jlPlayers);
         jpBody.add(jlPlayersList);
         jpBody.add(jlMap);
-        jpBody.add(jlMapList);
+        jpBody.add(jbChooseMap);
 
         background.add(JpNorth,BorderLayout.NORTH);
         background.add(jpBody, BorderLayout.CENTER);
         add(background);
         setVisible(true);
+    }
 
+    public void mainController(ActionListener actionListener) {
+        jbChooseMap.addActionListener(actionListener);
     }
 }
