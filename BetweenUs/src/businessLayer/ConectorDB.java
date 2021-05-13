@@ -23,7 +23,7 @@ public class ConectorDB {
         ConectorDB.port = port;
         ConectorDB.url += ":"+port+"/";
         ConectorDB.url += db;
-        ConectorDB.url += "?verifyServerCertificate=false&useSSL=true";
+        ConectorDB.url += "?verifyServerCertificate=false&useSSL=false";
     }
 
     public boolean connect() {

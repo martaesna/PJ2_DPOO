@@ -18,7 +18,7 @@ public class SQLGameDAO implements GameDAO{
         conn.connect();
         conn.insertQuery("INSERT INTO Game(gameName,players,impostors,playerColor,map,creator) " +
                 "VALUES (" + "'" + game.getGameName() + "'" + "," + "'" + game.getPlayers() + "'" + "," + "'" + game.getImpostors() +
-                "'" + "," + "'" + game.getPlayerColor() + "'" + "," + "'" + game.getMap() + "'" + "," + "'" + game.getCreator() + ")");
+                "'" + "," + "'" + game.getPlayerColor() + "'" + "," + "'" + game.getMap() + "'" + "," + "'" + "arnau" + "')");
     }
 
     @Override
@@ -104,7 +104,7 @@ public class SQLGameDAO implements GameDAO{
         data = llegeixJSON();
         ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
-        ResultSet rs = conn.selectQuery("SELECT g.gameName FROM Game AS g WHERE g.gameName LIKE '" + gameName + "'");
+        ResultSet rs = conn.selectQuery("SELECT * FROM Game AS g WHERE g.gameName LIKE '" + gameName + "'");
         try {
             if(rs.next()) {
                 String name = rs.getString("gameName");

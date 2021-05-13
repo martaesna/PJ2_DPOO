@@ -16,16 +16,14 @@ public class ConfiguredGameViewController implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getActionCommand().equals("Charge")) { //cuando apretamos el boton
+        if (e.getActionCommand().equals("Create")) { //cuando apretamos el boton
             System.out.println("Aquí es crea un nou joc amb la configuració d'un anterior");
             GameManager gameManager = new GameManager();
             if (gameManager.checkGame(cogv.getConfiguredName())) {
                 if (gameManager.checkRecreateGame(cogv.getConfiguredName())) {
                     cogv.printErrorRecreatedExistance();
                 } else {
-                    String recreateName = cogv.getConfiguredName() + "(Copy)";
-
-                    //gameManager.createGame(recreateName);     //FALTA CANVIAR LA FUCIÓ A VOID, etc...
+                    gameManager.createConfiguredGame(cogv.getConfiguredName());
                 }
             } else {
                 cogv.printErrorNoExistance();

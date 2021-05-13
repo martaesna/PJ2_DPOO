@@ -11,13 +11,24 @@ public class GameManager {
 
     public GameManager() {gameDAO = new SQLGameDAO();}
 
-    public void createGame(Game game) {
+    public void createGame(String gameName) {
         //POSAR EL DIALOG A LA VISTA
 
-        if (gameDAO.gameExists(game.getGameName())) {
+        if (gameDAO.gameExists(gameName)) {
             JOptionPane.showMessageDialog(null, "ERROR: El nom d'aquest joc ja existeix", "Error Create Game", JOptionPane.ERROR_MESSAGE);
         } else {
-            gameDAO.createGame(game);
+            Game newGame = gameDAO.selectGame(gameName);
+            gameDAO.createGame(newGame);
+        }
+    }
+
+    public void createConfiguredGame(String gameName) {
+        if (gameDAO.gameExists(gameName+"(Copy)")) {
+            JOptionPane.showMessageDialog(null, "ERROR: El nom d'aquest joc ja existeix", "Error Create Game", JOptionPane.ERROR_MESSAGE);
+        } else {
+            Game newGame = gameDAO.selectGame(gameName);
+            newGame.setGameName(newGame.getGameName()+"(Copy)");
+            gameDAO.createGame(newGame);
         }
     }
 
