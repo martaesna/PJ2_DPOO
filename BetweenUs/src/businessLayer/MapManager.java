@@ -8,6 +8,9 @@ import java.io.FileReader;
 
 public class MapManager {
     private static Map map;
+    private NpcManager npcManager;
+    private PlayerManager playerManager;
+
     public static Map llegeixMapa(){
         try{
             Gson gson = new Gson();
@@ -27,4 +30,6 @@ public class MapManager {
     public Map getDades() {
         return map;
     }
+
+
 }

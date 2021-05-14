@@ -21,42 +21,18 @@ public class Main {
     public static void main(String[] args) {
         addFont();
 
-        //RegisterView rv = new RegisterView();
-        /*DeleteGameView dv = new DeleteGameView();
-        DeleteGameViewController dgv = new DeleteGameViewController(dv);
-        dv.mainController(dgv);*/
-
-       /* RegisterView rv = new RegisterView();
-        RegisterViewController rvc = new RegisterViewController(rv);
-        rv.mainController(rvc);*/
-        /*
-        SettingView sv = new SettingView();
-        SettingViewController svc = new SettingViewController(sv, null);
-        sv.mainController(svc);
-
-         */
-
-        //DeleteGameView cgv = new DeleteGameView();
-        //ChargeGameView cgv = new ChargeGameView();
-
-
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 data = JsonReader.llegeixJSON();
                 map = MapManager.llegeixMapa();
-
-//                MapView mv = new MapView(map);
-
             }
         });
 
         NewGameView ngv = new NewGameView();
         NewGameController gc = new NewGameController(ngv);
         ngv.mainController(gc);
-
     }
-
 
     public static void addFont() {
         try {

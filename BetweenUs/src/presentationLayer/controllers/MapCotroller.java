@@ -1,7 +1,10 @@
 package presentationLayer.controllers;
 
+import businessLayer.MapManager;
 import businessLayer.entities.maps.*;
 import presentationLayer.views.MapView;
+
+import java.util.LinkedList;
 
 public class MapCotroller{
 
@@ -9,6 +12,9 @@ public class MapCotroller{
     private Cell cell;
     private Mobility mobility;
     private MapView mv;
+    private MapManager mapManager;
+    private LinkedList<Character> npcPlayers;
+    private Character userPlayer;
 
     public MapCotroller(Map map,MapView mv){
         this.map = map;
@@ -45,5 +51,14 @@ public class MapCotroller{
    /* public int getMobility(int i, String dir){
 
     }*/
+
+    public void updateMap(){
+
+        //S'ACTUALITZA A TEMPS REAL
+
+
+
+
+    }
 }
 
