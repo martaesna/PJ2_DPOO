@@ -1,6 +1,7 @@
 package presentationLayer.views;
 import presentationLayer.controllers.MapCotroller;
 import businessLayer.entities.maps.*;
+import presentationLayer.views.customComponents.Time;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -23,6 +24,7 @@ public class MapView extends JFrame {
     private JButton RIGHT;
     private JButton LEFT;
     private Object[][] data;
+    private Time time;
 
 
     public MapView(Map map)/*throws IOException*/ {
@@ -329,6 +331,7 @@ public class MapView extends JFrame {
 
 
         add(background);
+        time.initCounter();
         setVisible(true);
     }
 

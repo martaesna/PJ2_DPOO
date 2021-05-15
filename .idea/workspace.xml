@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="NewGame View&#10;NewGameController&#10;Game creation logic&#10;Game management logic">
-      <change afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/NpcManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/PlayerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_5_2021_16_58_[Default_Changelist]/LoginViewController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_5_2021_16_58_[Default_Changelist]/RegisterViewController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_5_2021_16_58_[Default_Changelist]/UserManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_5_2021_16_58_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_5_2021_16_58__Default_Changelist_.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/customComponents/Time.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/MapManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/MapManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/MapCotroller.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/MapCotroller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/MapView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/MapView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/Main$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
