@@ -3,23 +3,21 @@ package businessLayer;
 import persitanceLayer.GameDAO;
 import persitanceLayer.SQLGameDAO;
 import businessLayer.entities.game.Game;
+import presentationLayer.views.customComponents.Time;
 
 import javax.swing.*;
 
 public class GameManager {
     private final GameDAO gameDAO;
+    private final Time timer;
 
-    public GameManager() {gameDAO = new SQLGameDAO();}
+    public GameManager() {
+        gameDAO = new SQLGameDAO();
+        timer = new Time();
+    }
 
-    public void createGame(String gameName) {
-        //POSAR EL DIALOG A LA VISTA
-
-        if (gameDAO.gameExists(gameName)) {
-            JOptionPane.showMessageDialog(null, "ERROR: El nom d'aquest joc ja existeix", "Error Create Game", JOptionPane.ERROR_MESSAGE);
-        } else {
-            Game newGame = gameDAO.selectGame(gameName);
-            gameDAO.createGame(newGame);
-        }
+    public void createGame(String gameName, Game game) {
+        gameDAO.createGame(game);
     }
 
     public void createConfiguredGame(String gameName) {

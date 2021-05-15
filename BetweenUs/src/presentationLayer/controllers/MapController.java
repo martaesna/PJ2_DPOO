@@ -6,7 +6,7 @@ import presentationLayer.views.MapView;
 
 import java.util.LinkedList;
 
-public class MapCotroller{
+public class MapController {
 
     private Map map;
     private Cell cell;
@@ -16,11 +16,10 @@ public class MapCotroller{
     private LinkedList<Character> npcPlayers;
     private Character userPlayer;
 
-    public MapCotroller(Map map,MapView mv){
+    public MapController(Map map, MapView mv){
+        mapManager = new MapManager();
         this.map = map;
         this.mv = mv;
-        System.out.println(map.getWidth());
-        System.out.println(map.getHeight());
     }
 
     public int getWidth(){

@@ -36,7 +36,7 @@ public class NewGameView extends JFrame {
     private String mapName = "Select File";
     private String color = "RED";
     private int impostors = 1;
-    private int players = 10;
+    private int players = 9;
     private Font font;
 
     private JButton jbPlay;
@@ -380,6 +380,11 @@ public class NewGameView extends JFrame {
         }
     }
 
-    public void printError() {
+    public void printNameError() {
         JOptionPane.showMessageDialog(null, "ERROR: El nom d'aquest joc ja existeix", "Error New Game", JOptionPane.ERROR_MESSAGE);
-    }}
+    }
+
+    public void printEmptyNameError() {
+        JOptionPane.showMessageDialog(null, "ERROR: El joc ha de tenir un nom", "Error New Game", JOptionPane.ERROR_MESSAGE);
+    }
+}

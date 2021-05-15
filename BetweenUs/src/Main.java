@@ -1,11 +1,10 @@
 
-import presentationLayer.controllers.MapCotroller;
+import presentationLayer.controllers.MapController;
 import businessLayer.entities.json.Data;
 import businessLayer.JsonReader;
 import businessLayer.entities.maps.Map;
 import businessLayer.MapManager;
 import presentationLayer.controllers.NewGameController;
-import presentationLayer.views.MapView;
 import presentationLayer.views.NewGameView;
 
 import javax.swing.*;
@@ -16,7 +15,7 @@ import java.io.IOException;
 public class Main {
     private static Data data;
     private static Map map;
-    private MapCotroller mc;
+    private MapController mc;
 
     public static void main(String[] args) {
         addFont();

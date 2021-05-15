@@ -1,5 +1,4 @@
 package presentationLayer.views;
-import presentationLayer.controllers.MapCotroller;
 import businessLayer.entities.maps.*;
 import presentationLayer.views.customComponents.Time;
 

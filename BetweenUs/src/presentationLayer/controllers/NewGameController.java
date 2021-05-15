@@ -71,26 +71,37 @@ public class NewGameController implements ActionListener {
         if (e.getActionCommand().equals("PlayersLeft")) { //cuando apretamos el boton
             System.out.println("Restem jugador");
             int players = ngv.getPlayers();
-            if (players > 3) {
+            int impostors = ngv.getImpostors();
+            if (checkPlayers(impostors) < players + 1 && players > 3) {
                 ngv.setPlayers(players-1);
             }
         }
 
         if (e.getActionCommand().equals("PlayersRight")) { //cuando apretamos el boton
             int players = ngv.getPlayers();
-            if (players < 10) {
+            if (players < 9) {
                 ngv.setPlayers(players+1);
             }
         }
 
         if (e.getActionCommand().equals("Play")) {
-            GameManager gameManager = new GameManager();
-            Game game = new Game(ngv.getName(), ngv.getPlayers(), ngv.getImpostors(), ngv.getColor(), ngv.getMapName(), "creator");
-            if(gameManager.checkGame(game.getGameName())) {
-                ngv.printError();
+            if (ngv.getName().isEmpty()) {
+                ngv.printEmptyNameError();
             } else {
-                gameManager.createGame(ngv.getName());
-                //VISTA JOC
+                String mapName;
+                if (ngv.getMapName() == "Select File") {
+                    mapName = "gravity.json";
+                } else {
+                    mapName = ngv.getMapName();
+                }
+                GameManager gameManager = new GameManager();
+                Game game = new Game(ngv.getName(), ngv.getPlayers(), ngv.getImpostors(), ngv.getColor(), mapName, "creator");
+                if(gameManager.checkGame(game.getGameName())) {
+                    ngv.printNameError();
+                } else {
+                    gameManager.createGame(ngv.getName(),game);
+                    //VISTA JOC
+                }
             }
         }
 
@@ -127,4 +138,6 @@ public class NewGameController implements ActionListener {
     public int checkImpostors(int players){
         return Math.floorDiv(players+1, 3);
     }
+
+    public int checkPlayers(int impostors) { return impostors*3; }
 }

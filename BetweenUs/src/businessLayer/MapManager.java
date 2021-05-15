@@ -11,6 +11,8 @@ public class MapManager {
     private NpcManager npcManager;
     private PlayerManager playerManager;
 
+    public MapManager() {}
+
     public static Map llegeixMapa(){
         try{
             Gson gson = new Gson();
@@ -27,9 +29,11 @@ public class MapManager {
         }
         return map;
     }
+
     public Map getDades() {
         return map;
     }
+
 
 
 }
