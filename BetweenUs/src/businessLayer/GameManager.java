@@ -3,7 +3,7 @@ package businessLayer;
 import persitanceLayer.GameDAO;
 import persitanceLayer.SQLGameDAO;
 import businessLayer.entities.game.Game;
-import presentationLayer.views.customComponents.Time;
+import businessLayer.entities.game.Time;
 
 import javax.swing.*;
 
@@ -14,6 +14,10 @@ public class GameManager {
     public GameManager() {
         gameDAO = new SQLGameDAO();
         timer = new Time();
+    }
+
+    public Time getTimer() {
+        return timer;
     }
 
     public void createGame(String gameName, Game game) {

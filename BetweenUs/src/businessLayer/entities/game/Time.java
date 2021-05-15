@@ -1,4 +1,4 @@
-package presentationLayer.views.customComponents;
+package businessLayer.entities.game;
 
 import java.util.Timer;
 import java.util.TimerTask;

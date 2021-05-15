@@ -1,6 +1,6 @@
 package presentationLayer.views;
 import businessLayer.entities.maps.*;
-import presentationLayer.views.customComponents.Time;
+import businessLayer.entities.game.Time;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

@@ -1,6 +1,7 @@
 package businessLayer;
 
 import businessLayer.entities.character.CrewMember;
+import businessLayer.entities.character.Impostor;
 import businessLayer.entities.maps.Cell;
 
 import java.util.LinkedList;
@@ -64,4 +65,5 @@ public class NpcManager {
 
         return true;
     }
+
 }
