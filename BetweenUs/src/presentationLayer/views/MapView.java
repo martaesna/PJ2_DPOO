@@ -8,6 +8,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.html.StyleSheet;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
@@ -59,7 +60,6 @@ public class MapView extends JFrame {
             JpNorth.add(configButton, BorderLayout.WEST);
 
 
-
             BufferedImage image2 = ImageIO.read(Objects.requireNonNull(getClass().getResource("/images/Home.png")));
             Image scaled2 = image2.getScaledInstance(40, 30, Image.SCALE_DEFAULT);
             ImageIcon backgroundImage2 = new ImageIcon(scaled2);
@@ -82,20 +82,20 @@ public class MapView extends JFrame {
             mapButton.setActionCommand("Return");
 
             JpNorthEast.add(mapButton, BorderLayout.EAST);
-            JpNorth.add(JpNorthEast,BorderLayout.CENTER);
+            JpNorth.add(JpNorthEast, BorderLayout.CENTER);
 
 
             //-----------------------------------------------------------------------
             BufferedImage image4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/background.jpg")));
             Image scaled4 = image4.getScaledInstance(278, 50, Image.SCALE_DEFAULT);
             ImageIcon myLabel = new ImageIcon(scaled4);
-             data =
-                     new Object[][]{
-                             {myLabel, myLabel, myLabel},
-                             {myLabel, myLabel, myLabel},
-                             {myLabel, myLabel, myLabel},
-                     };
-             //-----------------------------------------------------------------------------
+            data =
+                    new Object[][]{
+                            {myLabel, myLabel, myLabel},
+                            {myLabel, myLabel, myLabel},
+                            {myLabel, myLabel, myLabel},
+                    };
+            //-----------------------------------------------------------------------------
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -103,9 +103,9 @@ public class MapView extends JFrame {
 
         background.add(JpNorth, BorderLayout.NORTH);
 
-       JPanel JpCenter = new JPanel(new GridLayout(map.getWidth(), map.getHeight()));
+        JPanel JpCenter = new JPanel(new GridLayout(map.getWidth(), map.getHeight()));
 
-        for(int i = 0; i < map.getHeight(); ++i) {
+        for (int i = 0; i < map.getHeight(); ++i) {
             for (int j = 0; j < map.getWidth(); ++j) {
                 int pos = -1;
                 //Aqui printem cada part del mapa corresponent amb la posicio de les celles.
@@ -156,7 +156,7 @@ public class MapView extends JFrame {
                         } else { //SINO PINTEM LES PARETS GRISES
                             JPanel b = new JPanel();
                             b.setBackground(Color.DARK_GRAY);
-                            b.setBorder(new LineBorder(Color.DARK_GRAY,10,true));
+                            b.setBorder(new LineBorder(Color.DARK_GRAY, 10, true));
                             corridor.add(b, BorderLayout.NORTH);
                         }
 
@@ -169,10 +169,10 @@ public class MapView extends JFrame {
 
                             down.add(du, BorderLayout.CENTER);
                             corridor.add(down, BorderLayout.SOUTH);
-                        }else{
+                        } else {
                             JPanel b1 = new JPanel();
                             b1.setBackground(Color.DARK_GRAY);
-                            b1.setBorder(new LineBorder(Color.DARK_GRAY,10,true));
+                            b1.setBorder(new LineBorder(Color.DARK_GRAY, 10, true));
                             corridor.add(b1, BorderLayout.SOUTH);
                         }
 
@@ -184,10 +184,10 @@ public class MapView extends JFrame {
                             ru.setBackground(Color.white);
                             right.add(ru, BorderLayout.CENTER);
                             corridor.add(right, BorderLayout.EAST);
-                        }else{
+                        } else {
                             JPanel b2 = new JPanel();
                             b2.setBackground(Color.DARK_GRAY);
-                            b2.setBorder(new LineBorder(Color.DARK_GRAY,15,true));
+                            b2.setBorder(new LineBorder(Color.DARK_GRAY, 15, true));
                             corridor.add(b2, BorderLayout.EAST);
                         }
 
@@ -200,10 +200,10 @@ public class MapView extends JFrame {
                             left.add(lu, BorderLayout.CENTER);
                             left.setBackground(Color.black);
                             corridor.add(left, BorderLayout.WEST);
-                        }else{
+                        } else {
                             JPanel b3 = new JPanel();
                             b3.setBackground(Color.DARK_GRAY);
-                            b3.setBorder(new LineBorder(Color.DARK_GRAY,15,true));
+                            b3.setBorder(new LineBorder(Color.DARK_GRAY, 15, true));
                             corridor.add(b3, BorderLayout.WEST);
                         }
 
@@ -213,14 +213,13 @@ public class MapView extends JFrame {
         }
 
 
-
         //creamos un border layout dentro del EAST y ponemos los botones en cada lugar
         //background.add(control,BorderLayout.EAST); //aqui hemos de poner los botones
         JPanel controles = new JPanel(new BorderLayout());
         //per poder colocar els botons a la part de dalt
         JPanel AuxControles = new JPanel(new BorderLayout());
         //coloquem els botons de adalt y abaix
-        JPanel AuxControlUPDOWN = new JPanel(new GridLayout(2,1));
+        JPanel AuxControlUPDOWN = new JPanel(new GridLayout(2, 1));
         JPanel AuxControlLEFT = new JPanel(new BorderLayout());
         JPanel AuxControlRIGHT = new JPanel(new BorderLayout());
 
@@ -242,12 +241,12 @@ public class MapView extends JFrame {
 
         AuxControlUPDOWN.add(UP);
         AuxControlUPDOWN.add(DOWN);
-        AuxControles.add(AuxControlUPDOWN,BorderLayout.CENTER);
+        AuxControles.add(AuxControlUPDOWN, BorderLayout.CENTER);
 
-        AuxControlLEFT.add(LEFT,BorderLayout.SOUTH);
-        AuxControlRIGHT.add(RIGHT,BorderLayout.SOUTH);
-        AuxControles.add(AuxControlRIGHT,BorderLayout.EAST);
-        AuxControles.add(AuxControlLEFT,BorderLayout.WEST);
+        AuxControlLEFT.add(LEFT, BorderLayout.SOUTH);
+        AuxControlRIGHT.add(RIGHT, BorderLayout.SOUTH);
+        AuxControles.add(AuxControlRIGHT, BorderLayout.EAST);
+        AuxControles.add(AuxControlLEFT, BorderLayout.WEST);
 
         AuxControlRIGHT.setOpaque(false);
         AuxControlLEFT.setOpaque(false);
@@ -257,22 +256,20 @@ public class MapView extends JFrame {
 
         //Coloquem els botons final al panell
 
-        controles.add(AuxControles,BorderLayout.NORTH);
+        controles.add(AuxControles, BorderLayout.NORTH);
 
 
-        background.add(controles,BorderLayout.EAST);
-
-
+        background.add(controles, BorderLayout.EAST);
 
 
         //JPanel bajo = new JPanel();
         //bajo.setBackground(Color.RED);
         //JPanel izquierda = new JPanel();
         //izquierda.setBackground(Color.RED);
-       // background.add(bajo,BorderLayout.SOUTH);
+        // background.add(bajo,BorderLayout.SOUTH);
         //background.add(izquierda,BorderLayout.WEST);
 
-       //----------------------------------------------------------------------------------------------------------------
+        //----------------------------------------------------------------------------------------------------------------
 
 
         /*
@@ -285,7 +282,7 @@ public class MapView extends JFrame {
 
         JPanel gui = new JPanel(new BorderLayout());
 
-        gui.setBackground(new Color(125,125,125,99));//LE PONEMOS EL COLOR
+        gui.setBackground(new Color(125, 125, 125, 99));//LE PONEMOS EL COLOR
 
         String[] header = {"Unknown", "Suspicious", "Innocent"}; //CREAMOS LA ETIQUETAS DEL TITULO
 
@@ -293,17 +290,15 @@ public class MapView extends JFrame {
         //gui.setBounds(100,300,875,200);
 
         DefaultTableModel model = new DefaultTableModel(data, header);
-        JTable table = new JTable(model){
+        JTable table = new JTable(model) {
 
-            public Class getColumnClass(int column)
-            {
+            public Class getColumnClass(int column) {
                 return ImageIcon.class;
             }
         };
 
         table.setRowHeight(50);
         table.setPreferredScrollableViewportSize(table.getPreferredSize()); //ficar que n fiqui mes de 3/4
-
 
 
         JScrollPane tableScroll = new JScrollPane(table);
@@ -313,20 +308,18 @@ public class MapView extends JFrame {
         tableScroll.setOpaque(false);
         tableScroll.setBackground(Color.black);
 
-       //tableScroll.setBounds(20,20,835,160);
+        //tableScroll.setBounds(20,20,835,160);
         //table.setBounds(20,20,835,160);
 
-        gui.add(tableScroll,BorderLayout.CENTER);
-
+        gui.add(tableScroll, BorderLayout.CENTER);
 
 
         //getContentPane().add(background);
         //getContentPane().add(gui);
-        background.add(gui,BorderLayout.SOUTH);
+        background.add(gui, BorderLayout.SOUTH);
 
         //.----------------------------------------------------------------------------------------------------------------------------------
-        background.add(JpCenter,BorderLayout.CENTER);
-
+        background.add(JpCenter, BorderLayout.CENTER);
 
 
         add(background);
@@ -334,7 +327,11 @@ public class MapView extends JFrame {
         setVisible(true);
     }
 
-
+    public void mainController(ActionListener actionListener) {
+        UP.addActionListener(actionListener);
+        DOWN.addActionListener(actionListener);
+        LEFT.addActionListener(actionListener);
+        RIGHT.addActionListener(actionListener);
+    }
 }
-
 

@@ -1,5 +1,6 @@
 package businessLayer;
 
+import businessLayer.entities.maps.Cell;
 import com.google.gson.Gson;
 import businessLayer.entities.maps.Map;
 
@@ -33,7 +34,6 @@ public class MapManager {
     public Map getDades() {
         return map;
     }
+    }
 
 
-
-}

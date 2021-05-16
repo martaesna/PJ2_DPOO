@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="NewGameController&#10;Mètodes (buits) lògica joc">
+    <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="Time com a entitat">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/GameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/MapManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/MapManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/NpcManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/NpcManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/PlayerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/CrewMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/CrewMember.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/Impostor.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/Impostor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/maps/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/maps/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/MapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/MapController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/MapView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/MapView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +61,9 @@
       <recent name="C:\Users\marta\Desktop\BETWEEN US\Projecte V4\BetweenUs\src\mapsFiles" />
       <recent name="C:\Users\marta\Desktop\BETWEEN US\Projecte V3\BetweenUs\src\model\mapsFiles" />
       <recent name="C:\Users\marta\Desktop\BETWEEN US\Projecte V3\BetweenUs\src\model\maps" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="businessLayer.entities.game" />
     </key>
   </component>
   <component name="RunManager">
@@ -207,7 +216,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621101398520</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Time com a entitat">
+      <created>1621102508804</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1621102508804</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,7 +257,8 @@
     <MESSAGE value="NewGameController" />
     <MESSAGE value="NewGame View&#10;NewGameController&#10;Game creation logic&#10;Game management logic" />
     <MESSAGE value="NewGameController&#10;Mètodes (buits) lògica joc" />
-    <option name="LAST_COMMIT_MESSAGE" value="NewGameController&#10;Mètodes (buits) lògica joc" />
+    <MESSAGE value="Time com a entitat" />
+    <option name="LAST_COMMIT_MESSAGE" value="Time com a entitat" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Buida$Main.ic" NAME="Main Coverage Results" MODIFIED="1620930931826" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

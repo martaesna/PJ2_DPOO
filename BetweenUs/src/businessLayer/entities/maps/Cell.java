@@ -6,6 +6,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Cell {
+    private int numPlayers;
 
     @SerializedName("x")
     @Expose
@@ -85,4 +86,11 @@ public class Cell {
         this.adjacencies = adjacencies;
     }
 
+    public int getNumPlayers() {
+        return numPlayers;
+    }
+
+    public void setNumPlayers(int numPlayers) {
+        this.numPlayers = numPlayers;
+    }
 }

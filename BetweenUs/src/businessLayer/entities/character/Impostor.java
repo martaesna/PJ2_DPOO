@@ -1,5 +1,7 @@
 package businessLayer.entities.character;
 
+import businessLayer.entities.maps.Cell;
+
 import java.awt.*;
 
 public class Impostor extends Character{
@@ -7,14 +9,10 @@ public class Impostor extends Character{
     private static final int maxInterval = 8;
     private static final int maxProbability = 100;
 
-    public Impostor(Color color, String role, boolean npc) {
-        super(color, role, npc);
+    public Impostor(Color color, String role, boolean npc, Cell cell) {
+        super(color, role, npc, cell);
     }
 
-    @Override
-    public void move() {
-
-    }
 
     public void chooseVentilation() {
 
