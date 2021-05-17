@@ -33,14 +33,16 @@ public class NpcManager {
         this.impostors = impostors;
     }
 
-    public int getNextCrewMemberRoom(Mobility mobility, CrewMember crewMember, int previousRoom) {
+    public int getNextCrewMemberRoom(CrewMember crewMember) {
+        Mobility mobility = crewMember.getCell().getMobility();
         int counter = setMoveOptions(mobility);
         int optionsCounter = 0;
-        int randomPosition = getCrewMemberRandomPosition(counter, previousRoom);
+        int randomPosition = getCrewMemberRandomPosition(counter, crewMember.getPreviousRoom());
         return chooseRoom(optionsCounter, randomPosition);
     }
 
-    public int getNextImpostorRoom(Mobility mobility, Impostor impostor) {
+    public int getNextImpostorRoom(Impostor impostor) {
+        Mobility mobility = impostor.getCell().getMobility();
         int counter = setMoveOptions(mobility);
         int optionsCounter = 0;
         int randomPosition = getRandomPosition(counter);
@@ -132,7 +134,7 @@ public class NpcManager {
     public int getCrewMemberRandomPosition(int counter, int previousRoom) {
         int min = 1;
         int position = (int) (Math.random() * (counter - min + 1) + min);
-        if (position == previousRoom) {
+        if (Math.abs(position-previousRoom) == 2) {
             return (int) (Math.random() * (counter - min + 1) + min);
         }
         return position;

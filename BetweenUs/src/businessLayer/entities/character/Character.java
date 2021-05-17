@@ -6,14 +6,10 @@ import java.awt.*;
 
 public class Character {
     private Color color;
-    private String role;
-    private boolean npc;
     private Cell cell;
 
-    public Character(Color color, String role, boolean npc, Cell cell) {
+    public Character(Color color, Cell cell) {
         this.color = color;
-        this.role = role;
-        this.npc = npc;
         this.cell = cell;
     }
 
@@ -23,22 +19,6 @@ public class Character {
 
     public void setColor(Color color) {
         this.color = color;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public boolean isNpc() {
-        return npc;
-    }
-
-    public void setNpc(boolean npc) {
-        this.npc = npc;
     }
 
     public Cell getCell() {

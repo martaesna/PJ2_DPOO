@@ -100,6 +100,9 @@ public class NewGameController implements ActionListener {
                     ngv.printNameError();
                 } else {
                     gameManager.createGame(ngv.getName(),game);
+
+
+
                     //VISTA JOC
                 }
             }

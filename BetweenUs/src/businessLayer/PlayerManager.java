@@ -1,16 +1,14 @@
 package businessLayer;
 
+import businessLayer.entities.character.Character;
 import businessLayer.entities.maps.Cell;
 import businessLayer.entities.maps.Mobility;
 
 public class PlayerManager {
     private Character player;
-    private Cell cell;
 
-    public PlayerManager(){}
-
-    public PlayerManager(Character player) {
-        this.player = player;
+    public PlayerManager(Character character) {
+        this.player = character;
     }
 
     public Character getPlayer() {
@@ -21,13 +19,10 @@ public class PlayerManager {
         this.player = player;
     }
 
-    public boolean checkMaxPlayers(){
-
-
-        return true;
-    }
 
     public boolean checkClasification() {
+
+
 
 
         return true;
@@ -37,14 +32,6 @@ public class PlayerManager {
 
 
         return true;
-    }
-
-    public Cell getCell() {
-        return cell;
-    }
-
-    public void setCell(Cell cell) {
-        this.cell = cell;
     }
 
     public boolean checkLeft(Mobility mobility) {
@@ -71,5 +58,7 @@ public class PlayerManager {
         }
         return true;
     }
+
+
 
 }

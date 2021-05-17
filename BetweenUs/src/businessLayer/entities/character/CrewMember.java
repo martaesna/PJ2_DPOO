@@ -10,10 +10,9 @@ public class CrewMember extends Character{
     private static final int maxProbability = 100;
     private int previousRoom;
 
-    public CrewMember(Color color, String role, boolean npc, Cell cell) {
-        super(color, role, npc, cell);
+    public CrewMember(Color color, Cell cell) {
+        super(color, cell);
     }
-
 
     public int randomInterval() {
         int interval = (int)(Math.random()*(maxInterval-minInterval+1)+minInterval);
@@ -27,10 +26,6 @@ public class CrewMember extends Character{
         } else {
             return false;
         }
-    }
-
-    public int randomRoom(int numRooms) {
-        return ((int)(Math.random()*(numRooms))) + 1;
     }
 
     public int getPreviousRoom() {

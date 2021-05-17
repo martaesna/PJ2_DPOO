@@ -9,8 +9,9 @@ public class Impostor extends Character{
     private static final int maxInterval = 8;
     private static final int maxProbability = 100;
 
-    public Impostor(Color color, String role, boolean npc, Cell cell) {
-        super(color, role, npc, cell);
+
+    public Impostor(Color color, Cell cell) {
+        super(color, cell);
     }
 
 
@@ -30,9 +31,5 @@ public class Impostor extends Character{
         } else {
             return false;
         }
-    }
-
-    public int randomRoom(int numRooms) {
-        return ((int)(Math.random()*(numRooms))) + 1;
     }
 }
