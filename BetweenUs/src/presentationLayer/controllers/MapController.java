@@ -22,8 +22,8 @@ public class MapController {
     private NpcManager npcManager;
     private PlayerManager playerManager;
 
-    public MapController(Map map, MapView mv){
-        mapManager = new MapManager();
+    public MapController(Map map, MapView mv, MapManager mapManager){
+        this.mapManager = mapManager;
         npcManager = new NpcManager();
         this.map = map;
         this.mv = mv;
@@ -108,10 +108,26 @@ public class MapController {
     public void impostorsMovement(LinkedList<Impostor> impostors, Time timer, int startInterval, int[] intervals) {
         for (int i = 0; i < impostors.size(); i++) {
             if (startInterval + intervals[i] == timer.getSeconds() && impostors.get(i).movement()) {
-                int nextRoom = npcManager.getNextImpostorRoom(impostors.get(i));
-                impostors.get(i).move(nextRoom);
+                if (mapManager.getNpcManager().checkVentilation(impostors.get(i).getCell())) {
+                    if (mapManager.getNpcManager().flipCoin()) {
+                        int nextRoom = mapManager.getNpcManager().chooseVentilationRoom(impostors.get(i).getCell());
+                        String roomName = mapManager.getNpcManager().getImpostors().get(i).getCell().getAdjacencies().get(nextRoom);
 
-                //MOVEM IMPOSTOR A LA VISTA
+                        Cell cell = mapManager.getMap().getCellByName(roomName);
+                       // mapManager.getNpcManager().getImpostors().get(i).moveVentilation(cell)
+
+
+                        //MOVEM IMPOSTOR A LA VISTA
+
+                    }
+                } else {
+                    int nextRoom = npcManager.getNextImpostorRoom(impostors.get(i));
+                    impostors.get(i).move(nextRoom);
+
+                    //MOVEM IMPOSTOR A LA VISTA
+
+                }
+
             }
         }
     }

@@ -63,4 +63,12 @@ public class Map {
         this.cells = cells;
     }
 
+    public Cell getCellByName(String roomName) {
+        for (int i = 0; i < cells.size(); i++) {
+            if (cells.get(i).getRoomName() == roomName) {
+                return cells.get(i);
+            }
+        }
+        return null;
+    }
 }

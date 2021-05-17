@@ -101,7 +101,7 @@ public class NewGameController implements ActionListener {
                 } else {
                     gameManager.createGame(ngv.getName(),game);
 
-
+                    //CREAR IMPOSTORS + CREW MEMBERS (Color + Cell)
 
                     //VISTA JOC
                 }

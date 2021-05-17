@@ -16,9 +16,26 @@ import java.util.Timer;
 public class MapManager {
     private static Map map;
     private NpcManager npcManager;
+    private PlayerManager playerManager;
 
     public MapManager() {
         npcManager = new NpcManager();
+    }
+
+    public NpcManager getNpcManager() {
+        return npcManager;
+    }
+
+    public void setNpcManager(NpcManager npcManager) {
+        this.npcManager = npcManager;
+    }
+
+    public PlayerManager getPlayerManager() {
+        return playerManager;
+    }
+
+    public void setPlayerManager(PlayerManager playerManager) {
+        this.playerManager = playerManager;
     }
 
     public static Map llegeixMapa() {
@@ -85,6 +102,14 @@ public class MapManager {
             }
         }
         return null;
+    }
+
+    public static Map getMap() {
+        return map;
+    }
+
+    public static void setMap(Map map) {
+        MapManager.map = map;
     }
 }
 

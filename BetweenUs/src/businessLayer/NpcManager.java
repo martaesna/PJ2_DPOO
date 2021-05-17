@@ -91,10 +91,15 @@ public class NpcManager {
 
     }
 
-    public boolean checkVentilation() {
-        //IMPOSTOR
+    public boolean checkVentilation(Cell cell) {
+        if (!cell.getAdjacencies().isEmpty()) {
+            return true;
+        }
+        return false;
+    }
 
-        return true;
+    public int chooseVentilationRoom(Cell cell) {
+        return getRandomPosition(cell.getAdjacencies().size());
     }
 
     public int setMoveOptions(Mobility mobility) {
@@ -183,9 +188,7 @@ public class NpcManager {
     }
 
     public boolean flipCoin() {
-        int min = 1;
-        int max = 2;
-        if ((int) (Math.random() * (2) + min) == 1) {
+        if ((int) (Math.random() * (2) + 1) == 1) {
             return true;
         } else {
             return false;

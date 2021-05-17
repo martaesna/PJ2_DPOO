@@ -15,10 +15,6 @@ public class Impostor extends Character{
     }
 
 
-    public void chooseVentilation() {
-
-    }
-
     public int randomInterval() {
         int interval = (int)(Math.random()*(maxInterval-minInterval+1)+minInterval);
         return interval;
