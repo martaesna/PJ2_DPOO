@@ -13,7 +13,9 @@ public class NpcManager {
     private LinkedList<Impostor> impostors;
     private int[] moveOptions;
 
-    public NpcManager() {
+    public NpcManager(LinkedList<CrewMember> crewMembers, LinkedList<Impostor> impostors) {
+        this.crewMembers = crewMembers;
+        this.impostors = impostors;
         moveOptions = new int[4];
     }
 
@@ -193,5 +195,21 @@ public class NpcManager {
         } else {
             return false;
         }
+    }
+
+    public int[] getCrewMemberIntervals() {
+        int[] intervals = new int[crewMembers.size()];
+        for (int i = 0; i < crewMembers.size(); i++) {
+            intervals[i] = crewMembers.get(i).randomInterval();
+        }
+        return intervals;
+    }
+
+    public int[] getImpostorsIntervals() {
+        int[] intervals = new int[impostors.size()];
+        for (int i = 0; i < impostors.size(); i++) {
+            intervals[i] = impostors.get(i).randomInterval();
+        }
+        return intervals;
     }
 }

@@ -22,9 +22,10 @@ public class MapController {
     private NpcManager npcManager;
     private PlayerManager playerManager;
 
-    public MapController(Map map, MapView mv, MapManager mapManager){
+    public MapController(Map map, MapView mv, MapManager mapManager, PlayerManager playerManager, NpcManager npcManager){
         this.mapManager = mapManager;
-        npcManager = new NpcManager();
+        this.npcManager = npcManager;
+        this.playerManager = playerManager;
         this.map = map;
         this.mv = mv;
     }
@@ -56,12 +57,13 @@ public class MapController {
 
 
     public void actionPerformed(ActionEvent e) {
-        Character character = new Character(new Color(230,0,250),new Cell());
+        Character character = new Character("RED",new Cell());
         playerManager = new PlayerManager(character);
 
         if (e.getActionCommand().equals("left")) {
             if (playerManager.checkLeft(playerManager.getPlayer().getCell().getMobility())) {
-                playerManager.getPlayer().move(1);
+                int[] nextCell = playerManager.getPlayer().getNextCoordinates(1);
+                playerManager.getPlayer().setCell(map.getCellByCoordinates(nextCell));
 
                 //MOURE PLAYER
 
@@ -69,7 +71,8 @@ public class MapController {
         }
         if (e.getActionCommand().equals("up")) { //cuando apretamos el boton
             if (playerManager.checkUp(playerManager.getPlayer().getCell().getMobility())) {
-                playerManager.getPlayer().move(2);
+                int[] nextCell = playerManager.getPlayer().getNextCoordinates(2);
+                playerManager.getPlayer().setCell(map.getCellByCoordinates(nextCell));
 
                 //MOURE PLAYER
 
@@ -77,7 +80,8 @@ public class MapController {
         }
         if (e.getActionCommand().equals("right")) {
             if (playerManager.checkRight(playerManager.getPlayer().getCell().getMobility())) {
-                playerManager.getPlayer().move(3);
+                int[] nextCell = playerManager.getPlayer().getNextCoordinates(3);
+                playerManager.getPlayer().setCell(map.getCellByCoordinates(nextCell));
 
                 //MOURE PLAYER
 
@@ -85,7 +89,8 @@ public class MapController {
         }
         if (e.getActionCommand().equals("down")) {
             if (playerManager.checkDown(playerManager.getPlayer().getCell().getMobility())) {
-                playerManager.getPlayer().move(4);
+                int[] nextCell = playerManager.getPlayer().getNextCoordinates(4);
+                playerManager.getPlayer().setCell(map.getCellByCoordinates(nextCell));
 
                 //MOURE PLAYER
 
@@ -99,22 +104,14 @@ public class MapController {
 
     }
 
-    //POSAR TAMBÉ EL COLOR INICIAL, TENIR LES LLISTES PLENES AMB LES DADES DE COLOR I CELL (CAFF)
-
-    public void setInitialCell(Character player, LinkedList<CrewMember> crewMembers, LinkedList<Impostor> impostors, LinkedList<Cell> cells) {
-        mapManager.initialCell(player, crewMembers, impostors, cells);
-    }
-
     public void impostorsMovement(LinkedList<Impostor> impostors, Time timer, int startInterval, int[] intervals) {
         for (int i = 0; i < impostors.size(); i++) {
             if (startInterval + intervals[i] == timer.getSeconds() && impostors.get(i).movement()) {
-                if (mapManager.getNpcManager().checkVentilation(impostors.get(i).getCell())) {
-                    if (mapManager.getNpcManager().flipCoin()) {
-                        int nextRoom = mapManager.getNpcManager().chooseVentilationRoom(impostors.get(i).getCell());
-                        String roomName = mapManager.getNpcManager().getImpostors().get(i).getCell().getAdjacencies().get(nextRoom);
-
-                        Cell cell = mapManager.getMap().getCellByName(roomName);
-                       // mapManager.getNpcManager().getImpostors().get(i).moveVentilation(cell)
+                if (npcManager.checkVentilation(impostors.get(i).getCell())) {
+                    if (npcManager.flipCoin()) {
+                        int nextRoom = npcManager.chooseVentilationRoom(impostors.get(i).getCell());
+                        String roomName = npcManager.getImpostors().get(i).getCell().getAdjacencies().get(nextRoom);
+                        npcManager.getImpostors().get(i).setCell(mapManager.getMap().getCellByName(roomName));
 
 
                         //MOVEM IMPOSTOR A LA VISTA
@@ -122,7 +119,8 @@ public class MapController {
                     }
                 } else {
                     int nextRoom = npcManager.getNextImpostorRoom(impostors.get(i));
-                    impostors.get(i).move(nextRoom);
+                    int[] nextCell = impostors.get(i).getNextCoordinates(nextRoom);
+                    impostors.get(i).setCell(map.getCellByCoordinates(nextCell));
 
                     //MOVEM IMPOSTOR A LA VISTA
 
@@ -137,7 +135,9 @@ public class MapController {
             if (startInterval + intervals[i] == timer.getSeconds() && crewMembers.get(i).movement()) {
                 int nextRoom = npcManager.getNextCrewMemberRoom(crewMembers.get(i));
                 crewMembers.get(i).setPreviousRoom(nextRoom);
-                crewMembers.get(i).move(nextRoom);
+                int[] nextCell = crewMembers.get(i).getNextCoordinates(nextRoom);
+                crewMembers.get(i).setCell(map.getCellByCoordinates(nextCell));
+
 
                 //MOVEM CREW MEMBER A LA VISTA
             }

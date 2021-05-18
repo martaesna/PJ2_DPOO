@@ -1,7 +1,6 @@
 package businessLayer;
 
 import businessLayer.entities.character.Character;
-import businessLayer.entities.maps.Cell;
 import businessLayer.entities.maps.Mobility;
 
 public class PlayerManager {
@@ -15,14 +14,7 @@ public class PlayerManager {
         return player;
     }
 
-    public void setPlayer(Character player) {
-        this.player = player;
-    }
-
-
     public boolean checkClasification() {
-
-
 
 
         return true;
@@ -58,7 +50,4 @@ public class PlayerManager {
         }
         return true;
     }
-
-
-
 }

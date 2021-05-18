@@ -337,6 +337,7 @@ public class NewGameView extends JFrame {
     public String getName() {
         return gameName.getText();
     }
+
     public String getColor() {
         return color;
     }

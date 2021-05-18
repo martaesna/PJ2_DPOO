@@ -71,4 +71,15 @@ public class Map {
         }
         return null;
     }
+
+    public Cell getCellByCoordinates(int[] coordinates) {
+        int x = coordinates[0];
+        int y = coordinates[1];
+        for (int i = 0; i < cells.size(); i++) {
+            if (cells.get(i).getX() == x && cells.get(i).getY() == y) {
+                return cells.get(i);
+            }
+        }
+        return null;
+    }
 }

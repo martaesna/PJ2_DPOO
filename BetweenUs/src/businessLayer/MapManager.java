@@ -15,28 +15,8 @@ import java.util.Timer;
 
 public class MapManager {
     private static Map map;
-    private NpcManager npcManager;
-    private PlayerManager playerManager;
 
-    public MapManager() {
-        npcManager = new NpcManager();
-    }
-
-    public NpcManager getNpcManager() {
-        return npcManager;
-    }
-
-    public void setNpcManager(NpcManager npcManager) {
-        this.npcManager = npcManager;
-    }
-
-    public PlayerManager getPlayerManager() {
-        return playerManager;
-    }
-
-    public void setPlayerManager(PlayerManager playerManager) {
-        this.playerManager = playerManager;
-    }
+    public MapManager() {}
 
     public static Map llegeixMapa() {
         try {
@@ -53,55 +33,6 @@ public class MapManager {
             System.out.println("No s'ha pogut llegir el mapa: " + e.getMessage());
         }
         return map;
-    }
-
-    public Map getDades() {
-        return map;
-    }
-
-    public int[] getCrewMemberIntervals(LinkedList<CrewMember> crewMembers) {
-        int[] intervals = new int[crewMembers.size()];
-        for (int i = 0; i < crewMembers.size(); i++) {
-            intervals[i] = crewMembers.get(i).randomInterval();
-        }
-        return intervals;
-    }
-
-    public int[] getImpostorsIntervals(LinkedList<Impostor> impostors) {
-        int[] intervals = new int[impostors.size()];
-        for (int i = 0; i < impostors.size(); i++) {
-            intervals[i] = impostors.get(i).randomInterval();
-        }
-        return intervals;
-    }
-
-    public void initialCell(Character player, LinkedList<CrewMember> crewMembers, LinkedList<Impostor> impostors, LinkedList<Cell> cells) {
-        int[] coordinates = getCoffeShopCoordinates(cells);
-
-        player.setCellX(coordinates[0]);
-        player.setCellY(coordinates[1]);
-
-        for (int i = 0; i < crewMembers.size(); i++) {
-            crewMembers.get(i).setCellX(coordinates[0]);
-            crewMembers.get(i).setCellY(coordinates[1]);
-        }
-
-        for (int i = 0; i < impostors.size(); i++) {
-            impostors.get(i).setCellX(coordinates[0]);
-            impostors.get(i).setCellY(coordinates[1]);
-        }
-    }
-
-    public int[] getCoffeShopCoordinates(LinkedList<Cell> cells) {
-        int[] coordinates = new int[2];
-
-        for (int i = 0; i < cells.size(); i++) {
-            if (cells.get(i).getRoomName() == "cafeteria") {
-                coordinates[0] = cells.get(i).getX();
-                coordinates[1] = cells.get(i).getY();
-            }
-        }
-        return null;
     }
 
     public static Map getMap() {

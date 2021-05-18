@@ -10,8 +10,8 @@ public class CrewMember extends Character{
     private static final int maxProbability = 100;
     private int previousRoom;
 
-    public CrewMember(Color color, Cell cell) {
-        super(color, cell);
+    public CrewMember(String color) {
+        super(color);
     }
 
     public int randomInterval() {

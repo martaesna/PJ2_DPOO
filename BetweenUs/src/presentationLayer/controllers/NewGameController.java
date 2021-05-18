@@ -1,7 +1,9 @@
 package presentationLayer.controllers;
 
-import businessLayer.GameManager;
-import businessLayer.UserManager;
+import businessLayer.*;
+import businessLayer.entities.character.Character;
+import businessLayer.entities.character.CrewMember;
+import businessLayer.entities.character.Impostor;
 import businessLayer.entities.game.Game;
 import businessLayer.entities.user.User;
 import presentationLayer.views.LoginView;
@@ -14,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class NewGameController implements ActionListener {
@@ -101,7 +104,20 @@ public class NewGameController implements ActionListener {
                 } else {
                     gameManager.createGame(ngv.getName(),game);
 
-                    //CREAR IMPOSTORS + CREW MEMBERS (Color + Cell)
+                    int starterColor = 0;
+                    LinkedList<Impostor> impostors = gameManager.getImpostors(ngv.getImpostors(), ngv.getColor(), starterColor, colors);
+                    LinkedList<CrewMember> crewMembers = gameManager.getCrewMembers(ngv.getPlayers(), ngv.getColor(), starterColor, colors);
+                    Character userPlayer = new Character(ngv.getColor());
+
+                    //PASSAR CELLS
+                    //gameManager.setInitialCell(userPlayer, crewMembers, impostors    );
+
+                    PlayerManager playerManager = new PlayerManager(userPlayer);
+                    NpcManager npcManager = new NpcManager(crewMembers, impostors);
+                    MapManager mapManager = new MapManager();
+
+
+
 
                     //VISTA JOC
                 }

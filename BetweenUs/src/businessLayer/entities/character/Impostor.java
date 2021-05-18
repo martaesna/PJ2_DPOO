@@ -10,8 +10,8 @@ public class Impostor extends Character{
     private static final int maxProbability = 100;
 
 
-    public Impostor(Color color, Cell cell) {
-        super(color, cell);
+    public Impostor(String color) {
+        super(color);
     }
 
 
