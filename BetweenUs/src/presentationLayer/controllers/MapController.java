@@ -12,24 +12,24 @@ import presentationLayer.views.MapView;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
-public class MapController {
+public class MapController implements ActionListener {
 
-    private Map map;
     private MapView mv;
     private MapManager mapManager;
     private NpcManager npcManager;
     private PlayerManager playerManager;
 
-    public MapController(Map map, MapView mv, MapManager mapManager, PlayerManager playerManager, NpcManager npcManager){
+    public MapController(MapView mv, MapManager mapManager, PlayerManager playerManager, NpcManager npcManager){
         this.mapManager = mapManager;
         this.npcManager = npcManager;
         this.playerManager = playerManager;
-        this.map = map;
         this.mv = mv;
     }
 
+    /*
     public int getWidth(){
         return map.getWidth();
     }
@@ -53,7 +53,7 @@ public class MapController {
 
     public String getColor(int i){
         return map.getCells().get(i).getColor();
-    }
+    }*/
 
 
     public void actionPerformed(ActionEvent e) {
@@ -63,36 +63,36 @@ public class MapController {
         if (e.getActionCommand().equals("left")) {
             if (playerManager.checkLeft(playerManager.getPlayer().getCell().getMobility())) {
                 int[] nextCell = playerManager.getPlayer().getNextCoordinates(1);
-                playerManager.getPlayer().setCell(map.getCellByCoordinates(nextCell));
+                playerManager.getPlayer().setCell(mapManager.getMap().getCellByCoordinates(nextCell));
 
-                //MOURE PLAYER
+                //MOURE PLAYER ESQUERRA
 
             }
         }
         if (e.getActionCommand().equals("up")) { //cuando apretamos el boton
             if (playerManager.checkUp(playerManager.getPlayer().getCell().getMobility())) {
                 int[] nextCell = playerManager.getPlayer().getNextCoordinates(2);
-                playerManager.getPlayer().setCell(map.getCellByCoordinates(nextCell));
+                playerManager.getPlayer().setCell(mapManager.getMap().getCellByCoordinates(nextCell));
 
-                //MOURE PLAYER
+                //MOURE PLAYER AMUNT
 
             }
         }
         if (e.getActionCommand().equals("right")) {
             if (playerManager.checkRight(playerManager.getPlayer().getCell().getMobility())) {
                 int[] nextCell = playerManager.getPlayer().getNextCoordinates(3);
-                playerManager.getPlayer().setCell(map.getCellByCoordinates(nextCell));
+                playerManager.getPlayer().setCell(mapManager.getMap().getCellByCoordinates(nextCell));
 
-                //MOURE PLAYER
+                //MOURE PLAYER DRETA
 
             }
         }
         if (e.getActionCommand().equals("down")) {
             if (playerManager.checkDown(playerManager.getPlayer().getCell().getMobility())) {
                 int[] nextCell = playerManager.getPlayer().getNextCoordinates(4);
-                playerManager.getPlayer().setCell(map.getCellByCoordinates(nextCell));
+                playerManager.getPlayer().setCell(mapManager.getMap().getCellByCoordinates(nextCell));
 
-                //MOURE PLAYER
+                //MOURE PLAYER A BAIX
 
             }
         }
@@ -113,16 +113,16 @@ public class MapController {
                         String roomName = npcManager.getImpostors().get(i).getCell().getAdjacencies().get(nextRoom);
                         npcManager.getImpostors().get(i).setCell(mapManager.getMap().getCellByName(roomName));
 
+                        //MOVEM IMPOSTOR A LA VISTA (passar la 'i' i les coordenades)
 
-                        //MOVEM IMPOSTOR A LA VISTA
-
+                        //int posicioImpostor/posicioCrewMember, int[] coordenadesCell, boolean impostor
                     }
                 } else {
                     int nextRoom = npcManager.getNextImpostorRoom(impostors.get(i));
                     int[] nextCell = impostors.get(i).getNextCoordinates(nextRoom);
-                    impostors.get(i).setCell(map.getCellByCoordinates(nextCell));
+                    impostors.get(i).setCell(mapManager.getMap().getCellByCoordinates(nextCell));
 
-                    //MOVEM IMPOSTOR A LA VISTA
+                        //MOVEM IMPOSTOR A LA VISTA
 
                 }
 
@@ -136,10 +136,10 @@ public class MapController {
                 int nextRoom = npcManager.getNextCrewMemberRoom(crewMembers.get(i));
                 crewMembers.get(i).setPreviousRoom(nextRoom);
                 int[] nextCell = crewMembers.get(i).getNextCoordinates(nextRoom);
-                crewMembers.get(i).setCell(map.getCellByCoordinates(nextCell));
-
+                crewMembers.get(i).setCell(mapManager.getMap().getCellByCoordinates(nextCell));
 
                 //MOVEM CREW MEMBER A LA VISTA
+
             }
         }
     }

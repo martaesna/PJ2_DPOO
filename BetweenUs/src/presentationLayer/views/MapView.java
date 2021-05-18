@@ -1,4 +1,7 @@
 package presentationLayer.views;
+import businessLayer.entities.character.Character;
+import businessLayer.entities.character.CrewMember;
+import businessLayer.entities.character.Impostor;
 import businessLayer.entities.maps.*;
 import businessLayer.entities.game.Time;
 
@@ -11,8 +14,8 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.Objects;
-
 
 public class MapView extends JFrame {
 
@@ -25,9 +28,17 @@ public class MapView extends JFrame {
     private JButton LEFT;
     private Object[][] data;
     private Time time;
+    private LinkedList<CrewMember> crewMembers;
+    private LinkedList<Impostor> impostors;
+    private Character userPlayer;
+    private Map map;
 
+    public MapView(Map map, LinkedList<CrewMember> crewMembers, LinkedList<Impostor> impostors, Character userPlayer)/*throws IOException*/ {
+        this.crewMembers = crewMembers;
+        this.impostors = impostors;
+        this.userPlayer = userPlayer;
+        this.map = map;
 
-    public MapView(Map map)/*throws IOException*/ {
         setTitle("Map");
         setSize(1080, 600);//600
 
@@ -323,7 +334,6 @@ public class MapView extends JFrame {
 
 
         add(background);
-        time.initCounter();
         setVisible(true);
     }
 
@@ -332,6 +342,15 @@ public class MapView extends JFrame {
         DOWN.addActionListener(actionListener);
         LEFT.addActionListener(actionListener);
         RIGHT.addActionListener(actionListener);
+    }
+
+    public void moveNpcPlayer(int i, int[] nextCell, boolean impostor) {
+        if (impostor) {
+            //Movem Impostor i a nextCell
+
+        } else {
+            //Movem Crew Member i a nextCell
+        }
     }
 }
 

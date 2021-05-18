@@ -16,15 +16,17 @@ import java.util.Timer;
 public class MapManager {
     private static Map map;
 
-    public MapManager() {}
+    public MapManager(Map map) {
+        this.map = map;
+    }
 
-    public static Map llegeixMapa() {
+    public static Map llegeixMapa(String mapName) {
         try {
             Gson gson = new Gson();
             com.google.gson.stream.JsonReader reader;
             File f = new File("");
             String path = f.getAbsolutePath();
-            reader = new com.google.gson.stream.JsonReader(new FileReader(path + "/BetweenUs/src/mapsFiles/space.json"));
+            reader = new com.google.gson.stream.JsonReader(new FileReader(path + "/BetweenUs/src/mapsFiles/" + mapName));
             map = gson.fromJson(reader, Map.class);
 
             System.out.println("\nLectura del mapa finalitzada.\n");
@@ -35,13 +37,10 @@ public class MapManager {
         return map;
     }
 
-    public static Map getMap() {
+    public Map getMap() {
         return map;
     }
 
-    public static void setMap(Map map) {
-        MapManager.map = map;
-    }
 }
 
 

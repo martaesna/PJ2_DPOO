@@ -5,11 +5,10 @@ import businessLayer.entities.character.Character;
 import businessLayer.entities.character.CrewMember;
 import businessLayer.entities.character.Impostor;
 import businessLayer.entities.game.Game;
+import businessLayer.entities.json.Data;
+import businessLayer.entities.maps.Map;
 import businessLayer.entities.user.User;
-import presentationLayer.views.LoginView;
-import presentationLayer.views.NewGameView;
-import presentationLayer.views.PlayView;
-import presentationLayer.views.RegisterView;
+import presentationLayer.views.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -72,7 +71,6 @@ public class NewGameController implements ActionListener {
         }
 
         if (e.getActionCommand().equals("PlayersLeft")) { //cuando apretamos el boton
-            System.out.println("Restem jugador");
             int players = ngv.getPlayers();
             int impostors = ngv.getImpostors();
             if (checkPlayers(impostors) < players + 1 && players > 3) {
@@ -105,21 +103,24 @@ public class NewGameController implements ActionListener {
                     gameManager.createGame(ngv.getName(),game);
 
                     int starterColor = 0;
-                    LinkedList<Impostor> impostors = gameManager.getImpostors(ngv.getImpostors(), ngv.getColor(), starterColor, colors);
-                    LinkedList<CrewMember> crewMembers = gameManager.getCrewMembers(ngv.getPlayers(), ngv.getColor(), starterColor, colors);
-                    Character userPlayer = new Character(ngv.getColor());
 
-                    //PASSAR CELLS
-                    //gameManager.setInitialCell(userPlayer, crewMembers, impostors    );
+                    Character userPlayer = new Character(ngv.getColor());
+                    LinkedList<CrewMember> crewMembers = gameManager.getCrewMembers(ngv.getPlayers() - ngv.getImpostors(), ngv.getColor(), starterColor, colors);
+                    starterColor = getImpostorsStarterColor(gameManager.getUserColorPosition(ngv.getColor(), colors), crewMembers.size(), starterColor);
+                    LinkedList<Impostor> impostors = gameManager.getImpostors(ngv.getImpostors(), ngv.getColor(), starterColor + crewMembers.size(), colors);
+
+                    Map map = MapManager.llegeixMapa(mapName);
+
+                    gameManager.setInitialCell(userPlayer, crewMembers, impostors, map.getCells());
 
                     PlayerManager playerManager = new PlayerManager(userPlayer);
                     NpcManager npcManager = new NpcManager(crewMembers, impostors);
-                    MapManager mapManager = new MapManager();
+                    MapManager mapManager = new MapManager(map);
 
+                    MapView mv = new MapView(map, crewMembers, impostors, userPlayer);
 
-
-
-                    //VISTA JOC
+                    MapController mapController = new MapController(mv, mapManager, playerManager, npcManager);
+                    mv.mainController(mapController);
                 }
             }
         }
@@ -159,4 +160,12 @@ public class NewGameController implements ActionListener {
     }
 
     public int checkPlayers(int impostors) { return impostors*3; }
+
+    public int getImpostorsStarterColor(int userPosition, int crewMembers, int starterColor) {
+        if (userPosition <= crewMembers) {
+            return starterColor+1;
+        } else {
+            return starterColor;
+        }
+    }
 }

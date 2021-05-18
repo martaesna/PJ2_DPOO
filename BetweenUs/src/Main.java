@@ -24,7 +24,6 @@ public class Main {
             @Override
             public void run() {
                 data = JsonReader.llegeixJSON();
-                map = MapManager.llegeixMapa();
             }
         });
 

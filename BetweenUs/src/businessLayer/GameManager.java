@@ -67,6 +67,11 @@ public class GameManager {
         LinkedList<Impostor> impostors = new LinkedList<>();
         for (int i = 0; i < impostorsNum; i++) {
             Impostor impostor = new Impostor(getNextColor(userColor, starterColor, colors));
+            starterColor++;
+            if (colors.get(starterColor) == userColor) {
+                starterColor++;
+            }
+
             impostors.add(impostor);
         }
         return impostors;
@@ -74,8 +79,14 @@ public class GameManager {
 
     public LinkedList<CrewMember> getCrewMembers(int crewMembersNum, String userColor, int starterColor, ArrayList<String> colors) {
         LinkedList<CrewMember> crewMembers = new LinkedList<>();
+
         for (int i = 0; i < crewMembersNum; i++) {
             CrewMember crewMember = new CrewMember(getNextColor(userColor, starterColor, colors));
+            starterColor++;
+            if (colors.get(starterColor) == userColor) {
+                starterColor++;
+            }
+
             crewMembers.add(crewMember);
         }
         return crewMembers;
@@ -84,10 +95,7 @@ public class GameManager {
     public String getNextColor(String userColor, int starterColor, ArrayList<String> colors) {
         for (int i = starterColor; i < colors.size(); i++) {
             if (colors.get(i) != userColor) {
-                starterColor++;
                 return colors.get(i);
-            } else {
-                starterColor++;
             }
         }
         return null;
@@ -114,4 +122,12 @@ public class GameManager {
         return null;
     }
 
+    public int getUserColorPosition(String userColor, ArrayList<String> colors) {
+        for (int i = 0; i < colors.size(); i++) {
+            if (colors.get(i) == userColor) {
+                return i;
+            }
+        }
+        return 0;
+    }
 }
