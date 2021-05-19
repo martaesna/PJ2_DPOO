@@ -10,6 +10,11 @@ public class CrewMember extends Character{
     private static final int maxProbability = 100;
     private int previousRoom;
 
+    public CrewMember(String color, int xCoordinate, int yCoordinate, int previousRoom) {
+        super(color, xCoordinate, yCoordinate);
+        this.previousRoom = previousRoom;
+    }
+
     public CrewMember(String color) {
         super(color);
     }

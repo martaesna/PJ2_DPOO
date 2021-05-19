@@ -10,21 +10,14 @@ import businessLayer.entities.game.Game;
 import businessLayer.entities.game.Time;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class GameManager {
     private final GameDAO gameDAO;
-    private final Time timer;
 
     public GameManager() {
         gameDAO = new SQLGameDAO();
-        timer = new Time();
-    }
-
-    public Time getTimer() {
-        return timer;
     }
 
     public void createGame(String gameName, Game game) {
@@ -57,6 +50,10 @@ public class GameManager {
             return true;
         }
         return false;
+    }
+
+    public void saveGame(Character userPlayer, LinkedList<Impostor> impostors, LinkedList<CrewMember> crewMembers, String gameName) {
+        gameDAO.saveGame(userPlayer, impostors, crewMembers, gameName);
     }
 
     public Game chargeGame(String gameName) {
@@ -130,4 +127,17 @@ public class GameManager {
         }
         return 0;
     }
+
+    public Character getUserPlayer(String gameName) {
+        return gameDAO.getUserPlayer(gameName);
+    }
+
+    public LinkedList<Impostor> getImpostorsGame(String gameName) {
+        return gameDAO.getImpostors(gameName);
+    }
+
+    public LinkedList<CrewMember> getCrewMembersGame(String gameName) {
+        return gameDAO.getCrewMembers(gameName);
+    }
+
 }

@@ -7,13 +7,16 @@ import java.awt.*;
 public class Character {
     private String color;
     private Cell cell;
+    private int xCoordinate;
+    private int yCoordinate;
+
+    public Character (String color, int xCoordinate, int yCoordinate) {
+        this.color = color;
+        this.xCoordinate = xCoordinate;
+        this.yCoordinate = yCoordinate;
+    }
 
     public Character(String color) {this.color = color;}
-
-    public Character(String color, Cell cell) {
-        this.color = color;
-        this.cell = cell;
-    }
 
     public String getColor() {
         return color;

@@ -352,5 +352,9 @@ public class MapView extends JFrame {
             //Movem Crew Member i a nextCell
         }
     }
+
+    public int confirmSave(){
+        return JOptionPane.showConfirmDialog(null,"Vols guardar l'estat actual de la partida?");
+    }
 }
 

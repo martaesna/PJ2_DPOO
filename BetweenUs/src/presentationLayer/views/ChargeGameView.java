@@ -61,8 +61,6 @@ public class ChargeGameView extends JFrame {
         }
 
 
-
-
         JLabel title = new JLabel("Charge game", JLabel.LEFT);
         title.setBounds(250,50,600,95);
         title.setFont(new Font("Russo One", Font.BOLD, 75));

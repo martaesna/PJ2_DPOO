@@ -1,11 +1,15 @@
 package presentationLayer.controllers;
 
+import businessLayer.entities.character.Character;
+import businessLayer.entities.character.CrewMember;
+import businessLayer.entities.character.Impostor;
 import businessLayer.entities.game.Game;
 import businessLayer.GameManager;
 import presentationLayer.views.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 public class ChargeGameViewController implements ActionListener {
     private ChargeGameView cgv;
@@ -21,8 +25,14 @@ public class ChargeGameViewController implements ActionListener {
             GameManager gameManager = new GameManager();
             if (gameManager.checkGame(cgv.getChargeName())) {
                 Game game = gameManager.chargeGame(cgv.getChargeName());
+                Character userPlayer = gameManager.getUserPlayer(cgv.getChargeName());
+                LinkedList<Impostor> impostors = gameManager.getImpostorsGame(cgv.getChargeName());
+                LinkedList<CrewMember> crewMembers = gameManager.getCrewMembersGame(cgv.getChargeName());
+
 
                 //VISTA?
+
+
             } else {
                 cgv.printErrorNoExistance();
             }

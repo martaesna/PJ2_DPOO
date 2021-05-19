@@ -119,7 +119,7 @@ public class NewGameController implements ActionListener {
 
                     MapView mv = new MapView(map, crewMembers, impostors, userPlayer);
 
-                    MapController mapController = new MapController(mv, mapManager, playerManager, npcManager);
+                    MapController mapController = new MapController(mv, mapManager, playerManager, npcManager, ngv.getName());
                     mv.mainController(mapController);
                 }
             }

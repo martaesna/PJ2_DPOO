@@ -1,5 +1,6 @@
 package presentationLayer.controllers;
 
+import businessLayer.GameManager;
 import businessLayer.MapManager;
 import businessLayer.NpcManager;
 import businessLayer.PlayerManager;
@@ -10,6 +11,7 @@ import businessLayer.entities.game.Time;
 import businessLayer.entities.maps.*;
 import presentationLayer.views.MapView;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,12 +23,14 @@ public class MapController implements ActionListener {
     private MapManager mapManager;
     private NpcManager npcManager;
     private PlayerManager playerManager;
+    private String gameName;
 
-    public MapController(MapView mv, MapManager mapManager, PlayerManager playerManager, NpcManager npcManager){
+    public MapController(MapView mv, MapManager mapManager, PlayerManager playerManager, NpcManager npcManager, String gameName){
         this.mapManager = mapManager;
         this.npcManager = npcManager;
         this.playerManager = playerManager;
         this.mv = mv;
+        this.gameName = gameName;
     }
 
     /*
@@ -57,8 +61,7 @@ public class MapController implements ActionListener {
 
 
     public void actionPerformed(ActionEvent e) {
-        Character character = new Character("RED",new Cell());
-        playerManager = new PlayerManager(character);
+        GameManager gameManager = new GameManager();
 
         if (e.getActionCommand().equals("left")) {
             if (playerManager.checkLeft(playerManager.getPlayer().getCell().getMobility())) {
@@ -95,6 +98,14 @@ public class MapController implements ActionListener {
                 //MOURE PLAYER A BAIX
 
             }
+        }
+        if (e.getActionCommand().equals("return")) {
+            if (JOptionPane.OK_OPTION == mv.confirmSave()) {
+                gameManager.saveGame(playerManager.getPlayer(), npcManager.getImpostors(), npcManager.getCrewMembers(), gameName);
+            }
+
+
+            //DECIDIR A QUINA VISTA ANIREM
         }
 
     }

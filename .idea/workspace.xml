@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="SetInitial Color and Cell">
+    <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="Colors Arreglats&#10;Player,Npc,Map (Managers) dins de Map Controller">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/MapManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/MapManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/CrewMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/CrewMember.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/Impostor.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/Impostor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/persitanceLayer/GameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/persitanceLayer/GameDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/persitanceLayer/SQLGameDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/persitanceLayer/SQLGameDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/ChargeGameViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/ChargeGameViewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/MapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/MapController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/NewGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/NewGameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/ChargeGameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/ChargeGameView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/MapView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/MapView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/Main$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -250,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621334389702</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Colors Arreglats&#10;Player,Npc,Map (Managers) dins de Map Controller">
+      <created>1621361214616</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1621361214616</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -289,7 +299,8 @@
     <MESSAGE value="PlayerMovement&#10;InitialCell (CoffeShop)" />
     <MESSAGE value="Desc" />
     <MESSAGE value="SetInitial Color and Cell" />
-    <option name="LAST_COMMIT_MESSAGE" value="SetInitial Color and Cell" />
+    <MESSAGE value="Colors Arreglats&#10;Player,Npc,Map (Managers) dins de Map Controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="Colors Arreglats&#10;Player,Npc,Map (Managers) dins de Map Controller" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Buida$Main.ic" NAME="Main Coverage Results" MODIFIED="1620930931826" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
