@@ -32,6 +32,14 @@ public class Character {
 
     public void setCell(Cell cell) {this.cell = cell;}
 
+    public int getxCoordinate() {
+        return xCoordinate;
+    }
+
+    public int getyCoordinate() {
+        return yCoordinate;
+    }
+
     public int[] getNextCoordinates(int nextRoom) {
         int[] actualRoom = new int[2];
         actualRoom[0] = getCell().getX();
