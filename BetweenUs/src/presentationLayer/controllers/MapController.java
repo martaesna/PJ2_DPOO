@@ -62,51 +62,57 @@ public class MapController implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         GameManager gameManager = new GameManager();
+        String command = e.getActionCommand();
 
-        if (e.getActionCommand().equals("left")) {
-            if (playerManager.checkLeft()) {
-                int[] nextCell = playerManager.nextCell(1);
-                playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
-
-                //MOURE PLAYER ESQUERRA
-
-            }
+        switch (command) {
+            case "left":
+                if (playerManager.checkLeft()) {
+                    int[] nextCell = playerManager.nextCell(1);
+                    playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
+                    //MOURE PLAYER ESQUERRA
+                }
+                break;
+            case "up":
+                if (playerManager.checkUp()) {
+                    int[] nextCell = playerManager.nextCell(2);
+                    playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
+                    //MOURE PLAYER AMUNT
+                }
+                break;
+            case "right":
+                if (playerManager.checkRight()) {
+                    int[] nextCell = playerManager.nextCell(3);
+                    playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
+                    //MOURE PLAYER DRETA
+                }
+                break;
+            case "down":
+                if (playerManager.checkDown()) {
+                    int[] nextCell = playerManager.nextCell(4);
+                    playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
+                    //MOURE PLAYER A BAIX
+                }
+                break;
+            case "return":
+                if (JOptionPane.OK_OPTION == mv.confirmSave()) {
+                    gameManager.saveGame(playerManager.getPlayer(), npcManager.getImpostors(), npcManager.getCrewMembers(), gameName);
+                }
+                //DECIDIR A QUINA VISTA ANIREM
+                break;
+            default:
+                String[] elements = command.split("_");
+                switch (elements[0]) {
+                    case "r":
+                        mv.moveRight(elements[1]);
+                        mv.updateObjectiveTracking(this);
+                        break;
+                    case "l":
+                        mv.moveLeft(elements[1]);
+                        mv.updateObjectiveTracking(this);
+                        break;
+                }
         }
-        if (e.getActionCommand().equals("up")) { //cuando apretamos el boton
-            if (playerManager.checkUp()) {
-                int[] nextCell = playerManager.nextCell(2);
-                playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
 
-                //MOURE PLAYER AMUNT
-
-            }
-        }
-        if (e.getActionCommand().equals("right")) {
-            if (playerManager.checkRight()) {
-                int[] nextCell = playerManager.nextCell(3);
-                playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
-
-                //MOURE PLAYER DRETA
-
-            }
-        }
-        if (e.getActionCommand().equals("down")) {
-            if (playerManager.checkDown()) {
-                int[] nextCell = playerManager.nextCell(4);
-                playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
-
-                //MOURE PLAYER A BAIX
-
-            }
-        }
-        if (e.getActionCommand().equals("return")) {
-            if (JOptionPane.OK_OPTION == mv.confirmSave()) {
-                gameManager.saveGame(playerManager.getPlayer(), npcManager.getImpostors(), npcManager.getCrewMembers(), gameName);
-            }
-
-
-            //DECIDIR A QUINA VISTA ANIREM
-        }
 
     }
 
