@@ -64,36 +64,36 @@ public class MapController implements ActionListener {
         GameManager gameManager = new GameManager();
 
         if (e.getActionCommand().equals("left")) {
-            if (playerManager.checkLeft(playerManager.getPlayer().getCell().getMobility())) {
-                int[] nextCell = playerManager.getPlayer().getNextCoordinates(1);
-                playerManager.getPlayer().setCell(mapManager.getMap().getCellByCoordinates(nextCell));
+            if (playerManager.checkLeft()) {
+                int[] nextCell = playerManager.nextCell(1);
+                playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
 
                 //MOURE PLAYER ESQUERRA
 
             }
         }
         if (e.getActionCommand().equals("up")) { //cuando apretamos el boton
-            if (playerManager.checkUp(playerManager.getPlayer().getCell().getMobility())) {
-                int[] nextCell = playerManager.getPlayer().getNextCoordinates(2);
-                playerManager.getPlayer().setCell(mapManager.getMap().getCellByCoordinates(nextCell));
+            if (playerManager.checkUp()) {
+                int[] nextCell = playerManager.nextCell(2);
+                playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
 
                 //MOURE PLAYER AMUNT
 
             }
         }
         if (e.getActionCommand().equals("right")) {
-            if (playerManager.checkRight(playerManager.getPlayer().getCell().getMobility())) {
-                int[] nextCell = playerManager.getPlayer().getNextCoordinates(3);
-                playerManager.getPlayer().setCell(mapManager.getMap().getCellByCoordinates(nextCell));
+            if (playerManager.checkRight()) {
+                int[] nextCell = playerManager.nextCell(3);
+                playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
 
                 //MOURE PLAYER DRETA
 
             }
         }
         if (e.getActionCommand().equals("down")) {
-            if (playerManager.checkDown(playerManager.getPlayer().getCell().getMobility())) {
-                int[] nextCell = playerManager.getPlayer().getNextCoordinates(4);
-                playerManager.getPlayer().setCell(mapManager.getMap().getCellByCoordinates(nextCell));
+            if (playerManager.checkDown()) {
+                int[] nextCell = playerManager.nextCell(4);
+                playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
 
                 //MOURE PLAYER A BAIX
 
@@ -111,6 +111,7 @@ public class MapController implements ActionListener {
     }
 
     public void updateMap(){
+
 
 
     }

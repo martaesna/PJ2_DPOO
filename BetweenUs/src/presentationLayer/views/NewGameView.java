@@ -279,6 +279,7 @@ public class NewGameView extends JFrame {
 
     public void setColor(String color) {
         this.color = color;
+
         jlColor.setText(color);
         jlColor.setFont(font);
         jlColor.setBackground(Color.BLACK);

@@ -1,14 +1,16 @@
 package businessLayer.entities.character;
 
+import businessLayer.entities.game.Time;
 import businessLayer.entities.maps.Cell;
 
 import java.awt.*;
 
-public class Impostor extends Character{
+public class Impostor extends Character implements Runnable{
     private static final int minInterval = 6;
     private static final int maxInterval = 8;
     private static final int maxProbability = 100;
-
+    private Time time;
+    private boolean go;
 
     public Impostor(String color, int xCoordinate, int yCoordinate) {
         super(color, xCoordinate, yCoordinate);
@@ -30,5 +32,10 @@ public class Impostor extends Character{
         } else {
             return false;
         }
+    }
+
+    @Override
+    public void run() {
+
     }
 }
