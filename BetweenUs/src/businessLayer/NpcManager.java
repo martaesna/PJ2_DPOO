@@ -196,7 +196,7 @@ public class NpcManager {
             return false;
         }
     }
-
+/*
     public int[] getCrewMemberIntervals() {
         int[] intervals = new int[crewMembers.size()];
         for (int i = 0; i < crewMembers.size(); i++) {
@@ -211,5 +211,5 @@ public class NpcManager {
             intervals[i] = impostors.get(i).randomInterval();
         }
         return intervals;
-    }
+    }*/
 }
