@@ -6,6 +6,7 @@ import businessLayer.PlayerManager;
 import businessLayer.entities.character.Character;
 import businessLayer.entities.character.CrewMember;
 import businessLayer.entities.character.Impostor;
+import businessLayer.entities.character.Player;
 import businessLayer.entities.game.Game;
 import businessLayer.GameManager;
 import businessLayer.entities.maps.Map;
@@ -30,7 +31,7 @@ public class ChargeGameViewController implements ActionListener {
             if (gameManager.checkGame(cgv.getChargeName())) {
 
                 Game game = gameManager.chargeGame(cgv.getChargeName());
-                Character userPlayer = gameManager.getUserPlayer(cgv.getChargeName());
+                Player userPlayer = gameManager.getUserPlayer(cgv.getChargeName());
                 LinkedList<Impostor> impostors = gameManager.getImpostorsGame(cgv.getChargeName());
                 LinkedList<CrewMember> crewMembers = gameManager.getCrewMembersGame(cgv.getChargeName());
 
@@ -86,7 +87,7 @@ public class ChargeGameViewController implements ActionListener {
         return impostors;
     }
 
-    public Character setCellUserPlayer(Character userPlayer, Map map) {
+    public Player setCellUserPlayer(Player userPlayer, Map map) {
         int[] coordinates = new int[2];
         coordinates[0] = userPlayer.getxCoordinate();
         coordinates[1] = userPlayer.getyCoordinate();

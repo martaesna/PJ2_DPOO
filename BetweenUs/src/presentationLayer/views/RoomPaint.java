@@ -20,7 +20,7 @@ public class RoomPaint extends JPanel {
     private int separadorY;
     private NewGameController ngc = new NewGameController();
 
-    public RoomPaint( Color color,String roomName, LinkedList<CrewMember> crewMembers, LinkedList<Impostor> impostors, Character userPlayer){
+    public RoomPaint(Color color, String roomName, LinkedList<CrewMember> crewMembers, LinkedList<Impostor> impostors, Character userPlayer){
         this.color = color;
         this.roomName = roomName;
         this.crewMembers = crewMembers;

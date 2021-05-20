@@ -33,8 +33,8 @@ public class MapPaint extends JPanel {
 
     }
 
-    public JPanel CreaMapa() {
-        JPanel JPmapa = new JPanel(new GridLayout(map.getWidth(),map.getHeight()));
+    public JPanel creaMapa() {
+        JPanel jpMapa = new JPanel(new GridLayout(map.getWidth(),map.getHeight()));
 
         for (int i = 0; i < map.getHeight(); ++i) {
             for (int j = 0; j < map.getWidth(); ++j) {
@@ -48,7 +48,7 @@ public class MapPaint extends JPanel {
                     JPanel empty = new JPanel();
                     empty.setBackground(Color.black);
                     empty.setBorder(BorderFactory.createLineBorder(Color.WHITE));;
-                    JPmapa.add(empty);
+                    jpMapa.add(empty);
                 } else {
                     if (map.getCells().get(pos).getType().equals("room")) {
                         try {
@@ -61,20 +61,20 @@ public class MapPaint extends JPanel {
                         roomName = map.getCells().get(pos).getRoomName();
                         JPanel room = new RoomPaint(color,roomName,crewMembers,impostors,userPlayer);
                         room.setBorder(BorderFactory.createLineBorder(Color.WHITE));//pintem els borders
-                        JPmapa.add(room);
+                        jpMapa.add(room);
                     }
 
                     if (map.getCells().get(pos).getType().equals("corridor")) {
                         JPanel corridor = new CorridorPaint(map.getCells().get(pos).getMobility(),map.getMapName());
                         corridor.setBorder(BorderFactory.createLineBorder(Color.WHITE));
-                        JPmapa.add(corridor);
+                        jpMapa.add(corridor);
                     }
                 }
 
 
             }
         }
-        return JPmapa;
+        return jpMapa;
     }
 
 

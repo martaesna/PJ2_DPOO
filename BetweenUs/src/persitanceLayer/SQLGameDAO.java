@@ -4,6 +4,7 @@ import businessLayer.ConectorDB;
 import businessLayer.entities.character.Character;
 import businessLayer.entities.character.CrewMember;
 import businessLayer.entities.character.Impostor;
+import businessLayer.entities.character.Player;
 import businessLayer.entities.game.Game;
 import businessLayer.entities.json.Data;
 
@@ -202,7 +203,7 @@ public class SQLGameDAO implements GameDAO{
     }
 
     @Override
-    public Character getUserPlayer(String gameName) {
+    public Player getUserPlayer(String gameName) {
         Data data;
         data = llegeixJSON();
         ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
@@ -214,8 +215,7 @@ public class SQLGameDAO implements GameDAO{
                 int xCoordinate = rs.getInt("xCoordinate");
                 int yCoordinate = rs.getInt("yCoordinate");
 
-                Character userPlayer = new Character(color, xCoordinate, yCoordinate);
-                return userPlayer;
+                return new Player(color, xCoordinate, yCoordinate);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();

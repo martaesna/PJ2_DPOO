@@ -4,6 +4,7 @@ import businessLayer.*;
 import businessLayer.entities.character.Character;
 import businessLayer.entities.character.CrewMember;
 import businessLayer.entities.character.Impostor;
+import businessLayer.entities.character.Player;
 import businessLayer.entities.game.Game;
 import businessLayer.entities.json.Data;
 import businessLayer.entities.maps.Map;
@@ -108,7 +109,7 @@ public class NewGameController implements ActionListener {
 
                     int starterColor = 0;
 
-                    Character userPlayer = new Character(ngv.getColor());
+                    Player userPlayer = new Player(ngv.getColor());
                     LinkedList<CrewMember> crewMembers = gameManager.getCrewMembers(ngv.getPlayers() - ngv.getImpostors(), ngv.getColor(), starterColor, colors);
                     starterColor = getImpostorsStarterColor(gameManager.getUserColorPosition(ngv.getColor(), colors), crewMembers.size(), starterColor);
                     LinkedList<Impostor> impostors = gameManager.getImpostors(ngv.getImpostors(), ngv.getColor(), starterColor + crewMembers.size(), colors);

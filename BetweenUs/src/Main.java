@@ -5,6 +5,7 @@ import businessLayer.JsonReader;
 import businessLayer.entities.maps.Map;
 import businessLayer.MapManager;
 import presentationLayer.controllers.NewGameController;
+import presentationLayer.views.LogsView;
 import presentationLayer.views.NewGameView;
 
 import javax.swing.*;
@@ -26,7 +27,7 @@ public class Main {
                 data = JsonReader.llegeixJSON();
             }
         });
-
+        //LogsView lv = new LogsView();
         NewGameView ngv = new NewGameView();
         NewGameController gc = new NewGameController(ngv);
         ngv.mainController(gc);

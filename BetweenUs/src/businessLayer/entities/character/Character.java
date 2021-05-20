@@ -4,7 +4,7 @@ import businessLayer.entities.maps.Cell;
 
 import java.awt.*;
 
-public class Character {
+public abstract class Character {
     private String color;
     private Cell cell;
     private int xCoordinate;

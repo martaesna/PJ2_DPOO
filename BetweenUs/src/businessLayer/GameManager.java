@@ -3,6 +3,7 @@ package businessLayer;
 import businessLayer.entities.character.Character;
 import businessLayer.entities.character.CrewMember;
 import businessLayer.entities.character.Impostor;
+import businessLayer.entities.character.Player;
 import businessLayer.entities.maps.Cell;
 import persitanceLayer.GameDAO;
 import persitanceLayer.SQLGameDAO;
@@ -128,7 +129,7 @@ public class GameManager {
         return 0;
     }
 
-    public Character getUserPlayer(String gameName) {
+    public Player getUserPlayer(String gameName) {
         return gameDAO.getUserPlayer(gameName);
     }
 

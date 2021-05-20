@@ -3,6 +3,7 @@ package persitanceLayer;
 import businessLayer.entities.character.Character;
 import businessLayer.entities.character.CrewMember;
 import businessLayer.entities.character.Impostor;
+import businessLayer.entities.character.Player;
 import businessLayer.entities.game.Game;
 
 import java.util.LinkedList;
@@ -11,7 +12,7 @@ public interface GameDAO {
     void createGame(Game game);
 
     Game selectGame(String gameName);
-    Character getUserPlayer(String gameName);
+    Player getUserPlayer(String gameName);
     LinkedList<Impostor> getImpostors(String gameName);
     LinkedList<CrewMember> getCrewMembers(String gameName);
 

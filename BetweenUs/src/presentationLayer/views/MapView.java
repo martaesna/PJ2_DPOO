@@ -2,9 +2,11 @@ package presentationLayer.views;
 import businessLayer.entities.character.Character;
 import businessLayer.entities.character.CrewMember;
 import businessLayer.entities.character.Impostor;
+import businessLayer.entities.character.Player;
 import businessLayer.entities.maps.*;
 import businessLayer.entities.game.Time;
 import presentationLayer.controllers.MapController;
+import presentationLayer.controllers.NewGameController;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -14,6 +16,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Objects;
@@ -40,13 +43,22 @@ public class MapView extends JFrame {
     private HashMap<Integer, Integer> objectiveTrackingPosition = new HashMap<Integer, Integer>();
     private JPanel objectiveTracking;
     private int numJugadors;
+    private LinkedList<Character> players = new LinkedList<>();
     private Color newColor;
+    private NewGameController ngc;
 
-    public MapView(Map map, LinkedList<CrewMember> crewMembers, LinkedList<Impostor> impostors, Character userPlayer)/*throws IOException*/ {
+    public MapView(Map map, LinkedList<CrewMember> crewMembers, LinkedList<Impostor> impostors, Player userPlayer)/*throws IOException*/ {
         this.crewMembers = crewMembers;
         this.impostors = impostors;
         this.userPlayer = userPlayer;
         this.map = map;
+
+        players.addAll(crewMembers);
+        players.addAll(impostors);
+
+        Collections.shuffle(players);
+
+        numJugadors = players.size();
 
         setTitle("Map");
         setSize(1080, 600);//600
@@ -119,7 +131,7 @@ public class MapView extends JFrame {
 
         background.add(JpNorth, BorderLayout.NORTH);
 
-        JPanel JpCenter;
+        JPanel jpCenter;
 
         for(int i = 0; i< crewMembers.size();i++){
             System.out.println(i);
@@ -130,7 +142,7 @@ public class MapView extends JFrame {
         // Pasar ho toto pel PaintComponent
        // JPanel mapa = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map);
         MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map,crewMembers,impostors,userPlayer);
-        JpCenter = mp.CreaMapa();
+        jpCenter = mp.creaMapa();
 
 
 
@@ -139,11 +151,11 @@ public class MapView extends JFrame {
         //background.add(control,BorderLayout.EAST); //aqui hemos de poner los botones
         JPanel controles = new JPanel(new BorderLayout());
         //per poder colocar els botons a la part de dalt
-        JPanel AuxControles = new JPanel(new BorderLayout());
+        JPanel auxControles = new JPanel(new BorderLayout());
         //coloquem els botons de adalt y abaix
-        JPanel AuxControlUPDOWN = new JPanel(new GridLayout(2, 1));
-        JPanel AuxControlLEFT = new JPanel(new BorderLayout());
-        JPanel AuxControlRIGHT = new JPanel(new BorderLayout());
+        JPanel auxControlUpDown = new JPanel(new GridLayout(2, 1));
+        JPanel auxControlLeft = new JPanel(new BorderLayout());
+        JPanel auxControlRight = new JPanel(new BorderLayout());
 
         up = new JButton();
         up.setActionCommand("up");
@@ -161,24 +173,24 @@ public class MapView extends JFrame {
         left.setActionCommand("left");
         left.setText("<");
 
-        AuxControlUPDOWN.add(up);
-        AuxControlUPDOWN.add(down);
-        AuxControles.add(AuxControlUPDOWN, BorderLayout.CENTER);
+        auxControlUpDown.add(up);
+        auxControlUpDown.add(down);
+        auxControles.add(auxControlUpDown, BorderLayout.CENTER);
 
-        AuxControlLEFT.add(left, BorderLayout.SOUTH);
-        AuxControlRIGHT.add(right, BorderLayout.SOUTH);
-        AuxControles.add(AuxControlRIGHT, BorderLayout.EAST);
-        AuxControles.add(AuxControlLEFT, BorderLayout.WEST);
+        auxControlLeft.add(left, BorderLayout.SOUTH);
+        auxControlRight.add(right, BorderLayout.SOUTH);
+        auxControles.add(auxControlRight, BorderLayout.EAST);
+        auxControles.add(auxControlLeft, BorderLayout.WEST);
 
-        AuxControlRIGHT.setOpaque(false);
-        AuxControlLEFT.setOpaque(false);
-        AuxControlUPDOWN.setOpaque(false);
-        AuxControles.setBackground(Color.GRAY);
+        auxControlRight.setOpaque(false);
+        auxControlLeft.setOpaque(false);
+        auxControlUpDown.setOpaque(false);
+        auxControles.setBackground(Color.GRAY);
         controles.setOpaque(false);
 
         //Coloquem els botons final al panell
 
-        controles.add(AuxControles, BorderLayout.NORTH);
+        controles.add(auxControles, BorderLayout.NORTH);
 
 
         background.add(controles, BorderLayout.EAST);
@@ -200,7 +212,6 @@ public class MapView extends JFrame {
         background.setBounds(0, 0, 1080, 600);
         background.setOpaque(true);*/
 
-        numJugadors = 5;
         objectiveTracking = new JPanel();
         Color headerBackground = new Color(160,160,160);
         objectiveTracking.setLayout(new GridLayout(numJugadors + 1,3));
@@ -231,7 +242,9 @@ public class MapView extends JFrame {
 
 
         for (int i = 0; i < numJugadors; i++) {
-            JPanel playerPanel = createPanel("purple", newColor, i, objectiveTrackingButtons);
+
+            Color playerColor = getUserColor(players.get(i).getColor());
+            JPanel playerPanel = createPanel(players.get(i).getColor(), playerColor, i, objectiveTrackingButtons);
             JLabel empty = new JLabel("");
             JLabel empty2 = new JLabel("");
             objectiveTracking.add(playerPanel);
@@ -244,12 +257,27 @@ public class MapView extends JFrame {
         //getContentPane().add(background);
         //getContentPane().add(gui);
         background.add(objectiveTracking, BorderLayout.SOUTH);
-        background.add(JpCenter, BorderLayout.CENTER);
+        background.add(jpCenter, BorderLayout.CENTER);
 
 
         add(background);
        // time.initCounter();
         setVisible(true);
+    }
+
+    private Color getUserColor(String color) {
+        Color playerColor = null;
+        if (color.equals("PURPLE") || color.equals("BROWN") || color.equals("CYAN") || color.equals("LIME")) {
+            int[] components = getColorComponents(color);
+            playerColor = new Color(components[0], components[1], components[2]);
+        } else {
+            try {
+                playerColor = (Color) Color.class.getField(color).get(null);
+            } catch (IllegalAccessException | NoSuchFieldException e) {
+                e.printStackTrace();
+            }
+        }
+        return playerColor;
     }
 
     public void moveRight(String element) {
@@ -287,22 +315,23 @@ public class MapView extends JFrame {
         objectiveTracking.add(headerInn);
 
         for (int key: objectiveTrackingPosition.keySet()) {
+            Color playerColor = getUserColor(players.get(key).getColor());
             if (objectiveTrackingPosition.get(key) == 0) {
-                JPanel playerPanel = createPanel("purple", newColor, key, objectiveTrackingButtons);
+                JPanel playerPanel = createPanel(players.get(key).getColor(), playerColor, key, objectiveTrackingButtons);
                 JLabel empty = new JLabel("");
                 JLabel empty2 = new JLabel("");
                 objectiveTracking.add(playerPanel);
                 objectiveTracking.add(empty);
                 objectiveTracking.add(empty2);
             } else if (objectiveTrackingPosition.get(key) == 1) {
-                JPanel playerPanel = createPanel("purple", newColor, key, objectiveTrackingButtons);
+                JPanel playerPanel = createPanel(players.get(key).getColor(), playerColor, key, objectiveTrackingButtons);
                 JLabel empty = new JLabel("");
                 JLabel empty2 = new JLabel("");
                 objectiveTracking.add(empty);
                 objectiveTracking.add(playerPanel);
                 objectiveTracking.add(empty2);
             } else {
-                JPanel playerPanel = createPanel("purple", newColor, key, objectiveTrackingButtons);
+                JPanel playerPanel = createPanel(players.get(key).getColor(), playerColor, key, objectiveTrackingButtons);
                 JLabel empty = new JLabel("");
                 JLabel empty2 = new JLabel("");
                 objectiveTracking.add(empty);
@@ -340,8 +369,8 @@ public class MapView extends JFrame {
         jpanel.add(leftButton);
 
         JLabel playerLabel = new JLabel(colorName, JLabel.CENTER);
-        playerLabel.setFont(new Font("Russo One", Font.PLAIN, 18));
-        playerLabel.setForeground(Color.WHITE);
+        playerLabel.setFont(new Font("Russo One", Font.BOLD, 18));
+        playerLabel.setForeground(Color.GRAY);
         jpanel.add(playerLabel);
 
         JButton rightButton = new JButton(rightArrow);
@@ -361,6 +390,9 @@ public class MapView extends JFrame {
         down.addActionListener(actionListener);
         left.addActionListener(actionListener);
         right.addActionListener(actionListener);
+        mapButton.addActionListener(actionListener);
+        configButton.addActionListener(actionListener);
+        returnButton.addActionListener(actionListener);
 
         for (String key: objectiveTrackingButtons.keySet()) {
             objectiveTrackingButtons.get(key).addActionListener(actionListener);
@@ -379,6 +411,33 @@ public class MapView extends JFrame {
 
     public int confirmSave(){
         return JOptionPane.showConfirmDialog(null,"Vols guardar l'estat actual de la partida?");
+    }
+
+    public int[] getColorComponents(String color) {
+        int[] components = new int[3];
+        if (color.equals("PURPLE")) {
+            components[0] = 102;
+            components[1] = 0;
+            components[2] = 153;
+            return components;
+
+        } else if(color.equals("BROWN")) {
+            components[0] = 102;
+            components[1] = 51;
+            components[2] = 0;
+            return components;
+
+        } else if(color.equals("CYAN")) {
+            components[0] = 0;
+            components[1] = 255;
+            components[2] = 255;
+            return components;
+        } else {
+            components[0] = 50;
+            components[1] = 205;
+            components[2] = 50;
+            return components;
+        }
     }
 }
 
