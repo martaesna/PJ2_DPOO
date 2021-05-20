@@ -1,0 +1,305 @@
+Index: BetweenUs/src/presentationLayer/views/NewGameView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package presentationLayer.views;\n\nimport presentationLayer.views.customComponents.RoundedBorder;\n\nimport javax.imageio.ImageIO;\nimport javax.swing.*;\nimport javax.swing.border.Border;\nimport java.awt.*;\nimport java.awt.event.ActionListener;\nimport java.awt.image.BufferedImage;\nimport java.io.File;\nimport java.io.IOException;\nimport java.util.Objects;\nimport java.util.prefs.BackingStoreException;\n\npublic class NewGameView extends JFrame {\n    private JTextField gameName;\n    private JButton leftButtonColor;\n    private JButton rightButtonColor;\n\n    private JButton leftButtonImpostor;\n    private JButton rightButtonImpostor;\n\n    private JButton leftButtonPlayers;\n    private JButton rightButtonPlayers;\n\n    private JButton returnButton;\n    private JButton configButton;\n\n\n    private JButton jbChooseMap = new JButton();\n    private JLabel jlColor = new JLabel();\n    private JLabel jlImpostorsList = new JLabel();\n    private JLabel jlPlayersList = new JLabel();\n\n    private String mapName = \"Select File\";\n    private String color = \"RED\";\n    private int impostors = 1;\n    private int players = 9;\n    private Font font;\n\n    private JButton jbPlay;\n    private JPanel jpBody;\n\n\n    public NewGameView() {\n        setTitle(\"New game\"); // titol\n        setSize(1080, 600); // mida titol\n        setLocationRelativeTo(null); // centrar titol\n        setDefaultCloseOperation(EXIT_ON_CLOSE); // tancar en 'X'\n\n        jpBody = new JPanel();\n\n        //--------------FONS\n        JPanel background = new JPanel();\n        background.setLayout(new BorderLayout());\n        background.setBackground(Color.BLACK);\n\n        //-----Part NORD de la finestra\n        JPanel JpNorth = new JPanel(new BorderLayout());\n        JpNorth.setOpaque(false);\n        JLabel title = new JLabel(\"New game\", JLabel.CENTER);\n        title.setFont(new Font(\"Russo One\", Font.BOLD, 75));\n        title.setForeground(Color.WHITE);\n        JpNorth.add(title, BorderLayout.CENTER);\n\n        //\n        try {\n            BufferedImage image = ImageIO.read(Objects.requireNonNull(getClass().getResource(\"/images/config.png\")));\n            Image scaled = image.getScaledInstance(40, 40, Image.SCALE_DEFAULT);\n            ImageIcon backgroundImage = new ImageIcon(scaled);\n            configButton = new JButton(backgroundImage);\n            configButton.setOpaque(false);\n            configButton.setContentAreaFilled(false);\n            configButton.setBorderPainted(false);\n            configButton.setActionCommand(\"Config\");\n            JpNorth.add(configButton, BorderLayout.WEST);\n\n\n            BufferedImage image2 = ImageIO.read(Objects.requireNonNull(getClass().getResource(\"/images/tornar.png\")));\n            Image scaled2 = image2.getScaledInstance(40, 30, Image.SCALE_DEFAULT);\n            ImageIcon backgroundImage2 = new ImageIcon(scaled2);\n            returnButton = new JButton(backgroundImage2);\n            returnButton.setOpaque(false);\n            returnButton.setContentAreaFilled(false);\n            returnButton.setBorderPainted(false);\n            returnButton.setActionCommand(\"Return\");\n            JpNorth.add(returnButton, BorderLayout.EAST);\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n\n        //-----------COS\n         font = new Font(\"Russo One\",Font.BOLD,35);\n        Border border =BorderFactory.createCompoundBorder(\n                BorderFactory.createEmptyBorder(15, 15, 15, 15),\n                BorderFactory.createCompoundBorder(\n                        BorderFactory.createLineBorder(Color.WHITE,3,true),\n                        BorderFactory.createEmptyBorder(5,5,10,10)\n                )\n\n        );\n\n        // Centre\n        jpBody.setOpaque(false);\n        jpBody.setLayout(null);\n\n        // Game name\n        JLabel jlGameName = new JLabel(\"Game name\");\n        jlGameName.setFont(font);\n        jlGameName.setBackground(Color.BLACK);\n        jlGameName.setForeground(Color.WHITE);\n        jlGameName.setBounds(250,10,250,50);\n\n        // Game name Text field\n        gameName = new JTextField();\n        gameName.setBackground(Color.BLACK);\n        gameName.setForeground(Color.WHITE);\n        gameName.setBorder(border);\n        gameName.setBounds(550,0,330,75);\n\n        // Color\n        JLabel jlColorList = new JLabel(\"Color\");\n        jlColorList.setFont(font);\n        jlColorList.setBackground(Color.BLACK);\n        jlColorList.setForeground(Color.WHITE);\n        jlColorList.setBounds(250,75,275,75);\n\n        // Colors List\n        leftButtonColor = new JButton(\"◀\");\n        leftButtonColor.setBackground(Color.BLACK);\n        leftButtonColor.setForeground(Color.WHITE);\n        leftButtonColor.setActionCommand(\"ColorLeft\");\n        leftButtonColor.setBorder(null);\n        leftButtonColor.setFont(new Font(\"\", Font.BOLD, 35));\n        leftButtonColor.setBounds(550,75,70,70);\n\n        setColor(color);\n\n        rightButtonColor = new JButton(\"▶\");\n        rightButtonColor.setBackground(Color.BLACK);\n        rightButtonColor.setForeground(Color.WHITE);\n        rightButtonColor.setActionCommand(\"ColorRight\");\n        rightButtonColor.setBorder(null);\n        rightButtonColor.setFont(new Font(\"\", Font.BOLD, 35));\n        rightButtonColor.setBounds(800,75,70,70);\n\n\n        // Impostors--------------------------------------------------------------------\n        JLabel jlImpostors = new JLabel(\"Impostors\");\n        jlImpostors.setFont(font);\n        jlImpostors.setBackground(Color.BLACK);\n        jlImpostors.setForeground(Color.WHITE);\n        jlImpostors.setBounds(250,150,275,75);\n\n        leftButtonImpostor = new JButton(\"◀\");\n        leftButtonImpostor.setBackground(Color.BLACK);\n        leftButtonImpostor.setForeground(Color.WHITE);\n        leftButtonImpostor.setActionCommand(\"ImpostorsLeft\");\n        leftButtonImpostor.setBorder(null);\n        leftButtonImpostor.setFont(new Font(\"\", Font.BOLD, 35));\n        leftButtonImpostor.setBounds(550,150,70,70);\n\n        // Impostors List\n        setImpostors(impostors);\n\n        rightButtonImpostor = new JButton(\"▶\");\n        rightButtonImpostor.setBackground(Color.BLACK);\n        rightButtonImpostor.setForeground(Color.WHITE);\n        rightButtonImpostor.setActionCommand(\"ImpostorsRight\");\n        rightButtonImpostor.setBorder(null);\n        rightButtonImpostor.setFont(new Font(\"\", Font.BOLD, 35));\n        rightButtonImpostor.setBounds(800,150,70,70);\n\n\n        // Players----------------------------------------------------------------------------\n        JLabel jlPlayers = new JLabel(\"Players\");\n        jlPlayers.setFont(font);\n        jlPlayers.setBackground(Color.BLACK);\n        jlPlayers.setForeground(Color.WHITE);\n        jlPlayers.setBounds(250,225,275,75);\n\n        leftButtonPlayers = new JButton(\"◀\");\n        leftButtonPlayers.setBackground(Color.BLACK);\n        leftButtonPlayers.setForeground(Color.WHITE);\n        leftButtonPlayers.setActionCommand(\"PlayersLeft\");\n        leftButtonPlayers.setBorder(null);\n        leftButtonPlayers.setFont(new Font(\"\", Font.BOLD, 35));\n        leftButtonPlayers.setBounds(550,225,70,70);\n\n        // Players List\n\n        setPlayers(players);\n\n        rightButtonPlayers = new JButton(\"▶\");\n        rightButtonPlayers.setBackground(Color.BLACK);\n        rightButtonPlayers.setForeground(Color.WHITE);\n        rightButtonPlayers.setActionCommand(\"PlayersRight\");\n        rightButtonPlayers.setBorder(null);\n        rightButtonPlayers.setFont(new Font(\"\", Font.BOLD, 35));\n        rightButtonPlayers.setBounds(800,225,70,70);\n\n\n        // Map-------------------------------------------------------------------------------------\n        JLabel jlMap = new JLabel(\"Map\");\n        jlMap.setFont(font);\n        jlMap.setBackground(Color.BLACK);\n        jlMap.setForeground(Color.WHITE);\n        jlMap.setBounds(250,300,275,75);\n\n        // Map List\n\n        setMapName(mapName);\n\n\n        //------------------------------------------------------\n        jbPlay = new JButton(\"Play\");\n        jbPlay.setFont(font);\n        jbPlay.setActionCommand(\"Play\");\n        jbPlay.setBackground(Color.black);\n        jbPlay.setForeground(Color.WHITE);\n        jbPlay.setBounds(450,400,200,50);\n        jbPlay.setBorder(new RoundedBorder(50));\n\n        jpBody.add(leftButtonColor);\n        jpBody.add(rightButtonColor);\n\n        jpBody.add(rightButtonImpostor);\n        jpBody.add(leftButtonImpostor);\n\n        jpBody.add(rightButtonPlayers);\n        jpBody.add(leftButtonPlayers);\n\n        jpBody.add(jlGameName);\n        jpBody.add((gameName));\n        jpBody.add(jlColorList);\n        jpBody.add(jlImpostors);\n        jpBody.add(jlPlayers);\n        jpBody.add(jlMap);\n        jpBody.add(jbPlay);\n\n        background.add(JpNorth,BorderLayout.NORTH);\n        background.add(jpBody, BorderLayout.CENTER);\n        add(background);\n        setVisible(true);\n    }\n\n    public void mainController(ActionListener actionListener) {\n        returnButton.addActionListener(actionListener);\n        configButton.addActionListener(actionListener);\n\n        jbChooseMap.addActionListener(actionListener);\n        jbPlay.addActionListener(actionListener);\n\n        rightButtonColor.addActionListener(actionListener);\n        leftButtonColor.addActionListener(actionListener);\n\n        rightButtonImpostor.addActionListener(actionListener);\n        leftButtonImpostor.addActionListener(actionListener);\n\n        rightButtonPlayers.addActionListener(actionListener);\n        leftButtonPlayers.addActionListener(actionListener);\n    }\n\n   public void setMapName(String mapName) {\n       this.mapName = mapName;\n\n       jpBody.remove(jbChooseMap);\n       jbChooseMap = new JButton(mapName);\n       jbChooseMap.setFont(new Font(\"\", Font.BOLD, 16));\n       jbChooseMap.setActionCommand(\"SelectFile\");\n       jbChooseMap.setBackground(Color.BLACK);\n       jbChooseMap.setForeground(Color.WHITE);\n       jbChooseMap.setBounds(570,320,300,50);\n       jbChooseMap.setBorder(new RoundedBorder(50));\n\n       jpBody.add(jbChooseMap);\n   }\n\n    public void setColor(String color) {\n        this.color = color;\n\n        jlColor.setText(color);\n        jlColor.setFont(font);\n        jlColor.setBackground(Color.BLACK);\n        jlColor.setBorder(BorderFactory.createLineBorder(Color.WHITE));\n\n        if (color == \"PURPLE\" || color == \"BROWN\" || color == \"CYAN\" || color == \"LIME\") {\n            int[] components = getColorComponents(color);\n            Color unusualColor = new Color(components[0],components[1],components[2]);\n            jlColor.setForeground(unusualColor);\n        } else {\n            try {\n                Color newColor = (Color) Color.class.getField(color).get(null);\n                jlColor.setForeground(newColor);\n                if (color == \"BLACK\") {\n                    //Posar traç blanc?\n\n\n                }\n            } catch (IllegalAccessException e) {\n                e.printStackTrace();\n            } catch (NoSuchFieldException e) {\n                e.printStackTrace();\n            }\n        }\n        jlColor.setBounds(575,75,275,75);\n        jlColor.setHorizontalAlignment(SwingConstants.CENTER);\n        jpBody.add(jlColor);\n    }\n\n\n    public void setImpostors(int impostors) {\n        this.impostors = impostors;\n\n        jlImpostorsList.setText(String.valueOf(impostors));\n        jlImpostorsList.setFont(font);\n        jlImpostorsList.setBackground(Color.BLACK);\n        jlImpostorsList.setForeground(Color.WHITE);\n        jlImpostorsList.setBounds(700,150,275,75);\n        jpBody.add(jlImpostorsList);\n    }\n\n\n    public void setPlayers(int players) {\n        this.players = players;\n\n        jlPlayersList.setText(String.valueOf(players));\n        jlPlayersList.setFont(font);\n        jlPlayersList.setBackground(Color.BLACK);\n        jlPlayersList.setForeground(Color.WHITE);\n        jlPlayersList.setBounds(575,225,275,75);\n        jlPlayersList.setHorizontalAlignment(SwingConstants.CENTER);\n        jpBody.add(jlPlayersList);\n    }\n\n    public String getName() {\n        return gameName.getText();\n    }\n\n    public String getColor() {\n        return color;\n    }\n\n    public int getImpostors() {\n        return impostors;\n    }\n\n    public int getPlayers() {\n        return players;\n    }\n\n    public String getMapName(){\n        return mapName;\n    }\n\n    public int[] getColorComponents(String color) {\n        int[] components = new int[3];\n        if (color == \"PURPLE\") {\n            components[0] = 102;\n            components[1] = 0;\n            components[2] = 153;\n            return components;\n\n        } else if(color == \"BROWN\") {\n            components[0] = 102;\n            components[1] = 51;\n            components[2] = 0;\n            return components;\n\n        } else if(color == \"CYAN\") {\n            components[0] = 0;\n            components[1] = 255;\n            components[2] = 255;\n            return components;\n        } else {\n            components[0] = 50;\n            components[1] = 205;\n            components[2] = 50;\n            return components;\n        }\n    }\n\n    public void printNameError() {\n        JOptionPane.showMessageDialog(null, \"ERROR: El nom d'aquest joc ja existeix\", \"Error New Game\", JOptionPane.ERROR_MESSAGE);\n    }\n\n    public void printEmptyNameError() {\n        JOptionPane.showMessageDialog(null, \"ERROR: El joc ha de tenir un nom\", \"Error New Game\", JOptionPane.ERROR_MESSAGE);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BetweenUs/src/presentationLayer/views/NewGameView.java b/BetweenUs/src/presentationLayer/views/NewGameView.java
+--- a/BetweenUs/src/presentationLayer/views/NewGameView.java	
++++ b/BetweenUs/src/presentationLayer/views/NewGameView.java	
+@@ -283,7 +283,7 @@
+         jlColor.setText(color);
+         jlColor.setFont(font);
+         jlColor.setBackground(Color.BLACK);
+-        jlColor.setBorder(BorderFactory.createLineBorder(Color.WHITE));
++        //jlColor.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+ 
+         if (color == "PURPLE" || color == "BROWN" || color == "CYAN" || color == "LIME") {
+             int[] components = getColorComponents(color);
+Index: BetweenUs/src/presentationLayer/controllers/NewGameController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package presentationLayer.controllers;\n\nimport businessLayer.*;\nimport businessLayer.entities.character.Character;\nimport businessLayer.entities.character.CrewMember;\nimport businessLayer.entities.character.Impostor;\nimport businessLayer.entities.game.Game;\nimport businessLayer.entities.json.Data;\nimport businessLayer.entities.maps.Map;\nimport businessLayer.entities.user.User;\nimport presentationLayer.views.*;\n\nimport javax.swing.*;\nimport java.awt.event.ActionEvent;\nimport java.awt.event.ActionListener;\nimport java.io.File;\nimport java.util.ArrayList;\nimport java.util.LinkedList;\nimport java.util.List;\n\npublic class NewGameController implements ActionListener {\n    private NewGameView ngv;\n    private ArrayList<String> colors;\n\n    public NewGameController(NewGameView ngv) {\n        this.ngv = ngv;\n        colors = new ArrayList<>(List.of(\"RED\",\"BLUE\",\"GREEN\",\"PINK\",\"ORANGE\",\"YELLOW\",\"BLACK\",\"WHITE\",\"PURPLE\",\"BROWN\",\"CYAN\",\"LIME\"));\n    }\n\n    public void actionPerformed(ActionEvent e) {\n        if (e.getActionCommand().equals(\"SelectFile\")) { //cuando apretamos el boton\n            String path = getMapsPath();\n            JFileChooser jfc = new JFileChooser(path);\n\n            int returnValue = jfc.showOpenDialog(null);\n\n            if (returnValue == JFileChooser.APPROVE_OPTION) {\n                File selectedFile = jfc.getSelectedFile();\n                String name = selectedFile.getName();\n                ngv.setMapName(name);\n            }\n        }\n\n        if (e.getActionCommand().equals(\"ColorLeft\")) { //cuando apretamos el boton\n            int position = getColorsPosition(ngv.getColor());\n            if (position > 0) {\n                ngv.setColor(colors.get(position-1));\n            }\n        }\n\n        if (e.getActionCommand().equals(\"ColorRight\")) { //cuando apretamos el boton\n            int position = getColorsPosition(ngv.getColor());\n            if (position < 11) {\n                ngv.setColor(colors.get(position+1));\n            }\n        }\n\n        if (e.getActionCommand().equals(\"ImpostorsLeft\")) { //cuando apretamos el boton\n            int impostors = ngv.getImpostors();\n            if (impostors > 1) {\n                ngv.setImpostors(impostors-1);\n            }\n        }\n\n        if (e.getActionCommand().equals(\"ImpostorsRight\")) { //cuando apretamos el boton\n            int impostors = ngv.getImpostors();\n            int maxImpostors = checkImpostors(ngv.getPlayers());\n            if (impostors < 3 && maxImpostors > impostors) {\n                ngv.setImpostors(impostors+1);\n            }\n        }\n\n        if (e.getActionCommand().equals(\"PlayersLeft\")) { //cuando apretamos el boton\n            int players = ngv.getPlayers();\n            int impostors = ngv.getImpostors();\n            if (checkPlayers(impostors) < players + 1 && players > 3) {\n                ngv.setPlayers(players-1);\n            }\n        }\n\n        if (e.getActionCommand().equals(\"PlayersRight\")) { //cuando apretamos el boton\n            int players = ngv.getPlayers();\n            if (players < 9) {\n                ngv.setPlayers(players+1);\n            }\n        }\n\n        if (e.getActionCommand().equals(\"Play\")) {\n            if (ngv.getName().isEmpty()) {\n                ngv.printEmptyNameError();\n            } else {\n                String mapName;\n                if (ngv.getMapName() == \"Select File\") {\n                    mapName = \"gravity.json\";\n                } else {\n                    mapName = ngv.getMapName();\n                }\n                GameManager gameManager = new GameManager();\n                Game game = new Game(ngv.getName(), ngv.getPlayers(), ngv.getImpostors(), ngv.getColor(), mapName, \"creator\");\n                if(gameManager.checkGame(game.getGameName())) {\n                    ngv.printNameError();\n                } else {\n                    gameManager.createGame(ngv.getName(),game);\n\n                    int starterColor = 0;\n\n                    Character userPlayer = new Character(ngv.getColor());\n                    LinkedList<CrewMember> crewMembers = gameManager.getCrewMembers(ngv.getPlayers() - ngv.getImpostors(), ngv.getColor(), starterColor, colors);\n                    starterColor = getImpostorsStarterColor(gameManager.getUserColorPosition(ngv.getColor(), colors), crewMembers.size(), starterColor);\n                    LinkedList<Impostor> impostors = gameManager.getImpostors(ngv.getImpostors(), ngv.getColor(), starterColor + crewMembers.size(), colors);\n\n                    Map map = MapManager.llegeixMapa(mapName);\n\n                    gameManager.setInitialCell(userPlayer, crewMembers, impostors, map.getCells());\n\n                    PlayerManager playerManager = new PlayerManager(userPlayer);\n                    NpcManager npcManager = new NpcManager(crewMembers, impostors);\n                    MapManager mapManager = new MapManager(map);\n\n                    MapView mv = new MapView(map, crewMembers, impostors, userPlayer);\n\n                    MapController mapController = new MapController(mv, mapManager, playerManager, npcManager, ngv.getName());\n                    mv.mainController(mapController);\n                }\n            }\n        }\n\n        if (e.getActionCommand().equals(\"Config\")) {\n            ngv.setVisible(false);\n            PlayView pv = new PlayView();\n            PlayViewController pvc = new PlayViewController(pv);\n            pv.mainController(pvc);\n        }\n\n        if (e.getActionCommand().equals(\"Return\")) {\n            ngv.setVisible(false);\n            PlayView pv = new PlayView();\n            PlayViewController pvc = new PlayViewController(pv);\n            pv.mainController(pvc);\n        }\n    }\n\n    public String getMapsPath(){\n        File f = new File(\"\");\n        String path = f.getAbsolutePath();\n        return path + \"\\\\BetweenUs\\\\src\\\\mapsFiles\";\n    }\n\n    public int getColorsPosition(String actualColor){\n        for (int i = 0; i < colors.size(); i++) {\n            if (colors.get(i) == actualColor) {\n                return i;\n            }\n        }\n        return 0;\n    }\n\n    public int checkImpostors(int players){\n        return Math.floorDiv(players+1, 3);\n    }\n\n    public int checkPlayers(int impostors) { return impostors*3; }\n\n    public int getImpostorsStarterColor(int userPosition, int crewMembers, int starterColor) {\n        if (userPosition <= crewMembers) {\n            return starterColor+1;\n        } else {\n            return starterColor;\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BetweenUs/src/presentationLayer/controllers/NewGameController.java b/BetweenUs/src/presentationLayer/controllers/NewGameController.java
+--- a/BetweenUs/src/presentationLayer/controllers/NewGameController.java	
++++ b/BetweenUs/src/presentationLayer/controllers/NewGameController.java	
+@@ -121,6 +121,7 @@
+ 
+                     MapController mapController = new MapController(mv, mapManager, playerManager, npcManager, ngv.getName());
+                     mv.mainController(mapController);
++                    ngv.setVisible(false);
+                 }
+             }
+         }
+@@ -143,7 +144,7 @@
+     public String getMapsPath(){
+         File f = new File("");
+         String path = f.getAbsolutePath();
+-        return path + "\\BetweenUs\\src\\mapsFiles";
++        return path + "/BetweenUs/src/mapsFiles";
+     }
+ 
+     public int getColorsPosition(String actualColor){
+Index: BetweenUs/src/presentationLayer/views/MapView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package presentationLayer.views;\nimport businessLayer.entities.character.Character;\nimport businessLayer.entities.character.CrewMember;\nimport businessLayer.entities.character.Impostor;\nimport businessLayer.entities.maps.*;\nimport businessLayer.entities.game.Time;\n\nimport javax.imageio.ImageIO;\nimport javax.swing.*;\nimport javax.swing.border.LineBorder;\nimport javax.swing.table.DefaultTableModel;\nimport javax.swing.text.html.StyleSheet;\nimport java.awt.*;\nimport java.awt.event.ActionListener;\nimport java.awt.image.BufferedImage;\nimport java.io.IOException;\nimport java.util.LinkedList;\nimport java.util.Objects;\n\npublic class MapView extends JFrame {\n\n    private JButton returnButton;\n    private JButton configButton;\n    private JButton mapButton;\n    private JButton UP;\n    private JButton DOWN;\n    private JButton RIGHT;\n    private JButton LEFT;\n    private Object[][] data;\n    private Time time;\n    private LinkedList<CrewMember> crewMembers;\n    private LinkedList<Impostor> impostors;\n    private Character userPlayer;\n    private Map map;\n\n    public MapView(Map map, LinkedList<CrewMember> crewMembers, LinkedList<Impostor> impostors, Character userPlayer)/*throws IOException*/ {\n        this.crewMembers = crewMembers;\n        this.impostors = impostors;\n        this.userPlayer = userPlayer;\n        this.map = map;\n\n        setTitle(\"Map\");\n        setSize(1080, 600);//600\n\n        setLocationRelativeTo(null);\n        setDefaultCloseOperation(EXIT_ON_CLOSE);\n\n        //pintem el panell final\n        JPanel background = new JPanel();\n        //background.setBounds(0,0,1080,600);\n        background.setLayout(new BorderLayout());\n        background.setBackground(Color.BLACK);\n\n        //Fem un panel a la part de dalt.\n        JPanel JpNorth = new JPanel(new BorderLayout());\n        JpNorth.setOpaque(false);\n\n        JPanel JpNorthEast = new JPanel(new BorderLayout());\n        JpNorthEast.setOpaque(false);\n\n        try {\n            BufferedImage image = ImageIO.read(Objects.requireNonNull(getClass().getResource(\"/images/config.png\")));\n            Image scaled = image.getScaledInstance(40, 40, Image.SCALE_DEFAULT);\n            ImageIcon backgroundImage = new ImageIcon(scaled);\n            configButton = new JButton(backgroundImage);\n            configButton.setOpaque(false);\n            configButton.setContentAreaFilled(false);\n            configButton.setBorderPainted(false);\n            configButton.setActionCommand(\"Config\");\n\n            JpNorth.add(configButton, BorderLayout.WEST);\n\n\n            BufferedImage image2 = ImageIO.read(Objects.requireNonNull(getClass().getResource(\"/images/Home.png\")));\n            Image scaled2 = image2.getScaledInstance(40, 30, Image.SCALE_DEFAULT);\n            ImageIcon backgroundImage2 = new ImageIcon(scaled2);\n            returnButton = new JButton(backgroundImage2);\n            returnButton.setOpaque(false);\n            returnButton.setContentAreaFilled(false);\n            returnButton.setBorderPainted(false);\n            returnButton.setActionCommand(\"Return\");\n\n            JpNorth.add(returnButton, BorderLayout.EAST);\n\n\n            BufferedImage image3 = ImageIO.read(Objects.requireNonNull(getClass().getResource(\"/images/map.png\")));\n            Image scaled3 = image3.getScaledInstance(40, 30, Image.SCALE_DEFAULT);\n            ImageIcon backgroundImage3 = new ImageIcon(scaled3);\n            mapButton = new JButton(backgroundImage3);\n            mapButton.setOpaque(false);\n            mapButton.setContentAreaFilled(false);\n            mapButton.setBorderPainted(false);\n            mapButton.setActionCommand(\"Return\");\n\n            JpNorthEast.add(mapButton, BorderLayout.EAST);\n            JpNorth.add(JpNorthEast, BorderLayout.CENTER);\n\n\n            //-----------------------------------------------------------------------\n            BufferedImage image4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(\"/images/background.jpg\")));\n            Image scaled4 = image4.getScaledInstance(278, 50, Image.SCALE_DEFAULT);\n            ImageIcon myLabel = new ImageIcon(scaled4);\n            data =\n                    new Object[][]{\n                            {myLabel, myLabel, myLabel},\n                            {myLabel, myLabel, myLabel},\n                            {myLabel, myLabel, myLabel},\n                    };\n            //-----------------------------------------------------------------------------\n\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n\n        background.add(JpNorth, BorderLayout.NORTH);\n\n        JPanel JpCenter = new JPanel(new GridLayout(map.getWidth(), map.getHeight()));\n\n        for (int i = 0; i < map.getHeight(); ++i) {\n            for (int j = 0; j < map.getWidth(); ++j) {\n                int pos = -1;\n                //Aqui printem cada part del mapa corresponent amb la posicio de les celles.\n                //primer determinar quin tipus de cella es recorren tots les celles per mirar si esta la corresponent\n                for (int m = 0; m < map.getCells().size(); m++) {\n                    if (map.getCells().get(m).getX() == j && map.getCells().get(m).getY() == i) pos = m;\n                }\n\n                //MIREM SI ES MAPA O CUADRAT NEGRE\n                if (pos == -1) {\n                    //aixo es un cuadrat negre\n                    JPanel empty = new JPanel();\n                    empty.setBackground(Color.BLACK);\n                    JpCenter.add(empty);\n\n                } else {\n                    //MIREM SI ES SALA O PASSADIS\n\n\n                    if (map.getCells().get(pos).getType().equals(\"room\")) {\n                        //creem un panell del color de la sala\n                        JPanel room = new JPanel();\n                        String color = map.getCells().get(pos).getColor();\n\n                        StyleSheet s = new StyleSheet();\n                        Color clr = s.stringToColor(map.getCells().get(pos).getColor());\n                        room.setBackground(clr); //fer que el color sigui el que toca\n                        JpCenter.add(room);\n                    } else {\n\n                        //si estem aqui som un pasadis, printem el mig del cuadrat de blanc\n                        JPanel corridor = new JPanel(new BorderLayout());\n                        JPanel center = new JPanel();\n                        center.setBackground(Color.white);\n                        corridor.setBackground(Color.BLACK);\n                        corridor.add(center, BorderLayout.CENTER);\n                        JpCenter.add(corridor);\n                        //comprovem cap on podem anar per printar cap els costats on podem anar.\n\n                        //MIREM SI POT ANAR CAP ADALT\n                        if (map.getCells().get(pos).getMobility().getUp() == 1) {\n\n                            JPanel up = new JPanel(new BorderLayout());\n                            JPanel Cu = new JPanel();\n                            Cu.setBackground(Color.white);\n                            up.add(Cu, BorderLayout.CENTER);\n                            corridor.add(up, BorderLayout.NORTH);\n                        } else { //SINO PINTEM LES PARETS GRISES\n                            JPanel b = new JPanel();\n                            b.setBackground(Color.DARK_GRAY);\n                            b.setBorder(new LineBorder(Color.DARK_GRAY, 10, true));\n                            corridor.add(b, BorderLayout.NORTH);\n                        }\n\n                        //MIREM SI POT ANAR CAP ABAIX\n                        if (map.getCells().get(pos).getMobility().getDown() == 1) {\n\n                            JPanel down = new JPanel(new BorderLayout());\n                            JPanel du = new JPanel();\n                            du.setBackground(Color.white);\n\n                            down.add(du, BorderLayout.CENTER);\n                            corridor.add(down, BorderLayout.SOUTH);\n                        } else {\n                            JPanel b1 = new JPanel();\n                            b1.setBackground(Color.DARK_GRAY);\n                            b1.setBorder(new LineBorder(Color.DARK_GRAY, 10, true));\n                            corridor.add(b1, BorderLayout.SOUTH);\n                        }\n\n                        //MIREM SI POT ANAR CAP A LA DRETA\n                        if (map.getCells().get(pos).getMobility().getRight() == 1) {\n\n                            JPanel right = new JPanel(new BorderLayout());\n                            JPanel ru = new JPanel();\n                            ru.setBackground(Color.white);\n                            right.add(ru, BorderLayout.CENTER);\n                            corridor.add(right, BorderLayout.EAST);\n                        } else {\n                            JPanel b2 = new JPanel();\n                            b2.setBackground(Color.DARK_GRAY);\n                            b2.setBorder(new LineBorder(Color.DARK_GRAY, 15, true));\n                            corridor.add(b2, BorderLayout.EAST);\n                        }\n\n                        //MIREM SI POT ANAR CAP A L ESQUERRA\n                        if (map.getCells().get(pos).getMobility().getLeft() == 1) {\n\n                            JPanel left = new JPanel(new BorderLayout());\n                            JPanel lu = new JPanel();\n                            lu.setBackground(Color.white);\n                            left.add(lu, BorderLayout.CENTER);\n                            left.setBackground(Color.black);\n                            corridor.add(left, BorderLayout.WEST);\n                        } else {\n                            JPanel b3 = new JPanel();\n                            b3.setBackground(Color.DARK_GRAY);\n                            b3.setBorder(new LineBorder(Color.DARK_GRAY, 15, true));\n                            corridor.add(b3, BorderLayout.WEST);\n                        }\n\n                    }\n                }\n            }\n        }\n\n\n        //creamos un border layout dentro del EAST y ponemos los botones en cada lugar\n        //background.add(control,BorderLayout.EAST); //aqui hemos de poner los botones\n        JPanel controles = new JPanel(new BorderLayout());\n        //per poder colocar els botons a la part de dalt\n        JPanel AuxControles = new JPanel(new BorderLayout());\n        //coloquem els botons de adalt y abaix\n        JPanel AuxControlUPDOWN = new JPanel(new GridLayout(2, 1));\n        JPanel AuxControlLEFT = new JPanel(new BorderLayout());\n        JPanel AuxControlRIGHT = new JPanel(new BorderLayout());\n\n        UP = new JButton();\n        UP.setActionCommand(\"up\");\n        UP.setText(\"^\");\n\n        DOWN = new JButton();\n        DOWN.setActionCommand(\"down\");\n        DOWN.setText(\"v\");\n\n        RIGHT = new JButton();\n        RIGHT.setActionCommand(\"right\");\n        RIGHT.setText(\">\");\n\n        LEFT = new JButton();\n        LEFT.setActionCommand(\"left\");\n        LEFT.setText(\"<\");\n\n        AuxControlUPDOWN.add(UP);\n        AuxControlUPDOWN.add(DOWN);\n        AuxControles.add(AuxControlUPDOWN, BorderLayout.CENTER);\n\n        AuxControlLEFT.add(LEFT, BorderLayout.SOUTH);\n        AuxControlRIGHT.add(RIGHT, BorderLayout.SOUTH);\n        AuxControles.add(AuxControlRIGHT, BorderLayout.EAST);\n        AuxControles.add(AuxControlLEFT, BorderLayout.WEST);\n\n        AuxControlRIGHT.setOpaque(false);\n        AuxControlLEFT.setOpaque(false);\n        AuxControlUPDOWN.setOpaque(false);\n        AuxControles.setBackground(Color.GRAY);\n        controles.setOpaque(false);\n\n        //Coloquem els botons final al panell\n\n        controles.add(AuxControles, BorderLayout.NORTH);\n\n\n        background.add(controles, BorderLayout.EAST);\n\n\n        //JPanel bajo = new JPanel();\n        //bajo.setBackground(Color.RED);\n        //JPanel izquierda = new JPanel();\n        //izquierda.setBackground(Color.RED);\n        // background.add(bajo,BorderLayout.SOUTH);\n        //background.add(izquierda,BorderLayout.WEST);\n\n        //----------------------------------------------------------------------------------------------------------------\n\n\n        /*\n        JPanel background1 = new JLabel();\n        background.setBackground(Color.BLACK);\n        background.setBounds(0, 0, 1080, 600);\n        background.setOpaque(true);*/\n\n        //PANEL PARA VER LA TABLA\n\n        JPanel gui = new JPanel(new BorderLayout());\n\n        gui.setBackground(new Color(125, 125, 125, 99));//LE PONEMOS EL COLOR\n\n        String[] header = {\"Unknown\", \"Suspicious\", \"Innocent\"}; //CREAMOS LA ETIQUETAS DEL TITULO\n\n        //gui.setLayout(null);\n        //gui.setBounds(100,300,875,200);\n\n        DefaultTableModel model = new DefaultTableModel(data, header);\n        JTable table = new JTable(model) {\n\n            public Class getColumnClass(int column) {\n                return ImageIcon.class;\n            }\n        };\n\n        table.setRowHeight(50);\n        table.setPreferredScrollableViewportSize(table.getPreferredSize()); //ficar que n fiqui mes de 3/4\n\n\n        JScrollPane tableScroll = new JScrollPane(table);\n        //tableScroll.setSize(600,160);\n        //table.setBounds(0,0,835,160);\n\n        tableScroll.setOpaque(false);\n        tableScroll.setBackground(Color.black);\n\n        //tableScroll.setBounds(20,20,835,160);\n        //table.setBounds(20,20,835,160);\n\n        gui.add(tableScroll, BorderLayout.CENTER);\n\n\n        //getContentPane().add(background);\n        //getContentPane().add(gui);\n        background.add(gui, BorderLayout.SOUTH);\n\n        //.----------------------------------------------------------------------------------------------------------------------------------\n        background.add(JpCenter, BorderLayout.CENTER);\n\n\n        add(background);\n        setVisible(true);\n    }\n\n    public void mainController(ActionListener actionListener) {\n        UP.addActionListener(actionListener);\n        DOWN.addActionListener(actionListener);\n        LEFT.addActionListener(actionListener);\n        RIGHT.addActionListener(actionListener);\n    }\n\n    public void moveNpcPlayer(int i, int[] nextCell, boolean impostor) {\n        if (impostor) {\n            //Movem Impostor i a nextCell\n\n        } else {\n            //Movem Crew Member i a nextCell\n        }\n    }\n\n    public int confirmSave(){\n        return JOptionPane.showConfirmDialog(null,\"Vols guardar l'estat actual de la partida?\");\n    }\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BetweenUs/src/presentationLayer/views/MapView.java b/BetweenUs/src/presentationLayer/views/MapView.java
+--- a/BetweenUs/src/presentationLayer/views/MapView.java	
++++ b/BetweenUs/src/presentationLayer/views/MapView.java	
+@@ -7,9 +7,7 @@
+ 
+ import javax.imageio.ImageIO;
+ import javax.swing.*;
+-import javax.swing.border.LineBorder;
+ import javax.swing.table.DefaultTableModel;
+-import javax.swing.text.html.StyleSheet;
+ import java.awt.*;
+ import java.awt.event.ActionListener;
+ import java.awt.image.BufferedImage;
+@@ -17,6 +15,7 @@
+ import java.util.LinkedList;
+ import java.util.Objects;
+ 
++
+ public class MapView extends JFrame {
+ 
+     private JButton returnButton;
+@@ -32,6 +31,8 @@
+     private LinkedList<Impostor> impostors;
+     private Character userPlayer;
+     private Map map;
++    private Color clr;
++    private String type;
+ 
+     public MapView(Map map, LinkedList<CrewMember> crewMembers, LinkedList<Impostor> impostors, Character userPlayer)/*throws IOException*/ {
+         this.crewMembers = crewMembers;
+@@ -114,21 +115,19 @@
+ 
+         background.add(JpNorth, BorderLayout.NORTH);
+ 
+-        JPanel JpCenter = new JPanel(new GridLayout(map.getWidth(), map.getHeight()));
++        JPanel JpCenter = new JPanel();
+ 
+-        for (int i = 0; i < map.getHeight(); ++i) {
+-            for (int j = 0; j < map.getWidth(); ++j) {
+-                int pos = -1;
+-                //Aqui printem cada part del mapa corresponent amb la posicio de les celles.
+-                //primer determinar quin tipus de cella es recorren tots les celles per mirar si esta la corresponent
+-                for (int m = 0; m < map.getCells().size(); m++) {
+-                    if (map.getCells().get(m).getX() == j && map.getCells().get(m).getY() == i) pos = m;
+-                }
++// Pasar ho toto pel PaintComponent
++       // JPanel mapa = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map);
++        MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map);
++        JpCenter = mp.CreaMapa();
++        //JpCenter.add(mapa);
+ 
++/*
+                 //MIREM SI ES MAPA O CUADRAT NEGRE
+                 if (pos == -1) {
+                     //aixo es un cuadrat negre
+-                    JPanel empty = new JPanel();
++                    JPanel empty = new TestPaint(new FlowLayout(),pos);
+                     empty.setBackground(Color.BLACK);
+                     JpCenter.add(empty);
+ 
+@@ -138,7 +137,7 @@
+ 
+                     if (map.getCells().get(pos).getType().equals("room")) {
+                         //creem un panell del color de la sala
+-                        JPanel room = new JPanel();
++                        JPanel room = new TestPaint(new GridLayout(4,4),pos);
+                         String color = map.getCells().get(pos).getColor();
+ 
+                         StyleSheet s = new StyleSheet();
+@@ -148,7 +147,7 @@
+                     } else {
+ 
+                         //si estem aqui som un pasadis, printem el mig del cuadrat de blanc
+-                        JPanel corridor = new JPanel(new BorderLayout());
++                        JPanel corridor = new TestPaint(new BorderLayout(),pos);
+                         JPanel center = new JPanel();
+                         center.setBackground(Color.white);
+                         corridor.setBackground(Color.BLACK);
+@@ -167,7 +166,7 @@
+                         } else { //SINO PINTEM LES PARETS GRISES
+                             JPanel b = new JPanel();
+                             b.setBackground(Color.DARK_GRAY);
+-                            b.setBorder(new LineBorder(Color.DARK_GRAY, 10, true));
++                            b.setBorder(new LineBorder(Color.DARK_GRAY, 8, true));
+                             corridor.add(b, BorderLayout.NORTH);
+                         }
+ 
+@@ -183,7 +182,7 @@
+                         } else {
+                             JPanel b1 = new JPanel();
+                             b1.setBackground(Color.DARK_GRAY);
+-                            b1.setBorder(new LineBorder(Color.DARK_GRAY, 10, true));
++                            b1.setBorder(new LineBorder(Color.DARK_GRAY, 8, true));
+                             corridor.add(b1, BorderLayout.SOUTH);
+                         }
+ 
+@@ -198,8 +197,9 @@
+                         } else {
+                             JPanel b2 = new JPanel();
+                             b2.setBackground(Color.DARK_GRAY);
+-                            b2.setBorder(new LineBorder(Color.DARK_GRAY, 15, true));
++                            b2.setBorder(new LineBorder(Color.DARK_GRAY, 8, true));
+                             corridor.add(b2, BorderLayout.EAST);
++
+                         }
+ 
+                         //MIREM SI POT ANAR CAP A L ESQUERRA
+@@ -219,10 +219,7 @@
+                         }
+ 
+                     }
+-                }
+-            }
+-        }
+-
++                }*/
+ 
+         //creamos un border layout dentro del EAST y ponemos los botones en cada lugar
+         //background.add(control,BorderLayout.EAST); //aqui hemos de poner los botones
+@@ -308,7 +305,7 @@
+             }
+         };
+ 
+-        table.setRowHeight(50);
++        table.setRowHeight(45);
+         table.setPreferredScrollableViewportSize(table.getPreferredSize()); //ficar que n fiqui mes de 3/4
+ 
+ 
+@@ -334,6 +331,7 @@
+ 
+ 
+         add(background);
++       // time.initCounter();
+         setVisible(true);
+     }
+ 
+@@ -358,3 +356,4 @@
+     }
+ }
+ 
++
+Index: BetweenUs/src/presentationLayer/views/MapPaint.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BetweenUs/src/presentationLayer/views/MapPaint.java b/BetweenUs/src/presentationLayer/views/MapPaint.java
+new file mode 100644
+--- /dev/null	
++++ b/BetweenUs/src/presentationLayer/views/MapPaint.java	
+@@ -0,0 +1,101 @@
++package presentationLayer.views;
++
++import businessLayer.entities.maps.Map;
++import businessLayer.entities.maps.Mobility;
++
++import java.awt.*;
++import javax.swing.JFrame;
++import javax.swing.JPanel;
++import javax.swing.text.html.StyleSheet;
++
++public class MapPaint extends JPanel {
++
++    private int pos;
++    private String tipus;
++    private Color color;
++    private Map map;
++    //private Graphics g;
++
++    public MapPaint(LayoutManager layoutManager, Map map) {
++        super(layoutManager);
++        this.map = map;
++        this.pos = pos;
++
++    }
++
++    public JPanel  CreaMapa() {
++        JPanel JPmapa = new JPanel(new GridLayout(map.getWidth(),map.getHeight()));
++
++        for (int i = 0; i < map.getHeight(); ++i) {
++            for (int j = 0; j < map.getWidth(); ++j) {
++                int pos = -1;
++                //Aqui printem cada part del mapa corresponent amb la posicio de les celles.
++                //primer determinar quin tipus de cella es recorren tots les celles per mirar si esta la corresponent
++                for (int m = 0; m < map.getCells().size(); m++) {
++                    if (map.getCells().get(m).getX() == j && map.getCells().get(m).getY() == i) pos = m;
++                }
++                if (pos == -1) {
++                    JPanel empty = new JPanel();
++                    empty.setBackground(Color.black);
++                    JPmapa.add(empty);
++                } else {
++                    if (map.getCells().get(pos).getType().equals("room")) {
++                        StyleSheet s = new StyleSheet();
++                        color = s.stringToColor(map.getCells().get(pos).getColor());
++                        JPanel room = new RoomPaint(new GridLayout(5, 5), color);
++                        JPmapa.add(room);
++                    }
++
++                    if (map.getCells().get(pos).getType().equals("corridor")) {
++                        JPanel corridor = new CorridorPaint(new GridLayout(5, 5),map.getCells().get(pos).getMobility(),map.getMapName());
++                        JPmapa.add(corridor);
++                    }
++                }
++
++
++            }
++        }
++        return JPmapa;
++    }
++
++
++    @Override
++    public void paintComponent(Graphics g) {
++
++        //super.paintComponent(g);
++        /*for (int i = 0; i < map.getHeight(); ++i) {
++            for (int j = 0; j < map.getWidth(); ++j) {
++                int pos = -1;
++                //Aqui printem cada part del mapa corresponent amb la posicio de les celles.
++                //primer determinar quin tipus de cella es recorren tots les celles per mirar si esta la corresponent
++                for (int m = 0; m < map.getCells().size(); m++) {
++                    if (map.getCells().get(m).getX() == j && map.getCells().get(m).getY() == i) pos = m;
++                }
++
++                if (pos == -1) {
++                    JPanel empty = new JPanel();
++                    empty.setBackground(Color.black);
++                    add(empty);
++                } else {
++                    if (map.getCells().get(pos).getType().equals("room")) {
++                        StyleSheet s = new StyleSheet();
++                        color = s.stringToColor(map.getCells().get(pos).getColor());
++                        JPanel room = new RoomPaint(new GridLayout(4, 4), color);
++                        add(room);
++                    }
++                    if (map.getCells().get(pos).getType().equals("corridor")) {
++                        JPanel corridor = new CorridorPaint(new GridLayout(4,4));
++                        add(corridor);
++                    }
++                }
++
++
++            }
++        }*/
++    }
++}
++
++
++        /*
++        g.setColor(Color.GREEN);
++        g.drawOval(0, 0, 10, 10);*/
