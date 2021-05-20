@@ -50,8 +50,6 @@ public class CrewMember extends Character implements Runnable{
         go = true;
         while(go) {
 
-
-
         }
     }
 }

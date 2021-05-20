@@ -22,6 +22,10 @@ public class NewGameController implements ActionListener {
     private NewGameView ngv;
     private ArrayList<String> colors;
 
+    public NewGameController(){
+
+    }
+
     public NewGameController(NewGameView ngv) {
         this.ngv = ngv;
         colors = new ArrayList<>(List.of("RED","BLUE","GREEN","PINK","ORANGE","YELLOW","BLACK","WHITE","PURPLE","BROWN","CYAN","LIME"));
@@ -167,6 +171,32 @@ public class NewGameController implements ActionListener {
             return starterColor+1;
         } else {
             return starterColor;
+        }
+    }
+    public int[] getColorComponents(String color) {
+        int[] components = new int[3];
+        if (color == "PURPLE") {
+            components[0] = 102;
+            components[1] = 0;
+            components[2] = 153;
+            return components;
+
+        } else if(color == "BROWN") {
+            components[0] = 102;
+            components[1] = 51;
+            components[2] = 0;
+            return components;
+
+        } else if(color == "CYAN") {
+            components[0] = 0;
+            components[1] = 255;
+            components[2] = 255;
+            return components;
+        } else {
+            components[0] = 50;
+            components[1] = 205;
+            components[2] = 50;
+            return components;
         }
     }
 }

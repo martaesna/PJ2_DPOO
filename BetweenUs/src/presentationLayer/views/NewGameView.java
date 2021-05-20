@@ -1,5 +1,6 @@
 package presentationLayer.views;
 
+import presentationLayer.controllers.NewGameController;
 import presentationLayer.views.customComponents.RoundedBorder;
 
 import javax.imageio.ImageIO;
@@ -41,6 +42,7 @@ public class NewGameView extends JFrame {
 
     private JButton jbPlay;
     private JPanel jpBody;
+    private NewGameController ngc = new NewGameController();
 
 
     public NewGameView() {
@@ -286,7 +288,7 @@ public class NewGameView extends JFrame {
 
 
         if (color == "PURPLE" || color == "BROWN" || color == "CYAN" || color == "LIME") {
-            int[] components = getColorComponents(color);
+            int[] components = ngc.getColorComponents(color);
             Color unusualColor = new Color(components[0],components[1],components[2]);
             jlColor.setForeground(unusualColor);
         } else {
@@ -354,7 +356,7 @@ public class NewGameView extends JFrame {
         return mapName;
     }
 
-    public int[] getColorComponents(String color) {
+   /* public int[] getColorComponents(String color) {
         int[] components = new int[3];
         if (color == "PURPLE") {
             components[0] = 102;
@@ -379,7 +381,7 @@ public class NewGameView extends JFrame {
             components[2] = 50;
             return components;
         }
-    }
+    }*/
 
     public void printNameError() {
         JOptionPane.showMessageDialog(null, "ERROR: El nom d'aquest joc ja existeix", "Error New Game", JOptionPane.ERROR_MESSAGE);

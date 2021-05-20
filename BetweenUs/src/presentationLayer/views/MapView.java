@@ -119,12 +119,21 @@ public class MapView extends JFrame {
 
         background.add(JpNorth, BorderLayout.NORTH);
 
-        JPanel JpCenter = new JPanel();
+        JPanel JpCenter;
+
+        for(int i = 0; i< crewMembers.size();i++){
+            System.out.println(i);
+            System.out.println(crewMembers.get(i).getColor());
+            System.out.println("");
+        }
 
         // Pasar ho toto pel PaintComponent
        // JPanel mapa = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map);
-        MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map);
+        MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map,crewMembers,impostors,userPlayer);
         JpCenter = mp.CreaMapa();
+
+
+
 
         //creamos un border layout dentro del EAST y ponemos los botones en cada lugar
         //background.add(control,BorderLayout.EAST); //aqui hemos de poner los botones

@@ -1,9 +1,13 @@
 package presentationLayer.views;
 
+import businessLayer.entities.character.Character;
+import businessLayer.entities.character.CrewMember;
+import businessLayer.entities.character.Impostor;
 import businessLayer.entities.maps.Map;
 import businessLayer.entities.maps.Mobility;
 
 import java.awt.*;
+import java.util.LinkedList;
 import javax.swing.*;
 import javax.swing.text.html.StyleSheet;
 
@@ -13,12 +17,19 @@ public class MapPaint extends JPanel {
     private String tipus;
     private Color color;
     private Map map;
+    private String roomName;
+    private LinkedList<CrewMember> crewMembers;
+    private LinkedList<Impostor> impostors;
+    private Character userPlayer;
     //private Graphics g;
 
-    public MapPaint(LayoutManager layoutManager, Map map) {
+    public MapPaint(LayoutManager layoutManager, Map map,LinkedList<CrewMember> crewMembers,LinkedList<Impostor> impostors, Character userPlayer) {
         super(layoutManager);
         this.map = map;
-        this.pos = pos;
+        this.crewMembers = crewMembers;
+        this.impostors = impostors;
+        this.userPlayer = userPlayer;
+
 
     }
 
@@ -46,10 +57,10 @@ public class MapPaint extends JPanel {
                         } catch (IllegalAccessException | NoSuchFieldException e) {
                             e.printStackTrace();
                         }
-                        //StyleSheet s = new StyleSheet();
-                        //color = s.stringToColor(map.getCells().get(pos).getColor());
-                        JPanel room = new RoomPaint(color);
-                        room.setBorder(BorderFactory.createLineBorder(Color.WHITE));;
+                        //Pintar els personatges amb contorn
+                        roomName = map.getCells().get(pos).getRoomName();
+                        JPanel room = new RoomPaint(color,roomName,crewMembers,impostors,userPlayer);
+                        room.setBorder(BorderFactory.createLineBorder(Color.WHITE));//pintem els borders
                         JPmapa.add(room);
                     }
 
@@ -65,6 +76,7 @@ public class MapPaint extends JPanel {
         }
         return JPmapa;
     }
+
 
 }
 

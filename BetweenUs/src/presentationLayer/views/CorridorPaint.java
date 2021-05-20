@@ -1,14 +1,21 @@
 package presentationLayer.views;
+import businessLayer.entities.character.Character;
+import businessLayer.entities.character.CrewMember;
+import businessLayer.entities.character.Impostor;
 import businessLayer.entities.maps.Map;
 import businessLayer.entities.maps.Mobility;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.LinkedList;
 
 public class CorridorPaint extends JPanel{
 
     private Mobility mov;
     private String mapa;
+    private LinkedList<CrewMember> crewMembers;
+    private LinkedList<Impostor> impostors;
+    private Character userPlayer;
 
     public CorridorPaint(Mobility mov,String mapa){
         this.mov = mov;
@@ -28,8 +35,6 @@ public class CorridorPaint extends JPanel{
 
         // sabre posicio o tamant dels quadrats.
         if(mov.getUp() ==1){
-            System.out.println(getWidth());
-            System.out.println(getHeight());
             g.setColor(Color.WHITE);
             g.fillRect((getWidth()/2)-ampladaY/2,0,ampladaY,ampladaY);
         }
