@@ -279,11 +279,10 @@ public class NewGameView extends JFrame {
 
     public void setColor(String color) {
         this.color = color;
-
         jlColor.setText(color);
         jlColor.setFont(font);
         jlColor.setBackground(Color.BLACK);
-        jlColor.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+
 
         if (color == "PURPLE" || color == "BROWN" || color == "CYAN" || color == "LIME") {
             int[] components = getColorComponents(color);

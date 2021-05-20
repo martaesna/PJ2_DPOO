@@ -121,6 +121,7 @@ public class NewGameController implements ActionListener {
 
                     MapController mapController = new MapController(mv, mapManager, playerManager, npcManager, ngv.getName());
                     mv.mainController(mapController);
+                    ngv.setVisible(false);
                 }
             }
         }
@@ -143,7 +144,7 @@ public class NewGameController implements ActionListener {
     public String getMapsPath(){
         File f = new File("");
         String path = f.getAbsolutePath();
-        return path + "\\BetweenUs\\src\\mapsFiles";
+        return path + "/BetweenUs/src/mapsFiles";
     }
 
     public int getColorsPosition(String actualColor){

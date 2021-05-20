@@ -33,7 +33,7 @@
 		{ "x": 3, "y": 3, "type": "corridor", "roomName" : "corridor", "mobility": {
 			"left": 1, "up": 1, "right": 1, "down": 0 }, "color": "black", "adjacencies": [""]  },
 		{ "x": 4, "y": 3, "type": "room", "roomName" : "security", "mobility": {
-			"left": 1, "up": 0, "right": 0, "down": 0 }, "color": "MAGENTA", "adjacencies": ["admin", "laboratory"]  },
+			"left": 1, "up": 0, "right": 0, "down": 0 }, "color": "PINK", "adjacencies": ["admin", "laboratory"]  },
 		{ "x": 0, "y": 4, "type": "corridor", "roomName" : "corridor", "mobility": {
 			"left": 0, "up": 1, "right": 1, "down": 0 }, "color": "black", "adjacencies": [""]  },
 		{ "x": 1, "y": 4, "type": "corridor", "roomName" : "corridor", "mobility": {

@@ -7,15 +7,14 @@ import businessLayer.entities.game.Time;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.html.StyleSheet;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Objects;
+
 
 public class MapView extends JFrame {
 
@@ -114,115 +113,12 @@ public class MapView extends JFrame {
 
         background.add(JpNorth, BorderLayout.NORTH);
 
-        JPanel JpCenter = new JPanel(new GridLayout(map.getWidth(), map.getHeight()));
+        JPanel JpCenter = new JPanel();
 
-        for (int i = 0; i < map.getHeight(); ++i) {
-            for (int j = 0; j < map.getWidth(); ++j) {
-                int pos = -1;
-                //Aqui printem cada part del mapa corresponent amb la posicio de les celles.
-                //primer determinar quin tipus de cella es recorren tots les celles per mirar si esta la corresponent
-                for (int m = 0; m < map.getCells().size(); m++) {
-                    if (map.getCells().get(m).getX() == j && map.getCells().get(m).getY() == i) pos = m;
-                }
-
-                //MIREM SI ES MAPA O CUADRAT NEGRE
-                if (pos == -1) {
-                    //aixo es un cuadrat negre
-                    JPanel empty = new JPanel();
-                    empty.setBackground(Color.BLACK);
-                    JpCenter.add(empty);
-
-                } else {
-                    //MIREM SI ES SALA O PASSADIS
-
-
-                    if (map.getCells().get(pos).getType().equals("room")) {
-                        //creem un panell del color de la sala
-                        JPanel room = new JPanel();
-                        String color = map.getCells().get(pos).getColor();
-
-                        StyleSheet s = new StyleSheet();
-                        Color clr = s.stringToColor(map.getCells().get(pos).getColor());
-                        room.setBackground(clr); //fer que el color sigui el que toca
-                        JpCenter.add(room);
-                    } else {
-
-                        //si estem aqui som un pasadis, printem el mig del cuadrat de blanc
-                        JPanel corridor = new JPanel(new BorderLayout());
-                        JPanel center = new JPanel();
-                        center.setBackground(Color.white);
-                        corridor.setBackground(Color.BLACK);
-                        corridor.add(center, BorderLayout.CENTER);
-                        JpCenter.add(corridor);
-                        //comprovem cap on podem anar per printar cap els costats on podem anar.
-
-                        //MIREM SI POT ANAR CAP ADALT
-                        if (map.getCells().get(pos).getMobility().getUp() == 1) {
-
-                            JPanel up = new JPanel(new BorderLayout());
-                            JPanel Cu = new JPanel();
-                            Cu.setBackground(Color.white);
-                            up.add(Cu, BorderLayout.CENTER);
-                            corridor.add(up, BorderLayout.NORTH);
-                        } else { //SINO PINTEM LES PARETS GRISES
-                            JPanel b = new JPanel();
-                            b.setBackground(Color.DARK_GRAY);
-                            b.setBorder(new LineBorder(Color.DARK_GRAY, 10, true));
-                            corridor.add(b, BorderLayout.NORTH);
-                        }
-
-                        //MIREM SI POT ANAR CAP ABAIX
-                        if (map.getCells().get(pos).getMobility().getDown() == 1) {
-
-                            JPanel down = new JPanel(new BorderLayout());
-                            JPanel du = new JPanel();
-                            du.setBackground(Color.white);
-
-                            down.add(du, BorderLayout.CENTER);
-                            corridor.add(down, BorderLayout.SOUTH);
-                        } else {
-                            JPanel b1 = new JPanel();
-                            b1.setBackground(Color.DARK_GRAY);
-                            b1.setBorder(new LineBorder(Color.DARK_GRAY, 10, true));
-                            corridor.add(b1, BorderLayout.SOUTH);
-                        }
-
-                        //MIREM SI POT ANAR CAP A LA DRETA
-                        if (map.getCells().get(pos).getMobility().getRight() == 1) {
-
-                            JPanel right = new JPanel(new BorderLayout());
-                            JPanel ru = new JPanel();
-                            ru.setBackground(Color.white);
-                            right.add(ru, BorderLayout.CENTER);
-                            corridor.add(right, BorderLayout.EAST);
-                        } else {
-                            JPanel b2 = new JPanel();
-                            b2.setBackground(Color.DARK_GRAY);
-                            b2.setBorder(new LineBorder(Color.DARK_GRAY, 15, true));
-                            corridor.add(b2, BorderLayout.EAST);
-                        }
-
-                        //MIREM SI POT ANAR CAP A L ESQUERRA
-                        if (map.getCells().get(pos).getMobility().getLeft() == 1) {
-
-                            JPanel left = new JPanel(new BorderLayout());
-                            JPanel lu = new JPanel();
-                            lu.setBackground(Color.white);
-                            left.add(lu, BorderLayout.CENTER);
-                            left.setBackground(Color.black);
-                            corridor.add(left, BorderLayout.WEST);
-                        } else {
-                            JPanel b3 = new JPanel();
-                            b3.setBackground(Color.DARK_GRAY);
-                            b3.setBorder(new LineBorder(Color.DARK_GRAY, 15, true));
-                            corridor.add(b3, BorderLayout.WEST);
-                        }
-
-                    }
-                }
-            }
-        }
-
+// Pasar ho toto pel PaintComponent
+       // JPanel mapa = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map);
+        MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map);
+        JpCenter = mp.CreaMapa();
 
         //creamos un border layout dentro del EAST y ponemos los botones en cada lugar
         //background.add(control,BorderLayout.EAST); //aqui hemos de poner los botones
@@ -308,7 +204,7 @@ public class MapView extends JFrame {
             }
         };
 
-        table.setRowHeight(50);
+        table.setRowHeight(45);
         table.setPreferredScrollableViewportSize(table.getPreferredSize()); //ficar que n fiqui mes de 3/4
 
 
@@ -334,6 +230,7 @@ public class MapView extends JFrame {
 
 
         add(background);
+       // time.initCounter();
         setVisible(true);
     }
 
@@ -357,4 +254,5 @@ public class MapView extends JFrame {
         return JOptionPane.showConfirmDialog(null,"Vols guardar l'estat actual de la partida?");
     }
 }
+
 
