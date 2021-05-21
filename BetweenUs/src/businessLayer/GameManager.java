@@ -66,7 +66,7 @@ public class GameManager {
         for (int i = 0; i < impostorsNum; i++) {
             Impostor impostor = new Impostor(getNextColor(userColor, starterColor, colors));
             starterColor++;
-            if (colors.get(starterColor) == userColor) {
+            if (colors.get(starterColor).equals(userColor)) {
                 starterColor++;
             }
 
@@ -81,7 +81,7 @@ public class GameManager {
         for (int i = 0; i < crewMembersNum; i++) {
             CrewMember crewMember = new CrewMember(getNextColor(userColor, starterColor, colors));
             starterColor++;
-            if (colors.get(starterColor) == userColor) {
+            if (colors.get(starterColor).equals(userColor)) {
                 starterColor++;
             }
 
@@ -113,7 +113,7 @@ public class GameManager {
 
     public Cell getCoffeShopCell(LinkedList<Cell> cells) {
         for (int i = 0; i < cells.size(); i++) {
-            if (cells.get(i).getRoomName() == "cafeteria") {
+            if (cells.get(i).getRoomName().equals("cafeteria")) {
                 return  cells.get(i);
             }
         }
@@ -122,7 +122,7 @@ public class GameManager {
 
     public int getUserColorPosition(String userColor, ArrayList<String> colors) {
         for (int i = 0; i < colors.size(); i++) {
-            if (colors.get(i) == userColor) {
+            if (colors.get(i).equals(userColor)) {
                 return i;
             }
         }

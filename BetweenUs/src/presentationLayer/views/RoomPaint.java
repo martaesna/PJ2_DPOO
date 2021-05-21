@@ -33,12 +33,9 @@ public class RoomPaint extends JPanel {
         g.setColor(color);
         g.fillRect(0,0,getWidth(),getHeight());
 
-
-
         if (roomName.equals("cafeteria")) {
             separadorX = getWidth() / 4;
             separadorY = getHeight() / 3;
-
 
             if (userPlayer.getColor().equals("PURPLE") || userPlayer.getColor().equals("BROWN") || userPlayer.getColor().equals("CYAN") || userPlayer.getColor().equals("LIME")) {
                 int[] components = ngc.getColorComponents(userPlayer.getColor());
@@ -54,11 +51,9 @@ public class RoomPaint extends JPanel {
             g.setColor(Color.BLACK);
             g.fillOval(separadorX - 1, separadorY - 1, 17, 17);
 
-
             g.setColor(playerColor);
             g.fillOval(separadorX, separadorY, 15, 15);
             separadorX += 20;
-
 
             for (int j = 0; j < crewMembers.size(); j++) {
                 System.out.println(crewMembers.size());

@@ -21,7 +21,6 @@ public class MapPaint extends JPanel {
     private LinkedList<CrewMember> crewMembers;
     private LinkedList<Impostor> impostors;
     private Character userPlayer;
-    //private Graphics g;
 
     public MapPaint(LayoutManager layoutManager, Map map,LinkedList<CrewMember> crewMembers,LinkedList<Impostor> impostors, Character userPlayer) {
         super(layoutManager);
@@ -29,8 +28,6 @@ public class MapPaint extends JPanel {
         this.crewMembers = crewMembers;
         this.impostors = impostors;
         this.userPlayer = userPlayer;
-
-
     }
 
     public JPanel creaMapa() {
@@ -70,14 +67,10 @@ public class MapPaint extends JPanel {
                         jpMapa.add(corridor);
                     }
                 }
-
-
             }
         }
         return jpMapa;
     }
-
-
 }
 
 

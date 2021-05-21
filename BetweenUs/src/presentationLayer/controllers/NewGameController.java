@@ -119,8 +119,12 @@ public class NewGameController implements ActionListener {
                     gameManager.setInitialCell(userPlayer, crewMembers, impostors, map.getCells());
 
                     PlayerManager playerManager = new PlayerManager(userPlayer);
-                    NpcManager npcManager = new NpcManager(crewMembers, impostors);
                     MapManager mapManager = new MapManager(map);
+                    NpcManager npcManager = new NpcManager(crewMembers, impostors, mapManager);
+
+
+                    npcManager.setCrewMembersManager(crewMembers);
+                    npcManager.setImpostorsManager(impostors);
 
                     MapView mv = new MapView(map, crewMembers, impostors, userPlayer);
 

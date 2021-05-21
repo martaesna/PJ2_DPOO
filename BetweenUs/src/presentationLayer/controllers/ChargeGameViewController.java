@@ -41,8 +41,8 @@ public class ChargeGameViewController implements ActionListener {
                 crewMembers = setCellsCrewMembers(crewMembers, map);
 
                 PlayerManager playerManager = new PlayerManager(userPlayer);
-                NpcManager npcManager = new NpcManager(crewMembers, impostors);
                 MapManager mapManager = new MapManager(map);
+                NpcManager npcManager = new NpcManager(crewMembers, impostors, mapManager);
 
                 MapView mv = new MapView(map, crewMembers, impostors, userPlayer);
 

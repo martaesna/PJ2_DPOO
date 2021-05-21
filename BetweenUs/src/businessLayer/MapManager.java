@@ -44,6 +44,8 @@ public class MapManager {
     public Cell nextPlayerCell (int[] nextCell) {
         return getMap().getCellByCoordinates(nextCell);
     }
+
+
 }
 
 

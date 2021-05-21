@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
-public class MapController implements ActionListener {
+public class MapController extends Thread implements ActionListener {
 
     private MapView mv;
     private MapManager mapManager;
@@ -115,51 +115,29 @@ public class MapController implements ActionListener {
 
 
     }
+/*
+    public void prntaCelaMap(){
 
-    public void updateMap(){
+        for (fkmkrdf)
+            colors = metodeObteCOlorsCELAx
+            VISTA.printa rodones
 
+    }*/
 
-
-    }
-
-    public void impostorsMovement(LinkedList<Impostor> impostors, Time timer, int startInterval, int[] intervals) {
-        for (int i = 0; i < impostors.size(); i++) {
-            if (startInterval + intervals[i] == timer.getSeconds() && impostors.get(i).movement()) {
-                if (npcManager.checkVentilation(impostors.get(i).getCell())) {
-                    if (npcManager.flipCoin()) {
-                        int nextRoom = npcManager.chooseVentilationRoom(impostors.get(i).getCell());
-                        String roomName = npcManager.getImpostors().get(i).getCell().getAdjacencies().get(nextRoom);
-                        npcManager.getImpostors().get(i).setCell(mapManager.getMap().getCellByName(roomName));
-
-                        //MOVEM IMPOSTOR A LA VISTA (passar la 'i' i les coordenades)
-
-                        //int posicioImpostor/posicioCrewMember, int[] coordenadesCell, boolean impostor
-                    }
-                } else {
-                    int nextRoom = npcManager.getNextImpostorRoom(impostors.get(i));
-                    int[] nextCell = impostors.get(i).getNextCoordinates(nextRoom);
-                    impostors.get(i).setCell(mapManager.getMap().getCellByCoordinates(nextCell));
-
-                        //MOVEM IMPOSTOR A LA VISTA
-
-                }
-
-            }
-        }
-    }
-
-    public void crewMembersMovement(LinkedList<CrewMember> crewMembers, Time timer, int startInterval, int[] intervals) {
+    public LinkedList<String> getCellColors(LinkedList<CrewMember> crewMembers, Cell cell) {
+        LinkedList<String> colors = new LinkedList<>();
         for (int i = 0; i < crewMembers.size(); i++) {
-            if (startInterval + intervals[i] == timer.getSeconds() && crewMembers.get(i).movement()) {
-                int nextRoom = npcManager.getNextCrewMemberRoom(crewMembers.get(i));
-                crewMembers.get(i).setPreviousRoom(nextRoom);
-                int[] nextCell = crewMembers.get(i).getNextCoordinates(nextRoom);
-                crewMembers.get(i).setCell(mapManager.getMap().getCellByCoordinates(nextCell));
-
-                //MOVEM CREW MEMBER A LA VISTA
-
+            if (cell == crewMembers.get(i).getCell()) {
+                colors.add(crewMembers.get(i).getColor());
             }
         }
+        return colors;
+    }
+
+    @Override
+    public void run() {
+
+
     }
 }
 

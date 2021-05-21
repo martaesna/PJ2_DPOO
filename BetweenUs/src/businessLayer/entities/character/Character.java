@@ -1,14 +1,16 @@
 package businessLayer.entities.character;
 
+import businessLayer.NpcManager;
 import businessLayer.entities.maps.Cell;
 
 import java.awt.*;
 
-public abstract class Character {
+public abstract class Character extends Thread{
     private String color;
     private Cell cell;
     private int xCoordinate;
     private int yCoordinate;
+
 
     public Character (String color, int xCoordinate, int yCoordinate) {
         this.color = color;
@@ -80,4 +82,5 @@ public abstract class Character {
     private boolean checkRols() {
         return true;
     }
+
 }

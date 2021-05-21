@@ -3,7 +3,9 @@ package businessLayer;
 import businessLayer.entities.character.Character;
 import businessLayer.entities.character.CrewMember;
 import businessLayer.entities.character.Impostor;
+import businessLayer.entities.game.Time;
 import businessLayer.entities.maps.Cell;
+import businessLayer.entities.maps.Map;
 import businessLayer.entities.maps.Mobility;
 
 import java.util.LinkedList;
@@ -12,11 +14,13 @@ public class NpcManager {
     private LinkedList<CrewMember> crewMembers;
     private LinkedList<Impostor> impostors;
     private int[] moveOptions;
+    private MapManager mapManager;
 
-    public NpcManager(LinkedList<CrewMember> crewMembers, LinkedList<Impostor> impostors) {
+    public NpcManager(LinkedList<CrewMember> crewMembers, LinkedList<Impostor> impostors, MapManager mapManager) {
         this.crewMembers = crewMembers;
         this.impostors = impostors;
         moveOptions = new int[4];
+        this.mapManager = mapManager;
     }
 
     public LinkedList<CrewMember> getCrewMembers() {
@@ -159,7 +163,7 @@ public class NpcManager {
         return 0;
     }
 
-    public void eliminateCrewMember(Cell cell) {
+    public CrewMember eliminateCrewMember(Cell cell) {
         int numImpostors = 0;
         int numCrewMembers = 0;
         int crewMemberPosition = 0;
@@ -172,14 +176,17 @@ public class NpcManager {
             }
             for (int i = 0; i < crewMembers.size(); i++) {
                 if (crewMembers.get(i).getCell() == cell) {
-                    numImpostors++;
+                    numCrewMembers++;
                     crewMemberPosition = i;
                 }
             }
             if (numImpostors == 1 && numCrewMembers == 1) {
                 crewMembers.remove(crewMemberPosition);
+                crewMembers.get(crewMemberPosition).stopThread();
+                return crewMembers.get(crewMemberPosition);
             }
         }
+        return null;
     }
 
     public boolean eliminateUserPlayer(Character character, Impostor impostor) {
@@ -196,20 +203,41 @@ public class NpcManager {
             return false;
         }
     }
-/*
-    public int[] getCrewMemberIntervals() {
-        int[] intervals = new int[crewMembers.size()];
+
+    public void setCrewMembersManager(LinkedList<CrewMember> crewMembers) {
         for (int i = 0; i < crewMembers.size(); i++) {
-            intervals[i] = crewMembers.get(i).randomInterval();
+            crewMembers.get(i).setNpcManager(this);
         }
-        return intervals;
     }
 
-    public int[] getImpostorsIntervals() {
-        int[] intervals = new int[impostors.size()];
+    public void setImpostorsManager(LinkedList<Impostor> impostors) {
         for (int i = 0; i < impostors.size(); i++) {
-            intervals[i] = impostors.get(i).randomInterval();
+            impostors.get(i).setNpcManager(this);
         }
-        return intervals;
-    }*/
+    }
+
+    public void crewMemberMovement(CrewMember crewMember) {
+        if (crewMember.getStartInterval() + crewMember.getInterval() == crewMember.getTime().getSeconds() && crewMember.movement()) {
+            int nextRoom = getNextCrewMemberRoom(crewMember);
+            crewMember.setPreviousRoom(nextRoom);
+            int[] nextCell = crewMember.getNextCoordinates(nextRoom);
+            crewMember.setCell(mapManager.getMap().getCellByCoordinates(nextCell));
+        }
+    }
+
+    public void impostorMovement(Impostor impostor, NpcManager npcManager) {
+        if (impostor.getStartInterval() + impostor.getInterval() == impostor.getTime().getSeconds() && impostor.movement()) {
+            if (npcManager.checkVentilation(impostor.getCell())) {
+                if (npcManager.flipCoin()) {
+                    int nextRoom = npcManager.chooseVentilationRoom(impostor.getCell());
+                    String roomName = impostor.getCell().getAdjacencies().get(nextRoom);
+                    impostor.setCell(mapManager.getMap().getCellByName(roomName));
+                }
+            } else {
+                int nextRoom = npcManager.getNextImpostorRoom(impostor);
+                int[] nextCell = impostor.getNextCoordinates(nextRoom);
+                impostor.setCell(mapManager.getMap().getCellByCoordinates(nextCell));
+            }
+        }
+    }
 }
