@@ -1,6 +1,7 @@
 package businessLayer.entities.character;
 
 import businessLayer.LogManager;
+import businessLayer.MapManager;
 import businessLayer.NpcManager;
 import businessLayer.entities.game.Time;
 import businessLayer.entities.maps.Cell;
@@ -8,7 +9,8 @@ import businessLayer.entities.maps.Mobility;
 import presentationLayer.views.customComponents.Log;
 
 public abstract class Character extends Thread{
-    private Time time;
+    private Time totalTime;
+    private Time intervalTime;
     private final int[] moveOptions = new int[4];
     private int randomInterval;
     private String color;
@@ -26,7 +28,8 @@ public abstract class Character extends Thread{
 
     public Character(String color) {
         this.color = color;
-        time = new Time();
+        totalTime = new Time();
+        intervalTime = new Time();
     }
 
     public int chooseRoom(int optionsCounter, int randomPosition) {
@@ -42,6 +45,7 @@ public abstract class Character extends Thread{
     }
 
     public void makeLog(Log log) {
+        System.out.println("es mouen xD");
         LogManager logManager = new LogManager(log);
     }
 
@@ -92,7 +96,7 @@ public abstract class Character extends Thread{
 
     public int getRandomPosition(int counter) {
         int min = 1;
-        return (int) (Math.random() * (counter - min + 1) + min);
+        return (int) (Math.random() * (counter - min + 1));
     }
 
     public String getColor() {
@@ -123,25 +127,29 @@ public abstract class Character extends Thread{
         actualRoom[0] = getCell().getX();
         actualRoom[1] = getCell().getY();
         switch (nextRoom) {
-            case 1:
+            case 0:
                 //cell.setX(actualRoom[0] - 1);
                 actualRoom[0] -= 1;
                 return actualRoom;
-            case 2:
+            case 1:
                 //cell.setY(actualRoom[1] + 1);
                 actualRoom[1] += 1;
                 return actualRoom;
-            case 3:
+            case 2:
                 //cell.setX(actualRoom[0] + 1);
                 actualRoom[0]+= 1;
                 return actualRoom;
-            case 4:
+            case 3:
                 //cell.setY(actualRoom[1] - 1);
                 actualRoom[1] -= 1;
                 return actualRoom;
+            default:
+                actualRoom[0] = -1;
+                actualRoom[1] = -1;
+                return actualRoom;
         }
-        return null;
     }
+
 
     public void leaveGame() {
 
@@ -173,8 +181,8 @@ public abstract class Character extends Thread{
         return 100;
     }
 
-    public Time getTime() {
-        return time;
+    public Time getTotalTime() {
+        return totalTime;
     }
 
     public int randomInterval(int maxInterval, int minInterval) {
@@ -182,4 +190,8 @@ public abstract class Character extends Thread{
     }
 
     public void setNpcManager(NpcManager npcManager){}
+
+    public Time getIntervalTime() {
+        return intervalTime;
+    }
 }

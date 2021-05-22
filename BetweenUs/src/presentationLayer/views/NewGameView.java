@@ -34,7 +34,7 @@ public class NewGameView extends JFrame {
     private String mapName = "Select File";
     private String color = "RED";
     private int impostors = 1;
-    private int players = 9;
+    private int players = 10;
     private final Font font;
 
     private final JButton jbPlay;

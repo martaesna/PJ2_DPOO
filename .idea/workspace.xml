@@ -1,69 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="Threads?">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_05_2021__21_07__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_05_2021__21_07__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021__11_57__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021__11_57__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2021__11_29__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2021__11_29__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2021__19_22__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2021__19_22__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_05_2021__16_20__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_05_2021__16_20__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2021__16_38__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2021__16_38__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2021__20_07__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2021__20_07__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2021__20_07__Default_Changelist_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2021__20_07__Default_Changelist_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_19__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_19__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_5_2021_19_13__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_5_2021_19_13__Default_Changelist_.xml" afterDir="false" />
+    <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/GameManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/MapManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/MapManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/NpcManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/NpcManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/ChargeGameViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/ChargeGameViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/CrewMember.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/CrewMember.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/Impostor.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/character/Impostor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/game/Time.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/game/Time.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/maps/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/maps/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/maps/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/entities/maps/Map.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/mapsFiles/hauntedHouse.json" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/mapsFiles/hauntedHouse.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/MapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/MapController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/NewGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/NewGameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/CorridorPaint.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/CorridorPaint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/MapPaint.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/MapPaint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/MapView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/MapView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/NewGameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/NewGameView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/RoomPaint.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/RoomPaint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/ConectorDB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/ConectorDB.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/GameManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/JsonReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/JsonReader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/MapManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/MapManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/NpcManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/NpcManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/PlayerManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/PlayerManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/UserManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/UserManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/character/Character.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/character/Character.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/character/CrewMember.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/character/CrewMember.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/character/Impostor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/character/Impostor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/game/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/json/Data.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/json/Data.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/maps/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/maps/Cell.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/maps/Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/maps/Map.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/maps/Mobility.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/maps/Mobility.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/user/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/user/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/mapsFiles/hauntedHouse.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/mapsFiles/hauntedHouse.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/persitanceLayer/GameDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/persitanceLayer/GameDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/persitanceLayer/SQLGameDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/persitanceLayer/SQLGameDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/persitanceLayer/SQLUserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/persitanceLayer/SQLUserDAO.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/ChargeGameViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/ChargeGameViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/ConfiguredGameViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/ConfiguredGameViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/DeleteGameViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/DeleteGameViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/LoginViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/LoginViewController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/MapController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/MapController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/NewGameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/NewGameController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/PlayViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/PlayViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/RegisterViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/RegisterViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/SettingViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/SettingViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/ChargeGameView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/ChargeGameView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/ConfiguredGameView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/ConfiguredGameView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/CorridorPaint.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/CorridorPaint.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/DeleteGameView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/DeleteGameView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/LoginView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/LoginView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/MapPaint.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/MapPaint.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/MapView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/MapView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/NewGameView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/NewGameView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/PlayView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/PlayView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/RegisterView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/RegisterView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/RoomPaint.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/RoomPaint.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/SettingView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/SettingView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/customComponents/RoundedBorder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/customComponents/RoundedBorder.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,19 +97,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="BetweenUs" />
@@ -386,7 +349,15 @@
     <MESSAGE value="ChargeGame" />
     <option name="LAST_COMMIT_MESSAGE" value="ChargeGame" />
   </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="businessLayer.entities.character.CrewMember" memberName="cell" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Projecte_V5$Main.ic" NAME="Main Coverage Results" MODIFIED="1621684833820" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/Buida$Main.ic" NAME="Main Coverage Results" MODIFIED="1620930931826" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

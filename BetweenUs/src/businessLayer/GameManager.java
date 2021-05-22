@@ -8,6 +8,8 @@ import businessLayer.entities.maps.Cell;
 import persitanceLayer.GameDAO;
 import persitanceLayer.SQLGameDAO;
 import businessLayer.entities.game.Game;
+import presentationLayer.controllers.NewGameController;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -64,7 +66,6 @@ public class GameManager {
             if (colors.get(starterColor).equals(userColor)) {
                 starterColor++;
             }
-            impostor.startThread();
             impostors.add(impostor);
         }
         return impostors;
@@ -78,7 +79,6 @@ public class GameManager {
             if (colors.get(starterColor).equals(userColor)) {
                 starterColor++;
             }
-            crewMember.startThread();
             crewMembers.add(crewMember);
         }
         return crewMembers;
@@ -118,6 +118,10 @@ public class GameManager {
             }
         }
         return 0;
+    }
+
+    public void startPlayers(Character character) {
+        character.startThread();
     }
 
     public Player getUserPlayer(String gameName) {

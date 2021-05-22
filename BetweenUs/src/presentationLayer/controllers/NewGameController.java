@@ -82,7 +82,7 @@ public class NewGameController implements ActionListener {
 
         if (e.getActionCommand().equals("PlayersRight")) { //cuando apretamos el boton
             int players = ngv.getPlayers();
-            if (players < 9) {
+            if (players <= 9) {
                 ngv.setPlayers(players+1);
             }
         }
@@ -113,7 +113,7 @@ public class NewGameController implements ActionListener {
                     if (userPlayer.getColor().equals("RED")) {
                         starterColor++;
                     }
-                    LinkedList<CrewMember> crewMembers = gameManager.getCrewMembers(ngv.getPlayers() - ngv.getImpostors(), ngv.getColor(), starterColor, colors, mapManager);
+                    LinkedList<CrewMember> crewMembers = gameManager.getCrewMembers(ngv.getPlayers() - ngv.getImpostors() - 1, ngv.getColor(), starterColor, colors, mapManager);
                     starterColor = getImpostorsStarterColor(gameManager.getUserColorPosition(ngv.getColor(), colors), crewMembers.size(), starterColor);
                     LinkedList<Impostor> impostors = gameManager.getImpostors(ngv.getImpostors(), ngv.getColor(), starterColor + crewMembers.size(), colors, mapManager);
 
@@ -127,6 +127,10 @@ public class NewGameController implements ActionListener {
 
                     gameManager.setInitialCell(userPlayer, players, map.getCells());
 
+                    for (Character character: players) {
+                        gameManager.startPlayers(character);
+                    }
+
                     PlayerManager playerManager = new PlayerManager(userPlayer);
                     //NpcManager npcManager = new NpcManager(crewMembers, impostors);
 
@@ -134,6 +138,7 @@ public class NewGameController implements ActionListener {
 
                     MapController mapController = new MapController(mv, mapManager, playerManager, players, ngv.getName());
                     mv.mainController(mapController);
+                    mapController.startMapThread();
                     ngv.setVisible(false);
                 }
             }

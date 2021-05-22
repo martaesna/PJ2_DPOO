@@ -15,6 +15,9 @@ public class MapPaint extends JPanel {
     private final Map map;
     private final LinkedList<Character> players;
     private final Character userPlayer;
+    private JPanel room;
+    private JPanel jpMapa;
+    private boolean userIsHere = false;
 
     public MapPaint(LayoutManager layoutManager, Map map,LinkedList<Character> players, Character userPlayer) {
         super(layoutManager);
@@ -24,7 +27,7 @@ public class MapPaint extends JPanel {
     }
 
     public JPanel creaMapa() {
-        JPanel jpMapa = new JPanel(new GridLayout(map.getWidth(),map.getHeight()));
+        jpMapa = new JPanel(new GridLayout(map.getWidth(),map.getHeight()));
 
         for (int i = 0; i < map.getHeight(); ++i) {
             for (int j = 0; j < map.getWidth(); ++j) {
@@ -52,14 +55,14 @@ public class MapPaint extends JPanel {
                         }
                         //Pintar els personatges amb contorn
                         String roomName = map.getCells().get(pos).getRoomName();
-                        JPanel room = new RoomPaint(color, roomName, colors);
 
+                        room = new RoomPaint(color, roomName, colors, checkUserPosition(userPlayer.getCell(), map.getCells().get(pos)));
                         room.setBorder(BorderFactory.createLineBorder(Color.WHITE));//pintem els borders
                         jpMapa.add(room);
                     }
 
                     if (map.getCells().get(pos).getType().equals("corridor")) {
-                        JPanel corridor = new CorridorPaint(map.getCells().get(pos).getMobility(), map.getMapName(), colors);
+                        JPanel corridor = new CorridorPaint(map.getCells().get(pos).getMobility(), map.getMapName(), colors, checkUserPosition(userPlayer.getCell(),map.getCells().get(pos)));
 
                         corridor.setBorder(BorderFactory.createLineBorder(Color.WHITE));
                         jpMapa.add(corridor);
@@ -81,5 +84,9 @@ public class MapPaint extends JPanel {
             }
         }
         return colors;
+    }
+
+    public boolean checkUserPosition(Cell userCell, Cell cell) {
+        return userCell == cell;
     }
 }

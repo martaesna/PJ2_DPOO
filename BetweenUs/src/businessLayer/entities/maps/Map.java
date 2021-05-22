@@ -20,7 +20,7 @@ public class Map {
     private String mapName;
     @SerializedName("cells")
     @Expose
-    private LinkedList<Cell> cells = null;
+    private final LinkedList<Cell> cells = null;
 
     public int getCellNumber() {
         return cellNumber;
@@ -49,7 +49,7 @@ public class Map {
     public Cell getCellByCoordinates(int[] coordinates) {
         int x = coordinates[0];
         int y = coordinates[1];
-        for (Cell cell : cells) {
+        for (Cell cell: this.cells) {
             if (cell.getX() == x && cell.getY() == y) {
                 return cell;
             }

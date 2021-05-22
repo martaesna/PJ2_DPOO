@@ -33,6 +33,7 @@ public class MapView extends JFrame {
     private final HashMap<Integer, Integer> objectiveTrackingPosition = new HashMap<Integer, Integer>();
     private final JPanel objectiveTracking;
     private JPanel jpCenter;
+    private JPanel background;
 
     public MapView(Map map, LinkedList<Character> players, Player userPlayer)/*throws IOException*/ {
         this.players = players;
@@ -47,7 +48,7 @@ public class MapView extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         //pintem el panell final
-        JPanel background = new JPanel();
+        background = new JPanel();
         //background.setBounds(0,0,1080,600);
         background.setLayout(new BorderLayout());
         background.setBackground(Color.BLACK);
@@ -120,7 +121,7 @@ public class MapView extends JFrame {
         // Pasar ho toto pel PaintComponent
        // JPanel mapa = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map);
 
-        MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map, players,userPlayer);
+        MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map, players, userPlayer);
         jpCenter = mp.creaMapa();
 
         //creamos un border layout dentro del EAST y ponemos los botones en cada lugar
@@ -402,9 +403,13 @@ public class MapView extends JFrame {
     }
 
     public void updateView(Map map, LinkedList<Character> players, Character userPlayer) {
-        jpCenter = new JPanel();
-        MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map, players,userPlayer);
+        jpCenter.removeAll();
+
+        MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map, players, userPlayer);
         jpCenter = mp.creaMapa();
+
+        background.add(jpCenter, BorderLayout.CENTER);
+
         jpCenter.revalidate();
         jpCenter.repaint();
     }

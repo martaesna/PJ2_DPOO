@@ -42,6 +42,10 @@ public class MapManager {
         return getMap().getCellByCoordinates(nextCell);
     }
 
+    public void updatePlayersMovement() {
+
+    }
+
     /*
     public LinkedList<String> getCellColors(Player userPlayer, LinkedList<Impostor> impostors, LinkedList<CrewMember> crewMembers, Cell cell) {
         LinkedList<String> colors = new LinkedList<>();

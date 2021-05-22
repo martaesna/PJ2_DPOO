@@ -12,13 +12,15 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
+import java.util.concurrent.TimeUnit;
 
 public class MapController extends Thread implements ActionListener {
-    private final MapView mv;
+    private MapView mv;
     private final MapManager mapManager;
     private final PlayerManager playerManager;
     private final String gameName;
-    private LinkedList<Character> players = new LinkedList<>();
+    private boolean isRunning;
+    private LinkedList<Character> players;
 
     public MapController(MapView mv, MapManager mapManager, PlayerManager playerManager, LinkedList<Character> players, String gameName){
         this.mapManager = mapManager;
@@ -62,7 +64,7 @@ public class MapController extends Thread implements ActionListener {
         switch (command) {
             case "left":
                 if (playerManager.checkLeft()) {
-                    int[] nextCell = playerManager.nextCell(1);
+                    int[] nextCell = playerManager.nextCell(0);
                     playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
 
                     System.out.println(playerManager.getPlayer().getCell().getX());
@@ -70,12 +72,11 @@ public class MapController extends Thread implements ActionListener {
                     System.out.println("Left");
 
                     mv.updateView(mapManager.getMap(), players, playerManager.getPlayer());
-
                 }
                 break;
             case "down":
-                if (playerManager.checkUp()) {
-                    int[] nextCell = playerManager.nextCell(2);
+                if (playerManager.checkDown()) {
+                    int[] nextCell = playerManager.nextCell(1);
                     playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
 
                     System.out.println(playerManager.getPlayer().getCell().getX());
@@ -87,7 +88,7 @@ public class MapController extends Thread implements ActionListener {
                 break;
             case "right":
                 if (playerManager.checkRight()) {
-                    int[] nextCell = playerManager.nextCell(3);
+                    int[] nextCell = playerManager.nextCell(2);
                     playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
 
                     System.out.println(playerManager.getPlayer().getCell().getX());
@@ -98,8 +99,8 @@ public class MapController extends Thread implements ActionListener {
                 }
                 break;
             case "up":
-                if (playerManager.checkDown()) {
-                    int[] nextCell = playerManager.nextCell(4);
+                if (playerManager.checkUp()) {
+                    int[] nextCell = playerManager.nextCell(3);
                     playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
 
                     System.out.println(playerManager.getPlayer().getCell().getX());
@@ -128,14 +129,28 @@ public class MapController extends Thread implements ActionListener {
                         break;
                 }
         }
+    }
 
+    public void startMapThread() {
+        isRunning = true;
+        this.start();
+    }
 
+    public void stopMapThread() {
+        isRunning = false;
+        this.interrupt();
     }
 
     @Override
     public void run() {
-
-
+        while(isRunning) {
+            try {
+                TimeUnit.SECONDS.sleep(1);
+                mv.updateView(mapManager.getMap(), players, playerManager.getPlayer());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
 

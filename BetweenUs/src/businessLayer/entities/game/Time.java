@@ -19,6 +19,10 @@ public class Time {
         timer.schedule(new Counter(), 0, 1000);
     }
 
+    public void resetCounter() {
+        seconds = 0;
+    }
+
     public void stopCounter() {
         timer.cancel();
     }

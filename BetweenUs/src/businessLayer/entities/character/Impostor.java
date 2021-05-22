@@ -1,17 +1,19 @@
 package businessLayer.entities.character;
 
 import businessLayer.MapManager;
-import businessLayer.NpcManager;
 import businessLayer.entities.game.Time;
 import businessLayer.entities.maps.Cell;
 import businessLayer.entities.maps.Mobility;
 import presentationLayer.views.customComponents.Log;
+
+import java.util.concurrent.TimeUnit;
 
 public class Impostor extends Character{
     private static final int minInterval = 6;
     private static final int maxInterval = 8;
     private int startInterval;
     private MapManager mapManager;
+    private Time killCooldown;
 
     public Impostor(String color, int xCoordinate, int yCoordinate) {
         super(color, xCoordinate, yCoordinate);
@@ -59,34 +61,59 @@ public class Impostor extends Character{
         return (int) (Math.random() * (2) + 1) == 1;
     }
 
-    public void impostorMovement(Impostor impostor) {
-        if (impostor.getStartInterval() + impostor.getInterval() == impostor.getTime().getSeconds() && impostor.movement()) {
-            if (checkVentilation(impostor.getCell())) {
-                if (flipCoin()) {
+    public Cell getCellByCoordinates(int[] coordinates) {
+        int x = coordinates[0];
+        int y = coordinates[1];
+        for (Cell cell: mapManager.getMap().getCells()) {
+            if (cell.getX() == x && cell.getY() == y) {
+                return cell;
+            }
+        }
+        return null;
+    }
+
+    public void impostorMovement(Impostor impostor) throws InterruptedException {
+        System.out.println("impostor: " + impostor.getColor());
+        TimeUnit.MILLISECONDS.sleep(50);
+        if (startInterval == getIntervalTime().getSeconds()) {
+            if (impostor.movement()) {
+                if (checkVentilation(impostor.getCell()) && flipCoin()) {
                     int nextRoom = chooseVentilationRoom(impostor.getCell());
                     String roomName = impostor.getCell().getAdjacencies().get(nextRoom);
                     impostor.setCell(mapManager.getMap().getCellByName(roomName));
-                    Log log = new Log(impostor.getColor(), impostor.getCell().getRoomName(), getTime().getSeconds());
-                    makeLog(log);
+                    //Log log = new Log(impostor.getColor(), impostor.getCell().getRoomName(), getTotalTime().getSeconds());
+                    //makeLog(log);
+                } else {
+                    int nextRoom = getNextImpostorRoom(impostor);
+                    int[] nextCell = impostor.getNextCoordinates(nextRoom);
+                    impostor.setCell(getCellByCoordinates(nextCell));
+
+                  /*  if (impostor.getCell().getType().equals("room") && !impostor.getCell().getRoomName().equals("cafeteria")) {
+                        Log log = new Log(impostor.getColor(), impostor.getCell().getRoomName(), getTotalTime().getSeconds());
+                        //makeLog(log);
+                    }*/
                 }
             } else {
-                int nextRoom = getNextImpostorRoom(impostor);
-                int[] nextCell = impostor.getNextCoordinates(nextRoom);
-                impostor.setCell(mapManager.getMap().getCellByCoordinates(nextCell));
-                if (impostor.getCell().getType().equals("room") && !impostor.getCell().getRoomName().equals("cafeteria")) {
-                    Log log = new Log(impostor.getColor(), impostor.getCell().getRoomName(), getTime().getSeconds());
-                    makeLog(log);
-                }
+                System.out.println("");
             }
+            System.out.println("no es mou");
+            startInterval = getInterval();
+            getIntervalTime().resetCounter();
         }
     }
 
     @Override
     public void run() {
-        getTime().initCounter();
+        System.out.println("comencem");
+        getTotalTime().initCounter();
+        getIntervalTime().initCounter();
+        startInterval = getInterval();
         while (isRunning()) {
-            startInterval = getTime().getSeconds();
-            impostorMovement(this);
+            try {
+                impostorMovement(this);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
