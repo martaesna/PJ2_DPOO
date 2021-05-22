@@ -5,13 +5,13 @@
 	"mapName": "hauntedHouse",
 	"cells": [
 		{ "x": 0, "y": 0, "type": "room", "roomName" : "coffins", "mobility": {
-			"left": 0, "up": 0, "right": 1, "down": 1 }, "color": "GREEN", "adjacencies": ["livingRoom"] },
+			"left": 0, "up": 0, "right": 1, "down": 1 }, "color": "GREEN", "adjacencies": ["cafeteria"] },
 		{ "x": 1, "y": 0, "type": "corridor", "roomName" : "corridor", "mobility": {
 			"left": 1, "up": 0, "right": 1, "down": 1 }, "color": "black", "adjacencies": [""]  },
 		{ "x": 2, "y": 0, "type": "corridor", "roomName" : "corridor", "mobility": {
 			"left": 1, "up": 0, "right": 1, "down": 0 }, "color": "black", "adjacencies": [""]  },
 		{ "x": 3, "y": 0, "type": "room", "roomName" : "security", "mobility": {
-			"left": 0, "up": 0, "right": 1, "down": 0 }, "color": "BLUE", "adjacencies": ["livingRoom"] },
+			"left": 0, "up": 0, "right": 1, "down": 0 }, "color": "BLUE", "adjacencies": ["cafeteria"] },
 		{ "x": 0, "y": 1, "type": "corridor", "roomName" : "corridor", "mobility": {
 			"left": 0, "up": 1, "right": 1, "down": 1 }, "color": "black", "adjacencies": [""]  },
 		{ "x": 1, "y": 1, "type": "room", "roomName" : "cafeteria", "mobility": {
@@ -25,7 +25,7 @@
 		{ "x": 1, "y": 2, "type": "corridor", "roomName" : "corridor", "mobility": {
 			"left": 1, "up": 1, "right": 1, "down": 0 }, "color": "black", "adjacencies": [""]  },
 		{ "x": 2, "y": 2, "type": "room", "roomName" : "kitchen", "mobility": {
-			"left": 1, "up": 1, "right": 1, "down": 0 }, "color": "RED", "adjacencies": ["livingRoom", "chemistry", "ritual"]  },
+			"left": 1, "up": 1, "right": 1, "down": 0 }, "color": "RED", "adjacencies": ["cafeteria", "chemistry", "ritual"]  },
 		{ "x": 3, "y": 2, "type": "corridor", "roomName" : "corridor", "mobility": {
 			"left": 1, "up": 1, "right": 0, "down": 1 }, "color": "black", "adjacencies": [""]  },
 		{ "x": 0, "y": 3, "type": "room", "roomName" : "chemistry", "mobility": {
