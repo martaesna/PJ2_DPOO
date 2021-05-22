@@ -32,11 +32,13 @@ public class MapView extends JFrame {
     private final HashMap<String, JButton> objectiveTrackingButtons = new HashMap<String, JButton>();
     private final HashMap<Integer, Integer> objectiveTrackingPosition = new HashMap<Integer, Integer>();
     private final JPanel objectiveTracking;
+    private JPanel jpCenter;
 
     public MapView(Map map, LinkedList<Character> players, Player userPlayer)/*throws IOException*/ {
         this.players = players;
         this.userPlayer = userPlayer;
         this.map = map;
+        jpCenter = new JPanel();
         int numPlayers = players.size();
 
         setTitle("Map");
@@ -108,8 +110,6 @@ public class MapView extends JFrame {
         }
 
         background.add(JpNorth, BorderLayout.NORTH);
-
-        JPanel jpCenter;
 /*
         for(int i = 0; i< crewMembers.size();i++){
             System.out.println(i);
@@ -119,11 +119,9 @@ public class MapView extends JFrame {
 
         // Pasar ho toto pel PaintComponent
        // JPanel mapa = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map);
+
         MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map, players,userPlayer);
         jpCenter = mp.creaMapa();
-
-
-
 
         //creamos un border layout dentro del EAST y ponemos los botones en cada lugar
         //background.add(control,BorderLayout.EAST); //aqui hemos de poner los botones
@@ -374,16 +372,6 @@ public class MapView extends JFrame {
         for (String key: objectiveTrackingButtons.keySet()) {
             objectiveTrackingButtons.get(key).addActionListener(actionListener);
         }
-
-    }
-
-    public void moveNpcPlayer(int i, int[] nextCell, boolean impostor) {
-        if (impostor) {
-            //Movem Impostor i a nextCell
-
-        } else {
-            //Movem Crew Member i a nextCell
-        }
     }
 
     public int confirmSave(){
@@ -411,6 +399,14 @@ public class MapView extends JFrame {
                 components[2] = 50;
                 return components;
         }
+    }
+
+    public void updateView(Map map, LinkedList<Character> players, Character userPlayer) {
+        jpCenter = new JPanel();
+        MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map, players,userPlayer);
+        jpCenter = mp.creaMapa();
+        jpCenter.revalidate();
+        jpCenter.repaint();
     }
 }
 

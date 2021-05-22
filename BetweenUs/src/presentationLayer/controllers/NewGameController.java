@@ -6,6 +6,7 @@ import businessLayer.entities.character.CrewMember;
 import businessLayer.entities.character.Impostor;
 import businessLayer.entities.character.Player;
 import businessLayer.entities.game.Game;
+import businessLayer.entities.maps.Cell;
 import businessLayer.entities.maps.Map;
 import presentationLayer.views.*;
 import javax.swing.*;
@@ -109,6 +110,9 @@ public class NewGameController implements ActionListener {
                     MapManager mapManager = new MapManager(map);
 
                     Player userPlayer = new Player(ngv.getColor());
+                    if (userPlayer.getColor().equals("RED")) {
+                        starterColor++;
+                    }
                     LinkedList<CrewMember> crewMembers = gameManager.getCrewMembers(ngv.getPlayers() - ngv.getImpostors(), ngv.getColor(), starterColor, colors, mapManager);
                     starterColor = getImpostorsStarterColor(gameManager.getUserColorPosition(ngv.getColor(), colors), crewMembers.size(), starterColor);
                     LinkedList<Impostor> impostors = gameManager.getImpostors(ngv.getImpostors(), ngv.getColor(), starterColor + crewMembers.size(), colors, mapManager);
@@ -118,15 +122,17 @@ public class NewGameController implements ActionListener {
                     players.addAll(impostors);
                     Collections.shuffle(players);
 
+                    Cell initialCell = gameManager.getCoffeShopCell(map.getCells());
+                    userPlayer.setCell(initialCell);
 
                     gameManager.setInitialCell(userPlayer, players, map.getCells());
 
                     PlayerManager playerManager = new PlayerManager(userPlayer);
-                    NpcManager npcManager = new NpcManager(crewMembers, impostors);
+                    //NpcManager npcManager = new NpcManager(crewMembers, impostors);
 
                     MapView mv = new MapView(map, players, userPlayer);
 
-                    MapController mapController = new MapController(mv, mapManager, playerManager, npcManager, ngv.getName());
+                    MapController mapController = new MapController(mv, mapManager, playerManager, players, ngv.getName());
                     mv.mainController(mapController);
                     ngv.setVisible(false);
                 }

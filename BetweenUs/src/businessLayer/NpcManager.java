@@ -8,14 +8,14 @@ import businessLayer.entities.maps.Cell;
 import java.util.LinkedList;
 
 public class NpcManager {
-    private final LinkedList<CrewMember> crewMembers;
-    private final LinkedList<Impostor> impostors;
+    private final LinkedList<Character> players;
 
-    public NpcManager(LinkedList<CrewMember> crewMembers, LinkedList<Impostor> impostors) {
-        this.crewMembers = crewMembers;
-        this.impostors = impostors;
+    public NpcManager(LinkedList<Character> players) {
+        this.players = players;
     }
 
+
+/*
     public LinkedList<CrewMember> getCrewMembers() {
         return crewMembers;
     }
@@ -59,5 +59,5 @@ public class NpcManager {
 
     public boolean eliminateUserPlayer(Character character, Impostor impostor) {
         return impostor.getCell() == character.getCell() && impostor.getCell().getNumPlayers() == 2;
-    }
+    }*/
 }
