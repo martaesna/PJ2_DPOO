@@ -47,12 +47,12 @@ public class ChargeGameViewController implements ActionListener {
 
                 PlayerManager playerManager = new PlayerManager(userPlayer);
                 MapManager mapManager = new MapManager(map);
-                NpcManager npcManager = new NpcManager(crewMembers, impostors);
+                //NpcManager npcManager = new NpcManager(crewMembers, impostors);
 
 
                 MapView mv = new MapView(map, players, userPlayer);
 
-                MapController mapController = new MapController(mv, mapManager, playerManager, npcManager, cgv.getChargeName());
+                MapController mapController = new MapController(mv, mapManager, playerManager, players, cgv.getChargeName());
                 mv.mainController(mapController);
 
             } else {

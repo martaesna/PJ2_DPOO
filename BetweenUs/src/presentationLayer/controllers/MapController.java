@@ -4,6 +4,7 @@ import businessLayer.GameManager;
 import businessLayer.MapManager;
 import businessLayer.NpcManager;
 import businessLayer.PlayerManager;
+import businessLayer.entities.character.Character;
 import businessLayer.entities.character.CrewMember;
 import businessLayer.entities.maps.*;
 import presentationLayer.views.MapView;
@@ -15,13 +16,13 @@ import java.util.LinkedList;
 public class MapController extends Thread implements ActionListener {
     private final MapView mv;
     private final MapManager mapManager;
-    private final NpcManager npcManager;
     private final PlayerManager playerManager;
     private final String gameName;
+    private LinkedList<Character> players = new LinkedList<>();
 
-    public MapController(MapView mv, MapManager mapManager, PlayerManager playerManager, NpcManager npcManager, String gameName){
+    public MapController(MapView mv, MapManager mapManager, PlayerManager playerManager, LinkedList<Character> players, String gameName){
         this.mapManager = mapManager;
-        this.npcManager = npcManager;
+        this.players = players;
         this.playerManager = playerManager;
         this.mv = mv;
         this.gameName = gameName;
@@ -63,33 +64,54 @@ public class MapController extends Thread implements ActionListener {
                 if (playerManager.checkLeft()) {
                     int[] nextCell = playerManager.nextCell(1);
                     playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
-                    //MOURE PLAYER ESQUERRA
+
+                    System.out.println(playerManager.getPlayer().getCell().getX());
+                    System.out.println(playerManager.getPlayer().getCell().getY());
+                    System.out.println("Left");
+
+                    mv.updateView(mapManager.getMap(), players, playerManager.getPlayer());
+
                 }
                 break;
-            case "up":
+            case "down":
                 if (playerManager.checkUp()) {
                     int[] nextCell = playerManager.nextCell(2);
                     playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
-                    //MOURE PLAYER AMUNT
+
+                    System.out.println(playerManager.getPlayer().getCell().getX());
+                    System.out.println(playerManager.getPlayer().getCell().getY());
+                    System.out.println("down");
+
+                    mv.updateView(mapManager.getMap(), players, playerManager.getPlayer());
                 }
                 break;
             case "right":
                 if (playerManager.checkRight()) {
                     int[] nextCell = playerManager.nextCell(3);
                     playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
-                    //MOURE PLAYER DRETA
+
+                    System.out.println(playerManager.getPlayer().getCell().getX());
+                    System.out.println(playerManager.getPlayer().getCell().getY());
+                    System.out.println("Right");
+
+                    mv.updateView(mapManager.getMap(), players, playerManager.getPlayer());
                 }
                 break;
-            case "down":
+            case "up":
                 if (playerManager.checkDown()) {
                     int[] nextCell = playerManager.nextCell(4);
                     playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
-                    //MOURE PLAYER A BAIX
+
+                    System.out.println(playerManager.getPlayer().getCell().getX());
+                    System.out.println(playerManager.getPlayer().getCell().getY());
+                    System.out.println("up");
+
+                    mv.updateView(mapManager.getMap(), players, playerManager.getPlayer());
                 }
                 break;
             case "return":
                 if (JOptionPane.OK_OPTION == mv.confirmSave()) {
-                    gameManager.saveGame(playerManager.getPlayer(), npcManager.getImpostors(), npcManager.getCrewMembers(), gameName);
+                    //gameManager.saveGame(playerManager.getPlayer(), npcManager.getImpostors(), npcManager.getCrewMembers(), gameName);
                 }
                 //DECIDIR A QUINA VISTA ANIREM
                 break;
@@ -108,24 +130,6 @@ public class MapController extends Thread implements ActionListener {
         }
 
 
-    }
-/*
-    public void prntaCelaMap(){
-
-        for (fkmkrdf)
-            colors = metodeObteCOlorsCELAx
-            VISTA.printa rodones
-
-    }*/
-
-    public LinkedList<String> getCellColors(LinkedList<CrewMember> crewMembers, Cell cell) {
-        LinkedList<String> colors = new LinkedList<>();
-        for (CrewMember crewMember: crewMembers) {
-            if (cell == crewMember.getCell()) {
-                colors.add(crewMember.getColor());
-            }
-        }
-        return colors;
     }
 
     @Override

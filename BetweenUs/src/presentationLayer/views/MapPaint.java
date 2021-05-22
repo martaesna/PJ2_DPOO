@@ -1,6 +1,10 @@
 package presentationLayer.views;
 
 import businessLayer.entities.character.Character;
+import businessLayer.entities.character.CrewMember;
+import businessLayer.entities.character.Impostor;
+import businessLayer.entities.character.Player;
+import businessLayer.entities.maps.Cell;
 import businessLayer.entities.maps.Map;
 import java.awt.*;
 import java.util.LinkedList;
@@ -28,7 +32,8 @@ public class MapPaint extends JPanel {
                 //Aqui printem cada part del mapa corresponent amb la posicio de les celles.
                 //primer determinar quin tipus de cella es recorren tots les celles per mirar si esta la corresponent
                 for (int m = 0; m < map.getCells().size(); m++) {
-                    if (map.getCells().get(m).getX() == j && map.getCells().get(m).getY() == i) pos = m;
+                    if (map.getCells().get(m).getX() == j && map.getCells().get(m).getY() == i)
+                        pos = m;
                 }
                 if (pos == -1) {
                     JPanel empty = new JPanel();
@@ -36,6 +41,8 @@ public class MapPaint extends JPanel {
                     empty.setBorder(BorderFactory.createLineBorder(Color.WHITE));
                     jpMapa.add(empty);
                 } else {
+                    LinkedList<String> colors = getCellColors(userPlayer, players, map.getCells().get(pos));
+
                     if (map.getCells().get(pos).getType().equals("room")) {
                         try {
                              color = (Color) Color.class.getField(map.getCells().get(pos).getColor()).get(null);
@@ -45,13 +52,15 @@ public class MapPaint extends JPanel {
                         }
                         //Pintar els personatges amb contorn
                         String roomName = map.getCells().get(pos).getRoomName();
-                        JPanel room = new RoomPaint(color, roomName, players,userPlayer);
+                        JPanel room = new RoomPaint(color, roomName, colors);
+
                         room.setBorder(BorderFactory.createLineBorder(Color.WHITE));//pintem els borders
                         jpMapa.add(room);
                     }
 
                     if (map.getCells().get(pos).getType().equals("corridor")) {
-                        JPanel corridor = new CorridorPaint(map.getCells().get(pos).getMobility(), map.getMapName());
+                        JPanel corridor = new CorridorPaint(map.getCells().get(pos).getMobility(), map.getMapName(), colors);
+
                         corridor.setBorder(BorderFactory.createLineBorder(Color.WHITE));
                         jpMapa.add(corridor);
                     }
@@ -59,5 +68,18 @@ public class MapPaint extends JPanel {
             }
         }
         return jpMapa;
+    }
+
+    public LinkedList<String> getCellColors(Character userPlayer, LinkedList<Character> characters, Cell cell) {
+        LinkedList<String> colors = new LinkedList<>();
+        if (userPlayer.getCell() == cell) {
+            colors.add(userPlayer.getColor());
+        }
+        for (Character character: characters) {
+            if (cell == character.getCell()) {
+                colors.add(character.getColor());
+            }
+        }
+        return colors;
     }
 }
