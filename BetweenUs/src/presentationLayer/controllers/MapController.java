@@ -4,26 +4,20 @@ import businessLayer.GameManager;
 import businessLayer.MapManager;
 import businessLayer.NpcManager;
 import businessLayer.PlayerManager;
-import businessLayer.entities.character.Character;
 import businessLayer.entities.character.CrewMember;
-import businessLayer.entities.character.Impostor;
-import businessLayer.entities.game.Time;
 import businessLayer.entities.maps.*;
 import presentationLayer.views.MapView;
-
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
 public class MapController extends Thread implements ActionListener {
-
-    private MapView mv;
-    private MapManager mapManager;
-    private NpcManager npcManager;
-    private PlayerManager playerManager;
-    private String gameName;
+    private final MapView mv;
+    private final MapManager mapManager;
+    private final NpcManager npcManager;
+    private final PlayerManager playerManager;
+    private final String gameName;
 
     public MapController(MapView mv, MapManager mapManager, PlayerManager playerManager, NpcManager npcManager, String gameName){
         this.mapManager = mapManager;
@@ -126,9 +120,9 @@ public class MapController extends Thread implements ActionListener {
 
     public LinkedList<String> getCellColors(LinkedList<CrewMember> crewMembers, Cell cell) {
         LinkedList<String> colors = new LinkedList<>();
-        for (int i = 0; i < crewMembers.size(); i++) {
-            if (cell == crewMembers.get(i).getCell()) {
-                colors.add(crewMembers.get(i).getColor());
+        for (CrewMember crewMember: crewMembers) {
+            if (cell == crewMember.getCell()) {
+                colors.add(crewMember.getColor());
             }
         }
         return colors;

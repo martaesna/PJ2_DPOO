@@ -37,7 +37,7 @@ public class UserManager {
             return 1;
         } else if (unequalPasswords(user)) {
             return 2;
-        } else if(checkPasswordFormat(user) != "") {
+        } else if(!checkPasswordFormat(user).equals("")) {
             return 3;
         } else if (!checkMailFormat(user.getMail())) {
             return 4;
@@ -95,14 +95,13 @@ public class UserManager {
         if (!lowerCaseFlag) {
             error = true;
             errorMsg[index] = "ERROR: La contrasenya ha de tenir alguna minúscula\n";
-            index++;
         }
 
         String finalError = "";
         if (error) {
-            for (int i = 0; i < errorMsg.length; i++) {     //Printem tots els errors trobats
-                if (errorMsg[i] != null) {
-                    finalError = finalError.concat(errorMsg[i]);
+            for (String s: errorMsg) {     //Printem tots els errors trobats
+                if (s != null) {
+                    finalError = finalError.concat(s);
                 }
             }
         }
@@ -111,9 +110,6 @@ public class UserManager {
 
     //Comprovem si la confirmació de la contrasenya és correcte
     public boolean unequalPasswords(User user){
-        if (user.getConfirmedPassword().equals(user.getPassword())) {
-            return false;
-        }
-        return true;
+        return !user.getConfirmedPassword().equals(user.getPassword());
     }
 }

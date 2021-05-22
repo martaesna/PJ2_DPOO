@@ -6,7 +6,7 @@ import java.util.LinkedList;
 public class LogTableModel extends AbstractTableModel {
 
     private final String[] header = {"CREWMATE", "ROOM", "INSTANT"};
-    private LinkedList<Log> data;
+    private final LinkedList<Log> data;
 
     public LogTableModel(LinkedList<Log> data) {
         this.data = data;

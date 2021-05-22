@@ -2,9 +2,9 @@ package businessLayer.entities.game;
 
 public class Game {
     private String gameName;
-    private int players;
-    private int impostors;
-    private String playerColor;
+    private final int players;
+    private final int impostors;
+    private final String playerColor;
     private String map;
     private String creator;
 
@@ -29,24 +29,12 @@ public class Game {
         return players;
     }
 
-    public void setPlayers(int players) {
-        this.players = players;
-    }
-
     public int getImpostors() {
         return impostors;
     }
 
-    public void setImpostors(int impostors) {
-        this.impostors = impostors;
-    }
-
     public String getPlayerColor() {
         return playerColor;
-    }
-
-    public void setPlayerColor(String  playerColor) {
-        this.playerColor = playerColor;
     }
 
     public String getMap() {

@@ -1,68 +1,46 @@
 package presentationLayer.views;
+
 import businessLayer.entities.character.Character;
-import businessLayer.entities.character.CrewMember;
-import businessLayer.entities.character.Impostor;
 import businessLayer.entities.character.Player;
 import businessLayer.entities.maps.*;
-import businessLayer.entities.game.Time;
 import presentationLayer.controllers.MapController;
-import presentationLayer.controllers.NewGameController;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Objects;
 
-
 public class MapView extends JFrame {
-
     private JButton returnButton;
     private JButton configButton;
     private JButton mapButton;
-    private JButton up;
-    private JButton down;
-    private JButton right;
-    private JButton left;
-    private Object[][] data;
-    private Time time;
-    private LinkedList<CrewMember> crewMembers;
-    private LinkedList<Impostor> impostors;
-    private Character userPlayer;
-    private Map map;
+    private final JButton up;
+    private final JButton down;
+    private final JButton right;
+    private final JButton left;
+    private final LinkedList<Character> players;
+    private final Character userPlayer;
+    private final Map map;
     private ImageIcon leftArrow;
     private ImageIcon rightArrow;
-    private HashMap<String, JButton> objectiveTrackingButtons = new HashMap<String, JButton>();
-    private HashMap<Integer, Integer> objectiveTrackingPosition = new HashMap<Integer, Integer>();
-    private JPanel objectiveTracking;
-    private int numJugadors;
-    private LinkedList<Character> players = new LinkedList<>();
-    private Color newColor;
-    private NewGameController ngc;
+    private final HashMap<String, JButton> objectiveTrackingButtons = new HashMap<String, JButton>();
+    private final HashMap<Integer, Integer> objectiveTrackingPosition = new HashMap<Integer, Integer>();
+    private final JPanel objectiveTracking;
 
-    public MapView(Map map, LinkedList<CrewMember> crewMembers, LinkedList<Impostor> impostors, Player userPlayer)/*throws IOException*/ {
-        this.crewMembers = crewMembers;
-        this.impostors = impostors;
+    public MapView(Map map, LinkedList<Character> players, Player userPlayer)/*throws IOException*/ {
+        this.players = players;
         this.userPlayer = userPlayer;
         this.map = map;
-
-        players.addAll(crewMembers);
-        players.addAll(impostors);
-
-        Collections.shuffle(players);
-
-        numJugadors = players.size();
+        int numPlayers = players.size();
 
         setTitle("Map");
         setSize(1080, 600);//600
-
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -132,16 +110,16 @@ public class MapView extends JFrame {
         background.add(JpNorth, BorderLayout.NORTH);
 
         JPanel jpCenter;
-
+/*
         for(int i = 0; i< crewMembers.size();i++){
             System.out.println(i);
             System.out.println(crewMembers.get(i).getColor());
             System.out.println("");
-        }
+        }*/
 
         // Pasar ho toto pel PaintComponent
        // JPanel mapa = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map);
-        MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map,crewMembers,impostors,userPlayer);
+        MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map, players,userPlayer);
         jpCenter = mp.creaMapa();
 
 
@@ -214,9 +192,8 @@ public class MapView extends JFrame {
 
         objectiveTracking = new JPanel();
         Color headerBackground = new Color(160,160,160);
-        objectiveTracking.setLayout(new GridLayout(numJugadors + 1,3));
+        objectiveTracking.setLayout(new GridLayout(numPlayers + 1,3));
         objectiveTracking.setBackground(headerBackground);
-        newColor = new Color(102,0,153);
 
 
         JLabel headerUnknown = new JLabel("Unknown", JLabel.CENTER);
@@ -241,7 +218,7 @@ public class MapView extends JFrame {
         objectiveTracking.add(headerInn);
 
 
-        for (int i = 0; i < numJugadors; i++) {
+        for (int i = 0; i < numPlayers; i++) {
 
             Color playerColor = getUserColor(players.get(i).getColor());
             JPanel playerPanel = createPanel(players.get(i).getColor(), playerColor, i, objectiveTrackingButtons);
@@ -415,28 +392,24 @@ public class MapView extends JFrame {
 
     public int[] getColorComponents(String color) {
         int[] components = new int[3];
-        if (color.equals("PURPLE")) {
-            components[0] = 102;
-            components[1] = 0;
-            components[2] = 153;
-            return components;
-
-        } else if(color.equals("BROWN")) {
-            components[0] = 102;
-            components[1] = 51;
-            components[2] = 0;
-            return components;
-
-        } else if(color.equals("CYAN")) {
-            components[0] = 0;
-            components[1] = 255;
-            components[2] = 255;
-            return components;
-        } else {
-            components[0] = 50;
-            components[1] = 205;
-            components[2] = 50;
-            return components;
+        switch (color) {
+            case "PURPLE":
+                components[0] = 102;
+                components[2] = 153;
+                return components;
+            case "BROWN":
+                components[0] = 102;
+                components[1] = 51;
+                return components;
+            case "CYAN":
+                components[1] = 255;
+                components[2] = 255;
+                return components;
+            default:
+                components[0] = 50;
+                components[1] = 205;
+                components[2] = 50;
+                return components;
         }
     }
 }

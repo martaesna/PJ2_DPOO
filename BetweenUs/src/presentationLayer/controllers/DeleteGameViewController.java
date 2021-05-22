@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class DeleteGameViewController implements ActionListener {
-    private DeleteGameView dgv;
+    private final DeleteGameView dgv;
 
     public DeleteGameViewController(DeleteGameView dgv) {
         this.dgv = dgv;

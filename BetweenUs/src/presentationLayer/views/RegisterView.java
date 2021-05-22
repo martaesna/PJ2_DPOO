@@ -1,4 +1,5 @@
 package presentationLayer.views;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -10,12 +11,12 @@ import java.util.Objects;
 public class RegisterView extends JFrame {
 
     private JLabel background;
-    private JButton jbRegister;
-    private JButton jbLogin;
-    private JTextField nameField;
-    private JTextField emailField;
-    private JPasswordField passwordField;
-    private JPasswordField repeatPasswordField;
+    private final JButton jbRegister;
+    private final JButton jbLogin;
+    private final JTextField nameField;
+    private final JTextField emailField;
+    private final JPasswordField passwordField;
+    private final JPasswordField repeatPasswordField;
 
     public RegisterView() {
         setVisible(true);
@@ -113,8 +114,6 @@ public class RegisterView extends JFrame {
         jbLogin.setBounds(160,475,80,35);
         jpVista.add(jbLogin);
 
-
-
         setContentPane(background);
         getContentPane().add(jpVista);
     }
@@ -131,9 +130,6 @@ public class RegisterView extends JFrame {
 
     public void printRegisterErrors(int numError, String passwordError) {
         switch (numError) {
-            case 0:
-
-                break;
             case 1:
                 JOptionPane.showMessageDialog(null, "ERROR: El nom d'usuari ja existeix", "Error Registre", JOptionPane.ERROR_MESSAGE);
                 break;

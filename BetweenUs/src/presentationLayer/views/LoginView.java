@@ -10,10 +10,10 @@ import java.util.Objects;
 
 public class LoginView extends JFrame {
     private JLabel background;
-    private JButton jbRegister;
-    private JButton jbLogin;
-    private JTextField nameField;
-    private JPasswordField passwordField;
+    private final JButton jbRegister;
+    private final JButton jbLogin;
+    private final JTextField nameField;
+    private final JPasswordField passwordField;
 
 
 

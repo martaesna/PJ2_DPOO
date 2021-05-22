@@ -14,11 +14,11 @@ import presentationLayer.views.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collections;
 import java.util.LinkedList;
 
 public class ChargeGameViewController implements ActionListener {
-    private ChargeGameView cgv;
-    private String gameName;
+    private final ChargeGameView cgv;
 
     public ChargeGameViewController(ChargeGameView cgv) {
         this.cgv = cgv;
@@ -40,11 +40,17 @@ public class ChargeGameViewController implements ActionListener {
                 impostors = setCellsImpostors(impostors, map);
                 crewMembers = setCellsCrewMembers(crewMembers, map);
 
+                LinkedList<Character> players = new LinkedList<>();
+                players.addAll(crewMembers);
+                players.addAll(impostors);
+                Collections.shuffle(players);
+
                 PlayerManager playerManager = new PlayerManager(userPlayer);
                 MapManager mapManager = new MapManager(map);
-                NpcManager npcManager = new NpcManager(crewMembers, impostors, mapManager);
+                NpcManager npcManager = new NpcManager(crewMembers, impostors);
 
-                MapView mv = new MapView(map, crewMembers, impostors, userPlayer);
+
+                MapView mv = new MapView(map, players, userPlayer);
 
                 MapController mapController = new MapController(mv, mapManager, playerManager, npcManager, cgv.getChargeName());
                 mv.mainController(mapController);
@@ -68,21 +74,21 @@ public class ChargeGameViewController implements ActionListener {
     }
 
     public LinkedList<CrewMember> setCellsCrewMembers(LinkedList<CrewMember> crewMembers, Map map) {
-        for (int i = 0; i < crewMembers.size(); i++) {
+        for (CrewMember crewMember: crewMembers) {
             int[] coordinates = new int[2];
-            coordinates[0] = crewMembers.get(i).getxCoordinate();
-            coordinates[1] = crewMembers.get(i).getyCoordinate();
-            crewMembers.get(i).setCell(map.getCellByCoordinates(coordinates));
+            coordinates[0] = crewMember.getxCoordinate();
+            coordinates[1] = crewMember.getyCoordinate();
+            crewMember.setCell(map.getCellByCoordinates(coordinates));
         }
         return crewMembers;
     }
 
     public LinkedList<Impostor> setCellsImpostors(LinkedList<Impostor> impostors, Map map) {
-        for (int i = 0; i < impostors.size(); i++) {
+        for (Impostor impostor: impostors) {
             int[] coordinates = new int[2];
-            coordinates[0] = impostors.get(i).getxCoordinate();
-            coordinates[1] = impostors.get(i).getyCoordinate();
-            impostors.get(i).setCell(map.getCellByCoordinates(coordinates));
+            coordinates[0] = impostor.getxCoordinate();
+            coordinates[1] = impostor.getyCoordinate();
+            impostor.setCell(map.getCellByCoordinates(coordinates));
         }
         return impostors;
     }

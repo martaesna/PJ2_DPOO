@@ -11,9 +11,8 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class ChargeGameView extends JFrame {
-
-    private JButton jbCharge;
-    private JTextField gameName;
+    private final JButton jbCharge;
+    private final JTextField gameName;
     private JButton returnButton;
     private JButton configButton;
 
@@ -31,7 +30,6 @@ public class ChargeGameView extends JFrame {
         background.setBackground(Color.BLACK);
         background.setLayout(null);
         background.setBounds(0,0,1080,600);
-
 
         try {
             BufferedImage image = ImageIO.read(Objects.requireNonNull(getClass().getResource("/images/config.png")));
@@ -60,13 +58,11 @@ public class ChargeGameView extends JFrame {
             e.printStackTrace();
         }
 
-
         JLabel title = new JLabel("Charge game", JLabel.LEFT);
         title.setBounds(250,50,600,95);
         title.setFont(new Font("Russo One", Font.BOLD, 75));
         title.setForeground(Color.WHITE);
         background.add(title);
-
 
         Font font = new Font("Russo One",Font.BOLD,35);
 
@@ -82,7 +78,6 @@ public class ChargeGameView extends JFrame {
         gameName.setFont(new Font("", Font.BOLD, 20));
         gameName.setBounds(350,260,350,40);
         background.add(gameName);
-
 
         jbCharge = new JButton("Charge");
         jbCharge.setForeground(Color.WHITE);

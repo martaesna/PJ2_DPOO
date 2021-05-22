@@ -4,13 +4,12 @@ import businessLayer.entities.user.User;
 import businessLayer.UserManager;
 import presentationLayer.views.LoginView;
 import presentationLayer.views.RegisterView;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
 public class RegisterViewController implements ActionListener {
-    private RegisterView rv;
+    private final RegisterView rv;
     public RegisterViewController(RegisterView rv) {
         this.rv = rv;
     }

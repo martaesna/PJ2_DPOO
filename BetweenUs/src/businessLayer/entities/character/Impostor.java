@@ -1,43 +1,30 @@
 package businessLayer.entities.character;
 
+import businessLayer.MapManager;
 import businessLayer.NpcManager;
 import businessLayer.entities.game.Time;
 import businessLayer.entities.maps.Cell;
-
-import java.awt.*;
+import businessLayer.entities.maps.Mobility;
+import presentationLayer.views.customComponents.Log;
 
 public class Impostor extends Character{
     private static final int minInterval = 6;
     private static final int maxInterval = 8;
-    private static final int maxProbability = 100;
-    private Time time;
-    private int interval;
     private int startInterval;
-    private boolean go;
-    private NpcManager npcManager;
-    private boolean isRunning;
+    private MapManager mapManager;
 
     public Impostor(String color, int xCoordinate, int yCoordinate) {
         super(color, xCoordinate, yCoordinate);
-        time = new Time();
     }
 
-    public Impostor(String color) {
+    public Impostor(String color, MapManager mapManager) {
         super(color);
-    }
-
-    public int randomInterval() {
-        int interval = (int)(Math.random()*(maxInterval-minInterval+1)+minInterval);
-        return interval;
+        this.mapManager = mapManager;
     }
 
     public boolean movement() {
-        int probability = (int)(Math.random()*(maxProbability+1));
-        if (probability <= 45) {
-            return true;
-        } else {
-            return false;
-        }
+        int probability = (int)(Math.random()*(getMaxProbability() + 1));
+        return probability <= 45;
     }
 
     public int getStartInterval() {
@@ -49,41 +36,57 @@ public class Impostor extends Character{
     }
 
     public int getInterval() {
-        return interval;
+        return randomInterval(maxInterval, minInterval);
     }
 
-    public void setInterval(int interval) {
-        this.interval = interval;
+    public int getNextImpostorRoom(Impostor impostor) {
+        Mobility mobility = impostor.getCell().getMobility();
+        int counter = setMoveOptions(mobility);
+        int optionsCounter = 0;
+        int randomPosition = getRandomPosition(counter);
+        return chooseRoom(optionsCounter, randomPosition);
     }
 
-    public Time getTime() {
-        return time;
+    public boolean checkVentilation(Cell cell) {
+        return !cell.getAdjacencies().isEmpty();
     }
 
-    public void setTime(Time time) {
-        this.time = time;
+    public int chooseVentilationRoom(Cell cell) {
+        return getRandomPosition(cell.getAdjacencies().size());
     }
 
-    public void setNpcManager(NpcManager npcManager) {
-        this.npcManager = npcManager;
+    public boolean flipCoin() {
+        return (int) (Math.random() * (2) + 1) == 1;
     }
 
-    public void startThread() {
-        isRunning = true;
-        this.start();
-    }
-
-    public void stopThread() {
-        isRunning = false;
-        this.interrupt();
+    public void impostorMovement(Impostor impostor) {
+        if (impostor.getStartInterval() + impostor.getInterval() == impostor.getTime().getSeconds() && impostor.movement()) {
+            if (checkVentilation(impostor.getCell())) {
+                if (flipCoin()) {
+                    int nextRoom = chooseVentilationRoom(impostor.getCell());
+                    String roomName = impostor.getCell().getAdjacencies().get(nextRoom);
+                    impostor.setCell(mapManager.getMap().getCellByName(roomName));
+                    Log log = new Log(impostor.getColor(), impostor.getCell().getRoomName(), getTime().getSeconds());
+                    makeLog(log);
+                }
+            } else {
+                int nextRoom = getNextImpostorRoom(impostor);
+                int[] nextCell = impostor.getNextCoordinates(nextRoom);
+                impostor.setCell(mapManager.getMap().getCellByCoordinates(nextCell));
+                if (impostor.getCell().getType().equals("room") && !impostor.getCell().getRoomName().equals("cafeteria")) {
+                    Log log = new Log(impostor.getColor(), impostor.getCell().getRoomName(), getTime().getSeconds());
+                    makeLog(log);
+                }
+            }
+        }
     }
 
     @Override
     public void run() {
-        time.initCounter();
-        while (isRunning) {
-            startInterval = time.getSeconds();
-            npcManager.impostorMovement(this, npcManager);
+        getTime().initCounter();
+        while (isRunning()) {
+            startInterval = getTime().getSeconds();
+            impostorMovement(this);
         }
     }
 }

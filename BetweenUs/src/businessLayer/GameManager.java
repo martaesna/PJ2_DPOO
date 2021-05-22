@@ -8,14 +8,13 @@ import businessLayer.entities.maps.Cell;
 import persitanceLayer.GameDAO;
 import persitanceLayer.SQLGameDAO;
 import businessLayer.entities.game.Game;
-import businessLayer.entities.game.Time;
-
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class GameManager {
     private final GameDAO gameDAO;
+    private String gameName;
 
     public GameManager() {
         gameDAO = new SQLGameDAO();
@@ -23,6 +22,7 @@ public class GameManager {
 
     public void createGame(String gameName, Game game) {
         gameDAO.createGame(game);
+        this.gameName = game.getGameName();
     }
 
     public void createConfiguredGame(String gameName) {
@@ -32,6 +32,7 @@ public class GameManager {
             Game newGame = gameDAO.selectGame(gameName);
             newGame.setGameName(newGame.getGameName()+"(Copy)");
             gameDAO.createGame(newGame);
+            this.gameName = newGame.getGameName();
         }
     }
 
@@ -40,17 +41,11 @@ public class GameManager {
     }
 
     public boolean checkGame(String gameName) {
-        if (gameDAO.gameExists(gameName)) {
-            return true;
-        }
-        return false;
+        return gameDAO.gameExists(gameName);
     }
 
     public boolean checkRecreateGame(String gameName) {
-        if (gameDAO.recreatedGameExists(gameName)) {
-            return true;
-        }
-        return false;
+        return gameDAO.recreatedGameExists(gameName);
     }
 
     public void saveGame(Character userPlayer, LinkedList<Impostor> impostors, LinkedList<CrewMember> crewMembers, String gameName) {
@@ -61,30 +56,29 @@ public class GameManager {
         return gameDAO.selectGame(gameName);
     }
 
-    public LinkedList<Impostor> getImpostors(int impostorsNum, String userColor, int starterColor, ArrayList<String> colors) {
+    public LinkedList<Impostor> getImpostors(int impostorsNum, String userColor, int starterColor, ArrayList<String> colors, MapManager mapManager) {
         LinkedList<Impostor> impostors = new LinkedList<>();
         for (int i = 0; i < impostorsNum; i++) {
-            Impostor impostor = new Impostor(getNextColor(userColor, starterColor, colors));
+            Impostor impostor = new Impostor(getNextColor(userColor, starterColor, colors), mapManager);
             starterColor++;
             if (colors.get(starterColor).equals(userColor)) {
                 starterColor++;
             }
-
+            impostor.startThread();
             impostors.add(impostor);
         }
         return impostors;
     }
 
-    public LinkedList<CrewMember> getCrewMembers(int crewMembersNum, String userColor, int starterColor, ArrayList<String> colors) {
+    public LinkedList<CrewMember> getCrewMembers(int crewMembersNum, String userColor, int starterColor, ArrayList<String> colors, MapManager mapManager) {
         LinkedList<CrewMember> crewMembers = new LinkedList<>();
-
         for (int i = 0; i < crewMembersNum; i++) {
-            CrewMember crewMember = new CrewMember(getNextColor(userColor, starterColor, colors));
+            CrewMember crewMember = new CrewMember(getNextColor(userColor, starterColor, colors), mapManager);
             starterColor++;
             if (colors.get(starterColor).equals(userColor)) {
                 starterColor++;
             }
-
+            crewMember.startThread();
             crewMembers.add(crewMember);
         }
         return crewMembers;
@@ -92,29 +86,26 @@ public class GameManager {
 
     public String getNextColor(String userColor, int starterColor, ArrayList<String> colors) {
         for (int i = starterColor; i < colors.size(); i++) {
-            if (colors.get(i) != userColor) {
+            if (!colors.get(i).equals(userColor)) {
                 return colors.get(i);
             }
         }
         return null;
     }
 
-    public void setInitialCell(Character player, LinkedList<CrewMember> crewMembers, LinkedList<Impostor> impostors, LinkedList<Cell> cells) {
+    public void setInitialCell(Character player, LinkedList<Character> players, LinkedList<Cell> cells) {
         Cell initialCell = getCoffeShopCell(cells);
 
         player.setCell(initialCell);
-        for (int i = 0; i < crewMembers.size(); i++) {
-            crewMembers.get(i).setCell(initialCell);
-        }
-        for (int i = 0; i < impostors.size(); i++) {
-            impostors.get(i).setCell(initialCell);
+        for (Character character: players) {
+            character.setCell(initialCell);
         }
     }
 
     public Cell getCoffeShopCell(LinkedList<Cell> cells) {
-        for (int i = 0; i < cells.size(); i++) {
-            if (cells.get(i).getRoomName().equals("cafeteria")) {
-                return  cells.get(i);
+        for (Cell cell: cells) {
+            if (cell.getRoomName().equals("cafeteria")) {
+                return cell;
             }
         }
         return null;
@@ -141,4 +132,7 @@ public class GameManager {
         return gameDAO.getCrewMembers(gameName);
     }
 
+    public String getGameName() {
+        return gameName;
+    }
 }

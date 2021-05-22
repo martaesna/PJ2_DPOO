@@ -1,7 +1,6 @@
 package presentationLayer.views;
 
 import presentationLayer.views.customComponents.RoundedBorder;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -11,9 +10,8 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class DeleteGameView extends JFrame {
-
-    private JButton jbDelete;
-    private JTextField gameName;
+    private final JButton jbDelete;
+    private final JTextField gameName;
     private JButton configButton;
     private JButton returnButton;
 

@@ -5,16 +5,14 @@ import presentationLayer.views.LoginView;
 import presentationLayer.views.PlayView;
 import presentationLayer.views.RegisterView;
 import presentationLayer.views.SettingView;
-
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SettingViewController implements ActionListener {
-
-    private SettingView sv;
-    private String nameLogin;
+    private final SettingView sv;
+    private final String nameLogin;
 
     public SettingViewController(SettingView sv, String nameLogin) {
         this.sv = sv;
@@ -50,9 +48,8 @@ public class SettingViewController implements ActionListener {
 
         }
     }
+
     public void stateChanged(ChangeEvent e) {
 
     }
-
-
 }
