@@ -1,11 +1,14 @@
 package presentationLayer.views;
 
+import presentationLayer.controllers.MapController;
 import presentationLayer.views.customComponents.Log;
 import presentationLayer.views.customComponents.LogTableModel;
 import javax.swing.*;
 import java.util.LinkedList;
 
 public class LogsView extends JFrame{
+    private LinkedList<Log> logs;
+    private MapController mc;
     public LogsView() {
         setTitle("Logs"); // titol
         setSize(700, 400); // tamaño de la caja
@@ -14,7 +17,8 @@ public class LogsView extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE); // cerrar con la x
         setLayout(null);
 
-        LinkedList<Log> logs = new LinkedList<>();
+
+
 
         Log log = new Log("green", "cafeteria", 34);
         logs.add(log);

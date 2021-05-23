@@ -32,7 +32,7 @@ public class Main {
             String path = f.getAbsolutePath();
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             System.out.println(path);
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(path + "\\BetweenUs\\src\\fonts\\RussoOne-Regular.ttf")));
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(path + "/BetweenUs/src/fonts/RussoOne-Regular.ttf")));
         } catch (IOException |FontFormatException e) {
             System.out.println("No s'ha trobat la font");
         }
