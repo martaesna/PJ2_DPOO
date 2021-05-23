@@ -19,7 +19,7 @@ public class LogsView extends JFrame{
 
 
 
-
+        //falta logica per omplir la barra de Logs
         Log log = new Log("green", "cafeteria", 34);
         logs.add(log);
 
