@@ -145,8 +145,11 @@ public class MapController extends Thread implements ActionListener {
                 break;
             case "Solution":
                 if (mv.checkSolution()) {
+                    npcManager.interruptThreads();
+                    stopMapThread();
+                    System.out.println("QUE ESTA PASSANT");
                     mv.userWins();
-                    Thread.currentThread().interrupt();
+                    mv.setVisible(false);
                     PlayView playView = new PlayView();
                     PlayViewController playViewController = new PlayViewController(playView, userName);
                     playView.mainController(playViewController);
@@ -184,7 +187,7 @@ public class MapController extends Thread implements ActionListener {
     public void run() {
         while(isRunning) {
             try {
-                TimeUnit.MILLISECONDS.sleep(50);
+                TimeUnit.MILLISECONDS.sleep(500);
                 if (npcManager.checkImpostorsWinCondition()) {
                     npcManager.interruptThreads();
                     stopMapThread();

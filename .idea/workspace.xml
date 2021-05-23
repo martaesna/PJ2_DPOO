@@ -108,7 +108,7 @@
       <workItem from="1620897764447" duration="283000" />
       <workItem from="1621509753941" duration="819000" />
       <workItem from="1621511065284" duration="326000" />
-      <workItem from="1621797072484" duration="2561000" />
+      <workItem from="1621797072484" duration="3581000" />
       <workItem from="1621799768228" duration="676000" />
     </task>
     <task id="LOCAL-00001" summary="Per saber si ho tenim, joves!">
@@ -307,7 +307,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621799332191</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Hem trobat el if perdut">
+      <created>1621799669853</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1621799669853</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -326,7 +333,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="User i UserController afegits" />
     <MESSAGE value="Register View i Lògica Units" />
     <MESSAGE value="Registre&#10;Login&#10;Delete User" />
     <MESSAGE value="Game creation logic (falta)&#10;Game management logic (falta)" />
@@ -351,9 +357,19 @@
     <MESSAGE value="FinalPush" />
     <MESSAGE value="Versió casi final falta netejar i arreglar cosetes" />
     <MESSAGE value="El botó perdut" />
-    <option name="LAST_COMMIT_MESSAGE" value="El botó perdut" />
+    <MESSAGE value="Hem trobat el if perdut" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hem trobat el if perdut" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/MapController.java</url>
+          <line>148</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="businessLayer.entities.character.CrewMember" memberName="cell" />

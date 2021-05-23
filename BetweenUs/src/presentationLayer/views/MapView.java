@@ -53,9 +53,9 @@ public class MapView extends JFrame {
 
         for (int i = 0; i < players.size(); i++) {
             if (players.get(i) instanceof Impostor) {
-                gameSolution.put(i, 2);
-            } else {
                 gameSolution.put(i, 1);
+            } else {
+                gameSolution.put(i, 2);
             }
         }
 
@@ -268,6 +268,7 @@ public class MapView extends JFrame {
         setVisible(true);
     }
 
+
     private Color getUserColor(String color) {
         Color playerColor = null;
         if (color.equals("PURPLE") || color.equals("BROWN") || color.equals("CYAN") || color.equals("LIME")) {
@@ -463,7 +464,6 @@ public class MapView extends JFrame {
     }
 
     public boolean checkSolution() {
-        System.out.println("hola");
         return gameSolution.equals(objectiveTrackingPosition);
     }
 
