@@ -17,7 +17,7 @@ public class LoginViewController implements ActionListener {
      * Depen del boto que apretem fa una funcionalitat
      * Register Ens porta a la vista per registrarse
      * Login comprova el usuari, en cas afiramatiu entra al joc, en cas negatiu surt missatge error
-     * @param e
+     * @param e escoltador d'accions
      */
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Register")) { //cuando apretamos el boton

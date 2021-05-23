@@ -7,13 +7,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ConectorDB {
-    static String userName;
-    static String password;
-    static String db;
-    static int port;
-    static String url = "jdbc:mysql://localhost";
-    static Connection conn = null;
-    static Statement s;
+    private static String userName;
+    private static String password;
+    private static String db;
+    private static int port;
+    private static String url = "jdbc:mysql://localhost";
+    private static Connection conn = null;
+    private static Statement s;
+
 
     public ConectorDB(String usr, String pass, String db, int port) {
         ConectorDB.userName = usr;
@@ -25,6 +26,9 @@ public class ConectorDB {
         ConectorDB.url += "?verifyServerCertificate=false&useSSL=false";
     }
 
+    /**
+     * Mètode que estableix la connexió amb la base de dades
+     */
     public void connect() {
         try {
             Class.forName("com.mysql.jdbc.Connection");
@@ -41,6 +45,9 @@ public class ConectorDB {
         }
     }
 
+    /**
+     * Mètode que desestableix la connexió amb la base de dades
+     */
     public void disconnect(){
         try {
             conn.close();
@@ -50,6 +57,10 @@ public class ConectorDB {
         }
     }
 
+    /**
+     * Mètode que fa una inserció a la base de dades
+     * @param query query a executar
+     */
     public void insertQuery(String query) {
         try {
             s = conn.createStatement();
@@ -59,6 +70,11 @@ public class ConectorDB {
         }
     }
 
+    /**
+     * Mètode que fa una selecció a la base de dades
+     * @param query query a executar
+     * @return informació demanada per l'usuari
+     */
     public ResultSet selectQuery(String query){
         ResultSet rs = null;
         try {
@@ -70,6 +86,10 @@ public class ConectorDB {
         return rs;
     }
 
+    /**
+     * Mètode que fa una eliminacó a la base de dades
+     * @param query query a executar
+     */
     public void deleteQuery(String query) {
         try {
             s = conn.createStatement();

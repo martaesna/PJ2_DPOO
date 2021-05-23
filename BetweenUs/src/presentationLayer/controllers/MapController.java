@@ -76,7 +76,7 @@ public class MapController extends Thread implements ActionListener {
      * Revel ens mostra o amaga el mapa
      * Solution Comprova si les prediccions son correctes
      * Logs mostra el menu de Logs
-     * @param e
+     * @param e accionador d'events
      */
     public void actionPerformed(ActionEvent e) {
         GameManager gameManager = new GameManager();

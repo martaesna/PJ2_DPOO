@@ -15,6 +15,11 @@ import java.util.LinkedList;
 import static businessLayer.JsonReader.llegeixJSON;
 
 public class SQLGameDAO implements GameDAO{
+    /**
+     * Mètode que insereix un joc a la base de dades
+     * @param game joc a introduir
+     * @param userName nom de l'usuari
+     */
     @Override
     public void createGame(Game game, String userName) {
         Data data;
@@ -26,6 +31,11 @@ public class SQLGameDAO implements GameDAO{
                 "'" + "," + "'" + game.getPlayerColor() + "'" + "," + "'" + game.getMap() + "'" + "," + "'" + userName + "')");
     }
 
+    /**
+     * Mètode que comporva si un joc ja existeix
+     * @param gameName nom del joc
+     * @return si existeix o no
+     */
     @Override
     public boolean gameExists(String gameName) {
         Data data;
@@ -44,6 +54,10 @@ public class SQLGameDAO implements GameDAO{
         return false;
     }
 
+    /**
+     * Mètode que elimina un joc de la base de dades
+     * @param gameName joc a eliminar
+     */
     @Override
     public void deleteGame(String gameName) {
         Data data;
@@ -56,6 +70,10 @@ public class SQLGameDAO implements GameDAO{
         deleteUserPlayer(gameName);
     }
 
+    /**
+     * Mètode que elimina els jocs de l'usuari a la taula PlayerCharacter
+     * @param gameName nom del joc
+     */
     @Override
     public void deleteUserPlayer(String gameName) {
         Data data;
@@ -66,26 +84,12 @@ public class SQLGameDAO implements GameDAO{
         conn.deleteQuery(query);
     }
 
-    @Override
-    public void deleteCrewMembers(String gameName) {
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
-        conn.connect();
-        String query = "DELETE FROM CrewMember WHERE gameName LIKE '" + gameName + "'";
-        conn.deleteQuery(query);
-    }
-
-    @Override
-    public void deleteImpostors(String gameName) {
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
-        conn.connect();
-        String query = "DELETE FROM Impostor WHERE gameName LIKE '" + gameName + "'";
-        conn.deleteQuery(query);
-    }
-
+    /**
+     * Mètode que comprova si l'usuari és el creador del joc
+     * @param gameName nom del joc
+     * @param username nom de l'usuari
+     * @return si es el creador o no
+     */
     @Override
     public boolean checkCreator(String gameName, String username) {
         Data data;
@@ -104,6 +108,11 @@ public class SQLGameDAO implements GameDAO{
         return false;
     }
 
+    /**
+     * Mètode que mira si la recreació d'un joc existeix
+     * @param gameName nom del joc
+     * @return si existeix o no
+     */
     @Override
     public boolean recreatedGameExists(String gameName) {
         String recreatedGame = gameName + "(Copy)";
@@ -122,6 +131,11 @@ public class SQLGameDAO implements GameDAO{
         return false;
     }
 
+    /**
+     * Mètode que selecciona un joc de la base de dades
+     * @param gameName nom del joc
+     * @return joc seleccionat
+     */
     @Override
     public Game selectGame(String gameName) {
         Data data;
@@ -146,11 +160,16 @@ public class SQLGameDAO implements GameDAO{
         return null;
     }
 
+    /**
+     * Mètode que guarda la partida de l'usuari
+     * @param userPlayer usuari
+     * @param impostors llista amb els impostors
+     * @param crewMembers llista amb els crewmembers
+     * @param gameName nom del joc
+     */
     @Override
     public void saveGame(Character userPlayer, LinkedList<Impostor> impostors, LinkedList<CrewMember> crewMembers, String gameName) {
         savePlayerCharacter(userPlayer, gameName);
-        saveImpostors(impostors, gameName);
-        saveCrewMembers(crewMembers, gameName);
     }
 
     @Override
@@ -164,33 +183,11 @@ public class SQLGameDAO implements GameDAO{
                 "'" + ", g.gameName FROM GAME AS g WHERE" + gameName + "= g.gameName LIMIT 1");
     }
 
-    @Override
-    public void saveImpostors(LinkedList<Impostor> impostors, String gameName) {
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
-        conn.connect();
-        for (Impostor impostor: impostors) {
-            conn.insertQuery("INSERT INTO Impostor(color, xCoordinate, yCoordinate, gameName) " +
-                    "SELECT (" + "'" + impostor.getColor() + "'" + "," + "'" + impostor.getCell().getX() + "'" + "," + "'" +
-                    impostor.getCell().getY() + "'" + ", g.gameName FROM GAME AS g WHERE" + gameName + "= g.gameName LIMIT 1");
-        }
-    }
-
-    @Override
-    public void saveCrewMembers(LinkedList<CrewMember> crewMembers, String gameName) {
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
-        conn.connect();
-        for (CrewMember crewMember: crewMembers) {
-            conn.insertQuery("INSERT INTO Impostor(color, xCoordinate, yCoordinate, previousRoom, gameName) " +
-                    "SELECT (" + "'" + crewMember.getColor() + "'" + "," + "'" + crewMember.getCell().getX() + "'" + "," + "'" +
-                    crewMember.getCell().getY() + "'" + "," + "'" + crewMember.getPreviousRoom() + "'" + "," +
-                    "'" + ", g.gameName FROM GAME AS g WHERE" + gameName + "= g.gameName LIMIT 1");
-        }
-    }
-
+    /**
+     * Mètode que retorna l'usuari
+     * @param gameName nom del joc
+     * @return usuari
+     */
     @Override
     public Player getUserPlayer(String gameName) {
         Data data;
@@ -212,54 +209,10 @@ public class SQLGameDAO implements GameDAO{
         return null;
     }
 
-    @Override
-    public LinkedList<Impostor> getImpostors(String gameName) {
-        LinkedList<Impostor> impostors = new LinkedList<>();
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
-        conn.connect();
-        ResultSet rs = conn.selectQuery("SELECT * FROM Impostor AS i WHERE i.gameName LIKE '" + gameName + "'");
-        try {
-            while(rs.next()) {
-                String color = rs.getString("color");
-                int xCoordinate = rs.getInt("xCoordinate");
-                int yCoordinate = rs.getInt("yCoordinate");
-
-                Impostor impostor = new Impostor(color, xCoordinate, yCoordinate);
-                impostors.add(impostor);
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return impostors;
-    }
-
-    @Override
-    public LinkedList<CrewMember> getCrewMembers(String gameName) {
-        LinkedList<CrewMember> crewMembers = new LinkedList<>();
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
-        conn.connect();
-        ResultSet rs = conn.selectQuery("SELECT * FROM CrewMember AS cm WHERE cm.gameName LIKE '" + gameName + "'");
-        try {
-            while(rs.next()) {
-                String color = rs.getString("color");
-                int xCoordinate = rs.getInt("xCoordinate");
-                int yCoordinate = rs.getInt("yCoordinate");
-                int previousRoom = rs.getInt("previousRoom");
-
-                CrewMember crewMember = new CrewMember(color, xCoordinate,yCoordinate, previousRoom);
-                crewMember.startThread();
-                crewMembers.add(crewMember);
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return crewMembers;
-    }
-
+    /**
+     * Mètode que elimina els jocs de l'usuari
+     * @param userName nom de l'usuari
+     */
     @Override
     public void deleteUserGames(String userName) {
         Data data;

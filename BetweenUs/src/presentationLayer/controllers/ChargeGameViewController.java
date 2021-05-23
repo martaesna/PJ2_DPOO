@@ -32,7 +32,7 @@ public class ChargeGameViewController implements ActionListener {
      * Charge carrega una partida guardada
      * Return ens retorna al menú anterior
      * Config ens porta ha el menú de settings
-     * @param e
+     * @param e escoltador d'accions
      */
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Charge")) { //cuando apretamos el boton

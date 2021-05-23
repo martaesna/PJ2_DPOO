@@ -19,7 +19,7 @@ public class RegisterViewController implements ActionListener {
      * Depen del boto que apretem fa una funcionalitat
      * Register Registra un nou usuari
      * Login ens porta a la vista per fel Log in
-     * @param e
+     * @param e accionador d'events
      */
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Register")) { //cuando apretamos el boton

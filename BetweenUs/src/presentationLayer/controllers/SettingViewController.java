@@ -25,7 +25,7 @@ public class SettingViewController implements ActionListener {
 
     /**
      * Depen del boto que apretem fa una funcionalitat
-     * @param e
+     * @param e accionador d'events
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -36,7 +36,6 @@ public class SettingViewController implements ActionListener {
                 LoginViewController lvc = new LoginViewController(lv);
                 lv.mainController(lvc);
             }
-
         }
         if (e.getActionCommand().equals("Delete")) { //cuando apretamos el boton
             if(JOptionPane.OK_OPTION == sv.confirmDeleteUser()){

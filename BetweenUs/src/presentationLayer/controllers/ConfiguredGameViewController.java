@@ -35,7 +35,7 @@ public class ConfiguredGameViewController implements ActionListener {
      * Create Crea un nou joc
      * Return Retorna al menu anterior
      * config anem a la vista settings
-     * @param e
+     * @param e escoltador d'accions
      */
     public void actionPerformed(ActionEvent e) {
 

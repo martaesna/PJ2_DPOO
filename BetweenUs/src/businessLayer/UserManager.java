@@ -8,21 +8,33 @@ import javax.swing.*;
 
 public class UserManager {
     private final UserDAO userDAO;
-    private boolean error;
-    private final String emailRegex = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9]{3,}+.+[a-zA-Z0-9]{2,}+$";
 
     public UserManager(){
         userDAO = new SQLUserDAO();
     }
 
+    /**
+     * Mètode que registra un usuari a la base de dades
+     * @param user usuari a registrar
+     */
     public void registerUser(User user) {
         userDAO.registerUser(user);
     }
 
+    /**
+     * Mètode que logeja a un usuari si el log in és correcte
+     * @param userNameMail mail introduit per l'usuari
+     * @param password contrasenya introduida per l'usuari
+     * @return booleà amb si s'ha pogut logejar o no
+     */
     public boolean loginUser(String userNameMail, String password) {
         return userDAO.checkLoginUser(userNameMail,password);
     }
 
+    /**
+     * Mètode que elimina a un usuari de la base de dades
+     * @param userName nom de l'usuari
+     */
     public void deleteUser(String userName) {
         boolean exists = userDAO.userNameExists(userName);
         if (exists) {
@@ -32,6 +44,11 @@ public class UserManager {
         }
     }
 
+    /**
+     * Mètode que comprova si el registre es correcte
+     * @param user usuari a registrar
+     * @return nombre de l'error o 0 si és correcte
+     */
     public int checkRegister(User user){
         if (userDAO.userNameExists(user.getName())) {
             return 1;
@@ -48,19 +65,28 @@ public class UserManager {
         }
     }
 
-    //Comprovem format del correu
+    /**
+     * Mètode que comprova el format del correu
+     * @param mail correu a comprovar
+     * @return si és correcte o no
+     */
     public boolean checkMailFormat(String mail) {
+        String emailRegex = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9]{3,}+.+[a-zA-Z0-9]{2,}+$";
         return mail.matches(emailRegex);
     }
 
-    //Comprovem format de la contrasenya
+    /**
+     * Mètode que comprova el format de la contrasenya
+     * @param user usuari a comprovar la contrasenya
+     * @return missatge d'error a mostrar
+     */
     public String checkPasswordFormat(User user) {
         char ch;
         boolean capitalFlag = false;
         boolean lowerCaseFlag = false;
         boolean numberFlag = false;
 
-        error = false;
+        boolean error = false;
 
         String[] errorMsg = new String[4];
         int index = 0;
@@ -108,7 +134,11 @@ public class UserManager {
         return finalError;
     }
 
-    //Comprovem si la confirmació de la contrasenya és correcte
+    /**
+     * Mètode que comporva si les contrassenyes coinicideixen
+     * @param user usuari a comprovar
+     * @return si coincideixen o no
+     */
     public boolean unequalPasswords(User user){
         return !user.getConfirmedPassword().equals(user.getPassword());
     }

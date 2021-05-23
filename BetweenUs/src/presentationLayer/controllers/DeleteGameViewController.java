@@ -23,7 +23,7 @@ public class DeleteGameViewController implements ActionListener {
      * Delete Borra el joc que volguem amb el nom per trobarlo
      * Return ens retorna al menu anterior
      * Config ens porta ha el menu de settings
-     * @param e
+     * @param e escoltador d'accions
      */
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Delete")) { //cuando apretamos el boton
@@ -37,6 +37,9 @@ public class DeleteGameViewController implements ActionListener {
                 dgv.printErrorNoExistance();
             }
         }
+
+
+
         if (e.getActionCommand().equals("Return")) { //cuando apretamos el boton
             dgv.setVisible(false);
             PlayView pv = new PlayView();

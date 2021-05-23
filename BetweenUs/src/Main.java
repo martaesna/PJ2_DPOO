@@ -19,11 +19,17 @@ public class Main {
 
     public static void main(String[] args) {
         addFont();
-        SwingUtilities.invokeLater(() -> data = JsonReader.llegeixJSON());
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                data = JsonReader.llegeixJSON();
+                LoginView lv = new LoginView();
+                LoginViewController lvc = new LoginViewController(lv);
+                lv.mainController(lvc);
+            }
+        });
 
-        LoginView lv = new LoginView();
-        LoginViewController lvc = new LoginViewController(lv);
-        lv.mainController(lvc);
+
+
     }
 
     public static void addFont() {

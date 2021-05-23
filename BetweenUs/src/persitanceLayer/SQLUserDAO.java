@@ -10,7 +10,10 @@ import java.sql.SQLException;
 import static businessLayer.JsonReader.llegeixJSON;
 
 public class SQLUserDAO implements UserDAO{
-
+    /**
+     * Mètode que introdueix un usuari a la base de dades
+     * @param user usuari a introduir
+     */
     @Override
     public void registerUser(User user) {
         Data data;
@@ -20,6 +23,12 @@ public class SQLUserDAO implements UserDAO{
         conn.insertQuery("INSERT INTO User(username, email, password, partides_guanyades, partides_jugades) VALUES (" + "'" + user.getName() + "'" + "," + "'" + user.getMail() + "'" + "," + "'" + user.getPassword() + "'" + ",0,0)");
     }
 
+    /**
+     * Mètode que mira si el login de l'usuari és correcte
+     * @param userNameMail email de l'usuari
+     * @param password contrasenya de l'usuari
+     * @return si és correcte o no
+     */
     @Override
     public boolean checkLoginUser(String userNameMail, String password) {
         Data data;
@@ -38,6 +47,10 @@ public class SQLUserDAO implements UserDAO{
         return false;
     }
 
+    /**
+     * Mètode que elimina un usuari de la base de dades
+     * @param nameLogin nom de l'usuari
+     */
     @Override
     public void deleteUser(String nameLogin) {
         Data data;
@@ -48,6 +61,11 @@ public class SQLUserDAO implements UserDAO{
         conn.deleteQuery(query);
     }
 
+    /**
+     * Mètode que comprova si un usuari existeix
+     * @param userName nom a comprovar
+     * @return si existeix o no
+     */
     @Override
     public boolean userNameExists(String userName) {
         Data data;
@@ -65,6 +83,11 @@ public class SQLUserDAO implements UserDAO{
         return false;
     }
 
+    /**
+     * Mètode que comporva si un correu existeix
+     * @param userMail correu a comporvar
+     * @return si existeix o no
+     */
     @Override
     public boolean userMailExists(String userMail) {
         Data data;

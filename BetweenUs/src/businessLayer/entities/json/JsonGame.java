@@ -4,7 +4,6 @@ import businessLayer.entities.character.Character;
 import businessLayer.entities.character.Impostor;
 import businessLayer.entities.game.Game;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

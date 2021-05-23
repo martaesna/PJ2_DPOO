@@ -246,7 +246,7 @@ public class NewGameView extends JFrame {
 
     /**
      * Fa que quan apretem els botons el cotroller ho sapiga
-     * @param actionListener
+     * @param actionListener escoltador d'accions
      */
     public void mainController(ActionListener actionListener) {
         returnButton.addActionListener(actionListener);

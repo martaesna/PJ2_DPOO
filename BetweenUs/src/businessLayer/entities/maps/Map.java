@@ -46,6 +46,11 @@ public class Map {
         return null;
     }
 
+    /**
+     * Mètode que retorna una cella depenent de les coordenades introduides
+     * @param coordinates coordenades que es volen traduir a cella
+     * @return cella traduida de les coordenades
+     */
     public Cell getCellByCoordinates(int[] coordinates) {
         int x = coordinates[0];
         int y = coordinates[1];

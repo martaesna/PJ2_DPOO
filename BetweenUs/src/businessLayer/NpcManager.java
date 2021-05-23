@@ -18,6 +18,11 @@ public class NpcManager {
         return players;
     }
 
+    /**
+     * Mètode que elimina un crewmember per l'impostor
+     * @param mapManager gestor del mapa
+     * @param player usuari
+     */
     public void eliminateCrewMember(MapManager mapManager, Player player) {
         boolean isImpostor = false;
         boolean isCrewMember = false;
@@ -50,42 +55,43 @@ public class NpcManager {
         }
     }
 
+    /**
+     * Mètode que comprova si l'impostor ha guanyat
+     * @return booleà amb si ha guanyat
+     */
     public boolean checkImpostorsWinCondition() {
         int crewMembersAlive = getNumCrewMembers();
         int numImpostors = getNumImpostors();
 
-        if (crewMembersAlive+1 <= numImpostors) {
-            return true;
-        }
-        return false;
+        return crewMembersAlive + 1 <= numImpostors;
     }
 
+    /**
+     * Mètode que elimina l'usuari si l'impostor el mapa
+     * @param userPlayer usuari
+     * @return si l'ha matat o no
+     */
     public boolean eliminateUserPlayer(Character userPlayer) {
         if (getNpcNumCell(userPlayer.getCell()) == 1) {
             int npcListPosition = getNpcPosition(userPlayer.getCell());
-            if (players.get(npcListPosition) instanceof Impostor) {
-                return true;
-            }
+            return players.get(npcListPosition) instanceof Impostor;
         }
         return false;
     }
 
-    public int getCellPlayers(Cell cell) {
-        int numPlayers = 0;
-        for (Character player: players) {
-            if (player.getCell() == cell) {
-                numPlayers++;
-            }
-        }
-        return numPlayers;
-    }
-
+    /**
+     * Mètode que para els threads de tots els jugadors
+     */
     public void interruptThreads(){
         for (Character character: players) {
             character.stopThread();
         }
     }
 
+    /**
+     * Mètode que retorna el nombre de crewmembers
+     * @return nombre de crewmemebers
+     */
     public int getNumCrewMembers() {
         int numCrewMembers = 0;
         for (Character character: players) {
@@ -96,6 +102,10 @@ public class NpcManager {
         return numCrewMembers;
     }
 
+    /**
+     * Mètode que retorna el nombre d'impostors
+     * @return nombre d'impostors
+     */
     public int getNumImpostors() {
         int numImpostors = 0;
         for (Character character: players) {
@@ -106,6 +116,11 @@ public class NpcManager {
         return numImpostors;
     }
 
+    /**
+     * Mètode que retorna el nombre de npcs que hi ha a la cel·la de l'usuari
+     * @param cell cel·la a comprovar
+     * @return nombre de npcs que ha trobat
+     */
     public int getNpcNumCell(Cell cell) {
         int numNpc = 0;
         for (Character character: players) {
@@ -116,6 +131,11 @@ public class NpcManager {
         return numNpc;
     }
 
+    /**
+     * Mètode que troba la posició a la llista de jugadors del npc que hi ha a la cel·la de l'impostor
+     * @param cell cel·la on es troba
+     * @return posició a la llista de jugadors del npc que hi ha a la cel·la
+     */
     public int getNpcPosition(Cell cell) {
         for (int i = 0; i < players.size(); i++) {
             if (players.get(i).getCell() == cell) {

@@ -8,8 +8,7 @@ public class Game {
     private final int impostors;
     private final String playerColor;
     private String map;
-    private String creator;
-    private LinkedList<Character> gamePlayers;
+    private final String creator;
 
     public Game(String gameName, int players, int impostors, String playerColor, String map, String creator) {
         this.gameName = gameName;
@@ -52,15 +51,4 @@ public class Game {
         return creator;
     }
 
-    public void setCreator(String creator) {
-        this.creator = creator;
-    }
-
-    public LinkedList<Character> getGamePlayers() {
-        return gamePlayers;
-    }
-
-    public void setGamePlayers(LinkedList<Character> gamePlayers) {
-        this.gamePlayers = gamePlayers;
-    }
 }

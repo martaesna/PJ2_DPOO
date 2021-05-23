@@ -20,7 +20,7 @@ public class PlayViewController implements ActionListener {
      * Configured ens porta al menú per configurar un joc
      * Charge ens porta al menú per carrega un joc
      * Delete ens porta al menú per eliminar un joc
-     * @param e
+     * @param e escoltador d'events
      */
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();

@@ -41,7 +41,7 @@ public class RoomPaint extends JPanel {
 
     /**
      * pinta les habitacions del mapa
-     * @param g
+     * @param g grafics
      */
     @Override
     protected void paintComponent(Graphics g) {

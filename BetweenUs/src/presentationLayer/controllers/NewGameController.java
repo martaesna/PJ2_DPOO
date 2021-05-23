@@ -41,7 +41,7 @@ public class NewGameController implements ActionListener {
      * Play Inicia el joc
      * Return ens retorna al menú anterior
      * Config ens porta ha el menú de settings
-     * @param e
+     * @param e accionador d'events
      */
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("SelectFile")) { //cuando apretamos el boton
@@ -180,7 +180,7 @@ public class NewGameController implements ActionListener {
 
     /**
      * Retorna el Path del mapa
-     * @return
+     * @return string amb el path
      */
 
     public String getMapsPath(){
@@ -205,8 +205,8 @@ public class NewGameController implements ActionListener {
 
     /**
      * Comprova quants impostors pot haver-hi
-     * @param players
-     * @return
+     * @param players nombre de jugadors
+     * @return quants impostors pot haver
      */
     public int checkImpostors(int players){
         return Math.floorDiv(players+1, 3);

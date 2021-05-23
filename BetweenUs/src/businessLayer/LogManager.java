@@ -1,16 +1,14 @@
 package businessLayer;
 
-import businessLayer.entities.game.Game;
 import persitanceLayer.LogDAO;
 import presentationLayer.views.customComponents.Log;
 
 public class LogManager {
-    private String gameName;
     private LogDAO logDAO;
     private GameManager gameManager;
 
     public LogManager(Log log) {
-        gameName = getGameName();
+        String gameName = getGameName();
         logDAO.saveLog(log, gameName);
     }
 
