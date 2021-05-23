@@ -30,4 +30,8 @@ public class Time {
     public int getSeconds() {
         return this.seconds;
     }
+
+    public void setCounter(int newSeconds) {
+        seconds = newSeconds;
+    }
 }

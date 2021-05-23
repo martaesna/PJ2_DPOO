@@ -145,6 +145,4 @@ public class GameManager {
     public String getGameName() {
         return gameName;
     }
-
-
 }

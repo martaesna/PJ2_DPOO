@@ -418,6 +418,14 @@ public class MapView extends JFrame {
     public void printNoImplementationMsg(){
         JOptionPane.showMessageDialog(null, "Ho sentim, aquesta funcionalitat encara no està en funcionament.\nEstem treballant per solucionar-ho!", "Information MSG", JOptionPane.INFORMATION_MESSAGE);
     }
+
+    public void impostorsWinMsg() {
+        JOptionPane.showMessageDialog(null, "Els impostors han guanyat (han quedat el mateix número d'impostors que de tripulants).\nProva d'entrenar més!", "Game end", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void userDefeatMsg() {
+        JOptionPane.showMessageDialog(null, "Has estat eliminat per un impostor.\nProva d'entrenar més!", "Game end", JOptionPane.INFORMATION_MESSAGE);
+    }
 }
 
 

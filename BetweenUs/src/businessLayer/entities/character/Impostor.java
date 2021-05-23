@@ -14,7 +14,6 @@ public class Impostor extends Character{
     private static final int maxInterval = 8;
     private int startInterval;
     private MapManager mapManager;
-    private Time killCooldown;
     private NpcManager npcManager;
 
     public Impostor(String color, int xCoordinate, int yCoordinate) {
@@ -84,16 +83,12 @@ public class Impostor extends Character{
     }
 
     public void impostorMovement(Impostor impostor) throws InterruptedException {
+        System.out.println("COLOR IMPOSTOR: "+ impostor.getColor());
         TimeUnit.MILLISECONDS.sleep(500);
         int[] room = new int[2];
         room[0] = impostor.getCell().getX();
         room[1] = impostor.getCell().getY();
-        if (eliminateCrewMember(getCellByCoordinates(room), npcManager, mapManager)) {
-            int posCrewMember = getPosCrewMember(getCellByCoordinates(room), npcManager);
-            npcManager.getPlayers().remove(posCrewMember);
-            System.out.println("Impostor" + impostor.getColor() + "mata");
 
-        }
         if (startInterval == getIntervalTime().getSeconds()) {
             if (impostor.movement()) {
                 if (checkVentilation(impostor.getCell()) && flipCoin()) {
@@ -106,13 +101,7 @@ public class Impostor extends Character{
                     int nextRoom = getNextImpostorRoom(impostor);
                     int[] nextCell = impostor.getNextCoordinates(nextRoom);
                     impostor.setCell(getCellByCoordinates(nextCell));
-
-                    if (eliminateCrewMember(getCellByCoordinates(nextCell), npcManager, mapManager)) {
-                        int posCrewMember = getPosCrewMember(getCellByCoordinates(nextCell), npcManager);
-                        npcManager.getPlayers().remove(posCrewMember);
-                    }
-
-                  /*  if (impostor.getCell().getType().equals("room") && !impostor.getCell().getRoomName().equals("cafeteria")) {
+                    /*  if (impostor.getCell().getType().equals("room") && !impostor.getCell().getRoomName().equals("cafeteria")) {
                         Log log = new Log(impostor.getColor(), impostor.getCell().getRoomName(), getTotalTime().getSeconds());
                         //makeLog(log);
                     }*/
@@ -125,7 +114,7 @@ public class Impostor extends Character{
         }
     }
 
-    public boolean checkAloneCrewMember(String roomName, NpcManager npcManager, MapManager mapManager, int numPlayers) {
+    /*public boolean checkAloneCrewMember(String roomName, NpcManager npcManager, MapManager mapManager, int numPlayers) {
         if (numPlayers == 1 || numPlayers == 2) {
             for (Character player: npcManager.getPlayers()) {
                 if (player.getCell() == mapManager.getMap().getCellByName(roomName) && (player instanceof CrewMember || player instanceof Player)) {
@@ -152,7 +141,7 @@ public class Impostor extends Character{
             }
         }
         return 0;
-    }
+    }*/
 
     @Override
     public void run() {

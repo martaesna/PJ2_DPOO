@@ -18,19 +18,56 @@ public class NpcManager {
         return players;
     }
 
-    /*
-    public boolean checkImpostorsWinCondition(Player player, Impostor impostor) {
-        if (eliminateUserPlayer(player, impostor) || crewMembers.size() == impostors.size()) {
-            //S'ACABA LA PARTIDA
+    public void eliminateCrewMember(MapManager mapManager, Player player) {
+        boolean isImpostor = false;
+        boolean isCrewMember = false;
+        int crewMemberPosition = 0;
+        int numCell = 0;
+        for (int i = 0; i < mapManager.getMap().getCells().size(); i++) {
+            if (getNpcNumCell(mapManager.getMap().getCells().get(i)) == 2 && player.getCell() != mapManager.getMap().getCells().get(i)) {
+                isImpostor = false;
+                isCrewMember = false;
+                for (int j = 0; j < players.size(); j++) {
+                    if (players.get(j).getCell() == mapManager.getMap().getCells().get(i)) {
+                        if (players.get(j) instanceof CrewMember) {
+                            isCrewMember = true;
+                            crewMemberPosition = j;
+                        } else {
+                            isImpostor = true;
+                            numCell = i;
+                        }
+                    }
+                }
+            }
+        }
+        if (isImpostor && isCrewMember) {
+            mapManager.getMap().getCells().get(numCell).setNumCorpses(mapManager.getMap().getCells().get(numCell).getNumCorpses() + 1);
+            //LinkedList<String> corpColors = mapManager.getMap().getCells().get(numCell).getCorpColor();
+            //corpColors.add(players.get(crewMemberPosition).getColor());
+            //mapManager.getMap().getCells().get(numCell).setCorpColor(corpColors);
+            players.get(crewMemberPosition).stopThread();
+            players.remove(crewMemberPosition);
+        }
+    }
+
+    public boolean checkImpostorsWinCondition() {
+        int crewMembersAlive = getNumCrewMembers();
+        int numImpostors = getNumImpostors();
+
+        if (crewMembersAlive+1 <= numImpostors) {
             return true;
         }
         return false;
     }
 
-*/
-
-    public boolean eliminateUserPlayer(Character character, Impostor impostor) {
-        return impostor.getCell() == character.getCell() && getCellPlayers(impostor.getCell()) == 2;
+    public boolean eliminateUserPlayer(Character userPlayer) {
+        if (getNpcNumCell(userPlayer.getCell()) == 1) {
+            int npcListPosition = getNpcPosition(userPlayer.getCell());
+            if (players.get(npcListPosition) instanceof Impostor) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public int getCellPlayers(Cell cell) {
@@ -47,5 +84,44 @@ public class NpcManager {
         for (Character character: players) {
             character.stopThread();
         }
+    }
+
+    public int getNumCrewMembers() {
+        int numCrewMembers = 0;
+        for (Character character: players) {
+            if (character instanceof CrewMember) {
+                numCrewMembers++;
+            }
+        }
+        return numCrewMembers;
+    }
+
+    public int getNumImpostors() {
+        int numImpostors = 0;
+        for (Character character: players) {
+            if (character instanceof Impostor) {
+                numImpostors++;
+            }
+        }
+        return numImpostors;
+    }
+
+    public int getNpcNumCell(Cell cell) {
+        int numNpc = 0;
+        for (Character character: players) {
+            if (character.getCell() == cell) {
+                numNpc++;
+            }
+        }
+        return numNpc;
+    }
+
+    public int getNpcPosition(Cell cell) {
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).getCell() == cell) {
+                return i;
+            }
+        }
+        return 0;
     }
 }

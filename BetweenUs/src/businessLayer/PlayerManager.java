@@ -14,14 +14,6 @@ public class PlayerManager {
         return player;
     }
 
-    public boolean checkClasification() {
-        return true;
-    }
-
-    public boolean checkLogs() {
-        return true;
-    }
-
     public void moveUserPlayer(Cell cell) {
         getPlayer().setCell(cell);
     }
@@ -41,9 +33,5 @@ public class PlayerManager {
     }
     public boolean checkDown() {
         return getPlayer().getCell().getMobility().getDown() != 0;
-    }
-
-    public void interruptThread() {
-        player.stopThread();
     }
 }

@@ -105,7 +105,6 @@ public class MapController extends Thread implements ActionListener {
                 }
                 break;
             case "Return":
-                playerManager.interruptThread();
                 npcManager.interruptThreads();
                 stopMapThread();
 
@@ -124,7 +123,6 @@ public class MapController extends Thread implements ActionListener {
                 }
                 break;
             case "Config":
-                playerManager.interruptThread();
                 npcManager.interruptThreads();
                 stopMapThread();
 
@@ -176,7 +174,26 @@ public class MapController extends Thread implements ActionListener {
     public void run() {
         while(isRunning) {
             try {
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.MILLISECONDS.sleep(50);
+                if (npcManager.checkImpostorsWinCondition()) {
+                    npcManager.interruptThreads();
+                    stopMapThread();
+                    mv.impostorsWinMsg();
+                    PlayView pv = new PlayView();
+                    PlayViewController pvc = new PlayViewController(pv, userName);
+                    pv.mainController(pvc);
+                    mv.setVisible(false);
+                }
+                if (npcManager.eliminateUserPlayer(playerManager.getPlayer())) {
+                    npcManager.interruptThreads();
+                    stopMapThread();
+                    mv.userDefeatMsg();
+                    PlayView pv = new PlayView();
+                    PlayViewController pvc = new PlayViewController(pv, userName);
+                    pv.mainController(pvc);
+                    mv.setVisible(false);
+                }
+                npcManager.eliminateCrewMember(mapManager, playerManager.getPlayer());
                 mv.updateView(mapManager.getMap(), players, playerManager.getPlayer(), revealMap);
             } catch (InterruptedException e) {
                 e.printStackTrace();

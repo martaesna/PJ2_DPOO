@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Cell {
     private int numCorpses;
+    private LinkedList<String> corpColor;
 
     @SerializedName("x")
     @Expose
@@ -67,5 +68,13 @@ public class Cell {
 
     public void setNumCorpses(int numCorpses) {
         this.numCorpses = numCorpses;
+    }
+
+    public LinkedList<String> getCorpColor() {
+        return corpColor;
+    }
+
+    public void setCorpColor(LinkedList<String> corpColor) {
+        this.corpColor = corpColor;
     }
 }

@@ -19,7 +19,6 @@ public abstract class Character extends Thread{
     private int yCoordinate;
     private boolean isRunning;
 
-
     public Character (String color, int xCoordinate, int yCoordinate) {
         this.color = color;
         this.xCoordinate = xCoordinate;
