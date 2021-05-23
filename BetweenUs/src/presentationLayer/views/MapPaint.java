@@ -28,6 +28,10 @@ public class MapPaint extends JPanel {
         this.revealMap = revealMap;
     }
 
+    /**
+     * Printa el Mapa de joc
+     * @return un Panell amb el mapa creat
+     */
     public JPanel creaMapa() {
         jpMapa = new JPanel(new GridLayout(map.getWidth(),map.getHeight()));
 
@@ -75,6 +79,13 @@ public class MapPaint extends JPanel {
         return jpMapa;
     }
 
+    /**
+     * Coloca els colors als diferents personatges
+     * @param userPlayer El nostre persontatge
+     * @param characters llista dels participants de la partida menys nosaltres
+     * @param cell les celles del mapa
+     * @return una llista amb els colors de cada personatges
+     */
     public LinkedList<String> getCellColors(Character userPlayer, LinkedList<Character> characters, Cell cell) {
         LinkedList<String> colors = new LinkedList<>();
         if (userPlayer.getCell() == cell) {

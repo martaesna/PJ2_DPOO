@@ -14,6 +14,13 @@ public class RegisterViewController implements ActionListener {
     public RegisterViewController(RegisterView rv) {
         this.rv = rv;
     }
+
+    /**
+     * Depen del boto que apretem fa una funcionalitat
+     * Register Registra un nou usuari
+     * Login ens porta a la vista per fel Log in
+     * @param e
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Register")) { //cuando apretamos el boton
             User user = new User(rv.getUsername(), rv.getEmail(), rv.getPassword(), rv.getRepeatPassword());
@@ -27,6 +34,11 @@ public class RegisterViewController implements ActionListener {
         }
     }
 
+    /**
+     * Comprova si el registre s'ha fet correctament, si ho fa entra al Log in, sino ens dona missatge error
+     * @param user Usuari que es vol crear
+     * @param rv Vista del registre
+     */
     public void caseRegister(User user, RegisterView rv) {
         UserManager userManager = new UserManager();
         int checked = userManager.checkRegister(user);

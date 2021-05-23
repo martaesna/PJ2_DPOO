@@ -27,11 +27,16 @@ public class ChargeGameViewController implements ActionListener {
         this.userName = userName;
     }
 
+    /**
+     * Segons el botó que apretem fa una funcionalitat
+     * Charge carrega una partida guardada
+     * Return ens retorna al menú anterior
+     * Config ens porta ha el menú de settings
+     * @param e
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Charge")) { //cuando apretamos el boton
            /* Game game = JsonGame.searchJsonGame(cgv.getChargeName());
-
-            System.out.println("hola");
             GameManager gameManager = new GameManager();
             if (gameManager.checkGame(cgv.getChargeName())) {
                 Player userPlayer = new Player(game.getPlayerColor());
@@ -76,7 +81,7 @@ public class ChargeGameViewController implements ActionListener {
             sv.mainController(svc);
         }
     }
-
+/*
     public LinkedList<CrewMember> setCellsCrewMembers(LinkedList<CrewMember> crewMembers, Map map) {
         for (CrewMember crewMember: crewMembers) {
             int[] coordinates = new int[2];
@@ -103,7 +108,7 @@ public class ChargeGameViewController implements ActionListener {
         coordinates[1] = userPlayer.getyCoordinate();
         userPlayer.setCell(map.getCellByCoordinates(coordinates));
         return userPlayer;
-    }
+    }*/
 }
 
 

@@ -23,6 +23,10 @@ public class SettingViewController implements ActionListener {
         this.userName = userName;
     }
 
+    /**
+     * Depen del boto que apretem fa una funcionalitat
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Logout")) { //cuando apretamos el boton

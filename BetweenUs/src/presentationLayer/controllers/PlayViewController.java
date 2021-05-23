@@ -13,6 +13,15 @@ public class PlayViewController implements ActionListener {
         this.userName = userName;
     }
 
+    /**
+     * Depen del boto que apretem fa una funcionalitat
+     * Config ens porta al menu de settings
+     * NewGame ens porta el menú per crear un nou joc
+     * Configured ens porta al menú per configurar un joc
+     * Charge ens porta al menú per carrega un joc
+     * Delete ens porta al menú per eliminar un joc
+     * @param e
+     */
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         switch (command) {

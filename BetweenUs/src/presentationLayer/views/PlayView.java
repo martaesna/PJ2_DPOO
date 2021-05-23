@@ -16,6 +16,9 @@ public class PlayView extends JFrame {
     private final JButton jbDeleteGame;
     private JButton configButton;
 
+    /**
+     * Mostra la vista del menu principal
+     */
     public PlayView() {
 
         setTitle("Play");
@@ -124,6 +127,10 @@ public class PlayView extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Fa que quan apretem els botons el cotroller ho sapiga
+     * @param actionListener
+     */
     public void mainController(ActionListener actionListener) {
         jbNewGame.addActionListener(actionListener);
         jbConfiguredGame.addActionListener(actionListener);

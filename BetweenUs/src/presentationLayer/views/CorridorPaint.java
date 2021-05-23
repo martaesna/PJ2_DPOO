@@ -39,6 +39,10 @@ public class CorridorPaint extends JPanel{
         }
     }
 
+    /**
+     * Pintem les passadisos del mapa
+     * @param g
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

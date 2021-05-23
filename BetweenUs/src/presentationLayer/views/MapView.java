@@ -41,6 +41,13 @@ public class MapView extends JFrame {
     private JButton jbLogs;
     private LogsView logsView;
 
+    /**
+     * mostra la vista del mapa on es juga
+     * @param map el mapa que farem servir
+     * @param players el numero de jugadors menys nosaltres
+     * @param userPlayer el nostre personatge
+     */
+
     public MapView(Map map, LinkedList<Character> players, Player userPlayer)/*throws IOException*/ {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.players = players;
@@ -193,6 +200,7 @@ public class MapView extends JFrame {
         jbLogs = new JButton();
         jbLogs.setActionCommand("logs");
         jbLogs.setText("logs");
+        jbLogs.setVisible(false);
 
         controles.add(jbSolution,BorderLayout.WEST);
         controles.add(jbLogs,BorderLayout.EAST);
@@ -269,6 +277,11 @@ public class MapView extends JFrame {
     }
 
 
+    /**
+     * Crea els colors que la clase Color no te
+     * @param color li pasem el nom del color que volem crear
+     * @return un vector amb les components del color
+     */
     private Color getUserColor(String color) {
         Color playerColor = null;
         if (color.equals("PURPLE") || color.equals("BROWN") || color.equals("CYAN") || color.equals("LIME")) {
@@ -284,6 +297,10 @@ public class MapView extends JFrame {
         return playerColor;
     }
 
+    /**
+     * Movem el tracking dels personatges a la dreta
+     * @param element quin element volem moure
+     */
     public void moveRight(String element) {
         for (int key: objectiveTrackingPosition.keySet()) {
             if (key == Integer.parseInt(element) && canMoveRight(objectiveTrackingPosition.get(key))) {
@@ -292,10 +309,19 @@ public class MapView extends JFrame {
         }
     }
 
+    /**
+     * comprova si es pot moure a la dreta
+     * @param element el element que volem moure
+     * @return un boolea que confirma si es pot o no
+     */
     private boolean canMoveRight(Integer element) {
         return element != 2;
     }
 
+    /**
+     * Tornem a printar el Tracking amb les actualitzacions fetes
+     * @param mc el controlador del mapa
+     */
     public void updateObjectiveTracking(MapController mc) {
         objectiveTracking.removeAll();
 
@@ -349,6 +375,10 @@ public class MapView extends JFrame {
         mainController(mc);
     }
 
+    /**
+     * movem a la esquerra el element del tracking
+     * @param element el element que volem moure
+     */
     public void moveLeft(String element) {
         for (int key: objectiveTrackingPosition.keySet()) {
             if (key == Integer.parseInt(element) && canMoveLeft(objectiveTrackingPosition.get(key))) {
@@ -357,10 +387,24 @@ public class MapView extends JFrame {
         }
     }
 
+    /**
+     * Comprovem si es pot moure a la esquerra
+     * @param element el element que volem moure
+     * @return boolea que ens indica si es pot moure o no
+     */
     private boolean canMoveLeft(Integer element) {
         return element != 0;
     }
 
+
+    /**
+     * Creem el panel per fer el tracking del persontatges
+     * @param colorName nom del color
+     * @param color El color
+     * @param i Posicio del personatge
+     * @param objectiveTrackingButtons Els botons del tracking
+     * @return el panel del tracking
+     */
     private JPanel createPanel(String colorName, Color color, int i, HashMap<String, JButton> objectiveTrackingButtons) {
         JPanel jpanel = new JPanel(new GridLayout(1,3));
         jpanel.setBorder(new LineBorder(Color.WHITE,1,false));
@@ -389,6 +433,10 @@ public class MapView extends JFrame {
         return jpanel;
     }
 
+    /**
+     * Fa que quan apretem els botons el cotroller ho sapiga
+     * @param actionListener
+     */
     public void mainController(ActionListener actionListener) {
         up.addActionListener(actionListener);
         down.addActionListener(actionListener);
@@ -405,10 +453,19 @@ public class MapView extends JFrame {
         }
     }
 
+    /**
+     * JoptionPane que ens confirma si volem guardar la partida
+     * @return si confirma o no
+     */
     public int confirmSave(){
         return JOptionPane.showConfirmDialog(null,"Vols guardar l'estat actual de la partida?");
     }
 
+    /**
+     * li pasem un string d'un color, i ens crea les seves components
+     * @param color nom del color
+     * @return les components del color
+     */
     public int[] getColorComponents(String color) {
         int[] components = new int[3];
         switch (color) {
@@ -432,6 +489,13 @@ public class MapView extends JFrame {
         }
     }
 
+    /**
+     * va actualitzant el mapa a temps real
+     * @param map el mapa que pintem
+     * @param players els jugador que participen menys nosaltes
+     * @param userPlayer el nostre personatge
+     * @param revealMap si el mapa es veu tot o nomes la nostra sala
+     */
     public void updateView(Map map, LinkedList<Character> players, Character userPlayer, boolean revealMap) {
         if (userPlayer.getCell().getRoomName().equals("cafeteria")){
             jbSolution.setVisible(true);
@@ -467,18 +531,27 @@ public class MapView extends JFrame {
         return gameSolution.equals(objectiveTrackingPosition);
     }
 
+    /**
+     * JoptionPane que ens indica si el jugador ha guanyat
+     */
     public void userWins() {
         JOptionPane.showMessageDialog(null, "HAS GUANYAAAAAAAAAAAAT!!!!", "Victoria", JOptionPane.INFORMATION_MESSAGE);
     }
-
+    /**
+     * JoptionPane que ens indica que no esta implementat encara
+     */
     public void printNoImplementationMsg(){
         JOptionPane.showMessageDialog(null, "Ho sentim, aquesta funcionalitat encara no està en funcionament.\nEstem treballant per solucionar-ho!", "Information MSG", JOptionPane.INFORMATION_MESSAGE);
     }
-
+    /**
+     * JoptionPane que ens indica que el impostar ha guanyat
+     */
     public void impostorsWinMsg() {
         JOptionPane.showMessageDialog(null, "Els impostors han guanyat (han quedat el mateix número d'impostors que de tripulants).\nProva d'entrenar més!", "Game end", JOptionPane.INFORMATION_MESSAGE);
     }
-
+    /**
+     * JoptionPane que ens indica que el impostar ha guanyat i t ha matat
+     */
     public void userDefeatMsg() {
         JOptionPane.showMessageDialog(null, "Has estat eliminat per un impostor.\nProva d'entrenar més!", "Game end", JOptionPane.INFORMATION_MESSAGE);
     }

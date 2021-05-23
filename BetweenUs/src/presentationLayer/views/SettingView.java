@@ -14,6 +14,9 @@ public class SettingView extends JFrame  {
     private final JButton jbLog;
     private JButton configButton;
 
+    /**
+     * mostra la vista dels settings
+     */
     public SettingView() {
         setVisible(true);
         setTitle("Settings"); // titol
@@ -121,6 +124,10 @@ public class SettingView extends JFrame  {
         setContentPane(background);
     }
 
+    /**
+     * Fa que quan apretem els botons el cotroller ho sapiga
+     * @param actionListener
+     */
     public void mainController(ActionListener actionListener) {
         jbLog.addActionListener(actionListener);
         jbDel.addActionListener(actionListener);
@@ -133,10 +140,18 @@ public class SettingView extends JFrame  {
 
     }*/
 
+    /**
+     * JOoptionPane que ens confirma si volem borrar el compte
+     * @return si volem borrar o no
+     */
     public int confirmDeleteUser() {
         return JOptionPane.showConfirmDialog(null,"Segur que vols borrar el compte?");
     }
 
+    /**
+     * JOptionPane si volem sortir de la sessió
+     * @return si volem sortir o no
+     */
     public int confirmLogout(){
         return JOptionPane.showConfirmDialog(null,"Segur que vols sortir?");
     }

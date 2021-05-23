@@ -16,7 +16,9 @@ public class LoginView extends JFrame {
     private final JPasswordField passwordField;
 
 
-
+    /**
+     * Printa la vista del Log in
+     */
     public LoginView() {
         setVisible(true);
         setTitle("Login"); // titol
@@ -93,14 +95,22 @@ public class LoginView extends JFrame {
         getContentPane().add(jpVista);
     }
 
+    /**
+     * Fa que quan apretem els botons el cotroller ho sapiga
+     * @param actionListener
+     */
     public void mainController(ActionListener actionListener) {
         jbRegister.addActionListener(actionListener);
         jbLogin.addActionListener(actionListener);
     }
 
+
     public String getUsername() { return nameField.getText(); }
     public String getPassword() { return String.valueOf(passwordField.getPassword()); }
 
+    /**
+     * mostra un JoptionPane que ens diu que les dades son incorrectes
+     */
     public void printError() {
         JOptionPane.showMessageDialog(null, "ERROR: Les credencials introduïdes són incorrectes", "Error Login", JOptionPane.ERROR_MESSAGE);
     }

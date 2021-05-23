@@ -18,6 +18,13 @@ public class DeleteGameViewController implements ActionListener {
         this.userName = userName;
     }
 
+    /**
+     * Segons el boto que apretem fa una funcionalitat
+     * Delete Borra el joc que volguem amb el nom per trobarlo
+     * Return ens retorna al menu anterior
+     * Config ens porta ha el menu de settings
+     * @param e
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Delete")) { //cuando apretamos el boton
             GameManager gameManager = new GameManager();

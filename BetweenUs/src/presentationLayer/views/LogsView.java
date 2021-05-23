@@ -9,6 +9,10 @@ import java.util.LinkedList;
 public class LogsView extends JFrame{
     private LinkedList<Log> logs = new LinkedList<Log>();
     private MapController mc;
+
+    /**
+     * mostra la vista del Logs
+     */
     public LogsView() {
         setTitle("Logs"); // titol
         setSize(700, 400); // tamaño de la caja

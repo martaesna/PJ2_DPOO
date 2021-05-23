@@ -30,6 +30,13 @@ public class ConfiguredGameViewController implements ActionListener {
         this.userName = userName;
     }
 
+    /**
+     * Segons el boto que apretem fa una funcionalitat
+     * Create Crea un nou joc
+     * Return Retorna al menu anterior
+     * config anem a la vista settings
+     * @param e
+     */
     public void actionPerformed(ActionEvent e) {
 
         if (e.getActionCommand().equals("Create")) { //cuando apretamos el boton
@@ -103,6 +110,13 @@ public class ConfiguredGameViewController implements ActionListener {
         }
     }
 
+    /**
+     * Ens canvia el starterColor si coincideix amb el de un crewMember
+     * @param userPosition posicio del color del user
+     * @param crewMembers quantitat de crewmembers
+     * @param starterColor Color del impostor
+     * @return Retorna el color canviat o no del impostor
+     */
     public int getImpostorsStarterColor(int userPosition, int crewMembers, int starterColor) {
         if (userPosition <= crewMembers) {
             return starterColor+1;

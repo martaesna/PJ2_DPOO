@@ -244,6 +244,10 @@ public class NewGameView extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Fa que quan apretem els botons el cotroller ho sapiga
+     * @param actionListener
+     */
     public void mainController(ActionListener actionListener) {
         returnButton.addActionListener(actionListener);
         configButton.addActionListener(actionListener);
@@ -261,6 +265,10 @@ public class NewGameView extends JFrame {
         leftButtonPlayers.addActionListener(actionListener);
     }
 
+    /**
+     * canvia el nom del boto en funció del mapa que agafi
+     * @param mapName el nom del boto
+     */
    public void setMapName(String mapName) {
        this.mapName = mapName;
 
@@ -276,6 +284,10 @@ public class NewGameView extends JFrame {
        jpBody.add(jbChooseMap);
    }
 
+    /**
+     * canvia el nom de la etiqueta en funció del color
+     * @param color el nom del color que volem posar
+     */
     public void setColor(String color) {
         this.color = color;
 
@@ -305,6 +317,10 @@ public class NewGameView extends JFrame {
     }
 
 
+    /**
+     * canviem el numero del la etiqueta en funció de quants impostors volem
+     * @param impostors quants impostors volem
+     */
     public void setImpostors(int impostors) {
         this.impostors = impostors;
 
@@ -316,7 +332,10 @@ public class NewGameView extends JFrame {
         jpBody.add(jlImpostorsList);
     }
 
-
+    /**
+     * canviem el numero del la etiqueta en funció de quants jugadors volem
+     * @param players quants players volem
+     */
     public void setPlayers(int players) {
         this.players = players;
 
@@ -376,10 +395,16 @@ public class NewGameView extends JFrame {
         }
     }*/
 
+    /**
+     * JOptionPanede que el joc ja existeix
+     */
     public void printNameError() {
         JOptionPane.showMessageDialog(null, "ERROR: El nom d'aquest joc ja existeix", "Error New Game", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * JOptionPane de que ha de tenir un nom
+     */
     public void printEmptyNameError() {
         JOptionPane.showMessageDialog(null, "ERROR: El joc ha de tenir un nom", "Error New Game", JOptionPane.ERROR_MESSAGE);
     }

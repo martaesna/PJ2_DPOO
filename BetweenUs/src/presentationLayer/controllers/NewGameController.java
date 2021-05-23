@@ -32,6 +32,17 @@ public class NewGameController implements ActionListener {
         this.userName = userName;
     }
 
+    /**
+     * Segons el botó que apretem fa una funcionalitat
+     * SelectFile ens obra un JFileChooser per seleccionar el mapa de la partida
+     * ColorLeft/ColorRight mou la selecció per el color del nostre personatge
+     * ImpostorLeft/ImporstorRight mou la selecció del número d'impostors
+     * PlayersLeft/PlayersRight mou la selecció del número de personatges
+     * Play Inicia el joc
+     * Return ens retorna al menú anterior
+     * Config ens porta ha el menú de settings
+     * @param e
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("SelectFile")) { //cuando apretamos el boton
             String path = getMapsPath();
@@ -167,12 +178,22 @@ public class NewGameController implements ActionListener {
         }
     }
 
+    /**
+     * Retorna el Path del mapa
+     * @return
+     */
+
     public String getMapsPath(){
         File f = new File("");
         String path = f.getAbsolutePath();
         return path + "/BetweenUs/src/mapsFiles";
     }
 
+    /**
+     * Ens diu la posició del color
+     * @param actualColor el color del que volem saber la posició
+     * @return retorna la posició del color
+     */
     public int getColorsPosition(String actualColor){
         for (int i = 0; i < colors.size(); i++) {
             if (colors.get(i).equals(actualColor)) {
@@ -182,12 +203,29 @@ public class NewGameController implements ActionListener {
         return 0;
     }
 
+    /**
+     * Comprova quants impostors pot haver-hi
+     * @param players
+     * @return
+     */
     public int checkImpostors(int players){
         return Math.floorDiv(players+1, 3);
     }
 
+    /**
+     * Comprova si hi ha el número correcte d' impostors
+     * @param impostors número d' impostors
+     * @return retorna el número mínim de jugadors necesari amb aquest número d'impostors
+     */
     public int checkPlayers(int impostors) { return impostors*3; }
 
+    /**
+     * Comprova que el color del usuari sigui diferent a la resta
+     * @param userPosition Posició del color del usuari
+     * @param crewMembers Posicio del color del CrewMember
+     * @param starterColor Posicio del color final
+     * @return Retorna la posicio del color
+     */
     public int getImpostorsStarterColor(int userPosition, int crewMembers, int starterColor) {
         if (userPosition <= crewMembers) {
             return starterColor+1;
@@ -195,6 +233,12 @@ public class NewGameController implements ActionListener {
             return starterColor;
         }
     }
+
+    /**
+     * Creem els colors que la clase Color no conté
+     * @param color El nom del color que volem crear
+     * @return Les components del color
+     */
     public int[] getColorComponents(String color) {
         int[] components = new int[3];
         switch (color) {

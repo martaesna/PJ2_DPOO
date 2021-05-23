@@ -26,6 +26,10 @@ public class LogTableModel extends AbstractTableModel {
         return data.size();
     }
 
+    /**
+     * Afegim un nou Log a la llista
+     * @param log el log que volem afegir
+     */
     public void addLog(Log log) {
         int row = data.size();
         System.out.println(row);
@@ -34,6 +38,12 @@ public class LogTableModel extends AbstractTableModel {
         fireTableRowsInserted(row, row);
     }
 
+    /**
+     * Ens retorna el valor en funcio de la columna i fila
+     * @param rowIndex fila de la que volem la informació
+     * @param columnIndex columna de la que volem la informació
+     * @return retorna el valor de lloc desitgat
+     */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Log log = data.get(rowIndex);

@@ -65,7 +65,19 @@ public class MapController extends Thread implements ActionListener {
         return map.getCells().get(i).getColor();
     }*/
 
-
+    /**
+     * Segons el boto que apretem fa una funcionalitat
+     * left Mou l'usuari a la esquerra, sempre comprovant que es pugui
+     * down Mou l'usuari cap abaix, sempre comprovant que es pugui
+     * right Mou l'usuari a la dreta, sempre comprovant que es pugui
+     * up Mou l'usuari cap a dalt, sempre comprovant que es pugui
+     * Return ens retorna al menu anterior, primer preguntant si volem guardar la partida
+     * Config ens porta al menu de settings, primer preguntant si volem guardar la partida
+     * Revel ens mostra o amaga el mapa
+     * Solution Comprova si les prediccions son correctes
+     * Logs mostra el menu de Logs
+     * @param e
+     */
     public void actionPerformed(ActionEvent e) {
         GameManager gameManager = new GameManager();
         String command = e.getActionCommand();
@@ -173,16 +185,25 @@ public class MapController extends Thread implements ActionListener {
         }
     }
 
+    /**
+     * Inicia el Thread del mapa
+     */
     public void startMapThread() {
         isRunning = true;
         this.start();
     }
 
+    /**
+     * Finalitza el Thread del mapa
+     */
     public void stopMapThread() {
         isRunning = false;
         this.interrupt();
     }
 
+    /**
+     * Thread del mapa que va actualitzant el mapa a temps real
+     */
     @Override
     public void run() {
         while(isRunning) {

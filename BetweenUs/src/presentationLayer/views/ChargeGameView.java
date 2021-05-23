@@ -16,6 +16,9 @@ public class ChargeGameView extends JFrame {
     private JButton returnButton;
     private JButton configButton;
 
+    /**
+     * Printa la vista de ChargeGame
+     */
     public ChargeGameView() {
         setVisible(true);
         setTitle("Charge game"); // titol
@@ -91,6 +94,10 @@ public class ChargeGameView extends JFrame {
         setContentPane(background);
     }
 
+    /**
+     * Fa que quan apretem els botons el cotroller ho sapiga
+     * @param actionListener
+     */
     public void mainController(ActionListener actionListener) {
         jbCharge.addActionListener(actionListener);
         configButton.addActionListener(actionListener);
@@ -103,6 +110,9 @@ public class ChargeGameView extends JFrame {
         JOptionPane.showMessageDialog(null, "ERROR: El nom d'aquest joc no existeix", "Error Charge Game", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * JOptionPane que ens indica que no esta feta la funcionalitat.
+     */
     public void printNoImplementationMsg(){
         JOptionPane.showMessageDialog(null, "Ho sentim, aquesta funcionalitat encara no està en funcionament.\nEstem treballant per solucionar-ho!", "Information MSG", JOptionPane.INFORMATION_MESSAGE);
     }

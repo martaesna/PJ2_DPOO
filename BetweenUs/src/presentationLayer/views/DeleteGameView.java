@@ -15,6 +15,9 @@ public class DeleteGameView extends JFrame {
     private JButton configButton;
     private JButton returnButton;
 
+    /**
+     * Printa la vista del DeleteGame
+     */
     public DeleteGameView() {
         setVisible(true);
         setTitle("Delete game"); // titol
@@ -93,6 +96,10 @@ public class DeleteGameView extends JFrame {
         setContentPane(background);
     }
 
+    /**
+     * Fa que quan apretem els botons el cotroller ho sapiga
+     * @param actionListener
+     */
     public void mainController(ActionListener actionListener) {
         jbDelete.addActionListener(actionListener);
         configButton.addActionListener(actionListener);
@@ -101,10 +108,17 @@ public class DeleteGameView extends JFrame {
 
     public String getGameName() { return gameName.getText(); }
 
+    /**
+     * mostra JoptionPane per confirmar borrar un joc
+     * @return un int confirmant o no si es borra el mapa
+     */
     public int confirmDeleteGame(){
         return JOptionPane.showConfirmDialog(null,"Seguro que quieres borrar esta partida?");
     }
 
+    /**
+     * mostra un JoptionPane que ens diu que el joc que es vol borrar no existeix
+     */
     public void printErrorNoExistance(){
         JOptionPane.showMessageDialog(null, "ERROR: El nom d'aquest joc no existeix", "Error Delete Game", JOptionPane.ERROR_MESSAGE);
     }

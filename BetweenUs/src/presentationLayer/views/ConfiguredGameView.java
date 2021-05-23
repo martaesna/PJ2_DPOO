@@ -15,6 +15,9 @@ public class ConfiguredGameView extends JFrame {
     private JButton configButton;
     private JButton returnButton;
 
+    /**
+     * Printa la vista de ConfiguredGame
+     */
     public ConfiguredGameView() {
         setVisible(true);
         setTitle("Configured game"); // titol
@@ -93,6 +96,10 @@ public class ConfiguredGameView extends JFrame {
         setContentPane(background);
     }
 
+    /**
+     * Fa que quan apretem els botons el cotroller ho sapiga
+     * @param actionListener
+     */
     public void mainController(ActionListener actionListener) {
         jbConfigure.addActionListener(actionListener);
         configButton.addActionListener(actionListener);
@@ -101,10 +108,16 @@ public class ConfiguredGameView extends JFrame {
 
     public String getConfiguredName() { return gameName.getText(); }
 
+    /**
+     * mostra un JoptionPane de que no existeix el nom
+     */
     public void printErrorNoExistance(){
         JOptionPane.showMessageDialog(null, "ERROR: El nom d'aquest joc no existeix", "Error Game", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * mostra un JoptionPane que el joc ha estat recreat
+     */
     public void printErrorRecreatedExistance(){
         JOptionPane.showMessageDialog(null, "ERROR: Aquest joc ja ha estat recreat", "Error Recreate Game", JOptionPane.ERROR_MESSAGE);
     }

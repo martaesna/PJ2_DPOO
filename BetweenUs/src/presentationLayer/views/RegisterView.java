@@ -18,6 +18,9 @@ public class RegisterView extends JFrame {
     private final JPasswordField passwordField;
     private final JPasswordField repeatPasswordField;
 
+    /**
+     * mostra la vista del registre
+     */
     public RegisterView() {
         setVisible(true);
         setTitle("Register"); // titol
@@ -118,6 +121,10 @@ public class RegisterView extends JFrame {
         getContentPane().add(jpVista);
     }
 
+    /**
+     * Fa que quan apretem els botons el cotroller ho sapiga
+     * @param actionListener
+     */
     public void mainController(ActionListener actionListener) {
         jbRegister.addActionListener(actionListener);
         jbLogin.addActionListener(actionListener);
@@ -128,6 +135,11 @@ public class RegisterView extends JFrame {
     public String getPassword() { return String.valueOf(passwordField.getPassword()); }
     public String getRepeatPassword() { return String.valueOf(repeatPasswordField.getPassword()); }
 
+    /**
+     * JOptionPane que mostra el error en funció de que estigui malament
+     * @param numError el error comes
+     * @param passwordError com s'ha de fer la contrasenya
+     */
     public void printRegisterErrors(int numError, String passwordError) {
         switch (numError) {
             case 1:
