@@ -54,8 +54,6 @@ public class SQLGameDAO implements GameDAO{
         conn.deleteQuery(query);
 
         deleteUserPlayer(gameName);
-        deleteCrewMembers(gameName);
-        deleteImpostors(gameName);
     }
 
     @Override

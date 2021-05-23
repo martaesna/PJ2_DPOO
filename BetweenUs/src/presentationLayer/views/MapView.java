@@ -31,12 +31,14 @@ public class MapView extends JFrame {
     private ImageIcon rightArrow;
     private final HashMap<String, JButton> objectiveTrackingButtons = new HashMap<String, JButton>();
     private final HashMap<Integer, Integer> objectiveTrackingPosition = new HashMap<Integer, Integer>();
+    private final HashMap<Integer, Integer> gameSolution = new HashMap<>();
     private final JPanel objectiveTracking;
     private JPanel jpCenter;
     private JPanel background;
     private boolean revealMap;
 
     public MapView(Map map, LinkedList<Character> players, Player userPlayer)/*throws IOException*/ {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.players = players;
         this.userPlayer = userPlayer;
         this.map = map;
@@ -45,7 +47,7 @@ public class MapView extends JFrame {
         revealMap = false;
 
         setTitle("Map");
-        setSize(1080, 600);//600
+        setSize((int)screenSize.getWidth(), (int)screenSize.getHeight() - 100);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -415,6 +417,15 @@ public class MapView extends JFrame {
         jpCenter.revalidate();
         jpCenter.repaint();
     }
+
+    public boolean checkSolution() {
+        return gameSolution.equals(objectiveTrackingPosition);
+    }
+
+    public void userWins() {
+        JOptionPane.showMessageDialog(null, "HAS GUANYAAAAAAAAAAAAT!!!!", "Victoria", JOptionPane.INFORMATION_MESSAGE);
+    }
+
     public void printNoImplementationMsg(){
         JOptionPane.showMessageDialog(null, "Ho sentim, aquesta funcionalitat encara no està en funcionament.\nEstem treballant per solucionar-ho!", "Information MSG", JOptionPane.INFORMATION_MESSAGE);
     }

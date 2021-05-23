@@ -107,8 +107,8 @@ public class MapController extends Thread implements ActionListener {
                 stopMapThread();
 
                 if (JOptionPane.OK_OPTION == mv.confirmSave()) {
-                   //gameManager.saveGame(playerManager.getPlayer(), players, gameName);
-                    mv.printNoImplementationMsg();
+                    gameManager.saveGame(gameManager.selectGame(gameName), players);
+                    //mv.printNoImplementationMsg();
                     mv.setVisible(false);
                     PlayView pv = new PlayView();
                     PlayViewController pvc = new PlayViewController(pv,userName);
@@ -143,8 +143,15 @@ public class MapController extends Thread implements ActionListener {
                     mv.updateView(mapManager.getMap(), players, playerManager.getPlayer(), revealMap);
                 }
                 break;
-            case "logs":
-                logsView = new LogsView();
+            case "Solution":
+                if (mv.checkSolution()) {
+                    System.out.println("victoria :D");
+                    mv.userWins();
+                    Thread.currentThread().interrupt();
+                    PlayView playView = new PlayView();
+                    PlayViewController playViewController = new PlayViewController(playView, userName);
+                    playView.mainController(playViewController);
+                }
                 break;
             default:
                 String[] elements = command.split("_");

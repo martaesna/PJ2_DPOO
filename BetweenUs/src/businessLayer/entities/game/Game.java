@@ -1,5 +1,7 @@
 package businessLayer.entities.game;
 
+import java.util.LinkedList;
+
 public class Game {
     private String gameName;
     private final int players;
@@ -7,6 +9,7 @@ public class Game {
     private final String playerColor;
     private String map;
     private String creator;
+    private LinkedList<Character> gamePlayers;
 
     public Game(String gameName, int players, int impostors, String playerColor, String map, String creator) {
         this.gameName = gameName;
@@ -51,5 +54,13 @@ public class Game {
 
     public void setCreator(String creator) {
         this.creator = creator;
+    }
+
+    public LinkedList<Character> getGamePlayers() {
+        return gamePlayers;
+    }
+
+    public void setGamePlayers(LinkedList<Character> gamePlayers) {
+        this.gamePlayers = gamePlayers;
     }
 }

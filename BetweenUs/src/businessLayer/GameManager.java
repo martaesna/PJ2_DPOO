@@ -4,6 +4,7 @@ import businessLayer.entities.character.Character;
 import businessLayer.entities.character.CrewMember;
 import businessLayer.entities.character.Impostor;
 import businessLayer.entities.character.Player;
+import businessLayer.entities.json.JsonGame;
 import businessLayer.entities.maps.Cell;
 import persitanceLayer.GameDAO;
 import persitanceLayer.SQLGameDAO;
@@ -56,8 +57,9 @@ public class GameManager {
         return gameDAO.recreatedGameExists(gameName);
     }
 
-    public void saveGame(Character userPlayer, LinkedList<Impostor> impostors, LinkedList<CrewMember> crewMembers, String gameName) {
-        gameDAO.saveGame(userPlayer, impostors, crewMembers, gameName);
+    public void saveGame(Game game, LinkedList<Character> characters) {
+        //gameDAO.saveGame(userPlayer, impostors, crewMembers, gameName);
+        JsonGame.jsonGame(game, characters);
     }
 
     public Game chargeGame(String gameName) {

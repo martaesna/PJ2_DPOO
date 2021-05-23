@@ -29,38 +29,38 @@ public class ChargeGameViewController implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Charge")) { //cuando apretamos el boton
-            /*
+           /* Game game = JsonGame.searchJsonGame(cgv.getChargeName());
+
+            System.out.println("hola");
             GameManager gameManager = new GameManager();
             if (gameManager.checkGame(cgv.getChargeName())) {
-
-                Game game = gameManager.chargeGame(cgv.getChargeName());
-                Player userPlayer = gameManager.getUserPlayer(cgv.getChargeName());
-                LinkedList<Impostor> impostors = gameManager.getImpostorsGame(cgv.getChargeName());
-                LinkedList<CrewMember> crewMembers = gameManager.getCrewMembersGame(cgv.getChargeName());
+                Player userPlayer = new Player(game.getPlayerColor());
 
                 Map map = MapManager.llegeixMapa(game.getMap());
-                userPlayer = setCellUserPlayer(userPlayer, map);
-                impostors = setCellsImpostors(impostors, map);
-                crewMembers = setCellsCrewMembers(crewMembers, map);
 
-                LinkedList<Character> players = new LinkedList<>();
-                players.addAll(crewMembers);
-                players.addAll(impostors);
-                Collections.shuffle(players);
+                LinkedList<Character> players = game.getGamePlayers();
 
                 PlayerManager playerManager = new PlayerManager(userPlayer);
                 MapManager mapManager = new MapManager(map);
-                //NpcManager npcManager = new NpcManager(crewMembers, impostors);
 
+                for (Character character: players) {
+                    gameManager.startPlayers(character);
+                }
+
+                NpcManager npcManager = new NpcManager(players);
+                for (Character character: players) {
+                    if (character instanceof Impostor) {
+                        character.setNpcManager(npcManager);
+                    }
+                }
 
                 MapView mv = new MapView(map, players, userPlayer);
 
-                MapController mapController = new MapController(mv, mapManager, playerManager, players, cgv.getChargeName());
+                MapController mapController = new MapController(mv, mapManager, playerManager, players, cgv.getName(), userName, npcManager);
                 mv.mainController(mapController);
-
-            } else {
-                cgv.printErrorNoExistance();
-            }*/
+                mapController.startMapThread();
+                cgv.setVisible(false);
+*/
             cgv.printNoImplementationMsg();
         }
         if (e.getActionCommand().equals("Return")) { //cuando apretamos el boton

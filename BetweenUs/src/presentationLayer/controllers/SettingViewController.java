@@ -2,6 +2,7 @@ package presentationLayer.controllers;
 
 import businessLayer.GameManager;
 import businessLayer.UserManager;
+import businessLayer.entities.json.JsonGame;
 import presentationLayer.views.LoginView;
 import presentationLayer.views.PlayView;
 import presentationLayer.views.RegisterView;

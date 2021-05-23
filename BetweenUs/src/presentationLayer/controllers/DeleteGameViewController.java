@@ -1,6 +1,7 @@
 package presentationLayer.controllers;
 
 import businessLayer.GameManager;
+import businessLayer.entities.json.JsonGame;
 import presentationLayer.views.PlayView;
 import presentationLayer.views.*;
 import javax.swing.*;
@@ -23,6 +24,7 @@ public class DeleteGameViewController implements ActionListener {
             if (gameManager.checkGame(dgv.getGameName())) {
                 if (JOptionPane.OK_OPTION == dgv.confirmDeleteGame()) {
                     gameManager.deleteGame(dgv.getGameName());
+                    JsonGame.deleteJsonGame(dgv.getGameName());
                 }
             } else {
                 dgv.printErrorNoExistance();
