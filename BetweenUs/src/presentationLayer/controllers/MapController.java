@@ -108,7 +108,6 @@ public class MapController extends Thread implements ActionListener {
 
                 if (JOptionPane.OK_OPTION == mv.confirmSave()) {
                     gameManager.saveGame(gameManager.selectGame(gameName), players);
-                    //mv.printNoImplementationMsg();
                     mv.setVisible(false);
                     PlayView pv = new PlayView();
                     PlayViewController pvc = new PlayViewController(pv,userName);

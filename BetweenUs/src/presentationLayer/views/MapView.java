@@ -1,6 +1,7 @@
 package presentationLayer.views;
 
 import businessLayer.entities.character.Character;
+import businessLayer.entities.character.Impostor;
 import businessLayer.entities.character.Player;
 import businessLayer.entities.maps.*;
 import presentationLayer.controllers.MapController;
@@ -36,6 +37,7 @@ public class MapView extends JFrame {
     private JPanel jpCenter;
     private JPanel background;
     private boolean revealMap;
+    private JButton jbSolution;
 
     public MapView(Map map, LinkedList<Character> players, Player userPlayer)/*throws IOException*/ {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -45,6 +47,15 @@ public class MapView extends JFrame {
         jpCenter = new JPanel();
         int numPlayers = players.size();
         revealMap = false;
+
+
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i) instanceof Impostor) {
+                gameSolution.put(i, 2);
+            } else {
+                gameSolution.put(i, 1);
+            }
+        }
 
         setTitle("Map");
         setSize((int)screenSize.getWidth(), (int)screenSize.getHeight() - 100);
@@ -173,6 +184,13 @@ public class MapView extends JFrame {
 
         controles.add(auxControles, BorderLayout.NORTH);
 
+        jbSolution = new JButton();
+        jbSolution.setActionCommand("Solution");
+        jbSolution.setText("Solution");
+
+
+
+        controles.add(jbSolution,BorderLayout.SOUTH);
 
         background.add(controles, BorderLayout.EAST);
 
@@ -373,6 +391,7 @@ public class MapView extends JFrame {
         mapButton.addActionListener(actionListener);
         configButton.addActionListener(actionListener);
         returnButton.addActionListener(actionListener);
+        jbSolution.addActionListener(actionListener);
 
         for (String key: objectiveTrackingButtons.keySet()) {
             objectiveTrackingButtons.get(key).addActionListener(actionListener);
