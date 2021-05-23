@@ -2,7 +2,6 @@ package businessLayer;
 
 import com.google.gson.Gson;
 import businessLayer.entities.json.Data;
-
 import java.io.FileReader;
 
 public class JsonReader {
@@ -19,9 +18,6 @@ public class JsonReader {
         }catch(Exception e){
             System.out.println("No s'ha pogut llegir el fitxer JSON: " + e.getMessage());
         }
-        return data;
-    }
-    public Data getDades() {
         return data;
     }
 }

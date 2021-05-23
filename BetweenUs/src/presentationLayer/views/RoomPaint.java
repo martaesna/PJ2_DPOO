@@ -1,114 +1,68 @@
 package presentationLayer.views;
-import businessLayer.entities.character.Character;
-import businessLayer.entities.character.CrewMember;
-import businessLayer.entities.character.Impostor;
-import businessLayer.entities.maps.Map;
-import presentationLayer.controllers.NewGameController;
 
+import businessLayer.entities.character.Character;
+import presentationLayer.controllers.NewGameController;
 import javax.swing.*;
 import java.awt.*;
 import java.util.LinkedList;
 
 public class RoomPaint extends JPanel {
-    private Color color;
-    private Color playerColor;
-    private String roomName;
-    private LinkedList<CrewMember> crewMembers;
-    private LinkedList<Impostor> impostors;
-    private Character userPlayer;
-    private int separadorX;
-    private int separadorY;
-    private NewGameController ngc = new NewGameController();
+    private final Color color;
+    private Color colori;
+    private final String roomName;
+    private final NewGameController ngc = new NewGameController();
+    private final LinkedList<String> colors;
+    private final Boolean userIsHere;
 
-    public RoomPaint(Color color, String roomName, LinkedList<CrewMember> crewMembers, LinkedList<Impostor> impostors, Character userPlayer){
+
+    public RoomPaint(Color color, String roomName, LinkedList<String> colors, Boolean userIsHere){
         this.color = color;
         this.roomName = roomName;
-        this.crewMembers = crewMembers;
-        this.impostors = impostors;
-        this.userPlayer = userPlayer;
+        this.colors = colors;
+        this.userIsHere = userIsHere;
     }
+
     @Override
-    public void paintComponent(Graphics g) {
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.setColor(color);
+
+        if(userIsHere) {
+            g.setColor(color);
+        } else {
+            g.setColor(color.darker().darker().darker().darker());
+        }
         g.fillRect(0,0,getWidth(),getHeight());
 
+        int separadorX = getWidth() / 4;
+        int separadorY = getHeight() / 3;
 
+        System.out.println("Room colors: " + colors.size());
 
-        if (roomName.equals("cafeteria")) {
-            separadorX = getWidth() / 4;
-            separadorY = getHeight() / 3;
-
-
-            if (userPlayer.getColor().equals("PURPLE") || userPlayer.getColor().equals("BROWN") || userPlayer.getColor().equals("CYAN") || userPlayer.getColor().equals("LIME")) {
-                int[] components = ngc.getColorComponents(userPlayer.getColor());
-                playerColor = new Color(components[0], components[1], components[2]);
+        for (int i = 0; i < colors.size(); i++) {
+            if (colors.get(i).equals("PURPLE") || colors.get(i).equals("BROWN") || colors.get(i).equals("CYAN") || colors.get(i).equals("LIME")) {
+                int[] components = ngc.getColorComponents(colors.get(i));
+                colori = new Color(components[0], components[1], components[2]);
             } else {
                 try {
-                    playerColor = (Color) Color.class.getField(userPlayer.getColor()).get(null);
+                    colori = (Color) Color.class.getField(colors.get(i)).get(null);
                 } catch (IllegalAccessException | NoSuchFieldException e) {
                     e.printStackTrace();
                 }
             }
-
             g.setColor(Color.BLACK);
             g.fillOval(separadorX - 1, separadorY - 1, 17, 17);
 
-
-            g.setColor(playerColor);
+            if(userIsHere) {
+                g.setColor(colori);
+            } else {
+                g.setColor(colori.darker().darker().darker().darker());
+            }
             g.fillOval(separadorX, separadorY, 15, 15);
             separadorX += 20;
 
-
-            for (int j = 0; j < crewMembers.size(); j++) {
-                System.out.println(crewMembers.size());
-                System.out.println(crewMembers.get(j).getColor());
-
-                if (separadorX + 30 > getWidth()) {
-                    separadorY = separadorY + 20;
-                    separadorX = getWidth() / 4;
-                }
-                if (crewMembers.get(j).getColor().equals("PURPLE") || crewMembers.get(j).getColor().equals("BROWN") || crewMembers.get(j).getColor().equals("CYAN") || crewMembers.get(j).getColor().equals("LIME")) {
-                    int[] components = ngc.getColorComponents(crewMembers.get(j).getColor());
-                    playerColor = new Color(components[0], components[1], components[2]);
-                } else {
-                    try {
-                        playerColor = (Color) Color.class.getField(crewMembers.get(j).getColor()).get(null);
-                    } catch (IllegalAccessException | NoSuchFieldException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                g.setColor(Color.BLACK);
-                g.fillOval(separadorX - 1, separadorY - 1, 17, 17);
-
-                g.setColor(playerColor);
-                g.fillOval(separadorX, separadorY, 15, 15);
-                separadorX += 20;
-            }
-
-            for (int m = 0; m < impostors.size(); m++) {
-                if (separadorX + 30 > getWidth()) {
-                    separadorY = separadorY + 20;
-                    separadorX = getWidth() / 4;
-                }
-                if (impostors.get(m).getColor().equals("PURPLE") || impostors.get(m).getColor().equals("BROWN") || impostors.get(m).getColor().equals("CYAN") || impostors.get(m).getColor().equals("LIME")) {
-                    int[] components = ngc.getColorComponents(impostors.get(m).getColor());
-                    playerColor = new Color(components[0], components[1], components[2]);
-                } else {
-                    try {
-                        playerColor = (Color) Color.class.getField(impostors.get(m).getColor()).get(null);
-                    } catch (IllegalAccessException | NoSuchFieldException e) {
-                        e.printStackTrace();
-                    }
-                }
-                g.setColor(Color.BLACK);
-                g.fillOval(separadorX - 1, separadorY - 1, 17, 17);
-
-
-                g.setColor(playerColor);
-                g.fillOval(separadorX, separadorY, 15, 15);
-                separadorX += 20;
+            if (separadorX + 30 > getWidth()) {
+                separadorY = separadorY + 20;
+                separadorX = getWidth() / 4;
             }
         }
     }

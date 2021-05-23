@@ -6,7 +6,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Map {
-
     @SerializedName("cellNumber")
     @Expose
     private int cellNumber;
@@ -21,52 +20,27 @@ public class Map {
     private String mapName;
     @SerializedName("cells")
     @Expose
-    private LinkedList<Cell> cells = null;
+    private final LinkedList<Cell> cells = null;
 
     public int getCellNumber() {
         return cellNumber;
     }
-
-    public void setCellNumber(int cellNumber) {
-        this.cellNumber = cellNumber;
-    }
-
     public int getWidth() {
         return width;
     }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
     public int getHeight() {
         return height;
     }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
     public String getMapName() {
         return mapName;
     }
-
-    public void setMapName(String mapName) {
-        this.mapName = mapName;
-    }
-
     public LinkedList<Cell> getCells() {
         return cells;
     }
-
-    public void setCells(LinkedList<Cell> cells) {
-        this.cells = cells;
-    }
-
     public Cell getCellByName(String roomName) {
-        for (int i = 0; i < cells.size(); i++) {
-            if (cells.get(i).getRoomName() == roomName) {
-                return cells.get(i);
+        for (Cell cell : cells) {
+            if (cell.getRoomName().equals(roomName)) {
+                return cell;
             }
         }
         return null;
@@ -75,9 +49,9 @@ public class Map {
     public Cell getCellByCoordinates(int[] coordinates) {
         int x = coordinates[0];
         int y = coordinates[1];
-        for (int i = 0; i < cells.size(); i++) {
-            if (cells.get(i).getX() == x && cells.get(i).getY() == y) {
-                return cells.get(i);
+        for (Cell cell: this.cells) {
+            if (cell.getX() == x && cell.getY() == y) {
+                return cell;
             }
         }
         return null;

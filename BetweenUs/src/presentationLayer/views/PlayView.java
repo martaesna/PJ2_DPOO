@@ -9,12 +9,11 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
-
 public class PlayView extends JFrame {
-    private JButton jbNewGame;
-    private JButton jbConfiguredGame;
-    private JButton jbChargeGame;
-    private JButton jbDeleteGame;
+    private final JButton jbNewGame;
+    private final JButton jbConfiguredGame;
+    private final JButton jbChargeGame;
+    private final JButton jbDeleteGame;
     private JButton configButton;
 
     public PlayView() {

@@ -1,7 +1,6 @@
 package presentationLayer.views;
 
 import presentationLayer.views.customComponents.RoundedBorder;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -11,9 +10,8 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class ConfiguredGameView extends JFrame {
-
-    private JButton jbConfigure;
-    private JTextField gameName;
+    private final JButton jbConfigure;
+    private final JTextField gameName;
     private JButton configButton;
     private JButton returnButton;
 

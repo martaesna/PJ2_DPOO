@@ -1,0 +1,29 @@
+<changelist name="Uncommitted_changes_before_Update_at_21_5_2021_23_41_[Default_Changelist]" date="1621633322248" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_5_2021_23_41_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 21/5/2021 23:41 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/BetweenUs/presentationLayer/controllers/ChargeGameViewController.class" />
+    <option name="AFTER_PATH" value="out/production/BetweenUs/presentationLayer/controllers/ChargeGameViewController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_5_2021_23_41_[Default_Changelist]/ChargeGameViewController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/BetweenUs/businessLayer/PlayerManager.class" />
+    <option name="AFTER_PATH" value="out/production/BetweenUs/businessLayer/PlayerManager.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_5_2021_23_41_[Default_Changelist]/PlayerManager.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/BetweenUs/businessLayer/GameManager.class" />
+    <option name="AFTER_PATH" value="out/production/BetweenUs/businessLayer/GameManager.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_5_2021_23_41_[Default_Changelist]/GameManager.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/BetweenUs/presentationLayer/controllers/MapController.class" />
+    <option name="AFTER_PATH" value="out/production/BetweenUs/presentationLayer/controllers/MapController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_5_2021_23_41_[Default_Changelist]/MapController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/BetweenUs/presentationLayer/controllers/NewGameController.class" />
+    <option name="AFTER_PATH" value="out/production/BetweenUs/presentationLayer/controllers/NewGameController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_5_2021_23_41_[Default_Changelist]/NewGameController.class" />
+  </binary>
+</changelist>

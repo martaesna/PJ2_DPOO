@@ -32,22 +32,14 @@ public class SQLGameDAO implements GameDAO{
         data = llegeixJSON();
         ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
-        ResultSet rs = conn.selectQuery("SELECT g.gameName FROM Game AS g WHERE g.gameName LIKE '" + gameName + "'");
-        try {
+        try (ResultSet rs = conn.selectQuery("SELECT g.gameName FROM Game AS g WHERE g.gameName LIKE '" + gameName + "'")) {
             if (rs.isBeforeFirst()) {
                 return true;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) { /* Ignored */}
-            }
-            if (conn != null) {
-                conn.disconnect();
-            }
+            conn.disconnect();
         }
         return false;
     }
@@ -148,8 +140,7 @@ public class SQLGameDAO implements GameDAO{
                 String map = rs.getString("map");
                 String creator = rs.getString("creator");
 
-                Game game = new Game(name, players, impostors, playerColor, map, creator);
-                return game;
+                return new Game(name, players, impostors, playerColor, map, creator);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -181,10 +172,10 @@ public class SQLGameDAO implements GameDAO{
         data = llegeixJSON();
         ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
-        for (int i = 0; i < impostors.size(); i++) {
+        for (Impostor impostor: impostors) {
             conn.insertQuery("INSERT INTO Impostor(color, xCoordinate, yCoordinate, gameName) " +
-                    "SELECT (" + "'" + impostors.get(i).getColor() + "'" + "," + "'" + impostors.get(i).getCell().getX() + "'" + "," + "'" +
-                    impostors.get(i).getCell().getY() + "'" + ", g.gameName FROM GAME AS g WHERE" + gameName + "= g.gameName LIMIT 1");
+                    "SELECT (" + "'" + impostor.getColor() + "'" + "," + "'" + impostor.getCell().getX() + "'" + "," + "'" +
+                    impostor.getCell().getY() + "'" + ", g.gameName FROM GAME AS g WHERE" + gameName + "= g.gameName LIMIT 1");
         }
     }
 
@@ -194,10 +185,10 @@ public class SQLGameDAO implements GameDAO{
         data = llegeixJSON();
         ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
-        for (int i = 0; i < crewMembers.size(); i++) {
+        for (CrewMember crewMember: crewMembers) {
             conn.insertQuery("INSERT INTO Impostor(color, xCoordinate, yCoordinate, previousRoom, gameName) " +
-                    "SELECT (" + "'" + crewMembers.get(i).getColor() + "'" + "," + "'" + crewMembers.get(i).getCell().getX() + "'" + "," + "'" +
-                    crewMembers.get(i).getCell().getY() + "'" + "," + "'" + crewMembers.get(i).getPreviousRoom() + "'" + "," +
+                    "SELECT (" + "'" + crewMember.getColor() + "'" + "," + "'" + crewMember.getCell().getX() + "'" + "," + "'" +
+                    crewMember.getCell().getY() + "'" + "," + "'" + crewMember.getPreviousRoom() + "'" + "," +
                     "'" + ", g.gameName FROM GAME AS g WHERE" + gameName + "= g.gameName LIMIT 1");
         }
     }
@@ -262,6 +253,8 @@ public class SQLGameDAO implements GameDAO{
                 int previousRoom = rs.getInt("previousRoom");
 
                 CrewMember crewMember = new CrewMember(color, xCoordinate,yCoordinate, previousRoom);
+                crewMember.startThread();
+                System.out.println("bueno xD");
                 crewMembers.add(crewMember);
             }
         } catch (SQLException throwables) {

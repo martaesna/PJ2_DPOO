@@ -4,12 +4,11 @@ import businessLayer.UserManager;
 import presentationLayer.views.LoginView;
 import presentationLayer.views.PlayView;
 import presentationLayer.views.RegisterView;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginViewController implements ActionListener {
-    private LoginView lv;
+    private final LoginView lv;
     public LoginViewController(LoginView lv) {
         this.lv = lv;
     }

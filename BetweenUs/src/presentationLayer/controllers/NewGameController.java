@@ -6,16 +6,15 @@ import businessLayer.entities.character.CrewMember;
 import businessLayer.entities.character.Impostor;
 import businessLayer.entities.character.Player;
 import businessLayer.entities.game.Game;
-import businessLayer.entities.json.Data;
+import businessLayer.entities.maps.Cell;
 import businessLayer.entities.maps.Map;
-import businessLayer.entities.user.User;
 import presentationLayer.views.*;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,9 +22,7 @@ public class NewGameController implements ActionListener {
     private NewGameView ngv;
     private ArrayList<String> colors;
 
-    public NewGameController(){
-
-    }
+    public NewGameController(){}
 
     public NewGameController(NewGameView ngv) {
         this.ngv = ngv;
@@ -85,7 +82,7 @@ public class NewGameController implements ActionListener {
 
         if (e.getActionCommand().equals("PlayersRight")) { //cuando apretamos el boton
             int players = ngv.getPlayers();
-            if (players < 9) {
+            if (players <= 9) {
                 ngv.setPlayers(players+1);
             }
         }
@@ -95,7 +92,7 @@ public class NewGameController implements ActionListener {
                 ngv.printEmptyNameError();
             } else {
                 String mapName;
-                if (ngv.getMapName() == "Select File") {
+                if (ngv.getMapName().equals("Select File")) {
                     mapName = "gravity.json";
                 } else {
                     mapName = ngv.getMapName();
@@ -109,23 +106,39 @@ public class NewGameController implements ActionListener {
 
                     int starterColor = 0;
 
-                    Player userPlayer = new Player(ngv.getColor());
-                    LinkedList<CrewMember> crewMembers = gameManager.getCrewMembers(ngv.getPlayers() - ngv.getImpostors(), ngv.getColor(), starterColor, colors);
-                    starterColor = getImpostorsStarterColor(gameManager.getUserColorPosition(ngv.getColor(), colors), crewMembers.size(), starterColor);
-                    LinkedList<Impostor> impostors = gameManager.getImpostors(ngv.getImpostors(), ngv.getColor(), starterColor + crewMembers.size(), colors);
-
                     Map map = MapManager.llegeixMapa(mapName);
-
-                    gameManager.setInitialCell(userPlayer, crewMembers, impostors, map.getCells());
-
-                    PlayerManager playerManager = new PlayerManager(userPlayer);
-                    NpcManager npcManager = new NpcManager(crewMembers, impostors);
                     MapManager mapManager = new MapManager(map);
 
-                    MapView mv = new MapView(map, crewMembers, impostors, userPlayer);
+                    Player userPlayer = new Player(ngv.getColor());
+                    if (userPlayer.getColor().equals("RED")) {
+                        starterColor++;
+                    }
+                    LinkedList<CrewMember> crewMembers = gameManager.getCrewMembers(ngv.getPlayers() - ngv.getImpostors() - 1, ngv.getColor(), starterColor, colors, mapManager);
+                    starterColor = getImpostorsStarterColor(gameManager.getUserColorPosition(ngv.getColor(), colors), crewMembers.size(), starterColor);
+                    LinkedList<Impostor> impostors = gameManager.getImpostors(ngv.getImpostors(), ngv.getColor(), starterColor + crewMembers.size(), colors, mapManager);
 
-                    MapController mapController = new MapController(mv, mapManager, playerManager, npcManager, ngv.getName());
+                    LinkedList<Character> players = new LinkedList<>();
+                    players.addAll(crewMembers);
+                    players.addAll(impostors);
+                    Collections.shuffle(players);
+
+                    Cell initialCell = gameManager.getCoffeShopCell(map.getCells());
+                    userPlayer.setCell(initialCell);
+
+                    gameManager.setInitialCell(userPlayer, players, map.getCells());
+
+                    for (Character character: players) {
+                        gameManager.startPlayers(character);
+                    }
+
+                    PlayerManager playerManager = new PlayerManager(userPlayer);
+                    //NpcManager npcManager = new NpcManager(crewMembers, impostors);
+
+                    MapView mv = new MapView(map, players, userPlayer);
+
+                    MapController mapController = new MapController(mv, mapManager, playerManager, players, ngv.getName());
                     mv.mainController(mapController);
+                    mapController.startMapThread();
                     ngv.setVisible(false);
                 }
             }
@@ -154,7 +167,7 @@ public class NewGameController implements ActionListener {
 
     public int getColorsPosition(String actualColor){
         for (int i = 0; i < colors.size(); i++) {
-            if (colors.get(i) == actualColor) {
+            if (colors.get(i).equals(actualColor)) {
                 return i;
             }
         }
@@ -176,28 +189,26 @@ public class NewGameController implements ActionListener {
     }
     public int[] getColorComponents(String color) {
         int[] components = new int[3];
-        if (color == "PURPLE") {
-            components[0] = 102;
-            components[1] = 0;
-            components[2] = 153;
-            return components;
+        switch (color) {
+            case "PURPLE":
+                components[0] = 102;
+                components[2] = 153;
+                return components;
 
-        } else if(color == "BROWN") {
-            components[0] = 102;
-            components[1] = 51;
-            components[2] = 0;
-            return components;
+            case "BROWN":
+                components[0] = 102;
+                components[1] = 51;
+                return components;
 
-        } else if(color == "CYAN") {
-            components[0] = 0;
-            components[1] = 255;
-            components[2] = 255;
-            return components;
-        } else {
-            components[0] = 50;
-            components[1] = 205;
-            components[2] = 50;
-            return components;
+            case "CYAN":
+                components[1] = 255;
+                components[2] = 255;
+                return components;
+            default:
+                components[0] = 50;
+                components[1] = 205;
+                components[2] = 50;
+                return components;
         }
     }
 }

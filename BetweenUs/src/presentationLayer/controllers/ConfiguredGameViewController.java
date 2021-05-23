@@ -7,8 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ConfiguredGameViewController implements ActionListener {
-    private ConfiguredGameView cogv;
-    private String gameName;
+    private final ConfiguredGameView cogv;
 
     public ConfiguredGameViewController(ConfiguredGameView cogv) {
         this.cogv = cogv;

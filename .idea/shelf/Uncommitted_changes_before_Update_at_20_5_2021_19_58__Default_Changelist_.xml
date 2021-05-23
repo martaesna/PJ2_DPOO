@@ -1,0 +1,19 @@
+<changelist name="Uncommitted_changes_before_Update_at_20_5_2021_19_58_[Default_Changelist]" date="1621533531284" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_5_2021_19_58_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 20/5/2021 19:58 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/BetweenUs/Main$1.class" />
+    <option name="AFTER_PATH" value="out/production/BetweenUs/Main$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_5_2021_19_58_[Default_Changelist]/Main$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/BetweenUs/Main.class" />
+    <option name="AFTER_PATH" value="out/production/BetweenUs/Main.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_5_2021_19_58_[Default_Changelist]/Main.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/BetweenUs/presentationLayer/views/MapView.class" />
+    <option name="AFTER_PATH" value="out/production/BetweenUs/presentationLayer/views/MapView.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_5_2021_19_58_[Default_Changelist]/MapView.class" />
+  </binary>
+</changelist>

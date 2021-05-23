@@ -1,6 +1,6 @@
 package presentationLayer.views;
-import presentationLayer.views.customComponents.RoundedBorder;
 
+import presentationLayer.views.customComponents.RoundedBorder;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -10,12 +10,9 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class SettingView extends JFrame  {
-
-    private JButton jbDel;
-    private JButton jbLog;
+    private final JButton jbDel;
+    private final JButton jbLog;
     private JButton configButton;
-    private JSlider Eslider;
-    private JSlider Mslider;
 
     public SettingView() {
         setVisible(true);
@@ -63,18 +60,18 @@ public class SettingView extends JFrame  {
         background.add(jlMusic);
 
         //Slider de la musica
-        Mslider = new JSlider(0,10,5);
-        Mslider.setVisible(true);
-        Mslider.setForeground(Color.WHITE);
-        Mslider.setPaintTicks(true);
-        Mslider.setMinorTickSpacing(1);
-        Mslider.setMajorTickSpacing(2);
-        Mslider.setPaintTrack(true);
-        Mslider.setPaintLabels(true);
-        Mslider.setFont(new Font("Serif",Font.ITALIC,15));
-        Mslider.setSnapToTicks(true);
-        Mslider.setBounds(500,150,300,50);
-        background.add(Mslider);
+        JSlider mslider = new JSlider(0, 10, 5);
+        mslider.setVisible(true);
+        mslider.setForeground(Color.WHITE);
+        mslider.setPaintTicks(true);
+        mslider.setMinorTickSpacing(1);
+        mslider.setMajorTickSpacing(2);
+        mslider.setPaintTrack(true);
+        mslider.setPaintLabels(true);
+        mslider.setFont(new Font("Serif",Font.ITALIC,15));
+        mslider.setSnapToTicks(true);
+        mslider.setBounds(500,150,300,50);
+        background.add(mslider);
 
         //hacer que estas dos esten mas juntas
         JLabel jlSFX = new JLabel("SFX volum",JLabel.LEFT);
@@ -85,20 +82,20 @@ public class SettingView extends JFrame  {
 
 
         //Slider dels efectes
-        Eslider = new JSlider(0,10,5);
-        Eslider.setVisible(true);
-        Eslider.setForeground(Color.WHITE);
+        JSlider eslider = new JSlider(0, 10, 5);
+        eslider.setVisible(true);
+        eslider.setForeground(Color.WHITE);
 
-        Eslider.setPaintTicks(true);
-        Eslider.setMinorTickSpacing(1);
-        Eslider.setMajorTickSpacing(2);
-        Eslider.setPaintTrack(true);
-        Eslider.setPaintLabels(true);
-        Eslider.setFont(new Font("Serif",Font.ITALIC,15));
-        Eslider.setSnapToTicks(true);
-        Eslider.setBounds(500,250,300,50);
+        eslider.setPaintTicks(true);
+        eslider.setMinorTickSpacing(1);
+        eslider.setMajorTickSpacing(2);
+        eslider.setPaintTrack(true);
+        eslider.setPaintLabels(true);
+        eslider.setFont(new Font("Serif",Font.ITALIC,15));
+        eslider.setSnapToTicks(true);
+        eslider.setBounds(500,250,300,50);
 
-        background.add(Eslider);
+        background.add(eslider);
 
 
         //Boto1
@@ -131,13 +128,13 @@ public class SettingView extends JFrame  {
     }
 
     /*public void VolumCotroller(ChangeListener changeListener){
-        Eslider.addChangeListener(changeListener);
-        Mslider.addChangeListener(changeListener);
+        eslider.addChangeListener(changeListener);
+        mslider.addChangeListener(changeListener);
 
     }*/
 
     public int confirmDeleteUser() {
-        return JOptionPane.showConfirmDialog(null,"Seguro que quieres borrar la Cuenta?");
+        return JOptionPane.showConfirmDialog(null,"Seguro que quieres borrar la cuenta?");
     }
 
     public int confirmLogout(){

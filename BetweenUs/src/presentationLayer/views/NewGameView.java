@@ -2,47 +2,44 @@ package presentationLayer.views;
 
 import presentationLayer.controllers.NewGameController;
 import presentationLayer.views.customComponents.RoundedBorder;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
-import java.util.prefs.BackingStoreException;
 
 public class NewGameView extends JFrame {
-    private JTextField gameName;
-    private JButton leftButtonColor;
-    private JButton rightButtonColor;
+    private final JTextField gameName;
+    private final JButton leftButtonColor;
+    private final JButton rightButtonColor;
 
-    private JButton leftButtonImpostor;
-    private JButton rightButtonImpostor;
+    private final JButton leftButtonImpostor;
+    private final JButton rightButtonImpostor;
 
-    private JButton leftButtonPlayers;
-    private JButton rightButtonPlayers;
+    private final JButton leftButtonPlayers;
+    private final JButton rightButtonPlayers;
 
     private JButton returnButton;
     private JButton configButton;
 
 
     private JButton jbChooseMap = new JButton();
-    private JLabel jlColor = new JLabel();
-    private JLabel jlImpostorsList = new JLabel();
-    private JLabel jlPlayersList = new JLabel();
+    private final JLabel jlColor = new JLabel();
+    private final JLabel jlImpostorsList = new JLabel();
+    private final JLabel jlPlayersList = new JLabel();
 
     private String mapName = "Select File";
     private String color = "RED";
     private int impostors = 1;
-    private int players = 9;
-    private Font font;
+    private int players = 10;
+    private final Font font;
 
-    private JButton jbPlay;
-    private JPanel jpBody;
-    private NewGameController ngc = new NewGameController();
+    private final JButton jbPlay;
+    private final JPanel jpBody;
+    private final NewGameController ngc = new NewGameController();
 
 
     public NewGameView() {
@@ -93,7 +90,7 @@ public class NewGameView extends JFrame {
         }
 
         //-----------COS
-         font = new Font("Russo One",Font.BOLD,35);
+        font = new Font("Russo One",Font.BOLD,35);
         Border border =BorderFactory.createCompoundBorder(
                 BorderFactory.createEmptyBorder(15, 15, 15, 15),
                 BorderFactory.createCompoundBorder(
@@ -287,7 +284,7 @@ public class NewGameView extends JFrame {
         jlColor.setBackground(Color.BLACK);
 
 
-        if (color == "PURPLE" || color == "BROWN" || color == "CYAN" || color == "LIME") {
+        if (color.equals("PURPLE") || color.equals("BROWN") || color.equals("CYAN") || color.equals("LIME")) {
             int[] components = ngc.getColorComponents(color);
             Color unusualColor = new Color(components[0],components[1],components[2]);
             jlColor.setForeground(unusualColor);
@@ -295,14 +292,10 @@ public class NewGameView extends JFrame {
             try {
                 Color newColor = (Color) Color.class.getField(color).get(null);
                 jlColor.setForeground(newColor);
-                if (color == "BLACK") {
+                if (color.equals("BLACK")) {
                     //Posar traç blanc?
-
-
                 }
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (NoSuchFieldException e) {
+            } catch (IllegalAccessException | NoSuchFieldException e) {
                 e.printStackTrace();
             }
         }

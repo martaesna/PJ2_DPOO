@@ -6,28 +6,25 @@ import businessLayer.NpcManager;
 import businessLayer.PlayerManager;
 import businessLayer.entities.character.Character;
 import businessLayer.entities.character.CrewMember;
-import businessLayer.entities.character.Impostor;
-import businessLayer.entities.game.Time;
 import businessLayer.entities.maps.*;
 import presentationLayer.views.MapView;
-
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
+import java.util.concurrent.TimeUnit;
 
-public class MapController implements ActionListener {
-
+public class MapController extends Thread implements ActionListener {
     private MapView mv;
-    private MapManager mapManager;
-    private NpcManager npcManager;
-    private PlayerManager playerManager;
-    private String gameName;
+    private final MapManager mapManager;
+    private final PlayerManager playerManager;
+    private final String gameName;
+    private boolean isRunning;
+    private LinkedList<Character> players;
 
-    public MapController(MapView mv, MapManager mapManager, PlayerManager playerManager, NpcManager npcManager, String gameName){
+    public MapController(MapView mv, MapManager mapManager, PlayerManager playerManager, LinkedList<Character> players, String gameName){
         this.mapManager = mapManager;
-        this.npcManager = npcManager;
+        this.players = players;
         this.playerManager = playerManager;
         this.mv = mv;
         this.gameName = gameName;
@@ -67,35 +64,55 @@ public class MapController implements ActionListener {
         switch (command) {
             case "left":
                 if (playerManager.checkLeft()) {
-                    int[] nextCell = playerManager.nextCell(1);
+                    int[] nextCell = playerManager.nextCell(0);
                     playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
-                    //MOURE PLAYER ESQUERRA
-                }
-                break;
-            case "up":
-                if (playerManager.checkUp()) {
-                    int[] nextCell = playerManager.nextCell(2);
-                    playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
-                    //MOURE PLAYER AMUNT
-                }
-                break;
-            case "right":
-                if (playerManager.checkRight()) {
-                    int[] nextCell = playerManager.nextCell(3);
-                    playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
-                    //MOURE PLAYER DRETA
+
+                    System.out.println(playerManager.getPlayer().getCell().getX());
+                    System.out.println(playerManager.getPlayer().getCell().getY());
+                    System.out.println("Left");
+
+                    mv.updateView(mapManager.getMap(), players, playerManager.getPlayer());
                 }
                 break;
             case "down":
                 if (playerManager.checkDown()) {
-                    int[] nextCell = playerManager.nextCell(4);
+                    int[] nextCell = playerManager.nextCell(1);
                     playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
-                    //MOURE PLAYER A BAIX
+
+                    System.out.println(playerManager.getPlayer().getCell().getX());
+                    System.out.println(playerManager.getPlayer().getCell().getY());
+                    System.out.println("down");
+
+                    mv.updateView(mapManager.getMap(), players, playerManager.getPlayer());
+                }
+                break;
+            case "right":
+                if (playerManager.checkRight()) {
+                    int[] nextCell = playerManager.nextCell(2);
+                    playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
+
+                    System.out.println(playerManager.getPlayer().getCell().getX());
+                    System.out.println(playerManager.getPlayer().getCell().getY());
+                    System.out.println("Right");
+
+                    mv.updateView(mapManager.getMap(), players, playerManager.getPlayer());
+                }
+                break;
+            case "up":
+                if (playerManager.checkUp()) {
+                    int[] nextCell = playerManager.nextCell(3);
+                    playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
+
+                    System.out.println(playerManager.getPlayer().getCell().getX());
+                    System.out.println(playerManager.getPlayer().getCell().getY());
+                    System.out.println("up");
+
+                    mv.updateView(mapManager.getMap(), players, playerManager.getPlayer());
                 }
                 break;
             case "return":
                 if (JOptionPane.OK_OPTION == mv.confirmSave()) {
-                    gameManager.saveGame(playerManager.getPlayer(), npcManager.getImpostors(), npcManager.getCrewMembers(), gameName);
+                    //gameManager.saveGame(playerManager.getPlayer(), npcManager.getImpostors(), npcManager.getCrewMembers(), gameName);
                 }
                 //DECIDIR A QUINA VISTA ANIREM
                 break;
@@ -112,52 +129,26 @@ public class MapController implements ActionListener {
                         break;
                 }
         }
-
-
     }
 
-    public void updateMap(){
-
-
-
+    public void startMapThread() {
+        isRunning = true;
+        this.start();
     }
 
-    public void impostorsMovement(LinkedList<Impostor> impostors, Time timer, int startInterval, int[] intervals) {
-        for (int i = 0; i < impostors.size(); i++) {
-            if (startInterval + intervals[i] == timer.getSeconds() && impostors.get(i).movement()) {
-                if (npcManager.checkVentilation(impostors.get(i).getCell())) {
-                    if (npcManager.flipCoin()) {
-                        int nextRoom = npcManager.chooseVentilationRoom(impostors.get(i).getCell());
-                        String roomName = npcManager.getImpostors().get(i).getCell().getAdjacencies().get(nextRoom);
-                        npcManager.getImpostors().get(i).setCell(mapManager.getMap().getCellByName(roomName));
-
-                        //MOVEM IMPOSTOR A LA VISTA (passar la 'i' i les coordenades)
-
-                        //int posicioImpostor/posicioCrewMember, int[] coordenadesCell, boolean impostor
-                    }
-                } else {
-                    int nextRoom = npcManager.getNextImpostorRoom(impostors.get(i));
-                    int[] nextCell = impostors.get(i).getNextCoordinates(nextRoom);
-                    impostors.get(i).setCell(mapManager.getMap().getCellByCoordinates(nextCell));
-
-                        //MOVEM IMPOSTOR A LA VISTA
-
-                }
-
-            }
-        }
+    public void stopMapThread() {
+        isRunning = false;
+        this.interrupt();
     }
 
-    public void crewMembersMovement(LinkedList<CrewMember> crewMembers, Time timer, int startInterval, int[] intervals) {
-        for (int i = 0; i < crewMembers.size(); i++) {
-            if (startInterval + intervals[i] == timer.getSeconds() && crewMembers.get(i).movement()) {
-                int nextRoom = npcManager.getNextCrewMemberRoom(crewMembers.get(i));
-                crewMembers.get(i).setPreviousRoom(nextRoom);
-                int[] nextCell = crewMembers.get(i).getNextCoordinates(nextRoom);
-                crewMembers.get(i).setCell(mapManager.getMap().getCellByCoordinates(nextCell));
-
-                //MOVEM CREW MEMBER A LA VISTA
-
+    @Override
+    public void run() {
+        while(isRunning) {
+            try {
+                TimeUnit.SECONDS.sleep(1);
+                mv.updateView(mapManager.getMap(), players, playerManager.getPlayer());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }

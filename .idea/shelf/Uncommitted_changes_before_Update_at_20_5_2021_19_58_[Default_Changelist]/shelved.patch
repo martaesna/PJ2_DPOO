@@ -1,0 +1,321 @@
+Index: BetweenUs/src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\nimport presentationLayer.controllers.MapController;\r\nimport businessLayer.entities.json.Data;\r\nimport businessLayer.JsonReader;\r\nimport businessLayer.entities.maps.Map;\r\nimport businessLayer.MapManager;\r\nimport presentationLayer.controllers.NewGameController;\r\nimport presentationLayer.views.NewGameView;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\nimport java.io.File;\r\nimport java.io.IOException;\r\n\r\npublic class Main {\r\n    private static Data data;\r\n    private static Map map;\r\n    private MapController mc;\r\n\r\n    public static void main(String[] args) {\r\n        addFont();\r\n\r\n        SwingUtilities.invokeLater(new Runnable() {\r\n            @Override\r\n            public void run() {\r\n                data = JsonReader.llegeixJSON();\r\n            }\r\n        });\r\n\r\n        NewGameView ngv = new NewGameView();\r\n        NewGameController gc = new NewGameController(ngv);\r\n        ngv.mainController(gc);\r\n    }\r\n\r\n    public static void addFont() {\r\n        try {\r\n            File f = new File(\"\");\r\n            String path = f.getAbsolutePath();\r\n            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();\r\n            System.out.println(path);\r\n            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(path + \"\\\\BetweenUs\\\\src\\\\model\\\\fonts\\\\RussoOne-Regular.ttf\")));\r\n        } catch (IOException |FontFormatException e) {\r\n            //Handle exception\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BetweenUs/src/Main.java b/BetweenUs/src/Main.java
+--- a/BetweenUs/src/Main.java	(revision 9b106db1fd08cde0968ad11a6defdc189a8ea02f)
++++ b/BetweenUs/src/Main.java	(date 1621519638647)
+@@ -5,6 +5,7 @@
+ import businessLayer.entities.maps.Map;
+ import businessLayer.MapManager;
+ import presentationLayer.controllers.NewGameController;
++import presentationLayer.views.LogsView;
+ import presentationLayer.views.NewGameView;
+ 
+ import javax.swing.*;
+@@ -26,10 +27,10 @@
+                 data = JsonReader.llegeixJSON();
+             }
+         });
+-
+-        NewGameView ngv = new NewGameView();
+-        NewGameController gc = new NewGameController(ngv);
+-        ngv.mainController(gc);
++        LogsView lv = new LogsView();
++       // NewGameView ngv = new NewGameView();
++        //NewGameController gc = new NewGameController(ngv);
++        //ngv.mainController(gc);
+     }
+ 
+     public static void addFont() {
+Index: BetweenUs/src/presentationLayer/views/MapView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package presentationLayer.views;\r\nimport businessLayer.entities.character.Character;\r\nimport businessLayer.entities.character.CrewMember;\r\nimport businessLayer.entities.character.Impostor;\r\nimport businessLayer.entities.maps.*;\r\nimport businessLayer.entities.game.Time;\r\nimport presentationLayer.controllers.MapController;\r\n\r\nimport javax.imageio.ImageIO;\r\nimport javax.swing.*;\r\nimport javax.swing.border.LineBorder;\r\nimport javax.swing.table.DefaultTableModel;\r\nimport java.awt.*;\r\nimport java.awt.event.ActionListener;\r\nimport java.awt.image.BufferedImage;\r\nimport java.io.IOException;\r\nimport java.util.HashMap;\r\nimport java.util.LinkedList;\r\nimport java.util.Objects;\r\n\r\n\r\npublic class MapView extends JFrame {\r\n\r\n    private JButton returnButton;\r\n    private JButton configButton;\r\n    private JButton mapButton;\r\n    private JButton up;\r\n    private JButton down;\r\n    private JButton right;\r\n    private JButton left;\r\n    private Object[][] data;\r\n    private Time time;\r\n    private LinkedList<CrewMember> crewMembers;\r\n    private LinkedList<Impostor> impostors;\r\n    private Character userPlayer;\r\n    private Map map;\r\n    private ImageIcon leftArrow;\r\n    private ImageIcon rightArrow;\r\n    private HashMap<String, JButton> objectiveTrackingButtons = new HashMap<String, JButton>();\r\n    private HashMap<Integer, Integer> objectiveTrackingPosition = new HashMap<Integer, Integer>();\r\n    private JPanel objectiveTracking;\r\n    private int numJugadors;\r\n    private Color newColor;\r\n\r\n    public MapView(Map map, LinkedList<CrewMember> crewMembers, LinkedList<Impostor> impostors, Character userPlayer)/*throws IOException*/ {\r\n        this.crewMembers = crewMembers;\r\n        this.impostors = impostors;\r\n        this.userPlayer = userPlayer;\r\n        this.map = map;\r\n\r\n        setTitle(\"Map\");\r\n        setSize(1080, 600);//600\r\n\r\n        setLocationRelativeTo(null);\r\n        setDefaultCloseOperation(EXIT_ON_CLOSE);\r\n\r\n        //pintem el panell final\r\n        JPanel background = new JPanel();\r\n        //background.setBounds(0,0,1080,600);\r\n        background.setLayout(new BorderLayout());\r\n        background.setBackground(Color.BLACK);\r\n\r\n        //Fem un panel a la part de dalt.\r\n        JPanel JpNorth = new JPanel(new BorderLayout());\r\n        JpNorth.setOpaque(false);\r\n\r\n        JPanel JpNorthEast = new JPanel(new BorderLayout());\r\n        JpNorthEast.setOpaque(false);\r\n\r\n        try {\r\n            BufferedImage image = ImageIO.read(Objects.requireNonNull(getClass().getResource(\"/images/config.png\")));\r\n            Image scaled = image.getScaledInstance(40, 40, Image.SCALE_DEFAULT);\r\n            ImageIcon backgroundImage = new ImageIcon(scaled);\r\n            configButton = new JButton(backgroundImage);\r\n            configButton.setOpaque(false);\r\n            configButton.setContentAreaFilled(false);\r\n            configButton.setBorderPainted(false);\r\n            configButton.setActionCommand(\"Config\");\r\n\r\n            JpNorth.add(configButton, BorderLayout.WEST);\r\n\r\n\r\n            BufferedImage image2 = ImageIO.read(Objects.requireNonNull(getClass().getResource(\"/images/Home.png\")));\r\n            Image scaled2 = image2.getScaledInstance(40, 30, Image.SCALE_DEFAULT);\r\n            ImageIcon backgroundImage2 = new ImageIcon(scaled2);\r\n            returnButton = new JButton(backgroundImage2);\r\n            returnButton.setOpaque(false);\r\n            returnButton.setContentAreaFilled(false);\r\n            returnButton.setBorderPainted(false);\r\n            returnButton.setActionCommand(\"Return\");\r\n\r\n            JpNorth.add(returnButton, BorderLayout.EAST);\r\n\r\n\r\n            BufferedImage image3 = ImageIO.read(Objects.requireNonNull(getClass().getResource(\"/images/map.png\")));\r\n            Image scaled3 = image3.getScaledInstance(40, 30, Image.SCALE_DEFAULT);\r\n            ImageIcon backgroundImage3 = new ImageIcon(scaled3);\r\n            mapButton = new JButton(backgroundImage3);\r\n            mapButton.setOpaque(false);\r\n            mapButton.setContentAreaFilled(false);\r\n            mapButton.setBorderPainted(false);\r\n            mapButton.setActionCommand(\"Return\");\r\n\r\n            JpNorthEast.add(mapButton, BorderLayout.EAST);\r\n            JpNorth.add(JpNorthEast, BorderLayout.CENTER);\r\n\r\n            BufferedImage image4 = ImageIO.read(Objects.requireNonNull(getClass().getResource(\"/images/leftArrow.png\")));\r\n            Image scaled4 = image4.getScaledInstance(40, 30, Image.SCALE_DEFAULT);\r\n            leftArrow = new ImageIcon(scaled4);\r\n\r\n            BufferedImage image5 = ImageIO.read(Objects.requireNonNull(getClass().getResource(\"/images/rightArrow.png\")));\r\n            Image scaled5 = image5.getScaledInstance(40, 30, Image.SCALE_DEFAULT);\r\n            rightArrow = new ImageIcon(scaled5);\r\n\r\n\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n\r\n        background.add(JpNorth, BorderLayout.NORTH);\r\n\r\n        JPanel JpCenter = new JPanel();\r\n\r\n        // Pasar ho toto pel PaintComponent\r\n       // JPanel mapa = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map);\r\n        MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map);\r\n        JpCenter = mp.CreaMapa();\r\n\r\n        //creamos un border layout dentro del EAST y ponemos los botones en cada lugar\r\n        //background.add(control,BorderLayout.EAST); //aqui hemos de poner los botones\r\n        JPanel controles = new JPanel(new BorderLayout());\r\n        //per poder colocar els botons a la part de dalt\r\n        JPanel AuxControles = new JPanel(new BorderLayout());\r\n        //coloquem els botons de adalt y abaix\r\n        JPanel AuxControlUPDOWN = new JPanel(new GridLayout(2, 1));\r\n        JPanel AuxControlLEFT = new JPanel(new BorderLayout());\r\n        JPanel AuxControlRIGHT = new JPanel(new BorderLayout());\r\n\r\n        up = new JButton();\r\n        up.setActionCommand(\"up\");\r\n        up.setText(\"^\");\r\n\r\n        down = new JButton();\r\n        down.setActionCommand(\"down\");\r\n        down.setText(\"v\");\r\n\r\n        right = new JButton();\r\n        right.setActionCommand(\"right\");\r\n        right.setText(\">\");\r\n\r\n        left = new JButton();\r\n        left.setActionCommand(\"left\");\r\n        left.setText(\"<\");\r\n\r\n        AuxControlUPDOWN.add(up);\r\n        AuxControlUPDOWN.add(down);\r\n        AuxControles.add(AuxControlUPDOWN, BorderLayout.CENTER);\r\n\r\n        AuxControlLEFT.add(left, BorderLayout.SOUTH);\r\n        AuxControlRIGHT.add(right, BorderLayout.SOUTH);\r\n        AuxControles.add(AuxControlRIGHT, BorderLayout.EAST);\r\n        AuxControles.add(AuxControlLEFT, BorderLayout.WEST);\r\n\r\n        AuxControlRIGHT.setOpaque(false);\r\n        AuxControlLEFT.setOpaque(false);\r\n        AuxControlUPDOWN.setOpaque(false);\r\n        AuxControles.setBackground(Color.GRAY);\r\n        controles.setOpaque(false);\r\n\r\n        //Coloquem els botons final al panell\r\n\r\n        controles.add(AuxControles, BorderLayout.NORTH);\r\n\r\n\r\n        background.add(controles, BorderLayout.EAST);\r\n\r\n\r\n        //JPanel bajo = new JPanel();\r\n        //bajo.setBackground(Color.RED);\r\n        //JPanel izquierda = new JPanel();\r\n        //izquierda.setBackground(Color.RED);\r\n        // background.add(bajo,BorderLayout.SOUTH);\r\n        //background.add(izquierda,BorderLayout.WEST);\r\n\r\n        //----------------------------------------------------------------------------------------------------------------\r\n\r\n\r\n        /*\r\n        JPanel background1 = new JLabel();\r\n        background.setBackground(Color.BLACK);\r\n        background.setBounds(0, 0, 1080, 600);\r\n        background.setOpaque(true);*/\r\n\r\n        numJugadors = 5;\r\n        objectiveTracking = new JPanel();\r\n        Color headerBackground = new Color(160,160,160);\r\n        objectiveTracking.setLayout(new GridLayout(numJugadors + 1,3));\r\n        objectiveTracking.setBackground(headerBackground);\r\n        newColor = new Color(102,0,153);\r\n\r\n\r\n        JLabel headerUnknown = new JLabel(\"Unknown\", JLabel.CENTER);\r\n        headerUnknown.setFont(new Font(\"Russo One\", Font.PLAIN, 20));\r\n        headerUnknown.setBorder(new LineBorder(Color.WHITE,1,false));\r\n        headerUnknown.setForeground(Color.WHITE);\r\n\r\n        JLabel headerSus = new JLabel(\"Suspicious\", JLabel.CENTER);\r\n        headerSus.setFont(new Font(\"Russo One\", Font.PLAIN, 20));\r\n        headerSus.setBorder(new LineBorder(Color.WHITE,1,false));\r\n        headerSus.setForeground(Color.WHITE);\r\n\r\n        JLabel headerInn = new JLabel(\"Innocent\", JLabel.CENTER);\r\n        headerInn.setFont(new Font(\"Russo One\", Font.PLAIN, 20));\r\n        headerInn.setBorder(new LineBorder(Color.WHITE,1,false));\r\n        headerInn.setForeground(Color.WHITE);\r\n\r\n\r\n\r\n        objectiveTracking.add(headerUnknown);\r\n        objectiveTracking.add(headerSus);\r\n        objectiveTracking.add(headerInn);\r\n\r\n\r\n        for (int i = 0; i < numJugadors; i++) {\r\n            JPanel playerPanel = createPanel(\"purple\", newColor, i, objectiveTrackingButtons);\r\n            JLabel empty = new JLabel(\"\");\r\n            JLabel empty2 = new JLabel(\"\");\r\n            objectiveTracking.add(playerPanel);\r\n            objectiveTracking.add(empty);\r\n            objectiveTracking.add(empty2);\r\n            objectiveTrackingPosition.put(i, 0);\r\n        }\r\n\r\n\r\n        //getContentPane().add(background);\r\n        //getContentPane().add(gui);\r\n        background.add(objectiveTracking, BorderLayout.SOUTH);\r\n        background.add(JpCenter, BorderLayout.CENTER);\r\n\r\n\r\n        add(background);\r\n       // time.initCounter();\r\n        setVisible(true);\r\n    }\r\n\r\n    public void moveRight(String element) {\r\n        for (int key: objectiveTrackingPosition.keySet()) {\r\n            if (key == Integer.parseInt(element) && canMoveRight(objectiveTrackingPosition.get(key))) {\r\n                objectiveTrackingPosition.replace(key, objectiveTrackingPosition.get(key) + 1);\r\n            }\r\n        }\r\n    }\r\n\r\n    private boolean canMoveRight(Integer element) {\r\n        return element != 2;\r\n    }\r\n\r\n    public void updateObjectiveTracking(MapController mc) {\r\n        objectiveTracking.removeAll();\r\n\r\n        JLabel headerUnknown = new JLabel(\"Unknown\", JLabel.CENTER);\r\n        headerUnknown.setFont(new Font(\"Russo One\", Font.PLAIN, 20));\r\n        headerUnknown.setBorder(new LineBorder(Color.WHITE,1,false));\r\n        headerUnknown.setForeground(Color.WHITE);\r\n\r\n        JLabel headerSus = new JLabel(\"Suspicious\", JLabel.CENTER);\r\n        headerSus.setFont(new Font(\"Russo One\", Font.PLAIN, 20));\r\n        headerSus.setBorder(new LineBorder(Color.WHITE,1,false));\r\n        headerSus.setForeground(Color.WHITE);\r\n\r\n        JLabel headerInn = new JLabel(\"Innocent\", JLabel.CENTER);\r\n        headerInn.setFont(new Font(\"Russo One\", Font.PLAIN, 20));\r\n        headerInn.setBorder(new LineBorder(Color.WHITE,1,false));\r\n        headerInn.setForeground(Color.WHITE);\r\n\r\n        objectiveTracking.add(headerUnknown);\r\n        objectiveTracking.add(headerSus);\r\n        objectiveTracking.add(headerInn);\r\n\r\n        for (int key: objectiveTrackingPosition.keySet()) {\r\n            if (objectiveTrackingPosition.get(key) == 0) {\r\n                JPanel playerPanel = createPanel(\"purple\", newColor, key, objectiveTrackingButtons);\r\n                JLabel empty = new JLabel(\"\");\r\n                JLabel empty2 = new JLabel(\"\");\r\n                objectiveTracking.add(playerPanel);\r\n                objectiveTracking.add(empty);\r\n                objectiveTracking.add(empty2);\r\n            } else if (objectiveTrackingPosition.get(key) == 1) {\r\n                JPanel playerPanel = createPanel(\"purple\", newColor, key, objectiveTrackingButtons);\r\n                JLabel empty = new JLabel(\"\");\r\n                JLabel empty2 = new JLabel(\"\");\r\n                objectiveTracking.add(empty);\r\n                objectiveTracking.add(playerPanel);\r\n                objectiveTracking.add(empty2);\r\n            } else {\r\n                JPanel playerPanel = createPanel(\"purple\", newColor, key, objectiveTrackingButtons);\r\n                JLabel empty = new JLabel(\"\");\r\n                JLabel empty2 = new JLabel(\"\");\r\n                objectiveTracking.add(empty);\r\n                objectiveTracking.add(empty2);\r\n                objectiveTracking.add(playerPanel);\r\n            }\r\n        }\r\n        objectiveTracking.revalidate();\r\n        objectiveTracking.repaint();\r\n\r\n        mainController(mc);\r\n    }\r\n\r\n    public void moveLeft(String element) {\r\n        for (int key: objectiveTrackingPosition.keySet()) {\r\n            if (key == Integer.parseInt(element) && canMoveLeft(objectiveTrackingPosition.get(key))) {\r\n                objectiveTrackingPosition.replace(key, objectiveTrackingPosition.get(key) - 1);\r\n            }\r\n        }\r\n    }\r\n\r\n    private boolean canMoveLeft(Integer element) {\r\n        return element != 0;\r\n    }\r\n\r\n    private JPanel createPanel(String colorName, Color color, int i, HashMap<String, JButton> objectiveTrackingButtons) {\r\n        JPanel jpanel = new JPanel(new GridLayout(1,3));\r\n        jpanel.setBorder(new LineBorder(Color.WHITE,1,false));\r\n\r\n        JButton leftButton = new JButton(leftArrow);\r\n        leftButton.setActionCommand(\"l_\" + i);\r\n        leftButton.setBackground(color);\r\n        leftButton.setBorder(null);\r\n        objectiveTrackingButtons.put(\"l_\" + i, leftButton);\r\n        jpanel.add(leftButton);\r\n\r\n        JLabel playerLabel = new JLabel(colorName, JLabel.CENTER);\r\n        playerLabel.setFont(new Font(\"Russo One\", Font.PLAIN, 18));\r\n        playerLabel.setForeground(Color.WHITE);\r\n        jpanel.add(playerLabel);\r\n\r\n        JButton rightButton = new JButton(rightArrow);\r\n        rightButton.setActionCommand(\"r_\" + i);\r\n        rightButton.setBackground(color);\r\n        rightButton.setBorder(null);\r\n        objectiveTrackingButtons.put(\"r_\" + i, rightButton);\r\n        jpanel.add(rightButton);\r\n\r\n        jpanel.setBackground(color);\r\n\r\n        return jpanel;\r\n    }\r\n\r\n    public void mainController(ActionListener actionListener) {\r\n        up.addActionListener(actionListener);\r\n        down.addActionListener(actionListener);\r\n        left.addActionListener(actionListener);\r\n        right.addActionListener(actionListener);\r\n\r\n        for (String key: objectiveTrackingButtons.keySet()) {\r\n            objectiveTrackingButtons.get(key).addActionListener(actionListener);\r\n        }\r\n\r\n    }\r\n\r\n    public void moveNpcPlayer(int i, int[] nextCell, boolean impostor) {\r\n        if (impostor) {\r\n            //Movem Impostor i a nextCell\r\n\r\n        } else {\r\n            //Movem Crew Member i a nextCell\r\n        }\r\n    }\r\n\r\n    public int confirmSave(){\r\n        return JOptionPane.showConfirmDialog(null,\"Vols guardar l'estat actual de la partida?\");\r\n    }\r\n}\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BetweenUs/src/presentationLayer/views/MapView.java b/BetweenUs/src/presentationLayer/views/MapView.java
+--- a/BetweenUs/src/presentationLayer/views/MapView.java	(revision 9b106db1fd08cde0968ad11a6defdc189a8ea02f)
++++ b/BetweenUs/src/presentationLayer/views/MapView.java	(date 1621511730566)
+@@ -48,6 +48,8 @@
+         this.userPlayer = userPlayer;
+         this.map = map;
+ 
++        numJugadors = crewMembers.size() + impostors.size();
++
+         setTitle("Map");
+         setSize(1080, 600);//600
+ 
+Index: BetweenUs/src/presentationLayer/views/customComponents/Log.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BetweenUs/src/presentationLayer/views/customComponents/Log.java b/BetweenUs/src/presentationLayer/views/customComponents/Log.java
+new file mode 100644
+--- /dev/null	(date 1621520834434)
++++ b/BetweenUs/src/presentationLayer/views/customComponents/Log.java	(date 1621520834434)
+@@ -0,0 +1,37 @@
++package presentationLayer.views.customComponents;
++
++public class Log {
++    private String name;
++    private String room;
++    private int instant;
++
++    public Log(String name, String room, int instant) {
++        this.name = name;
++        this.room = room;
++        this.instant = instant;
++    }
++
++    public String getName() {
++        return name;
++    }
++
++    public void setName(String name) {
++        this.name = name;
++    }
++
++    public String getRoom() {
++        return room;
++    }
++
++    public void setRoom(String room) {
++        this.room = room;
++    }
++
++    public int getInstant() {
++        return instant;
++    }
++
++    public void setInstant(int instant) {
++        this.instant = instant;
++    }
++}
+Index: BetweenUs/src/presentationLayer/views/LogsView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BetweenUs/src/presentationLayer/views/LogsView.java b/BetweenUs/src/presentationLayer/views/LogsView.java
+new file mode 100644
+--- /dev/null	(date 1621521390297)
++++ b/BetweenUs/src/presentationLayer/views/LogsView.java	(date 1621521390297)
+@@ -0,0 +1,34 @@
++package presentationLayer.views;
++
++import presentationLayer.views.customComponents.Log;
++import presentationLayer.views.customComponents.LogTableModel;
++
++import javax.swing.*;
++import java.util.LinkedList;
++
++public class LogsView extends JFrame{
++    private JTable logsTable;
++    private LogTableModel model;
++    private LinkedList<Log> logs;
++
++    public LogsView() {
++        setTitle("Logs"); // titol
++        setSize(700, 400); // tamaño de la caja
++        setResizable(false); //para que no se pueda mover
++        setLocationRelativeTo(null); //Centrarlo
++        setDefaultCloseOperation(EXIT_ON_CLOSE); // cerrar con la x
++        setLayout(null);
++
++        logs = new LinkedList<>();
++
++        Log log = new Log("green", "cafeteria", 34);
++        logs.add(log);
++
++        model = new LogTableModel(logs);
++        logsTable = new JTable(model);
++        JScrollPane scrollPane = new JScrollPane(logsTable);
++
++        setContentPane(scrollPane);
++        setVisible(true);
++    }
++}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"d65bbffe-14d8-40c0-9f0f-ef73d642d1b7\" name=\"Default Changelist\" comment=\"ChargeGame\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_05_2021__21_07__Default_Changelist_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_05_2021__21_07__Default_Changelist_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021,_11_34_[Default_Changelist]/shelved.patch\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021__11_34__Default_Changelist_.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021__11_57__Default_Changelist_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021__11_57__Default_Changelist_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2021__11_29__Default_Changelist_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2021__11_29__Default_Changelist_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2021__19_22__Default_Changelist_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2021__19_22__Default_Changelist_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_05_2021__16_20__Default_Changelist_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_05_2021__16_20__Default_Changelist_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2021__16_38__Default_Changelist_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2021__16_38__Default_Changelist_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2021__20_07__Default_Changelist_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2021__20_07__Default_Changelist_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2021__20_07__Default_Changelist_1.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2021__20_07__Default_Changelist_1.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_19__Default_Changelist_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_19__Default_Changelist_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_5_2021_19_13__Default_Changelist_.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_5_2021_19_13__Default_Changelist_.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/BetweenUs/src/businessLayer/ConectorDB.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/BetweenUs/src/businessLayer/ConectorDB.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/MapController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/MapController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/MapView.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/MapView.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/out/production/BetweenUs/businessLayer/ConectorDB.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/BetweenUs/businessLayer/ConectorDB.class\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ComposerSettings\">\r\n    <execution />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1rUMVHwiYNFcaFxeF4LHZfx1EeZ\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$USER_HOME$/Downloads/Threads - Counter/Threads - Counter\" />\r\n    <property name=\"project.structure.last.edited\" value=\"Project\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.0\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.0\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"project.propVCSSupport.Confirmation\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\marta\\Desktop\\BETWEEN US\\Projecte V4\\BetweenUs\\src\\model\\mapsFiles\" />\r\n      <recent name=\"C:\\Users\\marta\\Desktop\\BETWEEN US\\Projecte V3\\BetweenUs\\src\\model\" />\r\n      <recent name=\"C:\\Users\\marta\\Desktop\\BETWEEN US\\Projecte V2\\BetweenUs\\src\\model\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\marta\\Desktop\\BETWEEN US\\Projecte V4\\BetweenUs\\src\\mapsFiles\" />\r\n      <recent name=\"C:\\Users\\marta\\Desktop\\BETWEEN US\\Projecte V3\\BetweenUs\\src\\model\\mapsFiles\" />\r\n      <recent name=\"C:\\Users\\marta\\Desktop\\BETWEEN US\\Projecte V3\\BetweenUs\\src\\model\\maps\" />\r\n    </key>\r\n    <key name=\"MoveClassesOrPackagesDialog.RECENTS_KEY\">\r\n      <recent name=\"businessLayer.entities.game\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\r\n      <module name=\"BetweenUs\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\r\n      <module name=\"BetweenUs\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.Main\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"d65bbffe-14d8-40c0-9f0f-ef73d642d1b7\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1619026237063</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1619026237063</updated>\r\n      <workItem from=\"1620159108659\" duration=\"996000\" />\r\n      <workItem from=\"1620212480187\" duration=\"7204000\" />\r\n      <workItem from=\"1620224895175\" duration=\"5952000\" />\r\n      <workItem from=\"1620313673836\" duration=\"7237000\" />\r\n      <workItem from=\"1620663733615\" duration=\"5626000\" />\r\n      <workItem from=\"1620812480016\" duration=\"1128000\" />\r\n      <workItem from=\"1620825553342\" duration=\"3083000\" />\r\n      <workItem from=\"1620897764447\" duration=\"283000\" />\r\n      <workItem from=\"1621509753941\" duration=\"819000\" />\r\n      <workItem from=\"1621511065284\" duration=\"326000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Per saber si ho tenim, joves!\">\r\n      <created>1619026420669</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1619026420669</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Comprovació format de contrasenya&#10;Comprovació confirmació de contrasenya\">\r\n      <created>1619030043907</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1619030043907</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Codi &quot;net&quot; (He utilitzat el main per fer la prova)\">\r\n      <created>1619030244399</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1619030244399</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"User i UserController afegits\">\r\n      <created>1619073536836</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1619073536836</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Register View i Lògica Units\">\r\n      <created>1619078481798</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1619078481798</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Registre&#10;Login&#10;Delete User\">\r\n      <created>1620124423297</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1620124423297</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Game creation logic (falta)&#10;Game management logic (falta)\">\r\n      <created>1620241565581</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1620241565581</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"- Format del correu&#10;- Canviar showMessageDialog dels DAOs als Controllers\">\r\n      <created>1620312966445</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1620312966445</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"- Format del correu&#10;- Canviar showMessageDialog dels DAOs als Controllers\">\r\n      <created>1620313049801</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1620313049801</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"ADD&#10;- Map json file&#10;- Map classes&#10;- Map json reader\">\r\n      <created>1620328290407</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1620328290407</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"Format correu&#10;Carregar joc (part)&#10;Recrear joc (part)&#10;GameDAO\">\r\n      <created>1620412486897</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1620412486897</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"Comensem a crear el mapView pero encra no llegueix el json\">\r\n      <created>1620735715708</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1620735715708</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"Map view en proceso\">\r\n      <created>1620851505852</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1620851505852</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"NewGameController\">\r\n      <created>1620899777197</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1620899777197</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"NewGame View&#10;NewGameController&#10;Game creation logic&#10;Game management logic\">\r\n      <created>1620934525806</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1620934525806</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"NewGameController&#10;Mètodes (buits) lògica joc\">\r\n      <created>1621101398520</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1621101398520</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"Time com a entitat\">\r\n      <created>1621102508804</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1621102508804</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\"NPCMovement&#10;PlayerMovement&#10;Condicions de victoria pels impostors\">\r\n      <created>1621165366095</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1621165366095</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00019\" summary=\"PlayerMovement&#10;InitialCell (CoffeShop)\">\r\n      <created>1621256385926</created>\r\n      <option name=\"number\" value=\"00019\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1621256385926</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00020\" summary=\"Desc\">\r\n      <created>1621272980553</created>\r\n      <option name=\"number\" value=\"00020\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1621272980553</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00021\" summary=\"SetInitial Color and Cell\">\r\n      <created>1621334389702</created>\r\n      <option name=\"number\" value=\"00021\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1621334389702</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00022\" summary=\"Colors Arreglats&#10;Player,Npc,Map (Managers) dins de Map Controller\">\r\n      <created>1621361214616</created>\r\n      <option name=\"number\" value=\"00022\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1621361214616</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00023\" summary=\"Delete, Save and Resume Game (falta setters de les Cells als personatges)\">\r\n      <created>1621422082726</created>\r\n      <option name=\"number\" value=\"00023\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1621422082726</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00024\" summary=\"ChargeGame\">\r\n      <created>1621438527721</created>\r\n      <option name=\"number\" value=\"00024\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1621438527721</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"25\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Per saber si ho tenim, joves!\" />\r\n    <MESSAGE value=\"Comprovació format de contrasenya&#10;Comprovació confirmació de contrasenya\" />\r\n    <MESSAGE value=\"Codi &quot;net&quot; (He utilitzat el main per fer la prova)\" />\r\n    <MESSAGE value=\"User i UserController afegits\" />\r\n    <MESSAGE value=\"Register View i Lògica Units\" />\r\n    <MESSAGE value=\"Registre&#10;Login&#10;Delete User\" />\r\n    <MESSAGE value=\"Game creation logic (falta)&#10;Game management logic (falta)\" />\r\n    <MESSAGE value=\"- Format del correu&#10;- Canviar showMessageDialog dels DAOs als Controllers\" />\r\n    <MESSAGE value=\"ADD&#10;- Map json file&#10;- Map classes&#10;- Map json reader\" />\r\n    <MESSAGE value=\"Format correu&#10;Carregar joc (part)&#10;Recrear joc (part)&#10;GameDAO\" />\r\n    <MESSAGE value=\"Comensem a crear el mapView pero encra no llegueix el json\" />\r\n    <MESSAGE value=\"Map view en proceso\" />\r\n    <MESSAGE value=\"NewGameController\" />\r\n    <MESSAGE value=\"NewGame View&#10;NewGameController&#10;Game creation logic&#10;Game management logic\" />\r\n    <MESSAGE value=\"NewGameController&#10;Mètodes (buits) lògica joc\" />\r\n    <MESSAGE value=\"Time com a entitat\" />\r\n    <MESSAGE value=\"NPCMovement&#10;PlayerMovement&#10;Condicions de victoria pels impostors\" />\r\n    <MESSAGE value=\"PlayerMovement&#10;InitialCell (CoffeShop)\" />\r\n    <MESSAGE value=\"Desc\" />\r\n    <MESSAGE value=\"SetInitial Color and Cell\" />\r\n    <MESSAGE value=\"Colors Arreglats&#10;Player,Npc,Map (Managers) dins de Map Controller\" />\r\n    <MESSAGE value=\"Save and Resume Game (falta setters de les Cells als personatges)\" />\r\n    <MESSAGE value=\"Delete, Save and Resume Game (falta setters de les Cells als personatges)\" />\r\n    <MESSAGE value=\"ChargeGame\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"ChargeGame\" />\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/Buida$Main.ic\" NAME=\"Main Coverage Results\" MODIFIED=\"1620930931826\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 9b106db1fd08cde0968ad11a6defdc189a8ea02f)
++++ b/.idea/workspace.xml	(date 1621533455097)
+@@ -1,24 +1,16 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="ChargeGame">
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_05_2021__21_07__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_05_2021__21_07__Default_Changelist_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021,_11_34_[Default_Changelist]/shelved.patch" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021__11_34__Default_Changelist_.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021__11_57__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_13_05_2021__11_57__Default_Changelist_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2021__11_29__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2021__11_29__Default_Changelist_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2021__19_22__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2021__19_22__Default_Changelist_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_05_2021__16_20__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_18_05_2021__16_20__Default_Changelist_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2021__16_38__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2021__16_38__Default_Changelist_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2021__20_07__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2021__20_07__Default_Changelist_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2021__20_07__Default_Changelist_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_05_2021__20_07__Default_Changelist_1.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_19__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_5_5_2021_20_19__Default_Changelist_.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_5_2021_19_13__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_5_2021_19_13__Default_Changelist_.xml" afterDir="false" />
++    <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="">
++      <change afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/LogsView.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/customComponents/Log.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/customComponents/LogTableModel.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/businessLayer/ConectorDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/businessLayer/ConectorDB.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/MapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/MapController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/BetweenUs/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/Main.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/MapView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/MapView.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/ConectorDB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/ConectorDB.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/Main$1.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/Main.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/MapView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/MapView.class" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -52,7 +44,7 @@
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+     <property name="WebServerToolWindowFactoryState" value="false" />
+     <property name="aspect.path.notification.shown" value="true" />
+-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Threads - Counter/Threads - Counter" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$/BetweenUs/src/images" />
+     <property name="project.structure.last.edited" value="Project" />
+     <property name="project.structure.proportion" value="0.0" />
+     <property name="project.structure.side.proportion" value="0.0" />
+@@ -60,6 +52,7 @@
+   </component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
++      <recent name="C:\Users\marta\Desktop\BETWEEN US\Projecte V5\BetweenUs\src\images" />
+       <recent name="C:\Users\marta\Desktop\BETWEEN US\Projecte V4\BetweenUs\src\model\mapsFiles" />
+       <recent name="C:\Users\marta\Desktop\BETWEEN US\Projecte V3\BetweenUs\src\model" />
+       <recent name="C:\Users\marta\Desktop\BETWEEN US\Projecte V2\BetweenUs\src\model" />
+@@ -88,6 +81,17 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
++    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
++      <option name="arquillianRunConfiguration">
++        <value>
++          <option name="containerStateName" value="" />
++        </value>
++      </option>
++      <option name="TEST_OBJECT" value="class" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
+     <recent_temporary>
+       <list>
+         <item itemvalue="Application.Main" />
+@@ -111,7 +115,8 @@
+       <workItem from="1620825553342" duration="3083000" />
+       <workItem from="1620897764447" duration="283000" />
+       <workItem from="1621509753941" duration="819000" />
+-      <workItem from="1621511065284" duration="326000" />
++      <workItem from="1621511065284" duration="2095000" />
++      <workItem from="1621518921998" duration="3059000" />
+     </task>
+     <task id="LOCAL-00001" summary="Per saber si ho tenim, joves!">
+       <created>1619026420669</created>
+@@ -281,7 +286,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1621438527721</updated>
+     </task>
+-    <option name="localTasksCounter" value="25" />
++    <task id="LOCAL-00025" summary="ADD&#10;GameObjectiveTracking view and logic&#10;&#10;UPDATE&#10;Merge between versions">
++      <created>1621511668719</created>
++      <option name="number" value="00025" />
++      <option name="presentableId" value="LOCAL-00025" />
++      <option name="project" value="LOCAL" />
++      <updated>1621511668719</updated>
++    </task>
++    <option name="localTasksCounter" value="26" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -324,7 +336,8 @@
+     <MESSAGE value="Save and Resume Game (falta setters de les Cells als personatges)" />
+     <MESSAGE value="Delete, Save and Resume Game (falta setters de les Cells als personatges)" />
+     <MESSAGE value="ChargeGame" />
+-    <option name="LAST_COMMIT_MESSAGE" value="ChargeGame" />
++    <MESSAGE value="ADD&#10;GameObjectiveTracking view and logic&#10;&#10;UPDATE&#10;Merge between versions" />
++    <option name="LAST_COMMIT_MESSAGE" value="ADD&#10;GameObjectiveTracking view and logic&#10;&#10;UPDATE&#10;Merge between versions" />
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+     <SUITE FILE_PATH="coverage/Buida$Main.ic" NAME="Main Coverage Results" MODIFIED="1620930931826" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+Index: BetweenUs/src/presentationLayer/views/customComponents/LogTableModel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/BetweenUs/src/presentationLayer/views/customComponents/LogTableModel.java b/BetweenUs/src/presentationLayer/views/customComponents/LogTableModel.java
+new file mode 100644
+--- /dev/null	(date 1621520366697)
++++ b/BetweenUs/src/presentationLayer/views/customComponents/LogTableModel.java	(date 1621520366697)
+@@ -0,0 +1,54 @@
++package presentationLayer.views.customComponents;
++
++import javax.swing.table.AbstractTableModel;
++import java.util.LinkedList;
++
++public class LogTableModel extends AbstractTableModel {
++
++    private final String[] header = {"CREWMATE", "ROOM", "INSTANT"};
++    private LinkedList<Log> data;
++
++    public LogTableModel(LinkedList<Log> data) {
++        this.data = data;
++    }
++
++    public int getColumnCount() {
++        return header.length;
++    }
++
++    @Override
++    public String getColumnName(int column) {
++        return header[column];
++    }
++
++    @Override
++    public int getRowCount() {
++        return data.size();
++    }
++
++    public void addLog(Log log) {
++        int row = data.size();
++        System.out.println(row);
++        System.out.println(log);
++        data.add(log);
++        fireTableRowsInserted(row, row);
++    }
++
++    @Override
++    public Object getValueAt(int rowIndex, int columnIndex) {
++        Log log = data.get(rowIndex);
++        if (log == null) {
++            return null;
++        }
++        switch (columnIndex) {
++            case 0:
++                return log.getName();
++            case 1:
++                return log.getRoom();
++            case 2:
++                return log.getInstant();
++            default:
++                return null;
++        }
++    }
++}

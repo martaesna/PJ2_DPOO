@@ -1,23 +1,20 @@
 package businessLayer;
 
-import businessLayer.entities.character.Character;
 import businessLayer.entities.character.CrewMember;
 import businessLayer.entities.character.Impostor;
-import businessLayer.entities.game.Time;
+import businessLayer.entities.character.Player;
 import businessLayer.entities.maps.Cell;
 import com.google.gson.Gson;
 import businessLayer.entities.maps.Map;
-
 import java.io.File;
 import java.io.FileReader;
 import java.util.LinkedList;
-import java.util.Timer;
 
 public class MapManager {
     private static Map map;
 
     public MapManager(Map map) {
-        this.map = map;
+        MapManager.map = map;
     }
 
     public static Map llegeixMapa(String mapName) {
@@ -44,6 +41,29 @@ public class MapManager {
     public Cell nextPlayerCell (int[] nextCell) {
         return getMap().getCellByCoordinates(nextCell);
     }
+
+    public void updatePlayersMovement() {
+
+    }
+
+    /*
+    public LinkedList<String> getCellColors(Player userPlayer, LinkedList<Impostor> impostors, LinkedList<CrewMember> crewMembers, Cell cell) {
+        LinkedList<String> colors = new LinkedList<>();
+        if (userPlayer.getCell() == cell) {
+            colors.add(userPlayer.getColor());
+        }
+        for (CrewMember crewMember: crewMembers) {
+            if (cell == crewMember.getCell()) {
+                colors.add(crewMember.getColor());
+            }
+        }
+        for (Impostor impostor: impostors) {
+            if (cell == impostor.getCell()) {
+                colors.add(impostor.getColor());
+            }
+        }
+        return colors;
+    }*/
 }
 
 

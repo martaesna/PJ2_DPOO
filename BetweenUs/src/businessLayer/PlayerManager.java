@@ -1,30 +1,24 @@
 package businessLayer;
 
-import businessLayer.entities.character.Character;
+import businessLayer.entities.character.Player;
 import businessLayer.entities.maps.Cell;
-import businessLayer.entities.maps.Mobility;
 
 public class PlayerManager {
-    private Character player;
+    private final Player player;
 
-    public PlayerManager(Character character) {
+    public PlayerManager(Player character) {
         this.player = character;
     }
 
-    public Character getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 
     public boolean checkClasification() {
-
-
-
         return true;
     }
 
     public boolean checkLogs() {
-
-
         return true;
     }
 
@@ -37,27 +31,15 @@ public class PlayerManager {
     }
 
     public boolean checkLeft() {
-        if (getPlayer().getCell().getMobility().getLeft() == 0) {
-            return false;
-        }
-        return true;
+        return getPlayer().getCell().getMobility().getLeft() != 0;
     }
     public boolean checkRight() {
-        if (getPlayer().getCell().getMobility().getRight() == 0) {
-            return false;
-        }
-        return true;
+        return getPlayer().getCell().getMobility().getRight() != 0;
     }
     public boolean checkUp() {
-        if (getPlayer().getCell().getMobility().getUp() == 0) {
-            return false;
-        }
-        return true;
+        return getPlayer().getCell().getMobility().getUp() != 0;
     }
     public boolean checkDown() {
-        if (getPlayer().getCell().getMobility().getDown() == 0) {
-            return false;
-        }
-        return true;
+        return getPlayer().getCell().getMobility().getDown() != 0;
     }
 }

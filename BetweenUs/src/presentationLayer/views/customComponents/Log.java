@@ -1,9 +1,9 @@
 package presentationLayer.views.customComponents;
 
 public class Log {
-    private String name;
-    private String room;
-    private int instant;
+    private final String name;
+    private final String room;
+    private final int instant;
 
     public Log(String name, String room, int instant) {
         this.name = name;
@@ -14,24 +14,10 @@ public class Log {
     public String getName() {
         return name;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getRoom() {
         return room;
     }
-
-    public void setRoom(String room) {
-        this.room = room;
-    }
-
     public int getInstant() {
         return instant;
-    }
-
-    public void setInstant(int instant) {
-        this.instant = instant;
     }
 }
