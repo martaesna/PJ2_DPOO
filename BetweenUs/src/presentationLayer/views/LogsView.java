@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.util.LinkedList;
 
 public class LogsView extends JFrame{
-    private LinkedList<Log> logs;
+    private LinkedList<Log> logs = new LinkedList<Log>();
     private MapController mc;
     public LogsView() {
         setTitle("Logs"); // titol

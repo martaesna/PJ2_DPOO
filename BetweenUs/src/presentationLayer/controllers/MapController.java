@@ -27,6 +27,7 @@ public class MapController extends Thread implements ActionListener {
     private boolean revealMap;
     private String userName;
 
+
     public MapController(MapView mv, MapManager mapManager, PlayerManager playerManager, LinkedList<Character> players, String gameName, String userName, NpcManager npcManager){
         this.mapManager = mapManager;
         this.players = players;
@@ -150,6 +151,9 @@ public class MapController extends Thread implements ActionListener {
                     PlayViewController playViewController = new PlayViewController(playView, userName);
                     playView.mainController(playViewController);
                 }
+                break;
+            case "logs":
+                logsView = new LogsView();
                 break;
             default:
                 String[] elements = command.split("_");

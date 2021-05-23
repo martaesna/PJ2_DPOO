@@ -38,6 +38,8 @@ public class MapView extends JFrame {
     private JPanel background;
     private boolean revealMap;
     private JButton jbSolution;
+    private JButton jbLogs;
+    private LogsView logsView;
 
     public MapView(Map map, LinkedList<Character> players, Player userPlayer)/*throws IOException*/ {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -188,7 +190,12 @@ public class MapView extends JFrame {
         jbSolution.setActionCommand("Solution");
         jbSolution.setText("Solution");
 
-        controles.add(jbSolution,BorderLayout.SOUTH);
+        jbLogs = new JButton();
+        jbLogs.setActionCommand("logs");
+        jbLogs.setText("logs");
+
+        controles.add(jbSolution,BorderLayout.WEST);
+        controles.add(jbLogs,BorderLayout.EAST);
 
         background.add(controles, BorderLayout.EAST);
 
@@ -390,6 +397,7 @@ public class MapView extends JFrame {
         configButton.addActionListener(actionListener);
         returnButton.addActionListener(actionListener);
         jbSolution.addActionListener(actionListener);
+        jbLogs.addActionListener(actionListener);
 
         for (String key: objectiveTrackingButtons.keySet()) {
             objectiveTrackingButtons.get(key).addActionListener(actionListener);
@@ -430,6 +438,16 @@ public class MapView extends JFrame {
             jbSolution.setVisible(false);
             try{
             } catch (Exception e) {
+            }
+        }
+        if (userPlayer.getCell().getRoomName().equals("security")){
+            jbLogs.setVisible(true);
+        }else {
+            jbLogs.setVisible(false);
+            try{
+                logsView.setVisible(false);
+            } catch (Exception e) {
+
             }
         }
 
