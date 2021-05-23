@@ -7,10 +7,7 @@ import businessLayer.PlayerManager;
 import businessLayer.entities.character.Character;
 import businessLayer.entities.character.CrewMember;
 import businessLayer.entities.maps.*;
-import presentationLayer.views.LoginView;
-import presentationLayer.views.MapView;
-import presentationLayer.views.PlayView;
-import presentationLayer.views.SettingView;
+import presentationLayer.views.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -24,6 +21,7 @@ public class MapController extends Thread implements ActionListener {
     private final PlayerManager playerManager;
     private final NpcManager npcManager;
     private final String gameName;
+    private LogsView logsView;
     private boolean isRunning;
     private LinkedList<Character> players;
     private boolean revealMap;
@@ -146,6 +144,9 @@ public class MapController extends Thread implements ActionListener {
                     revealMap = true;
                     mv.updateView(mapManager.getMap(), players, playerManager.getPlayer(), revealMap);
                 }
+                break;
+            case "logs":
+                logsView = new LogsView();
                 break;
             default:
                 String[] elements = command.split("_");

@@ -17,6 +17,7 @@ import java.util.LinkedList;
 import java.util.Objects;
 
 public class MapView extends JFrame {
+    private final JButton jblogs;
     private JButton returnButton;
     private JButton configButton;
     private JButton mapButton;
@@ -35,6 +36,7 @@ public class MapView extends JFrame {
     private JPanel jpCenter;
     private JPanel background;
     private boolean revealMap;
+    private LogsView logsView;
 
     public MapView(Map map, LinkedList<Character> players, Player userPlayer)/*throws IOException*/ {
         this.players = players;
@@ -170,6 +172,14 @@ public class MapView extends JFrame {
         //Coloquem els botons final al panell
 
         controles.add(auxControles, BorderLayout.NORTH);
+
+        jblogs = new JButton();
+        jblogs.setActionCommand("logs");
+        jblogs.setText("logs");
+
+
+
+        controles.add(jblogs,BorderLayout.SOUTH);
 
 
         background.add(controles, BorderLayout.EAST);
@@ -371,6 +381,7 @@ public class MapView extends JFrame {
         mapButton.addActionListener(actionListener);
         configButton.addActionListener(actionListener);
         returnButton.addActionListener(actionListener);
+        jblogs.addActionListener(actionListener);
 
         for (String key: objectiveTrackingButtons.keySet()) {
             objectiveTrackingButtons.get(key).addActionListener(actionListener);
@@ -405,6 +416,15 @@ public class MapView extends JFrame {
     }
 
     public void updateView(Map map, LinkedList<Character> players, Character userPlayer, boolean revealMap) {
+        if (userPlayer.getCell().getRoomName().equals("cafeteria")){
+            jblogs.setVisible(true);
+        }else {
+            jblogs.setVisible(false);
+            try{
+                logsView.setVisible(false);
+            } catch (Exception e) {
+            }
+        }
         jpCenter.removeAll();
 
         MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map, players, userPlayer, revealMap);
@@ -414,10 +434,12 @@ public class MapView extends JFrame {
 
         jpCenter.revalidate();
         jpCenter.repaint();
+
     }
     public void printNoImplementationMsg(){
         JOptionPane.showMessageDialog(null, "Ho sentim, aquesta funcionalitat encara no està en funcionament.\nEstem treballant per solucionar-ho!", "Information MSG", JOptionPane.INFORMATION_MESSAGE);
     }
+
 }
 
 
