@@ -16,14 +16,14 @@ import static businessLayer.JsonReader.llegeixJSON;
 
 public class SQLGameDAO implements GameDAO{
     @Override
-    public void createGame(Game game) {
+    public void createGame(Game game, String userName) {
         Data data;
         data = llegeixJSON();
         ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
         conn.insertQuery("INSERT INTO Game(gameName,players,impostors,playerColor,map,creator) " +
                 "VALUES (" + "'" + game.getGameName() + "'" + "," + "'" + game.getPlayers() + "'" + "," + "'" + game.getImpostors() +
-                "'" + "," + "'" + game.getPlayerColor() + "'" + "," + "'" + game.getMap() + "'" + "," + "'" + "arnau" + "')");
+                "'" + "," + "'" + game.getPlayerColor() + "'" + "," + "'" + game.getMap() + "'" + "," + "'" + userName + "')");
     }
 
     @Override
@@ -254,12 +254,21 @@ public class SQLGameDAO implements GameDAO{
 
                 CrewMember crewMember = new CrewMember(color, xCoordinate,yCoordinate, previousRoom);
                 crewMember.startThread();
-                System.out.println("bueno xD");
                 crewMembers.add(crewMember);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return crewMembers;
+    }
+
+    @Override
+    public void deleteUserGames(String userName) {
+        Data data;
+        data = llegeixJSON();
+        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
+        conn.connect();
+        String query = "DELETE FROM Game WHERE creator LIKE '" + userName + "'";
+        conn.deleteQuery(query);
     }
 }

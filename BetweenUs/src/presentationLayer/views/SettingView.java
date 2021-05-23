@@ -134,10 +134,10 @@ public class SettingView extends JFrame  {
     }*/
 
     public int confirmDeleteUser() {
-        return JOptionPane.showConfirmDialog(null,"Seguro que quieres borrar la cuenta?");
+        return JOptionPane.showConfirmDialog(null,"Segur que vols borrar el compte?");
     }
 
     public int confirmLogout(){
-        return JOptionPane.showConfirmDialog(null,"Seguro que quieres hacer log out?");
+        return JOptionPane.showConfirmDialog(null,"Segur que vols sortir?");
     }
 }

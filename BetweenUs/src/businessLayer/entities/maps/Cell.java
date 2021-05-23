@@ -6,7 +6,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Cell {
-    private int numPlayers;
+    private int numCorpses;
 
     @SerializedName("x")
     @Expose
@@ -60,8 +60,12 @@ public class Cell {
     public LinkedList<String> getAdjacencies() {
         return adjacencies;
     }
-    public int getNumPlayers() {
-        return numPlayers;
+
+    public int getNumCorpses() {
+        return numCorpses;
     }
 
+    public void setNumCorpses(int numCorpses) {
+        this.numCorpses = numCorpses;
+    }
 }

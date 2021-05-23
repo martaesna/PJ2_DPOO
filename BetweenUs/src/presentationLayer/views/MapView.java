@@ -34,6 +34,7 @@ public class MapView extends JFrame {
     private final JPanel objectiveTracking;
     private JPanel jpCenter;
     private JPanel background;
+    private boolean revealMap;
 
     public MapView(Map map, LinkedList<Character> players, Player userPlayer)/*throws IOException*/ {
         this.players = players;
@@ -41,6 +42,7 @@ public class MapView extends JFrame {
         this.map = map;
         jpCenter = new JPanel();
         int numPlayers = players.size();
+        revealMap = false;
 
         setTitle("Map");
         setSize(1080, 600);//600
@@ -92,7 +94,7 @@ public class MapView extends JFrame {
             mapButton.setOpaque(false);
             mapButton.setContentAreaFilled(false);
             mapButton.setBorderPainted(false);
-            mapButton.setActionCommand("Return");
+            mapButton.setActionCommand("Reveal");
 
             JpNorthEast.add(mapButton, BorderLayout.EAST);
             JpNorth.add(JpNorthEast, BorderLayout.CENTER);
@@ -121,7 +123,7 @@ public class MapView extends JFrame {
         // Pasar ho toto pel PaintComponent
        // JPanel mapa = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map);
 
-        MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map, players, userPlayer);
+        MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map, players, userPlayer, revealMap);
         jpCenter = mp.creaMapa();
 
         //creamos un border layout dentro del EAST y ponemos los botones en cada lugar
@@ -402,16 +404,19 @@ public class MapView extends JFrame {
         }
     }
 
-    public void updateView(Map map, LinkedList<Character> players, Character userPlayer) {
+    public void updateView(Map map, LinkedList<Character> players, Character userPlayer, boolean revealMap) {
         jpCenter.removeAll();
 
-        MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map, players, userPlayer);
+        MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map, players, userPlayer, revealMap);
         jpCenter = mp.creaMapa();
 
         background.add(jpCenter, BorderLayout.CENTER);
 
         jpCenter.revalidate();
         jpCenter.repaint();
+    }
+    public void printNoImplementationMsg(){
+        JOptionPane.showMessageDialog(null, "Ho sentim, aquesta funcionalitat encara no està en funcionament.\nEstem treballant per solucionar-ho!", "Information MSG", JOptionPane.INFORMATION_MESSAGE);
     }
 }
 

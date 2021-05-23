@@ -9,7 +9,7 @@ import businessLayer.entities.game.Game;
 import java.util.LinkedList;
 
 public interface GameDAO {
-    void createGame(Game game);
+    void createGame(Game game, String userName);
 
     Game selectGame(String gameName);
     Player getUserPlayer(String gameName);
@@ -29,4 +29,6 @@ public interface GameDAO {
     void savePlayerCharacter(Character userPlayer, String gameName);
     void saveImpostors(LinkedList<Impostor> impostors, String gameName);
     void saveCrewMembers(LinkedList<CrewMember> crewMembers, String gameName);
+
+    void deleteUserGames(String userName);
 }

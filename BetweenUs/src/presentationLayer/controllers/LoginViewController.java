@@ -24,7 +24,7 @@ public class LoginViewController implements ActionListener {
             if (userManager.loginUser(lv.getUsername(),lv.getPassword())) {
                 lv.setVisible(false);
                 PlayView pv = new PlayView();
-                PlayViewController pvc = new PlayViewController(pv);
+                PlayViewController pvc = new PlayViewController(pv, lv.getUsername());
                 pv.mainController(pvc);
             } else {
                 lv.printError();

@@ -36,7 +36,6 @@ public class LoginView extends JFrame {
             e.printStackTrace();
         }
 
-        System.out.println("com va la vista?");
         //Creem un panell
         JPanel jpVista = new JPanel();
         jpVista.setBackground(new Color(255,0,0,99));
