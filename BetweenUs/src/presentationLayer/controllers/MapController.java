@@ -144,7 +144,6 @@ public class MapController extends Thread implements ActionListener {
                 break;
             case "Solution":
                 if (mv.checkSolution()) {
-                    System.out.println("victoria :D");
                     mv.userWins();
                     Thread.currentThread().interrupt();
                     PlayView playView = new PlayView();

@@ -188,8 +188,6 @@ public class MapView extends JFrame {
         jbSolution.setActionCommand("Solution");
         jbSolution.setText("Solution");
 
-
-
         controles.add(jbSolution,BorderLayout.SOUTH);
 
         background.add(controles, BorderLayout.EAST);
@@ -426,6 +424,15 @@ public class MapView extends JFrame {
     }
 
     public void updateView(Map map, LinkedList<Character> players, Character userPlayer, boolean revealMap) {
+        if (userPlayer.getCell().getRoomName().equals("cafeteria")){
+            jbSolution.setVisible(true);
+        }else {
+            jbSolution.setVisible(false);
+            try{
+            } catch (Exception e) {
+            }
+        }
+
         jpCenter.removeAll();
 
         MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map, players, userPlayer, revealMap);
@@ -438,6 +445,7 @@ public class MapView extends JFrame {
     }
 
     public boolean checkSolution() {
+        System.out.println("hola");
         return gameSolution.equals(objectiveTrackingPosition);
     }
 

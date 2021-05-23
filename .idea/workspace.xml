@@ -2,44 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/MapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/MapController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/MapView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/MapView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/ConectorDB.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/ConectorDB.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/GameManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/JsonReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/JsonReader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/LogManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/LogManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/MapManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/MapManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/NpcManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/NpcManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/PlayerManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/PlayerManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/UserManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/UserManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/character/Character.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/character/Character.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/character/Impostor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/character/Impostor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/character/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/character/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/game/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/game/Time.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/game/Time.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/maps/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/maps/Cell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/maps/Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/businessLayer/entities/maps/Map.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/persitanceLayer/LogDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/persitanceLayer/LogDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/persitanceLayer/SQLGameDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/persitanceLayer/SQLGameDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/persitanceLayer/SQLLogDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/persitanceLayer/SQLLogDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/ConfiguredGameViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/ConfiguredGameViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/DeleteGameViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/DeleteGameViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/LoginViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/LoginViewController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/MapController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/MapController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/PlayViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/PlayViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/RegisterViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/RegisterViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/SettingViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/SettingViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/ChargeGameView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/ChargeGameView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/ConfiguredGameView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/ConfiguredGameView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/CorridorPaint.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/CorridorPaint.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/LoginView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/LoginView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/LogsView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/LogsView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/MapView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/MapView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/RoomPaint.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/RoomPaint.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/SettingView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/SettingView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/customComponents/Log.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/customComponents/Log.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/customComponents/LogTableModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/customComponents/LogTableModel.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +106,7 @@
       <workItem from="1620897764447" duration="283000" />
       <workItem from="1621509753941" duration="819000" />
       <workItem from="1621511065284" duration="326000" />
-      <workItem from="1621797072484" duration="2197000" />
+      <workItem from="1621797072484" duration="2561000" />
     </task>
     <task id="LOCAL-00001" summary="Per saber si ho tenim, joves!">
       <created>1619026420669</created>
@@ -331,7 +297,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621798675990</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="El botó perdut">
+      <created>1621799332191</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1621799332191</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -350,7 +323,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Codi &quot;net&quot; (He utilitzat el main per fer la prova)" />
     <MESSAGE value="User i UserController afegits" />
     <MESSAGE value="Register View i Lògica Units" />
     <MESSAGE value="Registre&#10;Login&#10;Delete User" />
@@ -375,7 +347,8 @@
     <MESSAGE value="ànims" />
     <MESSAGE value="FinalPush" />
     <MESSAGE value="Versió casi final falta netejar i arreglar cosetes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Versió casi final falta netejar i arreglar cosetes" />
+    <MESSAGE value="El botó perdut" />
+    <option name="LAST_COMMIT_MESSAGE" value="El botó perdut" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
