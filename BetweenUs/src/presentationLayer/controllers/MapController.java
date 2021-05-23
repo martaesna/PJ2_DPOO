@@ -7,7 +7,11 @@ import businessLayer.PlayerManager;
 import businessLayer.entities.character.Character;
 import businessLayer.entities.character.CrewMember;
 import businessLayer.entities.maps.*;
+import presentationLayer.views.LoginView;
 import presentationLayer.views.MapView;
+import presentationLayer.views.PlayView;
+import presentationLayer.views.SettingView;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,16 +22,22 @@ public class MapController extends Thread implements ActionListener {
     private MapView mv;
     private final MapManager mapManager;
     private final PlayerManager playerManager;
+    private final NpcManager npcManager;
     private final String gameName;
     private boolean isRunning;
     private LinkedList<Character> players;
+    private boolean revealMap;
+    private String userName;
 
-    public MapController(MapView mv, MapManager mapManager, PlayerManager playerManager, LinkedList<Character> players, String gameName){
+    public MapController(MapView mv, MapManager mapManager, PlayerManager playerManager, LinkedList<Character> players, String gameName, String userName, NpcManager npcManager){
         this.mapManager = mapManager;
         this.players = players;
         this.playerManager = playerManager;
         this.mv = mv;
         this.gameName = gameName;
+        revealMap = false;
+        this.userName = userName;
+        this.npcManager = npcManager;
     }
 
     /*
@@ -67,11 +77,7 @@ public class MapController extends Thread implements ActionListener {
                     int[] nextCell = playerManager.nextCell(0);
                     playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
 
-                    System.out.println(playerManager.getPlayer().getCell().getX());
-                    System.out.println(playerManager.getPlayer().getCell().getY());
-                    System.out.println("Left");
-
-                    mv.updateView(mapManager.getMap(), players, playerManager.getPlayer());
+                    mv.updateView(mapManager.getMap(), players, playerManager.getPlayer(), revealMap);
                 }
                 break;
             case "down":
@@ -79,11 +85,7 @@ public class MapController extends Thread implements ActionListener {
                     int[] nextCell = playerManager.nextCell(1);
                     playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
 
-                    System.out.println(playerManager.getPlayer().getCell().getX());
-                    System.out.println(playerManager.getPlayer().getCell().getY());
-                    System.out.println("down");
-
-                    mv.updateView(mapManager.getMap(), players, playerManager.getPlayer());
+                    mv.updateView(mapManager.getMap(), players, playerManager.getPlayer(), revealMap);
                 }
                 break;
             case "right":
@@ -91,11 +93,7 @@ public class MapController extends Thread implements ActionListener {
                     int[] nextCell = playerManager.nextCell(2);
                     playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
 
-                    System.out.println(playerManager.getPlayer().getCell().getX());
-                    System.out.println(playerManager.getPlayer().getCell().getY());
-                    System.out.println("Right");
-
-                    mv.updateView(mapManager.getMap(), players, playerManager.getPlayer());
+                    mv.updateView(mapManager.getMap(), players, playerManager.getPlayer(), revealMap);
                 }
                 break;
             case "up":
@@ -103,18 +101,51 @@ public class MapController extends Thread implements ActionListener {
                     int[] nextCell = playerManager.nextCell(3);
                     playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
 
-                    System.out.println(playerManager.getPlayer().getCell().getX());
-                    System.out.println(playerManager.getPlayer().getCell().getY());
-                    System.out.println("up");
-
-                    mv.updateView(mapManager.getMap(), players, playerManager.getPlayer());
+                    mv.updateView(mapManager.getMap(), players, playerManager.getPlayer(), revealMap);
                 }
                 break;
-            case "return":
+            case "Return":
+                playerManager.interruptThread();
+                npcManager.interruptThreads();
+                stopMapThread();
+
                 if (JOptionPane.OK_OPTION == mv.confirmSave()) {
-                    //gameManager.saveGame(playerManager.getPlayer(), npcManager.getImpostors(), npcManager.getCrewMembers(), gameName);
+                   //gameManager.saveGame(playerManager.getPlayer(), players, gameName);
+                    mv.printNoImplementationMsg();
+                    mv.setVisible(false);
+                    PlayView pv = new PlayView();
+                    PlayViewController pvc = new PlayViewController(pv,userName);
+                    pv.mainController(pvc);
+                } else {
+                    mv.setVisible(false);
+                    PlayView pv = new PlayView();
+                    PlayViewController pvc = new PlayViewController(pv,userName);
+                    pv.mainController(pvc);
                 }
-                //DECIDIR A QUINA VISTA ANIREM
+                break;
+            case "Config":
+                playerManager.interruptThread();
+                npcManager.interruptThreads();
+                stopMapThread();
+
+                if (JOptionPane.OK_OPTION == mv.confirmSave()) {
+                    mv.printNoImplementationMsg();
+                    //gameManager.saveGame(playerManager.getPlayer(), players, gameName);
+                }
+                mv.setVisible(false);
+                SettingView sv = new SettingView();
+                SettingViewController svc = new SettingViewController(sv,userName, userName);
+                sv.mainController(svc);
+                break;
+
+            case "Reveal":
+                if (revealMap) {
+                    revealMap = false;
+                    mv.updateView(mapManager.getMap(), players, playerManager.getPlayer(), revealMap);
+                } else {
+                    revealMap = true;
+                    mv.updateView(mapManager.getMap(), players, playerManager.getPlayer(), revealMap);
+                }
                 break;
             default:
                 String[] elements = command.split("_");
@@ -146,7 +177,7 @@ public class MapController extends Thread implements ActionListener {
         while(isRunning) {
             try {
                 TimeUnit.SECONDS.sleep(1);
-                mv.updateView(mapManager.getMap(), players, playerManager.getPlayer());
+                mv.updateView(mapManager.getMap(), players, playerManager.getPlayer(), revealMap);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

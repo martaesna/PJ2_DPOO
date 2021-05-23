@@ -102,4 +102,8 @@ public class ChargeGameView extends JFrame {
     public void printErrorNoExistance(){
         JOptionPane.showMessageDialog(null, "ERROR: El nom d'aquest joc no existeix", "Error Charge Game", JOptionPane.ERROR_MESSAGE);
     }
+
+    public void printNoImplementationMsg(){
+        JOptionPane.showMessageDialog(null, "Ho sentim, aquesta funcionalitat encara no està en funcionament.\nEstem treballant per solucionar-ho!", "Information MSG", JOptionPane.INFORMATION_MESSAGE);
+    }
 }

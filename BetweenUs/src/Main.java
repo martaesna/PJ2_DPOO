@@ -1,10 +1,12 @@
 import businessLayer.MapManager;
 import businessLayer.entities.character.CrewMember;
+import presentationLayer.controllers.LoginViewController;
 import presentationLayer.controllers.MapController;
 import businessLayer.entities.json.Data;
 import businessLayer.JsonReader;
 import businessLayer.entities.maps.Map;
 import presentationLayer.controllers.NewGameController;
+import presentationLayer.views.LoginView;
 import presentationLayer.views.NewGameView;
 
 import javax.swing.*;
@@ -19,9 +21,9 @@ public class Main {
         addFont();
         SwingUtilities.invokeLater(() -> data = JsonReader.llegeixJSON());
 
-        NewGameView ngv = new NewGameView();
-        NewGameController gc = new NewGameController(ngv);
-        ngv.mainController(gc);
+        LoginView lv = new LoginView();
+        LoginViewController lvc = new LoginViewController(lv);
+        lv.mainController(lvc);
     }
 
     public static void addFont() {

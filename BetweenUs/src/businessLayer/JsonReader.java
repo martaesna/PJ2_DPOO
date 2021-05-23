@@ -13,8 +13,6 @@ public class JsonReader {
             reader = new com.google.gson.stream.JsonReader(new FileReader("BetweenUs/files/config.json"));
             data = gson.fromJson(reader, Data.class);
 
-            System.out.println("\nLectura JSON finalitzada.\n");
-
         }catch(Exception e){
             System.out.println("No s'ha pogut llegir el fitxer JSON: " + e.getMessage());
         }

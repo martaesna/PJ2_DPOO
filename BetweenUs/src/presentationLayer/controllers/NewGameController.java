@@ -10,6 +10,7 @@ import businessLayer.entities.maps.Cell;
 import businessLayer.entities.maps.Map;
 import presentationLayer.views.*;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -21,12 +22,14 @@ import java.util.List;
 public class NewGameController implements ActionListener {
     private NewGameView ngv;
     private ArrayList<String> colors;
+    private String userName;
 
     public NewGameController(){}
 
-    public NewGameController(NewGameView ngv) {
+    public NewGameController(NewGameView ngv, String userName) {
         this.ngv = ngv;
         colors = new ArrayList<>(List.of("RED","BLUE","GREEN","PINK","ORANGE","YELLOW","BLACK","WHITE","PURPLE","BROWN","CYAN","LIME"));
+        this.userName = userName;
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -102,7 +105,7 @@ public class NewGameController implements ActionListener {
                 if(gameManager.checkGame(game.getGameName())) {
                     ngv.printNameError();
                 } else {
-                    gameManager.createGame(ngv.getName(),game);
+                    gameManager.createGame(ngv.getName(),game, userName);
 
                     int starterColor = 0;
 
@@ -132,11 +135,16 @@ public class NewGameController implements ActionListener {
                     }
 
                     PlayerManager playerManager = new PlayerManager(userPlayer);
-                    //NpcManager npcManager = new NpcManager(crewMembers, impostors);
+                    NpcManager npcManager = new NpcManager(players);
+                    for (Character character: players) {
+                        if (character instanceof Impostor) {
+                            character.setNpcManager(npcManager);
+                        }
+                    }
 
                     MapView mv = new MapView(map, players, userPlayer);
 
-                    MapController mapController = new MapController(mv, mapManager, playerManager, players, ngv.getName());
+                    MapController mapController = new MapController(mv, mapManager, playerManager, players, ngv.getName(), userName, npcManager);
                     mv.mainController(mapController);
                     mapController.startMapThread();
                     ngv.setVisible(false);
@@ -147,14 +155,14 @@ public class NewGameController implements ActionListener {
         if (e.getActionCommand().equals("Config")) {
             ngv.setVisible(false);
             PlayView pv = new PlayView();
-            PlayViewController pvc = new PlayViewController(pv);
+            PlayViewController pvc = new PlayViewController(pv, userName);
             pv.mainController(pvc);
         }
 
         if (e.getActionCommand().equals("Return")) {
             ngv.setVisible(false);
             PlayView pv = new PlayView();
-            PlayViewController pvc = new PlayViewController(pv);
+            PlayViewController pvc = new PlayViewController(pv, userName);
             pv.mainController(pvc);
         }
     }

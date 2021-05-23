@@ -9,9 +9,12 @@ import java.awt.event.ActionListener;
 
 public class DeleteGameViewController implements ActionListener {
     private final DeleteGameView dgv;
+    private String userName;
 
-    public DeleteGameViewController(DeleteGameView dgv) {
+
+    public DeleteGameViewController(DeleteGameView dgv, String userName) {
         this.dgv = dgv;
+        this.userName = userName;
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -28,14 +31,14 @@ public class DeleteGameViewController implements ActionListener {
         if (e.getActionCommand().equals("Return")) { //cuando apretamos el boton
             dgv.setVisible(false);
             PlayView pv = new PlayView();
-            PlayViewController pvc = new PlayViewController(pv);
+            PlayViewController pvc = new PlayViewController(pv,userName);
             pv.mainController(pvc);
 
         }
         if (e.getActionCommand().equals("Config")) { //cuando apretamos el boton
             dgv.setVisible(false);
             SettingView sv = new SettingView();
-            SettingViewController svc = new SettingViewController(sv,null);
+            SettingViewController svc = new SettingViewController(sv,null, userName);
             sv.mainController(svc);
         }
 

@@ -3,6 +3,7 @@ package presentationLayer.controllers;
 import businessLayer.entities.user.User;
 import businessLayer.UserManager;
 import presentationLayer.views.LoginView;
+import presentationLayer.views.PlayView;
 import presentationLayer.views.RegisterView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,6 +32,10 @@ public class RegisterViewController implements ActionListener {
         int checked = userManager.checkRegister(user);
         if (checked == 0) {
             userManager.registerUser(user);
+            rv.setVisible(false);
+            LoginView lv = new LoginView();
+            LoginViewController lvc = new LoginViewController(lv);
+            lv.mainController(lvc);
         } else {
             String finalError = userManager.checkPasswordFormat(user);
             rv.printRegisterErrors(checked,finalError);

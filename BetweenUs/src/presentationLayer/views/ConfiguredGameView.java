@@ -106,6 +106,6 @@ public class ConfiguredGameView extends JFrame {
     }
 
     public void printErrorRecreatedExistance(){
-        JOptionPane.showMessageDialog(null, "ERROR: El nom d'aquest joc ja existeix", "Error Recreate Game", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "ERROR: Aquest joc ja ha estat recreat", "Error Recreate Game", JOptionPane.ERROR_MESSAGE);
     }
 }

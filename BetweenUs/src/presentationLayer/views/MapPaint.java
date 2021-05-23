@@ -17,13 +17,15 @@ public class MapPaint extends JPanel {
     private final Character userPlayer;
     private JPanel room;
     private JPanel jpMapa;
-    private boolean userIsHere = false;
+    private boolean userIsHere;
+    private boolean revealMap;
 
-    public MapPaint(LayoutManager layoutManager, Map map,LinkedList<Character> players, Character userPlayer) {
+    public MapPaint(LayoutManager layoutManager, Map map,LinkedList<Character> players, Character userPlayer, Boolean revealMap) {
         super(layoutManager);
         this.map = map;
         this.players = players;
         this.userPlayer = userPlayer;
+        this.revealMap = revealMap;
     }
 
     public JPanel creaMapa() {
@@ -56,13 +58,13 @@ public class MapPaint extends JPanel {
                         //Pintar els personatges amb contorn
                         String roomName = map.getCells().get(pos).getRoomName();
 
-                        room = new RoomPaint(color, roomName, colors, checkUserPosition(userPlayer.getCell(), map.getCells().get(pos)));
+                        room = new RoomPaint(color, roomName, colors, checkUserPosition(userPlayer.getCell(), map.getCells().get(pos)), revealMap, map.getCells().get(pos).getNumCorpses());
                         room.setBorder(BorderFactory.createLineBorder(Color.WHITE));//pintem els borders
                         jpMapa.add(room);
                     }
 
                     if (map.getCells().get(pos).getType().equals("corridor")) {
-                        JPanel corridor = new CorridorPaint(map.getCells().get(pos).getMobility(), map.getMapName(), colors, checkUserPosition(userPlayer.getCell(),map.getCells().get(pos)));
+                        JPanel corridor = new CorridorPaint(map.getCells().get(pos).getMobility(), map.getMapName(), colors, checkUserPosition(userPlayer.getCell(),map.getCells().get(pos)), revealMap, map.getCells().get(pos).getNumCorpses());
 
                         corridor.setBorder(BorderFactory.createLineBorder(Color.WHITE));
                         jpMapa.add(corridor);

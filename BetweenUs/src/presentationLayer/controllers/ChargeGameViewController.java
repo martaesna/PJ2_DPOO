@@ -12,6 +12,7 @@ import businessLayer.GameManager;
 import businessLayer.entities.maps.Map;
 import presentationLayer.views.*;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collections;
@@ -19,14 +20,16 @@ import java.util.LinkedList;
 
 public class ChargeGameViewController implements ActionListener {
     private final ChargeGameView cgv;
+    private String userName;
 
-    public ChargeGameViewController(ChargeGameView cgv) {
+    public ChargeGameViewController(ChargeGameView cgv, String userName) {
         this.cgv = cgv;
+        this.userName = userName;
     }
 
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Charge")) { //cuando apretamos el boton
-            System.out.println("Aquí es carrega el joc");
+            /*
             GameManager gameManager = new GameManager();
             if (gameManager.checkGame(cgv.getChargeName())) {
 
@@ -57,18 +60,19 @@ public class ChargeGameViewController implements ActionListener {
 
             } else {
                 cgv.printErrorNoExistance();
-            }
+            }*/
+            cgv.printNoImplementationMsg();
         }
         if (e.getActionCommand().equals("Return")) { //cuando apretamos el boton
             cgv.setVisible(false);
             PlayView pv = new PlayView();
-            PlayViewController pvc = new PlayViewController(pv);
+            PlayViewController pvc = new PlayViewController(pv, userName);
             pv.mainController(pvc);
         }
         if (e.getActionCommand().equals("Config")) { //cuando apretamos el boton
             cgv.setVisible(false);
             SettingView sv = new SettingView();
-            SettingViewController svc = new SettingViewController(sv,null);
+            SettingViewController svc = new SettingViewController(sv,null, userName);
             sv.mainController(svc);
         }
     }

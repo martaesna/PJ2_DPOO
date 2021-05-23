@@ -22,20 +22,26 @@ public class GameManager {
         gameDAO = new SQLGameDAO();
     }
 
-    public void createGame(String gameName, Game game) {
-        gameDAO.createGame(game);
+    public void createGame(String gameName, Game game, String userName) {
+        gameDAO.createGame(game, userName);
         this.gameName = game.getGameName();
     }
 
-    public void createConfiguredGame(String gameName) {
+    public void createConfiguredGame(String gameName, String userName) {
         if (gameDAO.gameExists(gameName+"(Copy)")) {
             JOptionPane.showMessageDialog(null, "ERROR: El nom d'aquest joc ja existeix", "Error Create Game", JOptionPane.ERROR_MESSAGE);
         } else {
             Game newGame = gameDAO.selectGame(gameName);
             newGame.setGameName(newGame.getGameName()+"(Copy)");
-            gameDAO.createGame(newGame);
+            gameDAO.createGame(newGame, userName);
             this.gameName = newGame.getGameName();
         }
+    }
+
+    public void deleteUserGames(String userName) {gameDAO.deleteUserGames(userName);}
+
+    public Game selectGame(String gameName) {
+        return gameDAO.selectGame(gameName);
     }
 
     public void deleteGame(String gameName) {
@@ -139,4 +145,6 @@ public class GameManager {
     public String getGameName() {
         return gameName;
     }
+
+
 }
