@@ -31,15 +31,16 @@ public abstract class Character extends Thread{
 
     /**
      * Mètode que tria la pròxima habitació on es mourà el jugador
-     * @param optionsCounter variable que guarda on es mourà
      * @param randomPosition sala on es mourà generada aleatoriament
      * @return enter que indica quina serà la pròxima habitació
      */
-    public int chooseRoom(int optionsCounter, int randomPosition) {
+    public int chooseRoom(int randomPosition) {
+        System.out.println("hola");
+        int optionsCounter = -1;
         for (int i = 0; i < 4; i++) {
             if (moveOptions[i] == 1) {
                 optionsCounter++;
-                if (optionsCounter == randomPosition - 1) {
+                if (optionsCounter == randomPosition) {
                     return i;
                 }
             }
@@ -104,13 +105,13 @@ public abstract class Character extends Thread{
         } else {
             moveOptions[0] = 0;
         }
-        if (checkRight(mobility)) {
+        if (checkUp(mobility)) {
             moveOptions[1] = 1;
             counter++;
         } else {
             moveOptions[1] = 0;
         }
-        if (checkUp(mobility)) {
+        if (checkRight(mobility)) {
             moveOptions[2] = 1;
             counter++;
         } else {
@@ -131,8 +132,7 @@ public abstract class Character extends Thread{
      * @return enter amb la posició
      */
     public int getRandomPosition(int counter) {
-        int min = 1;
-        return (int) (Math.random() * (counter - min + 1));
+        return (int) (Math.random() * (counter));
     }
 
     public String getColor() {
@@ -171,13 +171,13 @@ public abstract class Character extends Thread{
                 actualRoom[0] -= 1;
                 return actualRoom;
             case 1:
-                actualRoom[1] += 1;
+                actualRoom[1] -= 1;
                 return actualRoom;
             case 2:
-                actualRoom[0]+= 1;
+                actualRoom[0] += 1;
                 return actualRoom;
             case 3:
-                actualRoom[1] -= 1;
+                actualRoom[1] += 1;
                 return actualRoom;
             default:
                 actualRoom[0] = -1;

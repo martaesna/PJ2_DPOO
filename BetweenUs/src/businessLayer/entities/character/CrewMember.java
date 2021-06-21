@@ -97,10 +97,9 @@ public class CrewMember extends Character{
      * @return posició on s'haurà de moure el crewmember
      */
     public int getCrewMemberRandomPosition(int counter, int previousRoom) {
-        int min = 1;
-        int position = (int) (Math.random() * (counter - min + 1) + min);
+        int position = (int) (Math.random() * (counter));
         if (Math.abs(position-previousRoom) == 2) {
-            return (int) (Math.random() * (counter - min + 1) + min);
+            return (int) (Math.random() * (counter));
         }
         return position;
     }
@@ -111,11 +110,11 @@ public class CrewMember extends Character{
      * @return enter amb la pròxima sala
      */
     public int getNextCrewMemberRoom(CrewMember crewMember) {
+        System.out.println("hola");
         Mobility mobility = crewMember.getCell().getMobility();
         int counter = setMoveOptions(mobility);
-        int optionsCounter = 0;
         int randomPosition = getCrewMemberRandomPosition(counter, crewMember.getPreviousRoom());
-        return chooseRoom(optionsCounter, randomPosition);
+        return chooseRoom(randomPosition);
     }
 
     /**

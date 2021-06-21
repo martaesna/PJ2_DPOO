@@ -46,9 +46,8 @@ public class Impostor extends Character{
     public int getNextImpostorRoom(Impostor impostor) {
         Mobility mobility = impostor.getCell().getMobility();
         int counter = setMoveOptions(mobility);
-        int optionsCounter = 0;
         int randomPosition = getRandomPosition(counter);
-        return chooseRoom(optionsCounter, randomPosition);
+        return chooseRoom(randomPosition);
     }
 
     /**
@@ -101,9 +100,6 @@ public class Impostor extends Character{
     public void impostorMovement(Impostor impostor) throws InterruptedException {
         System.out.println("COLOR IMPOSTOR: "+ impostor.getColor());
         TimeUnit.MILLISECONDS.sleep(500);
-        int[] room = new int[2];
-        room[0] = impostor.getCell().getX();
-        room[1] = impostor.getCell().getY();
 
         if (startInterval == getIntervalTime().getSeconds()) {
             if (impostor.movement()) {
