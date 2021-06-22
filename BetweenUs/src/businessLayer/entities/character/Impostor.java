@@ -7,17 +7,28 @@ import businessLayer.entities.maps.Mobility;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * La classe 'Impostor' hereta les propietats i funcions de la classe 'Character' i
+ * afageix atributs i mètodes específics de la classe
+ * Subclasse que ens permet diferenciar entre tipus de 'Character' determinats.
+ *
+ * Els mèttodes implementats gestionen el moviment d'aquest tipus de jugador
+ */
 public class Impostor extends Character{
+    // Attributes
     private static final int minInterval = 6;
     private static final int maxInterval = 8;
     private int startInterval;
     private MapManager mapManager;
     private NpcManager npcManager;
+    private boolean canKill;
 
+    // Parametrized constructor
     public Impostor(String color, int xCoordinate, int yCoordinate) {
         super(color, xCoordinate, yCoordinate);
     }
 
+    // Parametrized constructor
     public Impostor(String color, MapManager mapManager) {
         super(color);
         this.mapManager = mapManager;
@@ -105,14 +116,14 @@ public class Impostor extends Character{
 
         if (startInterval == getIntervalTime().getSeconds()) {
             if (impostor.movement()) {
-                if (checkVentilation(impostor.getCell()) && npcManager.getNumCrewMembersCell(impostor.getCell()) == 0 && flipCoin()) {
-                    int nextRoom = chooseVentilationRoom(impostor.getCell());
-                    String roomName = impostor.getCell().getAdjacencies().get(nextRoom);
+                int nextRoom = chooseVentilationRoom(impostor.getCell());
+                String roomName = impostor.getCell().getAdjacencies().get(nextRoom);
+                if (ventilationMovement(impostor, roomName)) {
                     impostor.setCell(mapManager.getMap().getCellByName(roomName));
                     //Log log = new Log(impostor.getColor(), impostor.getCell().getRoomName(), getTotalTime().getSeconds());
                     //makeLog(log);
                 } else {
-                    int nextRoom = getNextImpostorRoom(impostor);
+                    nextRoom = getNextImpostorRoom(impostor);
                     int[] nextCell = impostor.getNextCoordinates(nextRoom);
                     impostor.setCell(getCellByCoordinates(nextCell));
                     /*  if (impostor.getCell().getType().equals("room") && !impostor.getCell().getRoomName().equals("cafeteria")) {
@@ -128,6 +139,16 @@ public class Impostor extends Character{
         }
     }
 
+    public boolean ventilationMovement(Impostor impostor, String roomName) {
+        if (checkVentilation(impostor.getCell()) && npcManager.getNumCrewMembersCell(impostor.getCell()) == 0 && flipCoin()) {
+            int numCrewMembers = npcManager.getNumCrewMembersCell(mapManager.getMap().getCellByName(roomName));
+            if (numCrewMembers == 0 || (numCrewMembers == 1 && impostor.canKill)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Thread que fa constantment el moviment de l'impostor
      */
@@ -139,6 +160,7 @@ public class Impostor extends Character{
         while (isRunning()) {
             try {
                 impostorMovement(this);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

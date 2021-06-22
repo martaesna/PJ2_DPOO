@@ -7,9 +7,19 @@ import businessLayer.entities.character.Player;
 import businessLayer.entities.maps.Cell;
 import java.util.LinkedList;
 
+/**
+ * La classe 'NpcManager' ens permet gestionar la simulació dels personatges
+ * que no controla l'usuari
+ *
+ * Els mètodes implementats controlen les diferents condicions de victòria i derrota,
+ * l'eliminació de tripulants, la interrupció dels diferents fils d'execució,
+ * l'obtenció de dades dels personatges no jugadors...
+ */
 public class NpcManager {
+    // Attributes
     private final LinkedList<Character> players;
 
+    // Parametrized constructor
     public NpcManager(LinkedList<Character> players) {
         this.players = players;
     }

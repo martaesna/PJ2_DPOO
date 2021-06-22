@@ -4,19 +4,29 @@ import businessLayer.MapManager;
 import businessLayer.entities.maps.Cell;
 import businessLayer.entities.maps.Mobility;
 
-import javax.swing.*;
 
+/**
+ * La classe 'CrewMember' hereta les propietats i funcions de la classe 'Character' i
+ * afageix atributs i mètodes específics de la classe
+ * Subclasse que ens permet diferenciar entre tipus de 'Character' determinats.
+ *
+ * Els mèttodes implementats gestionen el moviment d'aquest tipus de jugador
+ */
 public class CrewMember extends Character{
+    // Attributes
     private static final int minInterval = 5;
     private static final int maxInterval = 15;
     private int previousRoom;
     private MapManager mapManager;
+    private int startInterval;
 
+    // Parametrized constructor
     public CrewMember(String color, int xCoordinate, int yCoordinate, int previousRoom) {
         super(color, xCoordinate, yCoordinate);
         this.previousRoom = previousRoom;
     }
 
+    // Parametrized constructor
     public CrewMember(String color, MapManager mapManager) {
         super(color);
         this.mapManager = mapManager;
@@ -66,11 +76,15 @@ public class CrewMember extends Character{
      * Mètode que mou al crewmember si aquest decideix moure's
      */
     public void crewMemberMovement() {
-        if (movement()) {
-            int nextRoom = getNextCrewMemberRoom(this);
-            setPreviousRoom(selectPreviousRoom(nextRoom));
-            int[] nextCell = getNextCoordinates(nextRoom);
-            setCell(getCellByCoordinates(nextCell));
+        if (startInterval == getIntervalTime().getSeconds()) {
+            if (movement()) {
+                int nextRoom = getNextCrewMemberRoom(this);
+                setPreviousRoom(selectPreviousRoom(nextRoom));
+                int[] nextCell = getNextCoordinates(nextRoom);
+                setCell(getCellByCoordinates(nextCell));
+            }
+            startInterval = getInterval();
+            getIntervalTime().resetCounter();
         }
     }
 
@@ -110,7 +124,6 @@ public class CrewMember extends Character{
      * @return enter amb la pròxima sala
      */
     public int getNextCrewMemberRoom(CrewMember crewMember) {
-        System.out.println("hola");
         Mobility mobility = crewMember.getCell().getMobility();
         int counter = setMoveOptions(mobility);
         int randomPosition = getCrewMemberRandomPosition(counter, crewMember.getPreviousRoom());
@@ -124,18 +137,13 @@ public class CrewMember extends Character{
     public void run() {
         getTotalTime().initCounter();
         getIntervalTime().initCounter();
-        int startInterval = getInterval();
+        startInterval = getInterval();
         while (isRunning()) {
-            if (startInterval == getIntervalTime().getSeconds()) {
+            try {
                 crewMemberMovement();
-                startInterval = getInterval();
-                getIntervalTime().resetCounter();
-            } else {
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
 

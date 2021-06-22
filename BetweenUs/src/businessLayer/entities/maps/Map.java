@@ -5,7 +5,16 @@ import java.util.LinkedList;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * La classe 'Map' defineix el mapa del joc i està formada per diferents cells
+ *
+ * El conjunt d'atributs creats defineixen aquesta classe
+ *
+ * Implementem dos mètodes (apart dels getters i setters) per poder obtenir una 'Cell'
+ * específica a partir d'unes coordenades o nom d'habitació
+ */
 public class Map {
+    // Attributes
     @SerializedName("cellNumber")
     @Expose
     private int cellNumber;
@@ -37,6 +46,12 @@ public class Map {
     public LinkedList<Cell> getCells() {
         return cells;
     }
+
+    /**
+     * Mètode que retorna una cella depenent del nom introduït
+     * @param roomName nom que es vol traduir a cella
+     * @return cella traduida del nom de la habitació
+     */
     public Cell getCellByName(String roomName) {
         for (Cell cell : cells) {
             if (cell.getRoomName().equals(roomName)) {

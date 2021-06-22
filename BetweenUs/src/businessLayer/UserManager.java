@@ -6,9 +6,19 @@ import businessLayer.entities.user.User;
 
 import javax.swing.*;
 
+/**
+ * La classe 'UserManager' serveix per obtenir i gestionar dades de l'usuari
+ * També controla les dades del formulari de registre i login
+ *
+ * Els mètodes implementats modifiquen la base de dades i comproven la informació
+ * comentada anteriorment, retornant valors que dependran dels introduïts per l'usuari
+ * als diferents formularis
+ */
 public class UserManager {
+    // Attributes
     private final UserDAO userDAO;
 
+    // Parametrized constructor
     public UserManager(){
         userDAO = new SQLUserDAO();
     }

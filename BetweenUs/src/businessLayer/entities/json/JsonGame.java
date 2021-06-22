@@ -62,8 +62,6 @@ public class JsonGame {
         } catch(Exception e) {
             System.out.println("No s'ha pogut llegir el fitxer JSON: " + e.getMessage());
         }
-        System.out.println("hola¿");
-
         return gameFound;
     }
 

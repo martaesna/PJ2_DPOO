@@ -6,9 +6,17 @@ import businessLayer.entities.maps.Map;
 import java.io.File;
 import java.io.FileReader;
 
+/**
+ * La classe 'MapManager' serveix per gestionar i llegir el mapa de la partida
+ *
+ * Els mètodes implementats ens retornen informació del mapa en funció dels
+ * paràmetres que els hi passem a aquests primers
+ */
 public class MapManager {
+    // Attributes
     private static Map map;
 
+    // Parametrized constructor
     public MapManager(Map map) {
         MapManager.map = map;
     }
@@ -41,10 +49,6 @@ public class MapManager {
 
     public Cell nextPlayerCell (int[] nextCell) {
         return getMap().getCellByCoordinates(nextCell);
-    }
-
-    public void updatePlayersMovement() {
-
     }
 }
 

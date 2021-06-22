@@ -1,10 +1,14 @@
 package businessLayer.entities.game;
 
-import javax.swing.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ *
+ *
+ */
 public class Time {
+    // Attributes
     private Timer timer = new Timer();
     private int seconds = 0;
 

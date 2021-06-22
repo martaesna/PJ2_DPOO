@@ -5,7 +5,15 @@ import java.util.LinkedList;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * La classe 'Cell' ens serveix per crear els diferents mapes (ja que aquests últims estaran
+ * formats per diferents cells)
+ *
+ * Tenim els atributs que defineixen una cella i els mètodes principals (getters i setters)
+ * per poder obtenir i modificar les seves dades
+ */
 public class Cell {
+    // Attributes
     private int numCorpses;
 
     @SerializedName("x")
@@ -66,5 +74,4 @@ public class Cell {
     public void setNumCorpses(int numCorpses) {
         this.numCorpses = numCorpses;
     }
-
 }

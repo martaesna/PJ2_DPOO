@@ -3,9 +3,17 @@ package businessLayer;
 import businessLayer.entities.character.Player;
 import businessLayer.entities.maps.Cell;
 
+/**
+ * La classe 'PlayerManager' gestiona el personatge que controla l'usuari
+ *
+ * Els mètodes implementats controlen majoritàriament les condicions del moviment
+ * del jugador i l'actualització de la posició
+ */
 public class PlayerManager {
+    // Attributes
     private final Player player;
 
+    // Parametrized constructor
     public PlayerManager(Player character) {
         this.player = character;
     }

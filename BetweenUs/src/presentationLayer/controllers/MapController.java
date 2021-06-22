@@ -93,7 +93,7 @@ public class MapController extends Thread implements ActionListener {
                 break;
             case "down":
                 if (playerManager.checkDown()) {
-                    int[] nextCell = playerManager.nextCell(1);
+                    int[] nextCell = playerManager.nextCell(3);
                     playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
 
                     mv.updateView(mapManager.getMap(), players, playerManager.getPlayer(), revealMap);
@@ -109,7 +109,7 @@ public class MapController extends Thread implements ActionListener {
                 break;
             case "up":
                 if (playerManager.checkUp()) {
-                    int[] nextCell = playerManager.nextCell(3);
+                    int[] nextCell = playerManager.nextCell(1);
                     playerManager.moveUserPlayer(mapManager.nextPlayerCell(nextCell));
 
                     mv.updateView(mapManager.getMap(), players, playerManager.getPlayer(), revealMap);

@@ -7,7 +7,17 @@ import businessLayer.entities.maps.Cell;
 import businessLayer.entities.maps.Mobility;
 import presentationLayer.views.customComponents.Log;
 
+/**
+ * La classe abstracta 'Character' conté la informació general dels diferents jugadors
+ *
+ * Aquesta classe permet obtenir un codi més optimitzat i endreçat gràcies a que
+ * apliquem el concepte d'herència i podem reutilitzar codi
+ *
+ * Té els mètodes principals per obtenir o modificar els atributs de la classe i
+ * d'altres que comproven els moviments possibles.
+ */
 public abstract class Character extends Thread{
+    // Attributes
     private Time totalTime;
     private Time intervalTime;
     private final int[] moveOptions = new int[4];
@@ -17,12 +27,14 @@ public abstract class Character extends Thread{
     private int yCoordinate;
     private boolean isRunning;
 
+    // Parametrized constructor
     public Character (String color, int xCoordinate, int yCoordinate) {
         this.color = color;
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
     }
 
+    // Parametrized constructor
     public Character(String color) {
         this.color = color;
         totalTime = new Time();
@@ -35,7 +47,6 @@ public abstract class Character extends Thread{
      * @return enter que indica quina serà la pròxima habitació
      */
     public int chooseRoom(int randomPosition) {
-        System.out.println("hola");
         int optionsCounter = -1;
         for (int i = 0; i < 4; i++) {
             if (moveOptions[i] == 1) {

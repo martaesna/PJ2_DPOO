@@ -14,10 +14,19 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+/**
+ * La classe 'GameManager' serveix per obtenir i gestionar dades de la partida
+ * i modificar la base de dades
+ *
+ * Els mètodes implementats ens retornen informació de la partida i realitzen modificacions
+ * (si es compleixen les condicions) a la base de dades
+ */
 public class GameManager {
+    // Attributes
     private final GameDAO gameDAO;
     private String gameName;
 
+    // Parametrized constructor
     public GameManager() {
         gameDAO = new SQLGameDAO();
     }
