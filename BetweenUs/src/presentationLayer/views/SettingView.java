@@ -155,4 +155,6 @@ public class SettingView extends JFrame  {
     public int confirmLogout(){
         return JOptionPane.showConfirmDialog(null,"Segur que vols sortir?");
     }
+
+    public void userDoesntExist() { JOptionPane.showMessageDialog(null, "ERROR: Aquest usuari no existeix", "Error Delete User", JOptionPane.ERROR_MESSAGE); }
 }

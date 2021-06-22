@@ -43,7 +43,9 @@ public class SettingViewController implements ActionListener {
                 gameManager.deleteUserGames(userName);
 
                 UserManager userManager = new UserManager();
-                userManager.deleteUser(userName);
+                if (!userManager.deleteUser(userName)) {
+                    sv.userDoesntExist();
+                }
 
                 RegisterView rv = new RegisterView();
                 RegisterViewController rvc = new RegisterViewController(rv);

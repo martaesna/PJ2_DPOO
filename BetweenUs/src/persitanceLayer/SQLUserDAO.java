@@ -1,14 +1,12 @@
 package persitanceLayer;
 
-import businessLayer.ConectorDB;
-import businessLayer.entities.game.Game;
 import businessLayer.entities.user.User;
 import businessLayer.entities.json.Data;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static businessLayer.JsonReader.llegeixJSON;
+import static persitanceLayer.JsonReader.llegeixJSON;
 
 public class SQLUserDAO implements UserDAO{
     /**

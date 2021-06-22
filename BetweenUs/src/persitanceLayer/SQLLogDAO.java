@@ -1,10 +1,9 @@
 package persitanceLayer;
 
-import businessLayer.ConectorDB;
 import businessLayer.entities.json.Data;
 import presentationLayer.views.customComponents.Log;
 
-import static businessLayer.JsonReader.llegeixJSON;
+import static persitanceLayer.JsonReader.llegeixJSON;
 
 public class SQLLogDAO implements LogDAO {
     /**

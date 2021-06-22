@@ -1,13 +1,7 @@
-import businessLayer.MapManager;
-import businessLayer.entities.character.CrewMember;
 import presentationLayer.controllers.LoginViewController;
-import presentationLayer.controllers.MapController;
 import businessLayer.entities.json.Data;
-import businessLayer.JsonReader;
-import businessLayer.entities.maps.Map;
-import presentationLayer.controllers.NewGameController;
+import persitanceLayer.JsonReader;
 import presentationLayer.views.LoginView;
-import presentationLayer.views.NewGameView;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,6 +1,5 @@
 package persitanceLayer;
 
-import businessLayer.ConectorDB;
 import businessLayer.entities.character.Character;
 import businessLayer.entities.character.CrewMember;
 import businessLayer.entities.character.Impostor;
@@ -12,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
-import static businessLayer.JsonReader.llegeixJSON;
+import static persitanceLayer.JsonReader.llegeixJSON;
 
 public class SQLGameDAO implements GameDAO{
     /**

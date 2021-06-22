@@ -35,12 +35,12 @@ public class UserManager {
      * Mètode que elimina a un usuari de la base de dades
      * @param userName nom de l'usuari
      */
-    public void deleteUser(String userName) {
+    public boolean deleteUser(String userName) {
         if (userDAO.userNameExists(userName)) {
             userDAO.deleteUser(userName);
-        } else {
-            JOptionPane.showMessageDialog(null, "ERROR: Aquest usuari no existeix", "Error Registre", JOptionPane.ERROR_MESSAGE);
+            return true;
         }
+        return false;
     }
 
     /**
