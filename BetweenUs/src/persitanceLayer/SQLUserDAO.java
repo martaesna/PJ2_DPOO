@@ -1,6 +1,7 @@
 package persitanceLayer;
 
 import businessLayer.ConectorDB;
+import businessLayer.entities.game.Game;
 import businessLayer.entities.user.User;
 import businessLayer.entities.json.Data;
 
@@ -57,7 +58,7 @@ public class SQLUserDAO implements UserDAO{
         data = llegeixJSON();
         ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
-        String query = "DELETE FROM User WHERE username LIKE '" + nameLogin + "' OR email LIKE '" + nameLogin + "'";
+        String query = "DELETE FROM User WHERE username LIKE '" + nameLogin + "'";
         conn.deleteQuery(query);
     }
 
@@ -103,5 +104,26 @@ public class SQLUserDAO implements UserDAO{
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public String getUsername(String loginName) {
+        if (userMailExists(loginName)) {
+            Data data;
+            data = llegeixJSON();
+            ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
+            conn.connect();
+            ResultSet rs = conn.selectQuery("SELECT u.username FROM User AS u WHERE u.email LIKE '" + loginName + "'");
+            try {
+                if(rs.next()) {
+                    return rs.getString("username");
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            return null;
+        } else {
+           return loginName;
+        }
     }
 }

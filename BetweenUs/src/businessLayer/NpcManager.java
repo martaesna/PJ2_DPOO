@@ -131,6 +131,16 @@ public class NpcManager {
         return numNpc;
     }
 
+    public int getNumCrewMembersCell(Cell cell) {
+        int crewMembers = 0;
+        for (Character character: players) {
+            if (character.getCell() == cell && character instanceof CrewMember) {
+                crewMembers++;
+            }
+        }
+        return crewMembers;
+    }
+
     /**
      * Mètode que troba la posició a la llista de jugadors del npc que hi ha a la cel·la de l'impostor
      * @param cell cel·la on es troba

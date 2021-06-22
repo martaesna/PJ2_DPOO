@@ -14,12 +14,10 @@ import java.awt.event.ActionListener;
 
 public class SettingViewController implements ActionListener {
     private final SettingView sv;
-    private final String nameLogin;
     private String userName;
 
-    public SettingViewController(SettingView sv, String nameLogin, String userName) {
+    public SettingViewController(SettingView sv, String userName) {
         this.sv = sv;
-        this.nameLogin = nameLogin;
         this.userName = userName;
     }
 

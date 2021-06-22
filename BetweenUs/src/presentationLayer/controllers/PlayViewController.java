@@ -28,7 +28,7 @@ public class PlayViewController implements ActionListener {
             case "Config":
                 pv.setVisible(false);
                 SettingView sv = new SettingView();
-                SettingViewController svc = new SettingViewController(sv,null, userName);
+                SettingViewController svc = new SettingViewController(sv, userName);
                 sv.mainController(svc);
                 break;
             case "NewGame":

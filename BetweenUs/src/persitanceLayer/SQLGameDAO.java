@@ -220,6 +220,7 @@ public class SQLGameDAO implements GameDAO{
         ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
         String query = "DELETE FROM Game WHERE creator LIKE '" + userName + "'";
+
         conn.deleteQuery(query);
     }
 }

@@ -12,6 +12,7 @@ public class Impostor extends Character{
     private static final int maxInterval = 8;
     private int startInterval;
     private MapManager mapManager;
+    private NpcManager npcManager;
 
     public Impostor(String color, int xCoordinate, int yCoordinate) {
         super(color, xCoordinate, yCoordinate);
@@ -23,7 +24,9 @@ public class Impostor extends Character{
     }
 
     @Override
-    public void setNpcManager(NpcManager npcManager) { }
+    public void setNpcManager(NpcManager npcManager) {
+        this.npcManager = npcManager;
+    }
 
     /**
      * Mètode que decideix si l'impostor es mourà o no
@@ -98,12 +101,11 @@ public class Impostor extends Character{
      * @throws InterruptedException excepció que es llançarà si l'sleep deixa de funcionar
      */
     public void impostorMovement(Impostor impostor) throws InterruptedException {
-        System.out.println("COLOR IMPOSTOR: "+ impostor.getColor());
         TimeUnit.MILLISECONDS.sleep(500);
 
         if (startInterval == getIntervalTime().getSeconds()) {
             if (impostor.movement()) {
-                if (checkVentilation(impostor.getCell()) && flipCoin()) {
+                if (checkVentilation(impostor.getCell()) && npcManager.getNumCrewMembersCell(impostor.getCell()) == 0 && flipCoin()) {
                     int nextRoom = chooseVentilationRoom(impostor.getCell());
                     String roomName = impostor.getCell().getAdjacencies().get(nextRoom);
                     impostor.setCell(mapManager.getMap().getCellByName(roomName));

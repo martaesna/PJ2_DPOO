@@ -36,8 +36,7 @@ public class UserManager {
      * @param userName nom de l'usuari
      */
     public void deleteUser(String userName) {
-        boolean exists = userDAO.userNameExists(userName);
-        if (exists) {
+        if (userDAO.userNameExists(userName)) {
             userDAO.deleteUser(userName);
         } else {
             JOptionPane.showMessageDialog(null, "ERROR: Aquest usuari no existeix", "Error Registre", JOptionPane.ERROR_MESSAGE);
@@ -141,5 +140,9 @@ public class UserManager {
      */
     public boolean unequalPasswords(User user){
         return !user.getConfirmedPassword().equals(user.getPassword());
+    }
+
+    public String getUsername(String loginName) {
+        return userDAO.getUsername(loginName);
     }
 }

@@ -8,4 +8,5 @@ public interface UserDAO {
     void deleteUser(String username);
     boolean userNameExists(String userName);
     boolean userMailExists(String userMail);
+    String getUsername(String loginName);
 }

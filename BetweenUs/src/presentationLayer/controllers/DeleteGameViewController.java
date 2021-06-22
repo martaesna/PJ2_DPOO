@@ -38,8 +38,6 @@ public class DeleteGameViewController implements ActionListener {
             }
         }
 
-
-
         if (e.getActionCommand().equals("Return")) { //cuando apretamos el boton
             dgv.setVisible(false);
             PlayView pv = new PlayView();
@@ -50,7 +48,7 @@ public class DeleteGameViewController implements ActionListener {
         if (e.getActionCommand().equals("Config")) { //cuando apretamos el boton
             dgv.setVisible(false);
             SettingView sv = new SettingView();
-            SettingViewController svc = new SettingViewController(sv,null, userName);
+            SettingViewController svc = new SettingViewController(sv, userName);
             sv.mainController(svc);
         }
 

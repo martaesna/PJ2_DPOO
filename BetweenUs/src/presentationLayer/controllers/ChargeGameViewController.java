@@ -77,7 +77,7 @@ public class ChargeGameViewController implements ActionListener {
         if (e.getActionCommand().equals("Config")) { //cuando apretamos el boton
             cgv.setVisible(false);
             SettingView sv = new SettingView();
-            SettingViewController svc = new SettingViewController(sv,null, userName);
+            SettingViewController svc = new SettingViewController(sv, userName);
             sv.mainController(svc);
         }
     }

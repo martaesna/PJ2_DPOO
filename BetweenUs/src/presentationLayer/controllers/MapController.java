@@ -142,7 +142,7 @@ public class MapController extends Thread implements ActionListener {
                 }
                 mv.setVisible(false);
                 SettingView sv = new SettingView();
-                SettingViewController svc = new SettingViewController(sv,userName, userName);
+                SettingViewController svc = new SettingViewController(sv, userName);
                 sv.mainController(svc);
                 break;
 
