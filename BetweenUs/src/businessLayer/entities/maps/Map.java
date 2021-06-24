@@ -58,6 +58,7 @@ public class Map {
                 return cell;
             }
         }
+        System.out.println("Cell null: "+ roomName);
         return null;
     }
 

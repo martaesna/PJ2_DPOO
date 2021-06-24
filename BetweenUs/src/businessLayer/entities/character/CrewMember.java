@@ -36,7 +36,7 @@ public class CrewMember extends Character{
      * Mètode que retorna si el crewmember es mourà o no
      * @return si es mourà o no
      */
-    public boolean movement() {
+    public synchronized boolean movement() {
         int probability = (int)(Math.random()*(getMaxProbability() + 1));
         return probability <= 55;
     }
@@ -58,7 +58,7 @@ public class CrewMember extends Character{
      * @param nextRoom enter que indica la sala cap on es mourà
      * @return enter que indica la sala d'on ve
      */
-    public int selectPreviousRoom(int nextRoom) {
+    public synchronized int selectPreviousRoom(int nextRoom) {
         switch (nextRoom) {
             case 0:
                 return 2;
@@ -75,7 +75,7 @@ public class CrewMember extends Character{
     /**
      * Mètode que mou al crewmember si aquest decideix moure's
      */
-    public void crewMemberMovement() {
+    public synchronized void crewMemberMovement() {
         if (startInterval == getIntervalTime().getSeconds()) {
             if (movement()) {
                 int nextRoom = getNextCrewMemberRoom(this);
@@ -93,7 +93,7 @@ public class CrewMember extends Character{
      * @param coordinates coordenades que es volen traduir a cella
      * @return cella traduida de les coordenades
      */
-    public Cell getCellByCoordinates(int[] coordinates) {
+    public synchronized Cell getCellByCoordinates(int[] coordinates) {
         int x = coordinates[0];
         int y = coordinates[1];
         for (Cell cell: mapManager.getMap().getCells()) {
@@ -110,7 +110,7 @@ public class CrewMember extends Character{
      * @param previousRoom sala previa d'on ve el crewmember
      * @return posició on s'haurà de moure el crewmember
      */
-    public int getCrewMemberRandomPosition(int counter, int previousRoom) {
+    public synchronized int getCrewMemberRandomPosition(int counter, int previousRoom) {
         int position = (int) (Math.random() * (counter));
         if (Math.abs(position-previousRoom) == 2) {
             return (int) (Math.random() * (counter));
@@ -123,7 +123,7 @@ public class CrewMember extends Character{
      * @param crewMember el crewmember que es mourà
      * @return enter amb la pròxima sala
      */
-    public int getNextCrewMemberRoom(CrewMember crewMember) {
+    public synchronized int getNextCrewMemberRoom(CrewMember crewMember) {
         Mobility mobility = crewMember.getCell().getMobility();
         int counter = setMoveOptions(mobility);
         int randomPosition = getCrewMemberRandomPosition(counter, crewMember.getPreviousRoom());

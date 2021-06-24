@@ -43,7 +43,7 @@ public class Impostor extends Character{
      * Mètode que decideix si l'impostor es mourà o no
      * @return booleà amb si es mourà o no
      */
-    public boolean movement() {
+    public synchronized boolean movement() {
         int probability = (int)(Math.random()*(getMaxProbability() + 1));
         return probability <= 45;
     }
@@ -57,7 +57,7 @@ public class Impostor extends Character{
      * @param impostor impostor que es mourà
      * @return enter amb la pròxima sala on es mourà l'impostor
      */
-    public int getNextImpostorRoom(Impostor impostor) {
+    public synchronized int getNextImpostorRoom(Impostor impostor) {
         Mobility mobility = impostor.getCell().getMobility();
         int counter = setMoveOptions(mobility);
         int randomPosition = getRandomPosition(counter);
@@ -69,7 +69,7 @@ public class Impostor extends Character{
      * @param cell cella a comprovar
      * @return si té clavagueres o no
      */
-    public boolean checkVentilation(Cell cell) {
+    public synchronized boolean checkVentilation(Cell cell) {
         return !cell.getAdjacencies().isEmpty();
     }
 
@@ -78,7 +78,7 @@ public class Impostor extends Character{
      * @param cell cella on està
      * @return posició on anirà
      */
-    public int chooseVentilationRoom(Cell cell) {
+    public synchronized int chooseVentilationRoom(Cell cell) {
         return getRandomPosition(cell.getAdjacencies().size());
     }
 
@@ -86,7 +86,7 @@ public class Impostor extends Character{
      * Mètode que decideix amb un 50% de probabilitats
      * @return booleà amb si o no
      */
-    public boolean flipCoin() {
+    public synchronized boolean flipCoin() {
         return (int) (Math.random() * (2) + 1) == 1;
     }
 
@@ -95,7 +95,7 @@ public class Impostor extends Character{
      * @param coordinates coordenades que es volen traduir a cella
      * @return cella traduida de les coordenades
      */
-    public Cell getCellByCoordinates(int[] coordinates) {
+    public synchronized Cell getCellByCoordinates(int[] coordinates) {
         int x = coordinates[0];
         int y = coordinates[1];
         for (Cell cell: mapManager.getMap().getCells()) {
@@ -103,6 +103,7 @@ public class Impostor extends Character{
                 return cell;
             }
         }
+        System.out.println("Retornem null?");
         return null;
     }
 
@@ -111,19 +112,14 @@ public class Impostor extends Character{
      * @param impostor impostor que es mourà
      * @throws InterruptedException excepció que es llançarà si l'sleep deixa de funcionar
      */
-    public void impostorMovement(Impostor impostor) throws InterruptedException {
+    public synchronized void impostorMovement(Impostor impostor) throws InterruptedException {
         TimeUnit.MILLISECONDS.sleep(500);
 
         if (startInterval == getIntervalTime().getSeconds()) {
             if (impostor.movement()) {
-                int nextRoom = chooseVentilationRoom(impostor.getCell());
-                String roomName = impostor.getCell().getAdjacencies().get(nextRoom);
-                if (ventilationMovement(impostor, roomName)) {
-                    impostor.setCell(mapManager.getMap().getCellByName(roomName));
-                    //Log log = new Log(impostor.getColor(), impostor.getCell().getRoomName(), getTotalTime().getSeconds());
-                    //makeLog(log);
-                } else {
-                    nextRoom = getNextImpostorRoom(impostor);
+                //String roomName = impostor.getCell().getAdjacencies().get(nextRoom);
+                if (!ventilationMovement(impostor)) {
+                    int nextRoom = getNextImpostorRoom(impostor);
                     int[] nextCell = impostor.getNextCoordinates(nextRoom);
                     impostor.setCell(getCellByCoordinates(nextCell));
                     /*  if (impostor.getCell().getType().equals("room") && !impostor.getCell().getRoomName().equals("cafeteria")) {
@@ -139,11 +135,16 @@ public class Impostor extends Character{
         }
     }
 
-    public boolean ventilationMovement(Impostor impostor, String roomName) {
-        if (checkVentilation(impostor.getCell()) && npcManager.getNumCrewMembersCell(impostor.getCell()) == 0 && flipCoin()) {
-            int numCrewMembers = npcManager.getNumCrewMembersCell(mapManager.getMap().getCellByName(roomName));
-            if (numCrewMembers == 0 || (numCrewMembers == 1 && impostor.canKill)) {
-                return true;
+    public synchronized boolean ventilationMovement(Impostor impostor) {
+        if (checkVentilation(impostor.getCell())) {
+            if (npcManager.getNumCrewMembersCell(impostor.getCell()) == 0 && flipCoin()) {
+                int nextRoom = chooseVentilationRoom(impostor.getCell());
+                String roomName = impostor.getCell().getAdjacencies().get(nextRoom);
+                int numCrewMembers = npcManager.getNumCrewMembersCell(mapManager.getMap().getCellByName(roomName));
+                if (numCrewMembers == 0 || (numCrewMembers == 1 && impostor.canKill)) {
+                    impostor.setCell(mapManager.getMap().getCellByName(roomName));
+                    return true;
+                }
             }
         }
         return false;

@@ -46,7 +46,7 @@ public abstract class Character extends Thread{
      * @param randomPosition sala on es mourà generada aleatoriament
      * @return enter que indica quina serà la pròxima habitació
      */
-    public int chooseRoom(int randomPosition) {
+    public synchronized int chooseRoom(int randomPosition) {
         int optionsCounter = -1;
         for (int i = 0; i < 4; i++) {
             if (moveOptions[i] == 1) {
@@ -72,7 +72,7 @@ public abstract class Character extends Thread{
      * @param mobility mobilitat del jugador
      * @return booleà amb si es pot moure o no
      */
-    public boolean checkLeft(Mobility mobility) {
+    public synchronized boolean checkLeft(Mobility mobility) {
         return mobility.getLeft() != 0;
     }
 
@@ -81,7 +81,7 @@ public abstract class Character extends Thread{
      * @param mobility mobilitat del jugador
      * @return booleà amb si es pot moure o no
      */
-    public boolean checkRight(Mobility mobility) {
+    public synchronized boolean checkRight(Mobility mobility) {
         return mobility.getRight() != 0;
     }
 
@@ -90,7 +90,7 @@ public abstract class Character extends Thread{
      * @param mobility mobilitat del jugador
      * @return booleà amb si es pot moure o no
      */
-    public boolean checkUp(Mobility mobility) {
+    public synchronized boolean checkUp(Mobility mobility) {
         return mobility.getUp() != 0;
     }
 
@@ -99,7 +99,7 @@ public abstract class Character extends Thread{
      * @param mobility mobilitat del jugador
      * @return booleà amb si es pot moure o no
      */
-    public boolean checkDown(Mobility mobility) {
+    public synchronized boolean checkDown(Mobility mobility) {
         return mobility.getDown() != 0;
     }
 
@@ -108,7 +108,7 @@ public abstract class Character extends Thread{
      * @param mobility mobilitat del jugador
      * @return enter amb el nombre de sales a les qual es pot moure
      */
-    public int setMoveOptions(Mobility mobility) {
+    public synchronized int setMoveOptions(Mobility mobility) {
         int counter = 0;
         if (checkLeft(mobility)) {
             moveOptions[0] = 1;
@@ -173,7 +173,7 @@ public abstract class Character extends Thread{
      * @param nextRoom pròxima sala on es mourà
      * @return coordenades del jugador a la pròxima sala
      */
-    public int[] getNextCoordinates(int nextRoom) {
+    public synchronized int[] getNextCoordinates(int nextRoom) {
         int[] actualRoom = new int[2];
         actualRoom[0] = getCell().getX();
         actualRoom[1] = getCell().getY();
@@ -197,16 +197,16 @@ public abstract class Character extends Thread{
         }
     }
 
-    public boolean isRunning() {
+    public synchronized boolean isRunning() {
         return isRunning;
     }
 
-    public void startThread() {
+    public synchronized void startThread() {
         isRunning = true;
         this.start();
     }
 
-    public void stopThread() {
+    public synchronized void stopThread() {
         isRunning = false;
         this.interrupt();
     }
@@ -225,7 +225,7 @@ public abstract class Character extends Thread{
      * @param minInterval valor mínim de temps depenent del rol del jugador
      * @return valor de l'interval de temps
      */
-    public int randomInterval(int maxInterval, int minInterval) {
+    public synchronized int randomInterval(int maxInterval, int minInterval) {
         return (int)(Math.random()*(maxInterval - minInterval + 1) + minInterval);
     }
 
