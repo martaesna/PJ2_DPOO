@@ -31,38 +31,31 @@ public class NpcManager {
     /**
      * Mètode que elimina un crewmember per l'impostor
      * @param mapManager gestor del mapa
-     * @param player usuari
+     * @param impostor impostor
      */
-    public void eliminateCrewMember(MapManager mapManager, Player player) {
-        boolean isImpostor = false;
-        boolean isCrewMember = false;
-        int crewMemberPosition = 0;
-        int numCell = 0;
-        for (int i = 0; i < mapManager.getMap().getCells().size(); i++) {
-            if (getNpcNumCell(mapManager.getMap().getCells().get(i)) == 2 && player.getCell() != mapManager.getMap().getCells().get(i)) {
-                isImpostor = false;
-                isCrewMember = false;
-                for (int j = 0; j < players.size(); j++) {
-                    if (players.get(j).getCell() == mapManager.getMap().getCells().get(i)) {
-                        if (players.get(j) instanceof CrewMember) {
-                            isCrewMember = true;
-                            crewMemberPosition = j;
-                        } else {
-                            isImpostor = true;
-                            numCell = i;
-                        }
-                    }
-                }
+    public synchronized boolean eliminateCrewMember(MapManager mapManager, Impostor impostor) {
+        if (getNpcNumCell(impostor.getCell()) == 2) {
+            int crewMemberPosition = getCrewMemberPosition(impostor.getCell());
+            if (!players.get(crewMemberPosition).isDead() && crewMemberPosition != -1) {
+                int cellPosition = getCellPosition(mapManager, impostor.getCell());
+                mapManager.getMap().getCells().get(cellPosition).setNumCorpses(mapManager.getMap().getCells().get(cellPosition).getNumCorpses() + 1);
+                players.get(crewMemberPosition).setDead(true);
+                players.get(crewMemberPosition).stopThread();
+
+                impostor.getPeriodTime().resetCounter();
+
+                return true;
             }
         }
-        if (isImpostor && isCrewMember) {
+        return false;
+       /* if (isImpostor && isCrewMember) {
             mapManager.getMap().getCells().get(numCell).setNumCorpses(mapManager.getMap().getCells().get(numCell).getNumCorpses() + 1);
             //LinkedList<String> corpColors = mapManager.getMap().getCells().get(numCell).getCorpColor();
             //corpColors.add(players.get(crewMemberPosition).getColor());
             //mapManager.getMap().getCells().get(numCell).setCorpColor(corpColors);
-            players.get(crewMemberPosition).stopThread();
-            players.remove(crewMemberPosition);
-        }
+            //players.get(crewMemberPosition).stopThread();
+            //players.remove(crewMemberPosition);
+        }*/
     }
 
     /**
@@ -84,7 +77,13 @@ public class NpcManager {
     public boolean eliminateUserPlayer(Character userPlayer) {
         if (getNpcNumCell(userPlayer.getCell()) == 1) {
             int npcListPosition = getNpcPosition(userPlayer.getCell());
-            return players.get(npcListPosition) instanceof Impostor;
+            if (players.get(npcListPosition) instanceof Impostor) {
+                Impostor impostor = (Impostor) players.get(npcListPosition);
+                if (impostor.checkKillingPeriod(impostor)) {
+                    return true;
+                }
+                return impostor.isCanKill();
+            }
         }
         return false;
     }
@@ -145,7 +144,9 @@ public class NpcManager {
         int crewMembers = 0;
         for (Character character: players) {
             if (character.getCell() == cell && character instanceof CrewMember) {
-                crewMembers++;
+                if (!character.isDead()) {
+                    crewMembers++;
+                }
             }
         }
         return crewMembers;
@@ -163,5 +164,28 @@ public class NpcManager {
             }
         }
         return 0;
+    }
+
+    /**
+     * Mètode que troba la posició a la llista de jugadors del tripulant que hi ha a la cel·la de l'impostor
+     * @param cell cel·la on es troba
+     * @return posició a la llista de jugadors del tripulant que hi ha a la cel·la
+     */
+    public int getCrewMemberPosition(Cell cell) {
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).getCell() == cell && players.get(i) instanceof CrewMember) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int getCellPosition (MapManager mapManager, Cell cell) {
+        for (int i = 0; i < mapManager.getMap().getCells().size(); i++) {
+            if (mapManager.getMap().getCells().get(i) == cell) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

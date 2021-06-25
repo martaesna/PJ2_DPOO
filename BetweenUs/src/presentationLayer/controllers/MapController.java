@@ -227,7 +227,7 @@ public class MapController extends Thread implements ActionListener {
                     pv.mainController(pvc);
                     mv.setVisible(false);
                 }
-                npcManager.eliminateCrewMember(mapManager, playerManager.getPlayer());
+                //npcManager.eliminateCrewMember(mapManager, playerManager.getPlayer());
                 mv.updateView(mapManager.getMap(), players, playerManager.getPlayer(), revealMap);
             } catch (InterruptedException e) {
                 e.printStackTrace();

@@ -2,6 +2,7 @@ package businessLayer.entities.character;
 
 import businessLayer.MapManager;
 import businessLayer.NpcManager;
+import businessLayer.entities.game.Time;
 import businessLayer.entities.maps.Cell;
 import businessLayer.entities.maps.Mobility;
 
@@ -21,17 +22,28 @@ public class Impostor extends Character{
     private int startInterval;
     private MapManager mapManager;
     private NpcManager npcManager;
-    private boolean canKill;
+    private Boolean canKill;
+    private Time killingPeriod;
 
     // Parametrized constructor
     public Impostor(String color, int xCoordinate, int yCoordinate) {
         super(color, xCoordinate, yCoordinate);
+        killingPeriod = new Time();
     }
 
     // Parametrized constructor
     public Impostor(String color, MapManager mapManager) {
         super(color);
         this.mapManager = mapManager;
+        killingPeriod = new Time();
+    }
+
+    public Boolean isCanKill() {
+        return canKill;
+    }
+
+    public void setCanKill(Boolean canKill) {
+        this.canKill = canKill;
     }
 
     @Override
@@ -150,6 +162,24 @@ public class Impostor extends Character{
         return false;
     }
 
+    public void afterKillMovement(Impostor impostor) {
+        int nextRoom = getNextImpostorRoom(impostor);
+        int[] nextCell = impostor.getNextCoordinates(nextRoom);
+        impostor.setCell(getCellByCoordinates(nextCell));
+    }
+
+    public Time getPeriodTime() {
+        return killingPeriod;
+    }
+
+    public synchronized boolean checkKillingPeriod(Impostor impostor) {
+        if (impostor.getPeriodTime().getSeconds() > 25) {
+            impostor.setCanKill(true);
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Thread que fa constantment el moviment de l'impostor
      */
@@ -158,9 +188,17 @@ public class Impostor extends Character{
         getTotalTime().initCounter();
         getIntervalTime().initCounter();
         startInterval = getInterval();
+        killingPeriod.initCounter();
+        killingPeriod.setSeconds(26);
         while (isRunning()) {
             try {
                 impostorMovement(this);
+                if (checkKillingPeriod(this) || canKill == null) {
+                    if (npcManager.eliminateCrewMember(mapManager, this)) {
+                        canKill = false;
+                        afterKillMovement(this);
+                    }
+                }
                 Thread.sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();

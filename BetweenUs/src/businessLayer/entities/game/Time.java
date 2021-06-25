@@ -42,4 +42,10 @@ public class Time {
         return this.seconds;
     }
 
+    /**
+     * Mètode que posa el valor del temps passat per paràmetre
+     */
+    public void setSeconds(int seconds) {
+        this.seconds = seconds;
+    }
 }

@@ -26,12 +26,14 @@ public abstract class Character extends Thread{
     private int xCoordinate;
     private int yCoordinate;
     private boolean isRunning;
+    private boolean isDead;
 
     // Parametrized constructor
     public Character (String color, int xCoordinate, int yCoordinate) {
         this.color = color;
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
+        isDead = false;
     }
 
     // Parametrized constructor
@@ -39,6 +41,15 @@ public abstract class Character extends Thread{
         this.color = color;
         totalTime = new Time();
         intervalTime = new Time();
+        isDead = false;
+    }
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
     }
 
     /**
