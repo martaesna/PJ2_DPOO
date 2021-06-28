@@ -222,4 +222,39 @@ public class SQLGameDAO implements GameDAO{
 
         conn.deleteQuery(query);
     }
+
+    @Override
+    public LinkedList<String> readGames() {
+        Data data;
+        data = llegeixJSON();
+        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
+        conn.connect();
+        ResultSet rs = conn.selectQuery("SELECT gameName FROM Game WHERE gameName NOT LIKE '%(Copy)%'");
+        LinkedList<String> gameNames = new LinkedList<>();
+        try {
+            while(rs.next()) {
+                gameNames.add(rs.getString(1));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return gameNames;
+    }
+
+    @Override
+    public boolean createdGames() {
+        Data data;
+        data = llegeixJSON();
+        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
+        conn.connect();
+        ResultSet rs = conn.selectQuery("SELECT gameName FROM Game");
+        try {
+            if(!rs.next()) {
+                return false;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return true;
+    }
 }

@@ -138,5 +138,10 @@ public class PlayView extends JFrame {
         jbDeleteGame.addActionListener(actionListener);
         configButton.addActionListener(actionListener);
     }
+
+    public void printErrorNoGames(){
+        JOptionPane.showMessageDialog(null, "ERROR: no s'ha creat cap joc encara", "Error Configured Game", JOptionPane.ERROR_MESSAGE);
+    }
+
 }
 

@@ -41,58 +41,60 @@ public class ConfiguredGameViewController implements ActionListener {
 
         if (e.getActionCommand().equals("Create")) { //cuando apretamos el boton
             GameManager gameManager = new GameManager();
-            if (gameManager.checkGame(cogv.getConfiguredName())) {
+            /*if (gameManager.checkGame(cogv.getConfiguredName())) {
                 if (gameManager.checkRecreateGame(cogv.getConfiguredName())) {
                     cogv.printErrorRecreatedExistance();
-                } else {
-                    gameManager.createConfiguredGame(cogv.getConfiguredName(), userName);
-
-                    Game game = gameManager.selectGame(cogv.getConfiguredName());
-                    int starterColor = 0;
-
-                    Map map = MapManager.llegeixMapa(game.getMap());
-                    MapManager mapManager = new MapManager(map);
-
-                    Player userPlayer = new Player(game.getPlayerColor());
-                    if (userPlayer.getColor().equals("RED")) {
-                        starterColor++;
-                    }
-                    LinkedList<CrewMember> crewMembers = gameManager.getCrewMembers(game.getPlayers() - game.getImpostors() - 1, game.getPlayerColor(), starterColor, colors, mapManager);
-                    starterColor = getImpostorsStarterColor(gameManager.getUserColorPosition(game.getPlayerColor(), colors), crewMembers.size(), starterColor);
-                    LinkedList<Impostor> impostors = gameManager.getImpostors(game.getImpostors(), game.getPlayerColor(), starterColor + crewMembers.size(), colors, mapManager);
-
-                    LinkedList<Character> players = new LinkedList<>();
-                    players.addAll(crewMembers);
-                    players.addAll(impostors);
-                    Collections.shuffle(players);
-
-                    Cell initialCell = gameManager.getCoffeShopCell(map.getCells());
-                    userPlayer.setCell(initialCell);
-
-                    gameManager.setInitialCell(userPlayer, players, map.getCells());
-
-                    for (Character character: players) {
-                        gameManager.startPlayers(character);
-                    }
-
-                    PlayerManager playerManager = new PlayerManager(userPlayer);
-                    NpcManager npcManager = new NpcManager(players);
-                    for (Character character: players) {
-                        if (character instanceof Impostor) {
-                            character.setNpcManager(npcManager);
-                        }
-                    }
-
-                    MapView mv = new MapView(map, players, userPlayer);
-
-                    MapController mapController = new MapController(mv, mapManager, playerManager, players, cogv.getConfiguredName(), userName, npcManager);
-                    mv.mainController(mapController);
-                    mapController.startMapThread();
-                    cogv.setVisible(false);
-                }
+                } else {*/
+            if (gameManager.checkRecreateGame(cogv.getConfiguredName())) {
+                cogv.printErrorRecreatedExistance();
             } else {
-                cogv.printErrorNoExistance();
+                gameManager.createConfiguredGame(cogv.getConfiguredName(), userName);
+
+                Game game = gameManager.selectGame(cogv.getConfiguredName());
+                int starterColor = 0;
+
+                Map map = MapManager.llegeixMapa(game.getMap());
+                MapManager mapManager = new MapManager(map);
+
+                Player userPlayer = new Player(game.getPlayerColor());
+                if (userPlayer.getColor().equals("RED")) {
+                    starterColor++;
+                }
+                LinkedList<CrewMember> crewMembers = gameManager.getCrewMembers(game.getPlayers() - game.getImpostors() - 1, game.getPlayerColor(), starterColor, colors, mapManager);
+                starterColor = getImpostorsStarterColor(gameManager.getUserColorPosition(game.getPlayerColor(), colors), crewMembers.size(), starterColor);
+                LinkedList<Impostor> impostors = gameManager.getImpostors(game.getImpostors(), game.getPlayerColor(), starterColor + crewMembers.size(), colors, mapManager);
+
+                LinkedList<Character> players = new LinkedList<>();
+                players.addAll(crewMembers);
+                players.addAll(impostors);
+                Collections.shuffle(players);
+
+                Cell initialCell = gameManager.getCoffeShopCell(map.getCells());
+                userPlayer.setCell(initialCell);
+
+                gameManager.setInitialCell(userPlayer, players, map.getCells());
+
+                for (Character character: players) {
+                    gameManager.startPlayers(character);
+                }
+
+                PlayerManager playerManager = new PlayerManager(userPlayer);
+                NpcManager npcManager = new NpcManager(players);
+                for (Character character: players) {
+                    if (character instanceof Impostor) {
+                        character.setNpcManager(npcManager);
+                    }
+                }
+
+                MapView mv = new MapView(map, players, userPlayer);
+
+                MapController mapController = new MapController(mv, mapManager, playerManager, players, cogv.getConfiguredName(), userName, npcManager);
+                mv.mainController(mapController);
+                mapController.startMapThread();
+                cogv.setVisible(false);
             }
+        } else {
+                cogv.printErrorNoExistance();
         }
         if (e.getActionCommand().equals("Return")) {
             cogv.setVisible(false);

@@ -1,12 +1,15 @@
 package presentationLayer.controllers;
 
+import businessLayer.GameManager;
 import presentationLayer.views.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 public class PlayViewController implements ActionListener {
     private final PlayView pv;
     private final String userName;
+    private String[] gameNames;
 
     public PlayViewController(PlayView pv, String userName) {
         this.pv = pv;
@@ -38,10 +41,16 @@ public class PlayViewController implements ActionListener {
                 ngv.mainController(ngvc);
                 break;
             case "Configured":
-                pv.setVisible(false);
-                ConfiguredGameView cogv = new ConfiguredGameView();
-                ConfiguredGameViewController cogvc = new ConfiguredGameViewController(cogv, userName);
-                cogv.mainController(cogvc);
+                GameManager gameManager = new GameManager();
+                if (!gameManager.createdGames()) {
+                    pv.printErrorNoGames();
+                } else {
+                    pv.setVisible(false);
+
+                    ConfiguredGameView cogv = new ConfiguredGameView(getGameNames(gameManager));
+                    ConfiguredGameViewController cogvc = new ConfiguredGameViewController(cogv, userName);
+                    cogv.mainController(cogvc);
+                }
                 break;
             case "Charge":
                 pv.setVisible(false);
@@ -56,5 +65,16 @@ public class PlayViewController implements ActionListener {
                 dgv.mainController(dgvc);
                 break;
         }
+    }
+
+    public String[] getGameNames(GameManager gameManager){
+        LinkedList<String> gameNames = gameManager.getGameNames();
+        String[] names = new String[gameNames.size()];
+
+        for (int i = 0; i < gameNames.size(); i++) {
+            names[i] = gameNames.get(i);
+        }
+
+        return names;
     }
 }

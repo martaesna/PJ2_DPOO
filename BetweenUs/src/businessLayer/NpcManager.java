@@ -5,6 +5,8 @@ import businessLayer.entities.character.CrewMember;
 import businessLayer.entities.character.Impostor;
 import businessLayer.entities.character.Player;
 import businessLayer.entities.maps.Cell;
+
+import java.awt.*;
 import java.util.LinkedList;
 
 /**
@@ -187,5 +189,13 @@ public class NpcManager {
             }
         }
         return -1;
+    }
+
+    public boolean checkLogPosition (Character character) {
+        if (!character.getCell().getColor().equals(Color.BLACK.toString()) &&
+                !character.getCell().getRoomName().equals("security")) {
+            return  true;
+        }
+        return false;
     }
 }

@@ -23,11 +23,11 @@
 		{ "x": 1, "y": 2, "type": "corridor", "roomName" : "corridor", "mobility": {
 			"left": 0, "up": 1, "right": 1, "down": 0 }, "color": "black", "adjacencies": []  },
 		{ "x": 2, "y": 2, "type": "room", "roomName" : "cafeteria", "mobility": {
-			"left": 1, "up": 0, "right": 1, "down": 1 }, "color": "ORANGE", "adjacencies": ["storage", "laboratory"]  },
+			"left": 1, "up": 0, "right": 1, "down": 1 }, "color": "YELLOW", "adjacencies": ["storage", "laboratory"]  },
 		{ "x": 3, "y": 2, "type": "corridor", "roomName" : "corridor", "mobility": {
 			"left": 1, "up": 1, "right": 0, "down": 1 }, "color": "black", "adjacencies": []  },
 		{ "x": 0, "y": 3, "type": "room", "roomName" : "electrical", "mobility": {
-			"left": 0, "up": 1, "right": 0, "down": 1 }, "color": "YELLOW", "adjacencies": ["storage", "admin"]  },
+			"left": 0, "up": 1, "right": 0, "down": 1 }, "color": "ORANGE", "adjacencies": ["storage", "admin"]  },
 		{ "x": 2, "y": 3, "type": "corridor", "roomName" : "corridor", "mobility": {
 			"left": 0, "up": 1, "right": 1, "down": 1 }, "color": "black", "adjacencies": []  },
 		{ "x": 3, "y": 3, "type": "corridor", "roomName" : "corridor", "mobility": {

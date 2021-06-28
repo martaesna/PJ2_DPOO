@@ -11,14 +11,16 @@ import java.util.Objects;
 
 public class ConfiguredGameView extends JFrame {
     private final JButton jbConfigure;
-    private final JTextField gameName;
+    //private final JTextField gameName;
+    private JComboBox<String> gameNames;
     private JButton configButton;
     private JButton returnButton;
+    private String[] gameNamesString;
 
     /**
      * Printa la vista de ConfiguredGame
      */
-    public ConfiguredGameView() {
+    public ConfiguredGameView(String[] gameNamesString) {
         setVisible(true);
         setTitle("Configured game"); // titol
         setSize(1080, 600); // tamaño de la caja
@@ -76,12 +78,20 @@ public class ConfiguredGameView extends JFrame {
         jlMusic.setForeground(Color.WHITE);
         background.add(jlMusic);
 
+        /*
         gameName = new JTextField();
         gameName.setBackground(Color.BLACK);
         gameName.setForeground(Color.WHITE);
         gameName.setFont(new Font("", Font.BOLD, 20));
         gameName.setBounds(350,260,350,40);
-        background.add(gameName);
+        background.add(gameName);*/
+
+        gameNames = new JComboBox<>(gameNamesString);
+        gameNames.setForeground(Color.BLACK);
+        gameNames.setBackground(Color.WHITE);
+        gameNames.setFont(new Font("", Font.BOLD, 16));
+        gameNames.setBounds(350,260,350,40);
+        background.add(gameNames);
 
 
         jbConfigure = new JButton("Create");
@@ -106,7 +116,7 @@ public class ConfiguredGameView extends JFrame {
         returnButton.addActionListener(actionListener);
     }
 
-    public String getConfiguredName() { return gameName.getText(); }
+    public String getConfiguredName() { return String.valueOf(gameNames.getSelectedItem()); }
 
     /**
      * mostra un JoptionPane de que no existeix el nom

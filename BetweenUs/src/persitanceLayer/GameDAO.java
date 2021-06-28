@@ -24,6 +24,8 @@ public interface GameDAO {
     void saveGame(Character userPlayer, LinkedList<Impostor> impostors, LinkedList<CrewMember> crewMembers, String gameName);
     void savePlayerCharacter(Character userPlayer, String gameName);
 
-
+    LinkedList<String> readGames();
     void deleteUserGames(String userName);
+
+    boolean createdGames();
 }

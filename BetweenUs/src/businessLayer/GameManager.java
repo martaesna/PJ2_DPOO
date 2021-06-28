@@ -48,14 +48,10 @@ public class GameManager {
      * @param userName nom de l'usuari
      */
     public void createConfiguredGame(String gameName, String userName) {
-        if (gameDAO.gameExists(gameName+"(Copy)")) {
-            JOptionPane.showMessageDialog(null, "ERROR: El nom d'aquest joc ja existeix", "Error Create Game", JOptionPane.ERROR_MESSAGE);
-        } else {
-            Game newGame = gameDAO.selectGame(gameName);
-            newGame.setGameName(newGame.getGameName()+"(Copy)");
-            gameDAO.createGame(newGame, userName);
-            this.gameName = newGame.getGameName();
-        }
+        Game newGame = gameDAO.selectGame(gameName);
+        newGame.setGameName(newGame.getGameName()+"(Copy)");
+        gameDAO.createGame(newGame, userName);
+        this.gameName = newGame.getGameName();
     }
 
     /**
@@ -231,5 +227,13 @@ public class GameManager {
 
     public String getGameName() {
         return gameName;
+    }
+
+    public LinkedList<String> getGameNames() {
+        return gameDAO.readGames();
+    }
+
+    public boolean createdGames() {
+        return gameDAO.createdGames();
     }
 }
