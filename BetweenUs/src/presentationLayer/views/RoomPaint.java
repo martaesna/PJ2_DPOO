@@ -23,15 +23,15 @@ public class RoomPaint extends JPanel {
     private boolean revealMap;
     private BufferedImage image;
     private int numCorpses;
-    private LinkedList<String> corpColors = new LinkedList<>();
+    private LinkedList<Boolean> corpses;
 
-    public RoomPaint(Color color, String roomName, LinkedList<String> colors, Boolean userIsHere, Boolean revealMap, int numCorpses){
+    public RoomPaint(Color color, String roomName, LinkedList<String> colors, Boolean userIsHere, Boolean revealMap, LinkedList<Boolean> corpses){
         this.color = color;
         this.roomName = roomName;
         this.colors = colors;
         this.userIsHere = userIsHere;
         this.revealMap = revealMap;
-        this.numCorpses = numCorpses;
+        this.corpses = corpses;
         try {
             image = ImageIO.read(Objects.requireNonNull(getClass().getResource("/images/XDeadPlayer.png")));
         } catch (IOException e) {
@@ -65,11 +65,22 @@ public class RoomPaint extends JPanel {
                         e.printStackTrace();
                     }
                 }
-                g.setColor(Color.BLACK);
-                g.fillOval(separadorX - 1, separadorY - 1, 17, 17);
+                if (colors.get(i).equals("BLACK")) {
+                    g.setColor(Color.WHITE);
+                    g.fillOval(separadorX - 1, separadorY - 1, 17, 17);
+                } else {
+                    g.setColor(Color.BLACK);
+                    g.fillOval(separadorX - 1, separadorY - 1, 17, 17);
+                }
 
                 g.setColor(colori);
                 g.fillOval(separadorX, separadorY, 15, 15);
+
+                if(corpses.get(i).booleanValue()) {
+                    Image imageScaled = image.getScaledInstance(21, 21, Image.SCALE_DEFAULT);
+                    g.drawImage(imageScaled, separadorX - 3, separadorY - 3, this);
+                }
+
                 separadorX += 20;
 
                 if (separadorX + 30 > getWidth()) {
@@ -77,7 +88,7 @@ public class RoomPaint extends JPanel {
                     separadorX = getWidth() / 4;
                 }
             }
-
+/*
             for (int i = 0; i < numCorpses; i++) {
                 Image imageScaled = image.getScaledInstance(20, 25, Image.SCALE_DEFAULT);
                 g.drawImage(imageScaled, separadorX, separadorY, this);
@@ -86,7 +97,7 @@ public class RoomPaint extends JPanel {
                     separadorY = separadorY + 20;
                     separadorX = getWidth() / 4;
                 }
-            }
+            }*/
 
             /*
             if (corpColors != null) {

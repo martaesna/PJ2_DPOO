@@ -26,6 +26,7 @@ public class MapController extends Thread implements ActionListener {
     private LinkedList<Character> players;
     private boolean revealMap;
     private String userName;
+    private LogController logController;
 
 
     public MapController(MapView mv, MapManager mapManager, PlayerManager playerManager, LinkedList<Character> players, String gameName, String userName, NpcManager npcManager){
@@ -37,33 +38,8 @@ public class MapController extends Thread implements ActionListener {
         revealMap = false;
         this.userName = userName;
         this.npcManager = npcManager;
+        this.logController = new LogController(npcManager, logsView, gameName);
     }
-
-    /*
-    public int getWidth(){
-        return map.getWidth();
-    }
-
-    public int getHeight(){
-        return map.getHeight();
-    }
-
-    public int trobaCela (int x, int y){
-        for (int i = 0; i < map.getCells().size(); i++){
-            if(map.getCells().get(i).getX() == x || map.getCells().get(i).getY() == y){
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    public String getType(int i){
-        return map.getCells().get(i).getType();
-    }
-
-    public String getColor(int i){
-        return map.getCells().get(i).getColor();
-    }*/
 
     /**
      * Segons el boto que apretem fa una funcionalitat
@@ -168,7 +144,7 @@ public class MapController extends Thread implements ActionListener {
                 }
                 break;
             case "logs":
-                logsView = new LogsView();
+                logsView = new LogsView(logController.getLogs());
                 break;
             default:
                 String[] elements = command.split("_");
@@ -227,8 +203,9 @@ public class MapController extends Thread implements ActionListener {
                     pv.mainController(pvc);
                     mv.setVisible(false);
                 }
-                //npcManager.eliminateCrewMember(mapManager, playerManager.getPlayer());
                 mv.updateView(mapManager.getMap(), players, playerManager.getPlayer(), revealMap);
+                logController.updateLogs();
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

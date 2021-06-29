@@ -146,6 +146,8 @@ public class NewGameController implements ActionListener {
                     }
 
                     PlayerManager playerManager = new PlayerManager(userPlayer);
+                    mapManager.setPlayerManager(playerManager);
+
                     NpcManager npcManager = new NpcManager(players);
                     for (Character character: players) {
                         if (character instanceof Impostor) {

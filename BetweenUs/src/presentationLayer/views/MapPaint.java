@@ -8,6 +8,7 @@ import businessLayer.entities.maps.Cell;
 import businessLayer.entities.maps.Map;
 import java.awt.*;
 import java.util.LinkedList;
+import javax.sound.midi.Soundbank;
 import javax.swing.*;
 
 public class MapPaint extends JPanel {
@@ -51,6 +52,7 @@ public class MapPaint extends JPanel {
                     jpMapa.add(empty);
                 } else {
                     LinkedList<String> colors = getCellColors(userPlayer, players, map.getCells().get(pos));
+                    LinkedList<Boolean> corpses = getCellCorpses(userPlayer, players, map.getCells().get(pos));
 
                     if (map.getCells().get(pos).getType().equals("room")) {
                         try {
@@ -62,13 +64,13 @@ public class MapPaint extends JPanel {
                         //Pintar els personatges amb contorn
                         String roomName = map.getCells().get(pos).getRoomName();
 
-                        room = new RoomPaint(color, roomName, colors, checkUserPosition(userPlayer.getCell(), map.getCells().get(pos)), revealMap, map.getCells().get(pos).getNumCorpses());
+                        room = new RoomPaint(color, roomName, colors, checkUserPosition(userPlayer.getCell(), map.getCells().get(pos)), revealMap, corpses);
                         room.setBorder(BorderFactory.createLineBorder(Color.WHITE));//pintem els borders
                         jpMapa.add(room);
                     }
 
                     if (map.getCells().get(pos).getType().equals("corridor")) {
-                        JPanel corridor = new CorridorPaint(map.getCells().get(pos).getMobility(), map.getMapName(), colors, checkUserPosition(userPlayer.getCell(),map.getCells().get(pos)), revealMap, map.getCells().get(pos).getNumCorpses());
+                        JPanel corridor = new CorridorPaint(map.getCells().get(pos).getMobility(), map.getMapName(), colors, checkUserPosition(userPlayer.getCell(),map.getCells().get(pos)), revealMap, corpses);
 
                         corridor.setBorder(BorderFactory.createLineBorder(Color.WHITE));
                         jpMapa.add(corridor);
@@ -97,6 +99,23 @@ public class MapPaint extends JPanel {
             }
         }
         return colors;
+    }
+
+    public LinkedList<Boolean> getCellCorpses(Character userPlayer, LinkedList<Character> characters, Cell cell) {
+        LinkedList<Boolean> corpses = new LinkedList<>();
+        if (userPlayer.getCell() == cell) {
+            corpses.add(false);
+        }
+        for (Character character: characters) {
+            if (cell == character.getCell()) {
+                if(character.isDead()) {
+                    corpses.add(true);
+                } else {
+                    corpses.add(false);
+                }
+            }
+        }
+        return corpses;
     }
 
     public boolean checkUserPosition(Cell userCell, Cell cell) {

@@ -82,6 +82,7 @@ public class CrewMember extends Character{
                 setPreviousRoom(selectPreviousRoom(nextRoom));
                 int[] nextCell = getNextCoordinates(nextRoom);
                 setCell(getCellByCoordinates(nextCell));
+                setCanLog(true);
             }
             startInterval = getInterval();
             getIntervalTime().resetCounter();

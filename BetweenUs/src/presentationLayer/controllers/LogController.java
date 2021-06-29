@@ -1,5 +1,7 @@
 package presentationLayer.controllers;
 
+import businessLayer.GameManager;
+import businessLayer.LogManager;
 import businessLayer.NpcManager;
 import businessLayer.entities.character.Character;
 import presentationLayer.views.LogsView;
@@ -9,20 +11,24 @@ import java.util.LinkedList;
 
 public class LogController {
     private NpcManager npcManager;
-    private LogsView lv;
+    private LogsView logv;
+    private LogManager logm;
 
-    public LogController(NpcManager npcManager, LogsView lv) {
+    public LogController(NpcManager npcManager, LogsView logv, String gameName) {
         this.npcManager = npcManager;
-        this.lv = lv;
+        this.logv = logv;
+        this.logm = new LogManager(gameName);
     }
 
-    public void updateLogView() {
+    public void updateLogs() {
         for (int i = 0; i < npcManager.getPlayers().size(); i++) {
             if (npcManager.checkLogPosition(npcManager.getPlayers().get(i))) {
-
-                //Guardar-ho a la vista
-
+                logm.addLog(npcManager.getPlayers().get(i));
             }
         }
+    }
+
+    public LinkedList<Log> getLogs() {
+        return logm.getLogs();
     }
 }

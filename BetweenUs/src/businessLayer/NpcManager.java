@@ -36,7 +36,15 @@ public class NpcManager {
      * @param impostor impostor
      */
     public synchronized boolean eliminateCrewMember(MapManager mapManager, Impostor impostor) {
-        if (getNpcNumCell(impostor.getCell()) == 2) {
+        if (crewMemberKilled(mapManager,impostor)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean crewMemberKilled(MapManager mapManager, Impostor impostor) {
+        if (getNpcNumCell(impostor.getCell()) == 2 && getNumCrewMembersCell(impostor.getCell()) == 1
+                && mapManager.userPlayerCell() != impostor.getCell()) {
             int crewMemberPosition = getCrewMemberPosition(impostor.getCell());
             if (!players.get(crewMemberPosition).isDead() && crewMemberPosition != -1) {
                 int cellPosition = getCellPosition(mapManager, impostor.getCell());
@@ -50,14 +58,6 @@ public class NpcManager {
             }
         }
         return false;
-       /* if (isImpostor && isCrewMember) {
-            mapManager.getMap().getCells().get(numCell).setNumCorpses(mapManager.getMap().getCells().get(numCell).getNumCorpses() + 1);
-            //LinkedList<String> corpColors = mapManager.getMap().getCells().get(numCell).getCorpColor();
-            //corpColors.add(players.get(crewMemberPosition).getColor());
-            //mapManager.getMap().getCells().get(numCell).setCorpColor(corpColors);
-            //players.get(crewMemberPosition).stopThread();
-            //players.remove(crewMemberPosition);
-        }*/
     }
 
     /**
@@ -106,7 +106,7 @@ public class NpcManager {
     public int getNumCrewMembers() {
         int numCrewMembers = 0;
         for (Character character: players) {
-            if (character instanceof CrewMember) {
+            if (character instanceof CrewMember && !character.isDead()) {
                 numCrewMembers++;
             }
         }
@@ -192,9 +192,18 @@ public class NpcManager {
     }
 
     public boolean checkLogPosition (Character character) {
-        if (!character.getCell().getColor().equals(Color.BLACK.toString()) &&
-                !character.getCell().getRoomName().equals("security")) {
-            return  true;
+        if (checkLog(character)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkLog(Character character) {
+        if (!character.getCell().getRoomName().equals("corridor") &&
+                !character.getCell().getRoomName().equals("security") &&
+                !character.isDead() && character.isCanLog()) {
+            character.setCanLog(false);
+            return true;
         }
         return false;
     }

@@ -14,7 +14,7 @@ import com.google.gson.annotations.SerializedName;
  */
 public class Cell {
     // Attributes
-    private int numCorpses;
+    private int numCorpses = 0;
 
     @SerializedName("x")
     @Expose

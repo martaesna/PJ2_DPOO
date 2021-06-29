@@ -129,15 +129,11 @@ public class Impostor extends Character{
 
         if (startInterval == getIntervalTime().getSeconds()) {
             if (impostor.movement()) {
-                //String roomName = impostor.getCell().getAdjacencies().get(nextRoom);
                 if (!ventilationMovement(impostor)) {
                     int nextRoom = getNextImpostorRoom(impostor);
                     int[] nextCell = impostor.getNextCoordinates(nextRoom);
                     impostor.setCell(getCellByCoordinates(nextCell));
-                    /*  if (impostor.getCell().getType().equals("room") && !impostor.getCell().getRoomName().equals("cafeteria")) {
-                        Log log = new Log(impostor.getColor(), impostor.getCell().getRoomName(), getTotalTime().getSeconds());
-                        //makeLog(log);
-                    }*/
+                    impostor.setCanLog(true);
                 }
             } else {
                 System.out.println("");
@@ -155,6 +151,7 @@ public class Impostor extends Character{
                 int numCrewMembers = npcManager.getNumCrewMembersCell(mapManager.getMap().getCellByName(roomName));
                 if (numCrewMembers == 0 || (numCrewMembers == 1 && impostor.canKill)) {
                     impostor.setCell(mapManager.getMap().getCellByName(roomName));
+                    impostor.setCanLog(true);
                     return true;
                 }
             }
@@ -166,6 +163,7 @@ public class Impostor extends Character{
         int nextRoom = getNextImpostorRoom(impostor);
         int[] nextCell = impostor.getNextCoordinates(nextRoom);
         impostor.setCell(getCellByCoordinates(nextCell));
+        impostor.setCanLog(true);
     }
 
     public Time getPeriodTime() {

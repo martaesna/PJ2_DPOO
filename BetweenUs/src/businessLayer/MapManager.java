@@ -15,10 +15,15 @@ import java.io.FileReader;
 public class MapManager {
     // Attributes
     private static Map map;
+    private PlayerManager playerManager;
 
     // Parametrized constructor
     public MapManager(Map map) {
         MapManager.map = map;
+    }
+
+    public void setPlayerManager(PlayerManager playerManager) {
+        this.playerManager = playerManager;
     }
 
     /**
@@ -49,6 +54,15 @@ public class MapManager {
 
     public Cell nextPlayerCell (int[] nextCell) {
         return getMap().getCellByCoordinates(nextCell);
+    }
+
+    public Cell userPlayerCell () {
+        for(int i = 0; i < map.getCells().size(); i++) {
+            if (map.getCells().get(i) == playerManager.getPlayer().getCell()) {
+                return map.getCells().get(i);
+            }
+        }
+        return null;
     }
 }
 

@@ -27,6 +27,7 @@ public abstract class Character extends Thread{
     private int yCoordinate;
     private boolean isRunning;
     private boolean isDead;
+    private boolean canLog;
 
     // Parametrized constructor
     public Character (String color, int xCoordinate, int yCoordinate) {
@@ -34,6 +35,7 @@ public abstract class Character extends Thread{
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
         isDead = false;
+        canLog = false;
     }
 
     // Parametrized constructor
@@ -42,6 +44,15 @@ public abstract class Character extends Thread{
         totalTime = new Time();
         intervalTime = new Time();
         isDead = false;
+        canLog = false;
+    }
+
+    public boolean isCanLog() {
+        return canLog;
+    }
+
+    public void setCanLog(boolean canLog) {
+        this.canLog = canLog;
     }
 
     public boolean isDead() {
@@ -75,7 +86,7 @@ public abstract class Character extends Thread{
      * @param log classe log amb la informació per registar-lo
      */
     public void makeLog(Log log) {
-        LogManager logManager = new LogManager(log);
+        //LogManager logManager = new LogManager(log);
     }
 
     /**
