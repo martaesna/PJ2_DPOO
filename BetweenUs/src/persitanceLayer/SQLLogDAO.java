@@ -5,6 +5,9 @@ import presentationLayer.views.customComponents.Log;
 
 import static persitanceLayer.JsonReader.llegeixJSON;
 
+/**
+ *
+ */
 public class SQLLogDAO implements LogDAO {
     /**
      * Mètode que guarda un log a la base de dades

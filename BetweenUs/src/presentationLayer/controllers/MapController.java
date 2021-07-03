@@ -15,6 +15,13 @@ import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * La classe 'MapController' ens permet gestionar la vista del MapView.
+ *
+ * Els metodes ens reben informació de la vista, i realitzen les modificacions pertinents per el correcte funcionament
+ * de la partida a temps real.
+ */
+
 public class MapController extends Thread implements ActionListener {
     private MapView mv;
     private final MapManager mapManager;

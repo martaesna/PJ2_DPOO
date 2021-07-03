@@ -19,7 +19,9 @@ public class RegisterView extends JFrame {
     private final JPasswordField repeatPasswordField;
 
     /**
-     * mostra la vista del registre
+     * La classe ens permet veure la pantalla del RegisterView.
+     *
+     * Envia la informació que reb del usuari al seu controlador.
      */
     public RegisterView() {
         setVisible(true);

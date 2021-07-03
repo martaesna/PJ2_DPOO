@@ -17,7 +17,9 @@ public class ChargeGameView extends JFrame {
     private JButton configButton;
 
     /**
-     * Printa la vista de ChargeGame
+     * La classe ens permet veure la pantalla del ChargeGameView.
+     *
+     * Envia la informació que reb del usuari al seu controlador.
      */
     public ChargeGameView() {
         setVisible(true);

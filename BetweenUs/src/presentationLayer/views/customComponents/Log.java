@@ -1,5 +1,9 @@
 package presentationLayer.views.customComponents;
 
+
+/**
+ * Classe on declarem els atributs del Log que farem servir després al map view.
+ */
 public class Log {
     private final String name;
     private final String room;

@@ -10,6 +10,12 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
+/**
+ * La classe ens permet veure la pantalla del NewGameView.
+ *
+ * Envia la informació que reb del usuari al seu controlador.
+ */
+
 
 public class NewGameView extends JFrame {
     private final JTextField gameName;

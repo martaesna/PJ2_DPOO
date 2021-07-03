@@ -9,6 +9,11 @@ import presentationLayer.views.customComponents.Log;
 
 import java.util.LinkedList;
 
+/**
+ * La classe 'LogController' ens permet gestionar la vista del LogsView.
+ *
+ * Els metodes reben informació de la vista, i realitzen les modificacions pertinents pero poder gestionar la vista del logs.
+ */
 public class LogController {
     private NpcManager npcManager;
     private LogsView logv;

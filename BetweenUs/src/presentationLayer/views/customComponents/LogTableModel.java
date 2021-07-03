@@ -3,6 +3,10 @@ package presentationLayer.views.customComponents;
 import javax.swing.table.AbstractTableModel;
 import java.util.LinkedList;
 
+/**
+ * Classe on convertim el log en una TableModel per poder treballar millor amb ella.
+ */
+
 public class LogTableModel extends AbstractTableModel {
 
     private final String[] header = {"CREWMATE", "ROOM", "INSTANT"};

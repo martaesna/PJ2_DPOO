@@ -8,6 +8,11 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * La classe 'DeleteGameViewController' ens permet gestionar la vista del DeleteGameView.
+ *
+ * Els mètodes reben informació de la vista, i realitzen les modificacions pertinents per poder borrar les partides guardades.
+ */
 public class DeleteGameViewController implements ActionListener {
     private final DeleteGameView dgv;
     private String userName;

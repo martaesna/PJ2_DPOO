@@ -11,6 +11,12 @@ import java.util.LinkedList;
 import javax.sound.midi.Soundbank;
 import javax.swing.*;
 
+/**
+ * La classe ens permet mostrar el mapa dins de la partida i actualitzarlo a temps real
+ *
+ * Envia la informació al mapView i reb informació del roomPaint i el CorridorPaint i pinta els colors dels personatges.
+ */
+
 public class MapPaint extends JPanel {
     private Color color;
     private final Map map;

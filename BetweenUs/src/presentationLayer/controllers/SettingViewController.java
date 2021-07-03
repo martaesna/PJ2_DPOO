@@ -12,6 +12,13 @@ import javax.swing.event.ChangeEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * La classe 'SettingsViewController' ens permet gestionar la vista del SettingsView.
+ *
+ * Els metodes reben informació de la vista, i realitzen les modificacions pertinents per poder gestionar la vista de
+ * les opcions de forma correcta.
+ */
+
 public class SettingViewController implements ActionListener {
     private final SettingView sv;
     private String userName;

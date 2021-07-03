@@ -8,7 +8,12 @@ import presentationLayer.views.RegisterView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+/**
+ * La classe 'RegisterViewController' ens permet gestionar la vista del RegisterGameView.
+ *
+ * Els metodes reben informació de la vista, i realitzen les modificacions pertinents per poder registrarse al joc de manera
+ * correcta.
+ */
 public class RegisterViewController implements ActionListener {
     private final RegisterView rv;
     public RegisterViewController(RegisterView rv) {

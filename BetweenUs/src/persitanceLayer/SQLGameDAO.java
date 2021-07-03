@@ -13,6 +13,9 @@ import java.util.LinkedList;
 
 import static persitanceLayer.JsonReader.llegeixJSON;
 
+/**
+ *
+ */
 public class SQLGameDAO implements GameDAO{
     /**
      * Mètode que insereix un joc a la base de dades

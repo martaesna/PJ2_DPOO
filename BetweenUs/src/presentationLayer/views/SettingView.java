@@ -15,7 +15,9 @@ public class SettingView extends JFrame  {
     private JButton configButton;
 
     /**
-     * mostra la vista dels settings
+     * La classe ens permet veure la pantalla del SettingsView.
+     *
+     * Envia la informació que reb del usuari al seu controlador.
      */
     public SettingView() {
         setVisible(true);

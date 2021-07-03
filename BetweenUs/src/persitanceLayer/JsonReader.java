@@ -4,6 +4,10 @@ import com.google.gson.Gson;
 import businessLayer.entities.json.Data;
 import java.io.FileReader;
 
+
+/**
+ * La classe ens permet llegir i guardar el json que necesitem
+ */
 public class JsonReader {
     private static Data data = new Data();
 

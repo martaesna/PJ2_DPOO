@@ -18,7 +18,9 @@ public class ConfiguredGameView extends JFrame {
     private String[] gameNamesString;
 
     /**
-     * Printa la vista de ConfiguredGame
+     * La classe ens permet veure la pantalla del ConfiguredGameView.
+     *
+     * Envia la informació que reb del usuari al seu controlador.
      */
     public ConfiguredGameView(String[] gameNamesString) {
         setVisible(true);

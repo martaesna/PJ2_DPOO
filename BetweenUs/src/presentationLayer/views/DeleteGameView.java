@@ -16,7 +16,9 @@ public class DeleteGameView extends JFrame {
     private JButton returnButton;
 
     /**
-     * Printa la vista del DeleteGame
+     * La classe ens permet veure la pantalla del DeleteGameView.
+     *
+     * Envia la informació que reb del usuari al seu controlador.
      */
     public DeleteGameView() {
         setVisible(true);

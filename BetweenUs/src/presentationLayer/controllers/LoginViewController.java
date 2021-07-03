@@ -7,6 +7,13 @@ import presentationLayer.views.RegisterView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * La classe 'LoginViewController' ens permet gestionar la vista del LoginView.
+ *
+ * Els metodes ens reben informació de la vista, i realitzen les modificacions pertinents per comprovar que compleix
+ * els requisits per fer login.
+ */
+
 public class LoginViewController implements ActionListener {
     private final LoginView lv;
     public LoginViewController(LoginView lv) {

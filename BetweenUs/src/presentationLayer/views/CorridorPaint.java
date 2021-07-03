@@ -12,6 +12,12 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Objects;
 
+/**
+ * La classe ens permet pintar els passadisos del mapa.
+ *
+ * interacciona directament amb la clase MapPaint.
+ */
+
 public class CorridorPaint extends JPanel{
     private final Mobility mov;
     private final String map;

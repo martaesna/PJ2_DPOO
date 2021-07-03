@@ -12,6 +12,12 @@ import java.awt.image.ImageProducer;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Objects;
+/**
+ * La classe ens permet pintar les habitacións del mapa al mapPaint.
+ *
+ * Envia la informació de les rooms al MapPaint per poder pintarles.
+ */
+
 
 public class RoomPaint extends JPanel {
     private final Color color;

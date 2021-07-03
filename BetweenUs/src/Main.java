@@ -8,6 +8,13 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * La classe on inicia el programa, i fa les configuracions inicials.
+ *
+ * Posa en marxa els primers passos per poder fer funcionar el programa.
+ */
+
+
 public class Main {
     private static Data data;
 
@@ -34,6 +41,7 @@ public class Main {
             System.out.println(path);
             ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(path + "/BetweenUs/src/fonts/RussoOne-Regular.ttf")));
         } catch (IOException |FontFormatException e) {
+
             System.out.println("No s'ha trobat la font");
         }
     }

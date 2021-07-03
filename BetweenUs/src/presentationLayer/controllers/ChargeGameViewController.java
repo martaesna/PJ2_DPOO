@@ -18,6 +18,11 @@ import java.awt.event.ActionListener;
 import java.util.Collections;
 import java.util.LinkedList;
 
+/**
+ * La classe 'ChargeGameViewController' ens permet gestionar la vista del ChargeGameView.
+ *
+ * Els metodes reben informació de la vista, i realitzen les modificacions pertinents per poder carregar les partides guardades.
+ */
 public class ChargeGameViewController implements ActionListener {
     private final ChargeGameView cgv;
     private String userName;

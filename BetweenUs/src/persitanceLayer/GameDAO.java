@@ -8,6 +8,12 @@ import businessLayer.entities.game.Game;
 
 import java.util.LinkedList;
 
+
+/**
+ *
+ *
+ */
+
 public interface GameDAO {
     void createGame(Game game, String userName);
 

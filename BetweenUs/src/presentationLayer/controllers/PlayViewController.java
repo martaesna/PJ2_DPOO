@@ -6,6 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
+/**
+ * La classe 'PlayViewController' ens permet gestionar la vista del PlayView.
+ *
+ * Els metodes reben informació de la vista, i realitzen les modificacions pertinents per poder gestionar el menu principal
+ * del joc.
+ */
 public class PlayViewController implements ActionListener {
     private final PlayView pv;
     private final String userName;

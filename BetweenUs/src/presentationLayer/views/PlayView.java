@@ -17,7 +17,9 @@ public class PlayView extends JFrame {
     private JButton configButton;
 
     /**
-     * Mostra la vista del menu principal
+     * La classe ens permet veure la pantalla del PlayView.
+     *
+     * Envia la informació que reb del usuari al seu controlador.
      */
     public PlayView() {
 

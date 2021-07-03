@@ -17,6 +17,15 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Objects;
 
+/**
+ * La classe ens permet veure la pantalla del MapView.
+ *
+ * Envia la informació que reb del usuari al seu controlador, interacciona amb els mapPaint per pintar a temps real
+ * el mapa i també amb el logController.
+ */
+
+
+
 public class MapView extends JFrame {
     private JButton returnButton;
     private JButton configButton;

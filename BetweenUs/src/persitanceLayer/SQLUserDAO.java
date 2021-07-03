@@ -8,6 +8,9 @@ import java.sql.SQLException;
 
 import static persitanceLayer.JsonReader.llegeixJSON;
 
+/**
+ *
+ */
 public class SQLUserDAO implements UserDAO{
     /**
      * Mètode que introdueix un usuari a la base de dades

@@ -6,6 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * La classe 'ConectorDB' ens permet conectarnos/desconectarnos a la Base de Dades
+ *
+ *Els metodes que conte ens permeten conectarnos a la base o desconectarnos.
+ */
 public class ConectorDB {
     private static String userName;
     private static String password;

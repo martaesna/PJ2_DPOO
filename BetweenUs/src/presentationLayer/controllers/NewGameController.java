@@ -19,6 +19,14 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * La classe 'NewGameController' ens permet gestionar la vista del ChargeGameView.
+ *
+ * Els metodes ens reben informació de la vista, i realitzen les modificacions pertinents per a la creacio de una nova
+ * partida.
+ */
+
+
 public class NewGameController implements ActionListener {
     private NewGameView ngv;
     private ArrayList<String> colors;

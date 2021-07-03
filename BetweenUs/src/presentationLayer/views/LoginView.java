@@ -17,7 +17,9 @@ public class LoginView extends JFrame {
 
 
     /**
-     * Printa la vista del Log in
+     * La classe ens permet veure la pantalla del LoginView.
+     *
+     * Envia la informació que reb del usuari al seu controlador.
      */
     public LoginView() {
         setVisible(true);

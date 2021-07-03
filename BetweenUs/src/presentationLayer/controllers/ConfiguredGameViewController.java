@@ -20,6 +20,12 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * La classe 'ConfiguredGameViewController' ens permet gestionar la vista del ConfiguredGameView.
+ *
+ * Els metodes reben informació de la vista, i realitzen les modificacions pertinents per la gestio de les confiiguracions
+ * de les partides.
+ */
 public class ConfiguredGameViewController implements ActionListener {
     private final ConfiguredGameView cogv;
     private ArrayList<String> colors;

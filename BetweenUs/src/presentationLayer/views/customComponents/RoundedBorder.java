@@ -4,6 +4,11 @@ package presentationLayer.views.customComponents;
 import javax.swing.border.Border;
 import java.awt.*;
 
+
+/**
+ * Classe on on tenim definits els parametres per poder fer que els botons o les caixes de la vista tinguin els
+ * contorns curvats
+ */
 public class RoundedBorder implements Border {
     private final int radius;
 
