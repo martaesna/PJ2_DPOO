@@ -12,17 +12,23 @@ import static persitanceLayer.JsonReader.llegeixJSON;
  *
  */
 public class SQLUserDAO implements UserDAO{
+    private Data data;
+    private ConectorDB conn;
+
+    public SQLUserDAO() {
+        data = llegeixJSON();
+        conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
+    }
+
     /**
      * Mètode que introdueix un usuari a la base de dades
      * @param user usuari a introduir
      */
     @Override
     public void registerUser(User user) {
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
         conn.insertQuery("INSERT INTO User(username, email, password, partides_guanyades, partides_jugades) VALUES (" + "'" + user.getName() + "'" + "," + "'" + user.getMail() + "'" + "," + "'" + user.getPassword() + "'" + ",0,0)");
+        conn.disconnect();
     }
 
     /**
@@ -33,9 +39,6 @@ public class SQLUserDAO implements UserDAO{
      */
     @Override
     public boolean checkLoginUser(String userNameMail, String password) {
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
         String query = "SELECT u.username FROM User AS u WHERE (u.username LIKE '" + userNameMail + "' OR u.email LIKE '" + userNameMail + "') AND u.password LIKE '" + password + "'";
         ResultSet rs = conn.selectQuery(query);
@@ -55,12 +58,10 @@ public class SQLUserDAO implements UserDAO{
      */
     @Override
     public void deleteUser(String nameLogin) {
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
         String query = "DELETE FROM User WHERE username LIKE '" + nameLogin + "'";
         conn.deleteQuery(query);
+        conn.disconnect();
     }
 
     /**
@@ -70,9 +71,6 @@ public class SQLUserDAO implements UserDAO{
      */
     @Override
     public boolean userNameExists(String userName) {
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
         ResultSet rs = conn.selectQuery("SELECT u.username FROM User AS u WHERE u.username LIKE '" + userName + "'");
         try {
@@ -92,9 +90,6 @@ public class SQLUserDAO implements UserDAO{
      */
     @Override
     public boolean userMailExists(String userMail) {
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
         ResultSet rs = conn.selectQuery("SELECT u.email FROM User AS u WHERE u.email LIKE '" + userMail + "'");
         try {
@@ -107,12 +102,14 @@ public class SQLUserDAO implements UserDAO{
         return false;
     }
 
+    /**
+     * Mètode que retorna el nom de l'usuari en funció del login
+     * @param loginName input per l'usuari que pot ser el nom o el correu
+     * @return String amb el nom de l'usuari
+     */
     @Override
     public String getUsername(String loginName) {
         if (userMailExists(loginName)) {
-            Data data;
-            data = llegeixJSON();
-            ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
             conn.connect();
             ResultSet rs = conn.selectQuery("SELECT u.username FROM User AS u WHERE u.email LIKE '" + loginName + "'");
             try {

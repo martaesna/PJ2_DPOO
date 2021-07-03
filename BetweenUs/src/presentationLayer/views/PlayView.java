@@ -25,22 +25,18 @@ public class PlayView extends JFrame {
 
         setTitle("Play");
         setSize(1080, 600);
-        //setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        //setLayout(null);
 
         JPanel background = new JPanel();
         background.setLayout(new BorderLayout());
         background.setBackground(Color.BLACK);
-        //background.setLayout(null);
-        //background.setBounds(0, 0, 1080, 600);
+
 
         JPanel JpNorth = new JPanel(new BorderLayout());
         JpNorth.setOpaque(false);
 
         try {
-            //boton de settings
             BufferedImage image = ImageIO.read(Objects.requireNonNull(getClass().getResource("/images/config.png")));
             Image scaled = image.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
             ImageIcon backgroundImage = new ImageIcon(scaled);
@@ -57,12 +53,9 @@ public class PlayView extends JFrame {
 
         JPanel JpBody = new JPanel(new GridBagLayout());
         JLabel title = new JLabel("Play", JLabel.CENTER);
-        //title.setBounds(375,10,400,95);
         title.setFont(new Font("Russo One", Font.BOLD, 75));
         title.setForeground(Color.WHITE);
         JpNorth.add(title, BorderLayout.CENTER);
-
-
 
         background.add(JpNorth, BorderLayout.NORTH);
 
@@ -79,23 +72,19 @@ public class PlayView extends JFrame {
         JPanel JpCenter = new JPanel(new GridLayout(4, 1));
 
         // Boto New Game
-        //background.add(new JButton("New Game"), BorderLayout.CENTER);
         jbNewGame = new JButton("New Game");
         jbNewGame.setForeground(Color.WHITE);
         jbNewGame.setBackground(Color.BLACK);
         jbNewGame.setActionCommand("NewGame");
-        //jbNewGame.setBounds(375,350,300,75);
         jbNewGame.setFont(font);
         jbNewGame.setBorder(border);
         JpCenter.add(jbNewGame);
 
         // Boto Configured game
-
         jbConfiguredGame = new JButton("Configured game");
         jbConfiguredGame.setForeground(Color.WHITE);
         jbConfiguredGame.setBackground(Color.BLACK);
         jbConfiguredGame.setActionCommand("Configured");
-        //jbConfiguredGame.setBounds(375,350,300,75);
         jbConfiguredGame.setFont(font);
         jbConfiguredGame.setBorder(border);
         JpCenter.add(jbConfiguredGame);
@@ -105,7 +94,6 @@ public class PlayView extends JFrame {
         jbChargeGame.setForeground(Color.WHITE);
         jbChargeGame.setBackground(Color.BLACK);
         jbChargeGame.setActionCommand("Charge");
-        //jbChargeGame.setBounds(375,350,300,75);
         jbChargeGame.setFont(font);
         jbChargeGame.setBorder(border);
         JpCenter.add(jbChargeGame);
@@ -115,7 +103,6 @@ public class PlayView extends JFrame {
         jbDeleteGame.setForeground(Color.WHITE);
         jbDeleteGame.setBackground(Color.BLACK);
         jbDeleteGame.setActionCommand("Delete");
-        //jbDeleteGame.setBounds(375,350,300,75);
         jbDeleteGame.setFont(font);
         jbDeleteGame.setBorder(border);
         JpCenter.add(jbDeleteGame);
@@ -124,7 +111,6 @@ public class PlayView extends JFrame {
         JpBody.setOpaque(false);
         background.add(JpBody, BorderLayout.CENTER);
 
-        //setContentPane(background);
         add(background);
         setVisible(true);
     }

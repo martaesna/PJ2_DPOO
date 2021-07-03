@@ -47,10 +47,7 @@ public class ConfiguredGameViewController implements ActionListener {
 
         if (e.getActionCommand().equals("Create")) { //cuando apretamos el boton
             GameManager gameManager = new GameManager();
-            /*if (gameManager.checkGame(cogv.getConfiguredName())) {
-                if (gameManager.checkRecreateGame(cogv.getConfiguredName())) {
-                    cogv.printErrorRecreatedExistance();
-                } else {*/
+
             if (gameManager.checkRecreateGame(cogv.getConfiguredName())) {
                 cogv.printErrorRecreatedExistance();
             } else {

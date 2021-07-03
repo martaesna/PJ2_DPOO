@@ -56,7 +56,6 @@ public class ConectorDB {
     public void disconnect(){
         try {
             conn.close();
-            System.out.println("Desconnectat!");
         } catch (SQLException e) {
             System.out.println("Problema al tancar la connexió --> " + e.getSQLState());
         }

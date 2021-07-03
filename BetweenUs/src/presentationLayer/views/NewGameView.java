@@ -49,19 +49,17 @@ public class NewGameView extends JFrame {
 
 
     public NewGameView() {
-        setTitle("New game"); // titol
-        setSize(1080, 600); // mida titol
-        setLocationRelativeTo(null); // centrar titol
+        setTitle("New game");
+        setSize(1080, 600);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE); // tancar en 'X'
 
         jpBody = new JPanel();
 
-        //--------------FONS
         JPanel background = new JPanel();
         background.setLayout(new BorderLayout());
         background.setBackground(Color.BLACK);
 
-        //-----Part NORD de la finestra
         JPanel JpNorth = new JPanel(new BorderLayout());
         JpNorth.setOpaque(false);
         JLabel title = new JLabel("New game", JLabel.CENTER);
@@ -69,7 +67,6 @@ public class NewGameView extends JFrame {
         title.setForeground(Color.WHITE);
         JpNorth.add(title, BorderLayout.CENTER);
 
-        //
         try {
             BufferedImage image = ImageIO.read(Objects.requireNonNull(getClass().getResource("/images/config.png")));
             Image scaled = image.getScaledInstance(40, 40, Image.SCALE_DEFAULT);
@@ -95,7 +92,6 @@ public class NewGameView extends JFrame {
             e.printStackTrace();
         }
 
-        //-----------COS
         font = new Font("Russo One",Font.BOLD,35);
         Border border =BorderFactory.createCompoundBorder(
                 BorderFactory.createEmptyBorder(15, 15, 15, 15),
@@ -106,7 +102,6 @@ public class NewGameView extends JFrame {
 
         );
 
-        // Centre
         jpBody.setOpaque(false);
         jpBody.setLayout(null);
 
@@ -194,7 +189,6 @@ public class NewGameView extends JFrame {
         leftButtonPlayers.setBounds(550,225,70,70);
 
         // Players List
-
         setPlayers(players);
 
         rightButtonPlayers = new JButton("▶");
@@ -205,7 +199,6 @@ public class NewGameView extends JFrame {
         rightButtonPlayers.setFont(new Font("", Font.BOLD, 35));
         rightButtonPlayers.setBounds(800,225,70,70);
 
-
         // Map-------------------------------------------------------------------------------------
         JLabel jlMap = new JLabel("Map");
         jlMap.setFont(font);
@@ -214,9 +207,7 @@ public class NewGameView extends JFrame {
         jlMap.setBounds(250,300,275,75);
 
         // Map List
-
         setMapName(mapName);
-
 
         //------------------------------------------------------
         jbPlay = new JButton("Play");
@@ -310,9 +301,6 @@ public class NewGameView extends JFrame {
             try {
                 Color newColor = (Color) Color.class.getField(color).get(null);
                 jlColor.setForeground(newColor);
-                if (color.equals("BLACK")) {
-                    //Posar traç blanc?
-                }
             } catch (IllegalAccessException | NoSuchFieldException e) {
                 e.printStackTrace();
             }
@@ -373,33 +361,6 @@ public class NewGameView extends JFrame {
     public String getMapName(){
         return mapName;
     }
-
-   /* public int[] getColorComponents(String color) {
-        int[] components = new int[3];
-        if (color == "PURPLE") {
-            components[0] = 102;
-            components[1] = 0;
-            components[2] = 153;
-            return components;
-
-        } else if(color == "BROWN") {
-            components[0] = 102;
-            components[1] = 51;
-            components[2] = 0;
-            return components;
-
-        } else if(color == "CYAN") {
-            components[0] = 0;
-            components[1] = 255;
-            components[2] = 255;
-            return components;
-        } else {
-            components[0] = 50;
-            components[1] = 205;
-            components[2] = 50;
-            return components;
-        }
-    }*/
 
     /**
      * JOptionPanede que el joc ja existeix

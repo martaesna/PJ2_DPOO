@@ -11,11 +11,9 @@ import java.util.Objects;
 
 public class ConfiguredGameView extends JFrame {
     private final JButton jbConfigure;
-    //private final JTextField gameName;
     private JComboBox<String> gameNames;
     private JButton configButton;
     private JButton returnButton;
-    private String[] gameNamesString;
 
     /**
      * La classe ens permet veure la pantalla del ConfiguredGameView.
@@ -80,21 +78,12 @@ public class ConfiguredGameView extends JFrame {
         jlMusic.setForeground(Color.WHITE);
         background.add(jlMusic);
 
-        /*
-        gameName = new JTextField();
-        gameName.setBackground(Color.BLACK);
-        gameName.setForeground(Color.WHITE);
-        gameName.setFont(new Font("", Font.BOLD, 20));
-        gameName.setBounds(350,260,350,40);
-        background.add(gameName);*/
-
         gameNames = new JComboBox<>(gameNamesString);
         gameNames.setForeground(Color.BLACK);
         gameNames.setBackground(Color.WHITE);
         gameNames.setFont(new Font("", Font.BOLD, 16));
         gameNames.setBounds(350,260,350,40);
         background.add(gameNames);
-
 
         jbConfigure = new JButton("Create");
         jbConfigure.setForeground(Color.WHITE);

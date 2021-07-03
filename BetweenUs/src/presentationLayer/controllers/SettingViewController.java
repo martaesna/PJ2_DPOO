@@ -67,8 +67,4 @@ public class SettingViewController implements ActionListener {
 
         }
     }
-
-    public void stateChanged(ChangeEvent e) {
-
-    }
 }

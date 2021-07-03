@@ -3,6 +3,8 @@ package businessLayer;
 import businessLayer.entities.maps.Cell;
 import com.google.gson.Gson;
 import businessLayer.entities.maps.Map;
+import persitanceLayer.MapReader;
+
 import java.io.File;
 import java.io.FileReader;
 
@@ -16,6 +18,7 @@ public class MapManager {
     // Attributes
     private static Map map;
     private PlayerManager playerManager;
+    private static MapReader mapReader;
 
     // Parametrized constructor
     public MapManager(Map map) {
@@ -32,20 +35,8 @@ public class MapManager {
      * @return classe Mapa amb tota la informació del json
      */
     public static Map llegeixMapa(String mapName) {
-        try {
-            Gson gson = new Gson();
-            com.google.gson.stream.JsonReader reader;
-            File f = new File("");
-            String path = f.getAbsolutePath();
-            reader = new com.google.gson.stream.JsonReader(new FileReader(path + "/BetweenUs/src/mapsFiles/" + mapName));
-            map = gson.fromJson(reader, Map.class);
-
-            System.out.println("\nLectura del mapa finalitzada.\n");
-
-        } catch (Exception e) {
-            System.out.println("No s'ha pogut llegir el mapa: " + e.getMessage());
-        }
-        return map;
+        mapReader = new MapReader(mapName);
+        return mapReader.getMap();
     }
 
     public Map getMap() {
@@ -56,6 +47,10 @@ public class MapManager {
         return getMap().getCellByCoordinates(nextCell);
     }
 
+    /**
+     * Mètode que retorna la cella on es troba el personatge de l'usuari
+     * @return Cell corresponent a la posició de l'usuari
+     */
     public Cell userPlayerCell () {
         for(int i = 0; i < map.getCells().size(); i++) {
             if (map.getCells().get(i) == playerManager.getPlayer().getCell()) {

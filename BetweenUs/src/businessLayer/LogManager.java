@@ -22,11 +22,11 @@ public class LogManager {
         this.gameName = gameName;
         logs = new LinkedList<>();
     }
-/*
-    private String getGameName() {
-        return gameManager.getGameName();
-    }*/
 
+    /**
+     * Mètode que afegeix un log a la llista
+     * @param character per poder agafar les dades i guardar-les
+     */
     public void addLog(Character character) {
         Log log = new Log(character.getColor(), character.getCell().getRoomName(), character.getTotalTime().getSeconds());
         //logDAO.saveLog(log, gameName);

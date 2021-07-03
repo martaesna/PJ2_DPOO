@@ -17,6 +17,15 @@ import static persitanceLayer.JsonReader.llegeixJSON;
  *
  */
 public class SQLGameDAO implements GameDAO{
+
+    private Data data;
+    private ConectorDB conn;
+
+    public SQLGameDAO() {
+        data = llegeixJSON();
+        conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
+    }
+
     /**
      * Mètode que insereix un joc a la base de dades
      * @param game joc a introduir
@@ -24,13 +33,11 @@ public class SQLGameDAO implements GameDAO{
      */
     @Override
     public void createGame(Game game, String userName) {
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
         conn.insertQuery("INSERT INTO Game(gameName,players,impostors,playerColor,map,creator) " +
                 "VALUES (" + "'" + game.getGameName() + "'" + "," + "'" + game.getPlayers() + "'" + "," + "'" + game.getImpostors() +
                 "'" + "," + "'" + game.getPlayerColor() + "'" + "," + "'" + game.getMap() + "'" + "," + "'" + userName + "')");
+        conn.disconnect();
     }
 
     /**
@@ -40,9 +47,6 @@ public class SQLGameDAO implements GameDAO{
      */
     @Override
     public boolean gameExists(String gameName) {
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
         try (ResultSet rs = conn.selectQuery("SELECT g.gameName FROM Game AS g WHERE g.gameName LIKE '" + gameName + "'")) {
             if (rs.isBeforeFirst()) {
@@ -62,14 +66,12 @@ public class SQLGameDAO implements GameDAO{
      */
     @Override
     public void deleteGame(String gameName) {
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
         String query = "DELETE FROM Game WHERE gameName LIKE '" + gameName + "'";
         conn.deleteQuery(query);
 
         deleteUserPlayer(gameName);
+        conn.disconnect();
     }
 
     /**
@@ -78,12 +80,10 @@ public class SQLGameDAO implements GameDAO{
      */
     @Override
     public void deleteUserPlayer(String gameName) {
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
         String query = "DELETE FROM PlayerCharacter WHERE gameName LIKE '" + gameName + "'";
         conn.deleteQuery(query);
+        conn.disconnect();
     }
 
     /**
@@ -94,9 +94,6 @@ public class SQLGameDAO implements GameDAO{
      */
     @Override
     public boolean checkCreator(String gameName, String username) {
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
         String query = "SELECT g.creator FROM Game AS g WHERE (g.creator LIKE '" + username + "')";
         ResultSet rs = conn.selectQuery(query);
@@ -106,6 +103,8 @@ public class SQLGameDAO implements GameDAO{
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            conn.disconnect();
         }
         return false;
     }
@@ -118,9 +117,6 @@ public class SQLGameDAO implements GameDAO{
     @Override
     public boolean recreatedGameExists(String gameName) {
         String recreatedGame = gameName + "(Copy)";
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
         ResultSet rs = conn.selectQuery("SELECT g.gameName FROM Game AS g WHERE g.gameName LIKE '" + recreatedGame + "'");
         try {
@@ -129,6 +125,8 @@ public class SQLGameDAO implements GameDAO{
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            conn.disconnect();
         }
         return false;
     }
@@ -140,9 +138,6 @@ public class SQLGameDAO implements GameDAO{
      */
     @Override
     public Game selectGame(String gameName) {
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
         ResultSet rs = conn.selectQuery("SELECT * FROM Game AS g WHERE g.gameName LIKE '" + gameName + "'");
         try {
@@ -158,6 +153,8 @@ public class SQLGameDAO implements GameDAO{
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        } finally {
+            conn.disconnect();
         }
         return null;
     }
@@ -176,13 +173,11 @@ public class SQLGameDAO implements GameDAO{
 
     @Override
     public void savePlayerCharacter(Character userPlayer, String gameName) {
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
         conn.insertQuery("INSERT INTO PlayerCharacter(color, xCoordinate, yCoordinate, gameName) " +
                 "SELECT (" + "'" + userPlayer.getColor() + "'" + "," + "'" + userPlayer.getCell().getX() + "'" + "," + "'" + userPlayer.getCell().getY() +
                 "'" + ", g.gameName FROM GAME AS g WHERE" + gameName + "= g.gameName LIMIT 1");
+        conn.disconnect();
     }
 
     /**
@@ -192,9 +187,6 @@ public class SQLGameDAO implements GameDAO{
      */
     @Override
     public Player getUserPlayer(String gameName) {
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
         ResultSet rs = conn.selectQuery("SELECT * FROM PlayerCharacter AS c WHERE c.gameName LIKE '" + gameName + "'");
         try {
@@ -207,6 +199,8 @@ public class SQLGameDAO implements GameDAO{
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        } finally {
+            conn.disconnect();
         }
         return null;
     }
@@ -217,20 +211,15 @@ public class SQLGameDAO implements GameDAO{
      */
     @Override
     public void deleteUserGames(String userName) {
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
         String query = "DELETE FROM Game WHERE creator LIKE '" + userName + "'";
 
         conn.deleteQuery(query);
+        conn.disconnect();
     }
 
     @Override
     public LinkedList<String> readGames() {
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
         ResultSet rs = conn.selectQuery("SELECT gameName FROM Game WHERE gameName NOT LIKE '%(Copy)%'");
         LinkedList<String> gameNames = new LinkedList<>();
@@ -240,15 +229,14 @@ public class SQLGameDAO implements GameDAO{
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        } finally {
+            conn.disconnect();
         }
         return gameNames;
     }
 
     @Override
     public boolean createdGames() {
-        Data data;
-        data = llegeixJSON();
-        ConectorDB conn = new ConectorDB(data.getUser(), data.getPassword(), data.getDb(), data.getPort());
         conn.connect();
         ResultSet rs = conn.selectQuery("SELECT gameName FROM Game");
         try {
@@ -257,6 +245,8 @@ public class SQLGameDAO implements GameDAO{
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        } finally {
+            conn.disconnect();
         }
         return true;
     }

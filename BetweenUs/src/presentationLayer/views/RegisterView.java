@@ -25,13 +25,12 @@ public class RegisterView extends JFrame {
      */
     public RegisterView() {
         setVisible(true);
-        setTitle("Register"); // titol
-        setSize(1080, 600); // tamaño de la caja
-        setResizable(false); //para que no se pueda mover
-        setLocationRelativeTo(null); //Centrarlo
+        setTitle("Register");
+        setSize(1080, 600);
+        setResizable(false);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE); // cerrar con la x
         setLayout(null);
-
 
         try {
             BufferedImage image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/images/background.jpg")));

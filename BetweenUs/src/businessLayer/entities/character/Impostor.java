@@ -115,7 +115,6 @@ public class Impostor extends Character{
                 return cell;
             }
         }
-        System.out.println("Retornem null?");
         return null;
     }
 
@@ -143,6 +142,11 @@ public class Impostor extends Character{
         }
     }
 
+    /**
+     * Mètode que comprova si l'impostor pot moures pel conducte de ventilació
+     * @param impostor coordenades que es volen traduir a cella
+     * @return boolean de si pot efectuar el moviment
+     */
     public synchronized boolean ventilationMovement(Impostor impostor) {
         if (checkVentilation(impostor.getCell())) {
             if (npcManager.getNumCrewMembersCell(impostor.getCell()) == 0 && flipCoin()) {
@@ -159,6 +163,10 @@ public class Impostor extends Character{
         return false;
     }
 
+    /**
+     * Mètode que mou al impostor immediatament després de que aquest hagi matat
+     * @param impostor coordenades que es volen traduir a cella
+     */
     public void afterKillMovement(Impostor impostor) {
         int nextRoom = getNextImpostorRoom(impostor);
         int[] nextCell = impostor.getNextCoordinates(nextRoom);
@@ -170,6 +178,12 @@ public class Impostor extends Character{
         return killingPeriod;
     }
 
+
+    /**
+     * Mètode que retorna true o false depenent de si l'impostor pot matar
+     * @param impostor coordenades que es volen traduir a cella
+     * @return boolean true si l'impostor pot matar
+     */
     public synchronized boolean checkKillingPeriod(Impostor impostor) {
         if (impostor.getPeriodTime().getSeconds() > 25) {
             impostor.setCanKill(true);

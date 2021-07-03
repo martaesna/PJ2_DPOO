@@ -144,25 +144,14 @@ public class MapView extends JFrame {
         }
 
         background.add(JpNorth, BorderLayout.NORTH);
-/*
-        for(int i = 0; i< crewMembers.size();i++){
-            System.out.println(i);
-            System.out.println(crewMembers.get(i).getColor());
-            System.out.println("");
-        }*/
-
-        // Pasar ho toto pel PaintComponent
-       // JPanel mapa = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map);
 
         MapPaint mp = new MapPaint(new GridLayout(map.getWidth(), map.getHeight()), map, players, userPlayer, revealMap);
         jpCenter = mp.creaMapa();
 
-        //creamos un border layout dentro del EAST y ponemos los botones en cada lugar
-        //background.add(control,BorderLayout.EAST); //aqui hemos de poner los botones
+
         JPanel controles = new JPanel(new BorderLayout());
-        //per poder colocar els botons a la part de dalt
         JPanel auxControles = new JPanel(new BorderLayout());
-        //coloquem els botons de adalt y abaix
+
         JPanel auxControlUpDown = new JPanel(new GridLayout(2, 1));
         JPanel auxControlLeft = new JPanel(new BorderLayout());
         JPanel auxControlRight = new JPanel(new BorderLayout());
@@ -217,22 +206,6 @@ public class MapView extends JFrame {
         background.add(controles, BorderLayout.EAST);
 
 
-        //JPanel bajo = new JPanel();
-        //bajo.setBackground(Color.RED);
-        //JPanel izquierda = new JPanel();
-        //izquierda.setBackground(Color.RED);
-        // background.add(bajo,BorderLayout.SOUTH);
-        //background.add(izquierda,BorderLayout.WEST);
-
-        //----------------------------------------------------------------------------------------------------------------
-
-
-        /*
-        JPanel background1 = new JLabel();
-        background.setBackground(Color.BLACK);
-        background.setBounds(0, 0, 1080, 600);
-        background.setOpaque(true);*/
-
         objectiveTracking = new JPanel();
         Color headerBackground = new Color(160,160,160);
         objectiveTracking.setLayout(new GridLayout(numPlayers + 1,3));
@@ -254,12 +227,9 @@ public class MapView extends JFrame {
         headerInn.setBorder(new LineBorder(Color.WHITE,1,false));
         headerInn.setForeground(Color.WHITE);
 
-
-
         objectiveTracking.add(headerUnknown);
         objectiveTracking.add(headerSus);
         objectiveTracking.add(headerInn);
-
 
         for (int i = 0; i < numPlayers; i++) {
 
@@ -273,12 +243,8 @@ public class MapView extends JFrame {
             objectiveTrackingPosition.put(i, 0);
         }
 
-
-        //getContentPane().add(background);
-        //getContentPane().add(gui);
         background.add(objectiveTracking, BorderLayout.SOUTH);
         background.add(jpCenter, BorderLayout.CENTER);
-
 
         add(background);
        // time.initCounter();

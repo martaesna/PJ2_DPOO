@@ -117,42 +117,6 @@ public class CorridorPaint extends JPanel{
                     separadorX = getWidth() / 4;
                 }
             }
-
-            /*
-            for (int i = 0; i < numCorpses; i++) {
-                Image imageScaled = image.getScaledInstance(20, 25, Image.SCALE_DEFAULT);
-                g.drawImage(imageScaled, separadorX, separadorY, this);
-                separadorX += 20;
-                if (separadorX + 30 > getWidth()) {
-                    separadorY = separadorY + 20;
-                    separadorX = getWidth() / 4;
-                }
-            }*/
-
-            /*
-            if (corpColors != null) {
-                for (int i = 0; i < numCorpses; i++) {
-                    if (corpColors.get(i).equals("PURPLE") || corpColors.get(i).equals("BROWN") || corpColors.get(i).equals("CYAN") || corpColors.get(i).equals("LIME")) {
-                        g.setColor(Color.GRAY);
-                    } else {
-                        try {
-                            colori = (Color) Color.class.getField(corpColors.get(i)).get(null);
-                        } catch (IllegalAccessException | NoSuchFieldException e) {
-                            e.printStackTrace();
-                        }
-                        g.setColor(colori);
-                    }
-                    g.fillRect(20, 25, separadorX, separadorY);
-
-                    Image imageScaled = image.getScaledInstance(20, 25, Image.SCALE_DEFAULT);
-                    g.drawImage(imageScaled, separadorX, separadorY, this);
-                    separadorX += 20;
-                    if (separadorX + 30 > getWidth()) {
-                        separadorY = separadorY + 20;
-                        separadorX = getWidth() / 4;
-                    }
-                }
-            }*/
         } else {
             g.setColor(Color.darkGray);
             g.fillRect(0,0,400,400);

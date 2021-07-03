@@ -33,6 +33,7 @@ public class PlayViewController implements ActionListener {
      */
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
+        GameManager gameManager = new GameManager();
         switch (command) {
             case "Config":
                 pv.setVisible(false);
@@ -47,7 +48,6 @@ public class PlayViewController implements ActionListener {
                 ngv.mainController(ngvc);
                 break;
             case "Configured":
-                GameManager gameManager = new GameManager();
                 if (!gameManager.createdGames()) {
                     pv.printErrorNoGames();
                 } else {
@@ -65,10 +65,14 @@ public class PlayViewController implements ActionListener {
                 cgv.mainController(cgvc);
                 break;
             case "Delete":
-                pv.setVisible(false);
-                DeleteGameView dgv = new DeleteGameView();
-                DeleteGameViewController dgvc = new DeleteGameViewController(dgv, userName);
-                dgv.mainController(dgvc);
+                if (!gameManager.createdGames()) {
+                    pv.printErrorNoGames();
+                } else {
+                    pv.setVisible(false);
+                    DeleteGameView dgv = new DeleteGameView(getGameNames(gameManager));
+                    DeleteGameViewController dgvc = new DeleteGameViewController(dgv, userName);
+                    dgv.mainController(dgvc);
+                }
                 break;
         }
     }

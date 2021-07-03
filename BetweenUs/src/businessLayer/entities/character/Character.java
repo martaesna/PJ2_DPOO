@@ -82,14 +82,6 @@ public abstract class Character extends Thread{
     }
 
     /**
-     * Mètode per fer un Log
-     * @param log classe log amb la informació per registar-lo
-     */
-    public void makeLog(Log log) {
-        //LogManager logManager = new LogManager(log);
-    }
-
-    /**
      * Mètode que comprova si el jugador es pot moure a la esquerra
      * @param mobility mobilitat del jugador
      * @return booleà amb si es pot moure o no

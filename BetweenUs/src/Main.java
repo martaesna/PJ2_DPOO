@@ -14,7 +14,6 @@ import java.io.IOException;
  * Posa en marxa els primers passos per poder fer funcionar el programa.
  */
 
-
 public class Main {
     private static Data data;
 
@@ -28,10 +27,7 @@ public class Main {
                 lv.mainController(lvc);
             }
         });
-
-
-
-    }
+            }
 
     public static void addFont() {
         try {
@@ -41,7 +37,6 @@ public class Main {
             System.out.println(path);
             ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File(path + "/BetweenUs/src/fonts/RussoOne-Regular.ttf")));
         } catch (IOException |FontFormatException e) {
-
             System.out.println("No s'ha trobat la font");
         }
     }

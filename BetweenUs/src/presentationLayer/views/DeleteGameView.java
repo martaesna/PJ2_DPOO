@@ -11,16 +11,17 @@ import java.util.Objects;
 
 public class DeleteGameView extends JFrame {
     private final JButton jbDelete;
-    private final JTextField gameName;
     private JButton configButton;
     private JButton returnButton;
+    private JComboBox<String> gameNames;
+
 
     /**
      * La classe ens permet veure la pantalla del DeleteGameView.
      *
      * Envia la informació que reb del usuari al seu controlador.
      */
-    public DeleteGameView() {
+    public DeleteGameView(String[] gameNamesString) {
         setVisible(true);
         setTitle("Delete game"); // titol
         setSize(1080, 600); // tamaño de la caja
@@ -78,13 +79,12 @@ public class DeleteGameView extends JFrame {
         jlMusic.setForeground(Color.WHITE);
         background.add(jlMusic);
 
-        gameName = new JTextField();
-        gameName.setBackground(Color.BLACK);
-        gameName.setForeground(Color.WHITE);
-        gameName.setFont(new Font("", Font.BOLD, 20));
-        gameName.setBounds(350,260,350,40);
-        background.add(gameName);
-
+        gameNames = new JComboBox<>(gameNamesString);
+        gameNames.setForeground(Color.BLACK);
+        gameNames.setBackground(Color.WHITE);
+        gameNames.setFont(new Font("", Font.BOLD, 16));
+        gameNames.setBounds(350,260,350,40);
+        background.add(gameNames);
 
         jbDelete = new JButton("Delete");
         jbDelete.setForeground(Color.RED);
@@ -108,7 +108,7 @@ public class DeleteGameView extends JFrame {
         returnButton.addActionListener(actionListener);
     }
 
-    public String getGameName() { return gameName.getText(); }
+    public String getGameName() { return String.valueOf(gameNames.getSelectedItem()); }
 
     /**
      * mostra JoptionPane per confirmar borrar un joc

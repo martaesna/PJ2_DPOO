@@ -21,12 +21,8 @@ public class LogsView extends JFrame{
         setSize(700, 400); // tamaño de la caja
         setResizable(false); //para que no se pueda mover
         setLocationRelativeTo(null); //Centrarlo
-        setDefaultCloseOperation(EXIT_ON_CLOSE); // cerrar con la x
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); // cerrar con la x
         setLayout(null);
-
-        /*falta logica per omplir la barra de Logs
-        Log log = new Log("green", "cafeteria", 34);
-        logs.add(log);*/
 
         LogTableModel model = new LogTableModel(logs);
         JTable logsTable = new JTable(model);

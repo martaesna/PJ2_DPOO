@@ -23,10 +23,10 @@ public class LoginView extends JFrame {
      */
     public LoginView() {
         setVisible(true);
-        setTitle("Login"); // titol
-        setSize(1080, 600); // tamaño de la cajacfgggggggggggggggggggg
-        setResizable(false); //para que no se pueda mover
-        setLocationRelativeTo(null); //Centrarlo
+        setTitle("Login");
+        setSize(1080, 600);
+        setResizable(false);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE); // cerrar con la x
         setLayout(null);
 
@@ -40,7 +40,6 @@ public class LoginView extends JFrame {
             e.printStackTrace();
         }
 
-        //Creem un panell
         JPanel jpVista = new JPanel();
         jpVista.setBackground(new Color(255,0,0,99));
         jpVista.setLayout(null);

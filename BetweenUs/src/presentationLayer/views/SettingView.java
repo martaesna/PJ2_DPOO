@@ -21,14 +21,13 @@ public class SettingView extends JFrame  {
      */
     public SettingView() {
         setVisible(true);
-        setTitle("Settings"); // titol
-        setSize(1080, 600); // tamaño de la caja
-        setResizable(false); //para que no se pueda mover
-        setLocationRelativeTo(null); //Centrarlo
+        setTitle("Settings");
+        setSize(1080, 600);
+        setResizable(false);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE); // cerrar con la x
         setLayout(null);
 
-        //Creem el fons
         JPanel background = new JPanel();
         background.setBackground(Color.BLACK);
         background.setLayout(null);
@@ -102,7 +101,6 @@ public class SettingView extends JFrame  {
 
         background.add(eslider);
 
-
         //Boto1
         jbLog = new JButton("Log out");
         jbLog.setForeground(Color.WHITE);
@@ -135,12 +133,6 @@ public class SettingView extends JFrame  {
         jbDel.addActionListener(actionListener);
         configButton.addActionListener(actionListener);
     }
-
-    /*public void VolumCotroller(ChangeListener changeListener){
-        eslider.addChangeListener(changeListener);
-        mslider.addChangeListener(changeListener);
-
-    }*/
 
     /**
      * JOoptionPane que ens confirma si volem borrar el compte

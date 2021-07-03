@@ -42,6 +42,14 @@ public class NpcManager {
         return false;
     }
 
+    /**
+     * Mètode que fa les comprovacions de si un impostor pot matar a un tripulant
+     * Comprova que estiguin sols, que l'impostor pugui matar i que el tripulant no estigui ja mort
+     * Atura el thread corresponent en cas de matar
+     * @param mapManager gestor del mapa
+     * @param impostor impostor
+     * @return boolean true en cas de que s'hagi efectuat l'assassinat
+     */
     public boolean crewMemberKilled(MapManager mapManager, Impostor impostor) {
         if (getNpcNumCell(impostor.getCell()) == 2 && getNumCrewMembersCell(impostor.getCell()) == 1
                 && mapManager.userPlayerCell() != impostor.getCell()) {
@@ -142,6 +150,11 @@ public class NpcManager {
         return numNpc;
     }
 
+    /**
+     * Mètode que retorna el nombre de tripulants que hi ha a una cel·la corresponent
+     * @param cell cel·la a comprovar
+     * @return nombre de tripulants que ha trobat
+     */
     public int getNumCrewMembersCell(Cell cell) {
         int crewMembers = 0;
         for (Character character: players) {
@@ -182,6 +195,12 @@ public class NpcManager {
         return -1;
     }
 
+    /**
+     * Mètode que retorna la posició (corresponent al mapa) d'una cel·la determinada
+     * @param mapManager gestor del Mapa
+     * @param cell cel·la a comprovar
+     * @return int en funció de la posició de la cel·la dins del mapa
+     */
     public int getCellPosition (MapManager mapManager, Cell cell) {
         for (int i = 0; i < mapManager.getMap().getCells().size(); i++) {
             if (mapManager.getMap().getCells().get(i) == cell) {
@@ -198,6 +217,11 @@ public class NpcManager {
         return false;
     }
 
+    /**
+     * Mètode que conté part de la lògica per controlar el moviment dels jugadors i guardar els logs
+     * @param character jugador a comprovar el log
+     * @return boolean en funció de la habitació i si pot fer Log.
+     */
     public boolean checkLog(Character character) {
         if (!character.getCell().getRoomName().equals("corridor") &&
                 !character.getCell().getRoomName().equals("security") &&
