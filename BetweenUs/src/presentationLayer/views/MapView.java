@@ -3,6 +3,7 @@ package presentationLayer.views;
 import businessLayer.entities.character.Character;
 import businessLayer.entities.character.Impostor;
 import businessLayer.entities.character.Player;
+import businessLayer.entities.game.Time;
 import businessLayer.entities.maps.*;
 import presentationLayer.controllers.MapController;
 
@@ -49,6 +50,7 @@ public class MapView extends JFrame {
     private JButton jbSolution;
     private JButton jbLogs;
     private LogsView logsView;
+    private Time disabledTime;
 
     /**
      * mostra la vista del mapa on es juga
@@ -351,7 +353,9 @@ public class MapView extends JFrame {
         objectiveTracking.revalidate();
         objectiveTracking.repaint();
 
-        mainController(mc);
+        for (String key: objectiveTrackingButtons.keySet()) {
+            objectiveTrackingButtons.get(key).addActionListener(mc);
+        }
     }
 
     /**
@@ -480,8 +484,10 @@ public class MapView extends JFrame {
      * @param revealMap si el mapa es veu tot o nomes la nostra sala
      */
     public void updateView(Map map, LinkedList<Character> players, Character userPlayer, boolean revealMap) {
-        if (userPlayer.getCell().getRoomName().equals("cafeteria")){
-            jbSolution.setVisible(true);
+        if (userPlayer.getCell().getRoomName().equals("cafeteria")) {
+            if (disabledTime == null) {
+                jbSolution.setVisible(true);
+            } else jbSolution.setVisible(disabledTime.getSeconds() >= 60);
         }else {
             jbSolution.setVisible(false);
             try{
@@ -519,6 +525,18 @@ public class MapView extends JFrame {
      */
     public void userWins() {
         JOptionPane.showMessageDialog(null, "HAS GUANYAAAAAAAAAAAAT!!!!", "Victoria", JOptionPane.INFORMATION_MESSAGE);
+    }
+    /**
+     * JoptionPane que ens indica que el jugador ha errat el resultat i inicia el temps del botó deshabilitat
+     */
+    public void userWrongSolution() {
+        JOptionPane.showMessageDialog(null, "Torna a provar en un minut...", "Error al validar", JOptionPane.INFORMATION_MESSAGE);
+        if (disabledTime == null) {
+            disabledTime = new Time();
+            disabledTime.initCounter();
+        } else {
+            disabledTime.resetCounter();
+        }
     }
     /**
      * JoptionPane que ens indica que no esta implementat encara

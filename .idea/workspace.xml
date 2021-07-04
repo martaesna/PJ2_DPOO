@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="- Esborrar usuari independentment de si ens loguegem amb username o mail&#10;- Comprovar CrewMembers (que sigui 0) per mourens des de un conducte (FALTA comprovar el numero dels que hi ha al conducte on volem anar)">
+    <list default="true" id="d65bbffe-14d8-40c0-9f0f-ef73d642d1b7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/MapController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/controllers/MapController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/MapView.java" beforeDir="false" afterPath="$PROJECT_DIR$/BetweenUs/src/presentationLayer/views/MapView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/MapController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/controllers/MapController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/MapView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BetweenUs/presentationLayer/views/MapView.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -346,7 +350,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624902702290</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="FIX&#10;&#10;Objective game tracking cíclic">
+      <created>1625404829845</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1625404829845</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -365,7 +376,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ADD&#10;- Map json file&#10;- Map classes&#10;- Map json reader" />
     <MESSAGE value="Format correu&#10;Carregar joc (part)&#10;Recrear joc (part)&#10;GameDAO" />
     <MESSAGE value="Comensem a crear el mapView pero encra no llegueix el json" />
     <MESSAGE value="Map view en proceso" />
@@ -390,7 +400,8 @@
     <MESSAGE value="Ningú desapareix :)" />
     <MESSAGE value="Impostor es mou després de matar&#10;Impostor tarda 25s en poder tornar a matar" />
     <MESSAGE value="Llista dels jocs per ConfiguredGame&#10;Arreglar JPanel MSG&#10;Començar lògica sistema logs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Llista dels jocs per ConfiguredGame&#10;Arreglar JPanel MSG&#10;Començar lògica sistema logs" />
+    <MESSAGE value="FIX&#10;&#10;Objective game tracking cíclic" />
+    <option name="LAST_COMMIT_MESSAGE" value="FIX&#10;&#10;Objective game tracking cíclic" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -148,6 +148,8 @@ public class MapController extends Thread implements ActionListener {
                     PlayView playView = new PlayView();
                     PlayViewController playViewController = new PlayViewController(playView, userName);
                     playView.mainController(playViewController);
+                } else {
+                    mv.userWrongSolution();
                 }
                 break;
             case "logs":
