@@ -6,7 +6,7 @@ import presentationLayer.views.customComponents.Log;
 import static persitanceLayer.JsonReader.llegeixJSON;
 
 /**
- *
+ * Classe que implementa tots els mètodes de l'interfície LogDAO
  */
 public class SQLLogDAO implements LogDAO {
     /**

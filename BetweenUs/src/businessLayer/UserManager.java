@@ -44,6 +44,7 @@ public class UserManager {
     /**
      * Mètode que elimina a un usuari de la base de dades
      * @param userName nom de l'usuari
+     * @return si s'ha eliminat l'usuari
      */
     public boolean deleteUser(String userName) {
         if (userDAO.userNameExists(userName)) {

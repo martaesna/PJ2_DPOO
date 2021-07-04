@@ -17,10 +17,10 @@ public class DeleteGameView extends JFrame {
 
 
     /**
-     * La classe ens permet veure la pantalla del DeleteGameView.
-     *
-     * Envia la informació que reb del usuari al seu controlador.
+     * La classe ens permet veure la pantalla del ConfiguredGameView. Envia la informació que rep de l'usuari al seu controlador.
+     * @param gameNamesString array d'strings amb els noms de les partids
      */
+
     public DeleteGameView(String[] gameNamesString) {
         setVisible(true);
         setTitle("Delete game"); // titol

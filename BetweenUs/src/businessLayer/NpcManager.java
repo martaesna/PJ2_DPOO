@@ -34,6 +34,7 @@ public class NpcManager {
      * Mètode que elimina un crewmember per l'impostor
      * @param mapManager gestor del mapa
      * @param impostor impostor
+     * @return si s'ha eliminat el crewmember
      */
     public synchronized boolean eliminateCrewMember(MapManager mapManager, Impostor impostor) {
         if (crewMemberKilled(mapManager,impostor)) {

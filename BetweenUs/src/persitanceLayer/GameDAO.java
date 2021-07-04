@@ -10,10 +10,8 @@ import java.util.LinkedList;
 
 
 /**
- *
- *
+ * Interfície que conté tots els mètodes que tracten els jocs
  */
-
 public interface GameDAO {
     void createGame(Game game, String userName);
 

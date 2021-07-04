@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import static persitanceLayer.JsonReader.llegeixJSON;
 
 /**
- *
+ * Classe que implementa tots els mètodes de l'interfície UserDAO
  */
 public class SQLUserDAO implements UserDAO{
     private Data data;

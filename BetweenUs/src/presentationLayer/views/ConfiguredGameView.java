@@ -16,9 +16,8 @@ public class ConfiguredGameView extends JFrame {
     private JButton returnButton;
 
     /**
-     * La classe ens permet veure la pantalla del ConfiguredGameView.
-     *
-     * Envia la informació que reb del usuari al seu controlador.
+     *      La classe ens permet veure la pantalla del ConfiguredGameView. Envia la informació que rep de l'usuari al seu controlador.
+     * @param gameNamesString array d'strings amb els noms de les partids
      */
     public ConfiguredGameView(String[] gameNamesString) {
         setVisible(true);

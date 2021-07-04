@@ -3,7 +3,7 @@ package persitanceLayer;
 import businessLayer.entities.user.User;
 
 /**
- *
+ * Interfície que conté els mètodes que tracten l'usuari
  */
 
 public interface UserDAO {

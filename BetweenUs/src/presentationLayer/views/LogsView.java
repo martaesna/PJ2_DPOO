@@ -10,9 +10,8 @@ public class LogsView extends JFrame{
     private LinkedList<Log> logs;
 
     /**
-     * La classe ens permet mostrar el Logs durant la partida al mapView.
-     *
-     * interacciona directament amb el MapView.
+     * La classe ens permet mostrar el Logs durant la partida al mapView, interacciona directament amb el MapView.
+     * @param logs llista de logs
      */
     public LogsView(LinkedList<Log> logs) {
         this.logs = logs;

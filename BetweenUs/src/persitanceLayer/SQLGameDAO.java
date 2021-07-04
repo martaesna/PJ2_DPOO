@@ -14,7 +14,7 @@ import java.util.LinkedList;
 import static persitanceLayer.JsonReader.llegeixJSON;
 
 /**
- *
+ * Classe que implementa tots els mètodes de l'interfície GameDAO
  */
 public class SQLGameDAO implements GameDAO{
 
