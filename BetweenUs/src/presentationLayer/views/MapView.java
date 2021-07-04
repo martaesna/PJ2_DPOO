@@ -278,8 +278,12 @@ public class MapView extends JFrame {
      */
     public void moveRight(String element) {
         for (int key: objectiveTrackingPosition.keySet()) {
-            if (key == Integer.parseInt(element) && canMoveRight(objectiveTrackingPosition.get(key))) {
-                objectiveTrackingPosition.replace(key, objectiveTrackingPosition.get(key) + 1);
+            if (key == Integer.parseInt(element)) {
+                if (canMoveRight(objectiveTrackingPosition.get(key))) {
+                    objectiveTrackingPosition.replace(key, objectiveTrackingPosition.get(key) + 1);
+                } else {
+                    objectiveTrackingPosition.replace(key, 0);
+                }
             }
         }
     }
@@ -356,8 +360,12 @@ public class MapView extends JFrame {
      */
     public void moveLeft(String element) {
         for (int key: objectiveTrackingPosition.keySet()) {
-            if (key == Integer.parseInt(element) && canMoveLeft(objectiveTrackingPosition.get(key))) {
-                objectiveTrackingPosition.replace(key, objectiveTrackingPosition.get(key) - 1);
+            if (key == Integer.parseInt(element)) {
+                if (canMoveLeft(objectiveTrackingPosition.get(key))) {
+                    objectiveTrackingPosition.replace(key, objectiveTrackingPosition.get(key) - 1);
+                } else {
+                    objectiveTrackingPosition.replace(key, 2);
+                }
             }
         }
     }
